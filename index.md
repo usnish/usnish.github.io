@@ -3,7 +3,8 @@ layout: default
 title: Usnish Majumdar
 ---
 
-![coverphoto](/img/coverpic3.jpg)
+
+<img src='/img/coverpic4_compressed.jpg' width="625" height="625" alt="coverphoto">
 
 Site under construction, all links may not work.
 
