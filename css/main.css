@@ -4,8 +4,9 @@
 body{
   font-family:"Helvetica Neue", sans-serif;
   font-size:12px;
+  line-height:18px;
 
-} 
+}
 a {
   text-decoration: none;
   color:#a04018;
@@ -39,6 +40,11 @@ ul.nav a:hover{
 
 img {
   border-radius:5px;
+}
+
+h1 {
+    font-size:24px;
+    margin-bottom: 12px;
 }
 
 /* layout ######################################## */
