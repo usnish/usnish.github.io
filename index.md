@@ -5,6 +5,5 @@ title: Usnish Majumdar
 
 
 <img src='/img/coverpic5.jpg' width="625" height="625" alt="coverphoto">
-*Photo taken from Harlem-125 St. Metro-North station.*
+*Photo taken from Harlem-125th Street  Metro-North station.*
 
-Hi! I'm a first-year medical student at the Icahn School of Medicine at Mount Sinai.
