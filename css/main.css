@@ -1,6 +1,22 @@
 /* usnish.org main css*/
 /* typography ######################################## */
 
+/* borders*/
+body:before, {
+    content: "";
+    position: fixed;
+    background: #900;
+    left: 0;
+    right: 0;
+    height: 10px;
+}
+body:before {
+    top: 0;
+}
+
+
+/*all other css*/
+
 body{
   font-family:"Helvetica Neue", sans-serif;
   font-size:12px;
