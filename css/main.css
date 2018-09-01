@@ -2,13 +2,13 @@
 /* typography ######################################## */
 
 /* borders*/
-body:before, {
+body:before {
     content: "";
     position: fixed;
     background: #900;
     left: 0;
     right: 0;
-    height: 10px;
+    height: 2px;
 }
 body:before {
     top: 0;
