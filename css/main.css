@@ -18,9 +18,9 @@ body:before {
 /*all other css*/
 
 body{
-  font-family:"Helvetica Neue", sans-serif;
-  font-size:12px;
-  line-height:18px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Avenir Next', Avenir, 'Segoe UI', Roboto, Helv    etica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  font-size:14px;
+  line-height:20px;
 
 }
 a {
