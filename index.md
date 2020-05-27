@@ -4,6 +4,6 @@ title: Usnish Majumdar
 ---
 
 
-<img src='/img/coverpic5.jpg' width="625" height="625" alt="coverphoto">
-*Photo taken from Harlem-125th Street  Metro-North station.*
+<img src='/img/coverpic6.jpg' width="825" height="497" alt="coverphoto">
+*Manhattan from the Rockaways.*
 

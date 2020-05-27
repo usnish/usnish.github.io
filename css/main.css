@@ -74,7 +74,7 @@ html, body {
 
 .default-container{
   min-height: 100%;
-  width: 950px;
+  width: 1150px;
   margin-bottom: -30px;
 }
 
@@ -88,7 +88,7 @@ html, body {
 }
 
 .default-footer{
-  width: 900px;
+  width: 1100px;
   margin-left:50px;
 }
 
@@ -101,7 +101,7 @@ html, body {
 }
 
 .default-content{
-  width:625px;
+  width:825px;
   margin-left:50px;
   margin-top:50px;
   float:right;
