@@ -17,6 +17,17 @@
   <div class ="default-sidebar">
     <div id="logo"><a href="/">Usnish Majumdar</a></div>
     <ul class="nav">
+      <li>
+        <details class="nav-dropdown">
+          <summary>projects</summary>
+          <ul>
+            {% for project in site.data.projects %}
+            <li><a href="{{ project.url }}">{{ project.title }}</a></li>
+            {% endfor %}
+            <li><a href="/projects/">all projects &rarr;</a></li>
+          </ul>
+        </details>
+      </li>
       <li><a href="https://scholar.google.com/citations?hl=en&user=NT3r7pYAAAAJ&view_op=list_works">papers</a></li>
       <li><a href="http://www.github.com/usnish/">code</a></li>
       <li><a href="https://www.linkedin.com/in/usnish/">cv</a></li>
@@ -31,6 +42,6 @@
   Built on <a href="http://jekyllrb.com/"> Jekyll </a> and hosted by the ever-merciful <a href="http://github.com/pages/"> Github Pages </a>.
 </footer>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
 </body>
 </html>

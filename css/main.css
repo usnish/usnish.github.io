@@ -127,3 +127,43 @@ ul.nav li{
 #cv {
 
 }
+
+/* projects ################################ */
+.nav-dropdown summary{
+  color:#787878;
+  cursor:pointer;
+  list-style:none;
+}
+.nav-dropdown summary::-webkit-details-marker{
+  display:none;
+}
+.nav-dropdown summary:after{
+  content:" \25B8";
+}
+.nav-dropdown[open] summary:after{
+  content:" \25BE";
+}
+.nav-dropdown summary:hover{
+  color:#74340f;
+}
+.nav-dropdown ul{
+  list-style:none;
+  margin:2px 0 4px 0;
+  padding-left:12px;
+}
+
+.project{
+  margin-bottom:30px;
+}
+.project h2{
+  font-size:18px;
+  margin:10px 0 6px 0;
+}
+.project-thumb{
+  max-width:100%;
+  height:auto;
+}
+.project-meta{
+  font-size:12px;
+  margin-top:4px;
+}
