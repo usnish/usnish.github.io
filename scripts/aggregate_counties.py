@@ -2,12 +2,14 @@
 
 Usage:
   python scripts/aggregate_counties.py COUNTY_CSV \
-      --fips-col FIPS --eligible-col eligible --rate-col participation_pct
+      --fips-col FIPS --eligible-col eligible --rate-col participation_pct \
+      --out data/state_cr_2019.csv
 
 Each state's rate is the eligible-weighted mean of its counties' rates
 (equivalently, total participants / total eligible). Counties with missing
 or suppressed values are skipped and counted in the printed summary.
-Writes data/state_cr.csv, keeping the state name/abbreviation columns.
+Writes a state CSV (default data/state_cr_county_rollup.csv) with the same
+columns as data/state_cr.csv; add it to data/datasets.json to show it on the map.
 """
 import argparse
 import csv
@@ -15,7 +17,7 @@ from collections import defaultdict
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-OUT = ROOT / "data" / "state_cr.csv"
+STATES = ROOT / "data" / "state_cr.csv"
 
 
 def num(x):
@@ -32,6 +34,7 @@ def main():
     ap.add_argument("--eligible-col", required=True, help="number of CR-eligible patients")
     ap.add_argument("--rate-col", help="participation rate in percent (0-100)")
     ap.add_argument("--participants-col", help="number who participated (alternative to --rate-col)")
+    ap.add_argument("--out", default=str(ROOT / "data" / "state_cr_county_rollup.csv"))
     a = ap.parse_args()
     if not (a.rate_col or a.participants_col):
         ap.error("pass --rate-col or --participants-col")
@@ -55,7 +58,7 @@ def main():
             part[fips[:2]] += p
             used += 1
 
-    with open(OUT, newline="") as f:
+    with open(STATES, newline="") as f:
         states = list(csv.DictReader(f))
     for s in states:
         st = s["fips"].zfill(2)
@@ -65,7 +68,7 @@ def main():
             s["participation_pct"] = round(100 * part[st] / elig[st], 1)
         else:
             s["eligible"] = s["participants"] = s["participation_pct"] = ""
-    with open(OUT, "w", newline="") as f:
+    with open(a.out, "w", newline="") as f:
         w = csv.DictWriter(f, fieldnames=states[0].keys())
         w.writeheader()
         w.writerows(states)

@@ -1,0 +1,30 @@
+[
+  {
+    "id": "2016",
+    "label": "2016 · by region",
+    "geography": "division",
+    "file": "data/division_cr_2016.csv",
+    "population": "Medicare fee-for-service beneficiaries aged 65+ with a cardiac rehab–qualifying event",
+    "period": "2016 (followed through 2017)",
+    "national_pct": 24.4,
+    "national_eligible": 366103,
+    "national_participants": 89327,
+    "source_title": "Ritchey MD et al. Tracking Cardiac Rehabilitation Participation and Completion Among Medicare Beneficiaries to Inform the Efforts of a National Initiative. Circ Cardiovasc Qual Outcomes. 2020;13:e005902 (Table 2)",
+    "source_url": "https://doi.org/10.1161/CIRCOUTCOMES.119.005902",
+    "definition": "Participation = percentage of CR-eligible beneficiaries who attended at least one outpatient CR session within 365 days of a qualifying event in 2016 (heart attack, bypass surgery, PCI/stenting, heart valve repair or replacement, or heart/heart–lung transplant). CDC publishes these figures by U.S. Census division, not by state, so every state in a division shows the division's rate. The 832 eligible beneficiaries with no division assigned are counted in the national rate only.",
+    "note": "These are the most recent published multi-state figures (CDC, 2016 events). They are reported by Census division, so states in the same region share a value. CDC's Heart Disease and Stroke Atlas has 2019 county-level rates, but its data service was not returning results when this was last updated."
+  },
+  {
+    "id": "1997",
+    "label": "1997 · by state",
+    "geography": "state",
+    "file": "data/state_cr.csv",
+    "population": "Medicare beneficiaries hospitalized for heart attack or bypass surgery",
+    "period": "1997",
+    "national_pct": null,
+    "source_title": "Gaalema DE et al. State-by-State Variations in Cardiac Rehabilitation Participation. J Cardiopulm Rehabil Prev. 2014 (Table 1), reporting 1997 state rates originally published by Suaya JA et al., Circulation. 2007",
+    "source_url": "https://doi.org/10.1097/HCR.0000000000000059",
+    "definition": "Participation = percentage of Medicare beneficiaries hospitalized for acute myocardial infarction or coronary artery bypass surgery in 1997, and alive 30 days after discharge, who had at least one billed outpatient cardiac rehab session.",
+    "note": "These are 1997 figures, the most recent complete state-by-state rates in the open literature. The qualifying conditions are narrower than in the 2016 data, so the two years aren't directly comparable."
+  }
+]

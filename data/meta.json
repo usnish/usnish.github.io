@@ -1,8 +1,0 @@
-{
-  "population": "Medicare beneficiaries hospitalized for heart attack or bypass surgery",
-  "period": "1997",
-  "national_pct": null,
-  "source_title": "Gaalema DE et al. State-by-State Variations in Cardiac Rehabilitation Participation. J Cardiopulm Rehabil Prev. 2014 (Table 1), reporting 1997 state rates originally published by Suaya JA et al., Circulation. 2007",
-  "source_url": "https://doi.org/10.1097/HCR.0000000000000059",
-  "definition": "Participation = percentage of Medicare beneficiaries hospitalized for acute myocardial infarction or coronary artery bypass surgery in 1997, and alive 30 days after discharge, who had at least one billed outpatient cardiac rehab session. These are the most recent complete state-by-state figures in the open literature; newer CDC estimates (2016-2020) are published by census division and county, so current state rates may differ substantially."
-}
