@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cardiac Rehab Map</title>
+<meta name="description" content="Interactive map of cardiac rehabilitation participation among eligible patients, across U.S. states and regions.">
+<style>
+  :root {
+    --bg: #ffffff;
+    --fg: #1a1a1a;
+    --muted: #6b6b6b;
+    --line: #e4e4e4;
+    --panel: #f7f7f5;
+    --accent: #a04018;
+    --nodata: #e9e9e9;
+    --stroke: #ffffff;
+    --hover: #1a1a1a;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #141414;
+      --fg: #ececec;
+      --muted: #a0a0a0;
+      --line: #2c2c2c;
+      --panel: #1d1d1d;
+      --accent: #e0875c;
+      --nodata: #2a2a2a;
+      --stroke: #141414;
+      --hover: #ffffff;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #141414; --fg: #ececec; --muted: #a0a0a0; --line: #2c2c2c;
+    --panel: #1d1d1d; --accent: #e0875c; --nodata: #2a2a2a; --stroke: #141414; --hover: #ffffff;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--fg);
+    font: 15px/1.5 -apple-system, BlinkMacSystemFont, "Avenir Next", Avenir, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  main { max-width: 1120px; margin: 0 auto; padding: 32px 16px 48px; }
+  header h1 { font-size: 26px; line-height: 1.2; margin: 0 0 6px; }
+  header p { margin: 0; color: var(--muted); max-width: 70ch; }
+  .back { font-size: 13px; color: var(--muted); text-decoration: none; display: inline-block; margin-bottom: 12px; }
+  .back:hover { color: var(--accent); }
+  a { color: var(--accent); }
+
+  .stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 20px 0 8px; }
+  .stat { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 10px 14px; min-width: 150px; }
+  .stat .k { font-size: 12px; color: var(--muted); }
+  .stat .v { font-size: 22px; font-weight: 650; font-variant-numeric: tabular-nums; }
+  .stat .s { font-size: 12px; color: var(--muted); }
+
+  .layout { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 24px; align-items: start; margin-top: 12px; }
+  @media (max-width: 860px) { .layout { grid-template-columns: minmax(0, 1fr); } }
+
+  .map-wrap { position: relative; }
+  svg.map { width: 100%; height: auto; display: block; }
+  .state { stroke: var(--stroke); stroke-width: 0.75; cursor: pointer; transition: opacity .15s; }
+  .state.dim { opacity: .35; }
+  .state.active { stroke: var(--hover); stroke-width: 2; }
+  .legend text { fill: var(--muted); font-size: 11px; }
+
+  .tooltip {
+    position: absolute; pointer-events: none; background: var(--bg); color: var(--fg);
+    border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; font-size: 13px;
+    box-shadow: 0 4px 14px rgba(0,0,0,.12); opacity: 0; transition: opacity .1s; max-width: 240px;
+  }
+  .tooltip b { display: block; font-size: 14px; }
+  .tooltip .big { font-size: 20px; font-weight: 650; font-variant-numeric: tabular-nums; }
+
+  aside { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 14px; }
+  aside h2 { font-size: 14px; margin: 0 0 8px; display: flex; justify-content: space-between; align-items: center; }
+  aside button {
+    font: inherit; font-size: 12px; background: none; border: 1px solid var(--line); color: var(--muted);
+    border-radius: 5px; padding: 2px 8px; cursor: pointer;
+  }
+  aside button:hover { color: var(--fg); }
+  .rank { list-style: none; margin: 0; padding: 0; max-height: 520px; overflow-y: auto; }
+  .rank li { display: grid; grid-template-columns: 22px 1fr 44px; gap: 6px; align-items: center; padding: 3px 4px; border-radius: 4px; cursor: pointer; font-size: 13px; }
+  .rank li:hover, .rank li.active { background: var(--line); }
+  .rank .n { color: var(--muted); font-size: 11px; text-align: right; font-variant-numeric: tabular-nums; }
+  .rank .bar { height: 8px; border-radius: 2px; background: var(--accent); margin-top: 2px; }
+  .rank .val { text-align: right; font-variant-numeric: tabular-nums; }
+
+  .pending { margin: 14px 0 0; padding: 10px 14px; background: var(--panel); border-left: 3px solid var(--accent); border-radius: 4px; font-size: 14px; max-width: 80ch; }
+  .toggle { display: inline-flex; margin: 16px 0 0; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+  .toggle button { font: inherit; font-size: 13px; background: var(--bg); color: var(--muted); border: 0; padding: 6px 12px; cursor: pointer; }
+  .toggle button + button { border-left: 1px solid var(--line); }
+  .toggle button[aria-pressed="true"] { background: var(--accent); color: var(--bg); }
+  .rank .sub { display: block; color: var(--muted); font-size: 11px; line-height: 1.3; }
+  .notice { margin-top: 20px; padding: 14px; border: 1px dashed var(--accent); border-radius: 8px; }
+  .notice[hidden] { display: none; }
+  section.about { margin-top: 32px; border-top: 1px solid var(--line); padding-top: 16px; color: var(--muted); font-size: 14px; max-width: 80ch; }
+  section.about h2 { font-size: 15px; color: var(--fg); margin: 0 0 6px; }
+</style>
+</head>
+<body>
+<main>
+  <a class="back" href="https://usnish.github.io/">&larr; usnish.github.io</a>
+  <header>
+    <h1>Cardiac rehabilitation participation</h1>
+    <p id="subtitle">Share of eligible patients who attended at least one cardiac rehab session.</p>
+  </header>
+
+  <div class="toggle" id="toggle" role="group" aria-label="Data year"></div>
+  <p class="pending" id="note"></p>
+
+  <div class="stats" id="stats"></div>
+
+  <div class="notice" id="notice" hidden>
+    <strong>Data coming soon.</strong> Participation rates will appear here once the dataset is assembled.
+  </div>
+
+  <div class="layout">
+    <div class="map-wrap">
+      <svg class="map" id="map" viewBox="0 0 975 640" role="img" aria-label="Choropleth map of U.S. states"></svg>
+      <div class="tooltip" id="tooltip"></div>
+    </div>
+    <aside>
+      <h2><span id="rank-title">Ranked</span> <button id="sort" type="button">highest first</button></h2>
+      <ol class="rank" id="rank"></ol>
+    </aside>
+  </div>
+
+  <section class="about" id="about">
+    <h2>About the data</h2>
+    <p id="source">Source: not yet specified.</p>
+    <p id="definition"></p>
+  </section>
+</main>
+
+<script src="vendor/d3.min.js"></script>
+<script src="vendor/topojson-client.min.js"></script>
+<script>
+(async function () {
+  const fmtPct = d => d == null || isNaN(d) ? "–" : d.toFixed(1) + "%";
+  const fmtInt = d3.format(",");
+  const ramp = ["#fbe9dd", "#f4c3a3", "#e8956b", "#cf6639", "#a04018", "#6b2508"];
+
+  const [us, datasets, divisions] = await Promise.all([
+    d3.json("vendor/states-albers-10m.json"),
+    d3.json("data/datasets.json"),
+    d3.csv("data/state_divisions.csv")
+  ]);
+  const divisionOf = new Map(divisions.map(r => [r.fips, r.division]));
+  const stateName = new Map(divisions.map(r => [r.fips, r.state]));
+
+  // Load every dataset into "units": one per state, or one per Census division.
+  // Each unit lists the state FIPS codes it colors on the map.
+  for (const ds of datasets) {
+    const rows = (await d3.csv(ds.file, d3.autoType).catch(() => []))
+      .filter(r => r.participation_pct != null && r.participation_pct !== "");
+    ds.units = ds.geography === "division"
+      ? rows.map(r => ({ id: r.division, name: r.division, ...r,
+          fips: divisions.filter(d => d.division === r.division).map(d => d.fips) }))
+      : rows.map(r => { const f = String(r.fips).padStart(2, "0"); return { ...r, id: f, name: r.state, fips: [f] }; });
+    ds.unitOf = new Map(ds.units.flatMap(u => u.fips.map(f => [f, u])));
+  }
+
+  const svg = d3.select("#map");
+  const path = d3.geoPath();
+  const states = topojson.feature(us, us.objects.states).features;
+  const tip = d3.select("#tooltip");
+  const wrap = document.querySelector(".map-wrap");
+  const list = d3.select("#rank");
+  let ds, color, pinned = null, desc = true;
+
+  const shapes = svg.append("g").selectAll("path").data(states).join("path")
+    .attr("class", "state").attr("d", path)
+    .on("mousemove", (e, f) => show(f, e))
+    .on("mouseleave", () => { if (!pinned) hide(); })
+    .on("click", (e, f) => {
+      const u = ds.unitOf.get(f.id)?.id ?? null;
+      pinned = pinned === u ? null : u; highlight(pinned); if (pinned) show(f, e); else hide();
+    });
+  const titles = shapes.append("title");
+  svg.append("path").datum(topojson.mesh(us, us.objects.states, (a, b) => a !== b))
+    .attr("fill", "none").attr("stroke", "var(--stroke)").attr("stroke-width", 0.75).attr("d", path)
+    .attr("pointer-events", "none");
+  const divLines = svg.append("path")
+    .datum(topojson.mesh(us, us.objects.states, (a, b) => a !== b && divisionOf.get(a.id) !== divisionOf.get(b.id)))
+    .attr("fill", "none").attr("stroke", "var(--fg)").attr("stroke-width", 1.25).attr("stroke-opacity", 0.55)
+    .attr("d", path).attr("pointer-events", "none");
+  const legend = svg.append("g").attr("class", "legend").attr("transform", "translate(600,20)");
+
+  function show(f, e) {
+    const u = ds.unitOf.get(f.id);
+    const [x, y] = d3.pointer(e, wrap);
+    let html = `<b>${f.properties.name}</b>`;
+    if (u) {
+      if (ds.geography === "division") html += `${u.name} division<br>`;
+      html += `<span class="big">${fmtPct(u.participation_pct)}</span> participated`;
+      if (u.eligible) html += `<br>${fmtInt(u.participants || Math.round(u.eligible * u.participation_pct / 100))} of ${fmtInt(u.eligible)} eligible`;
+    } else html += "No data";
+    tip.html(html).style("opacity", 1)
+      .style("left", Math.min(x + 14, wrap.clientWidth - 200) + "px")
+      .style("top", (y + 14) + "px");
+    highlight(u ? u.id : null);
+  }
+  function hide() { tip.style("opacity", 0); highlight(pinned); }
+  function highlight(id) {
+    const on = f => id != null && ds.unitOf.get(f.id)?.id === id;
+    shapes.classed("active", on).classed("dim", f => id != null && !on(f));
+    list.selectAll("li").classed("active", d => d.id === id);
+  }
+
+  function renderList() {
+    const data = [...ds.units].sort((a, b) => desc ? b.participation_pct - a.participation_pct : a.participation_pct - b.participation_pct);
+    const max = d3.max(data, d => d.participation_pct) || 1;
+    const sub = d => ds.geography === "division" ? `<span class="sub">${d.fips.map(f => divisions.find(r => r.fips === f).abbr).join(" ")}</span>` : "";
+    list.selectAll("li").data(data, d => d.id).join("li")
+      .html((d, i) => `<span class="n">${i + 1}</span><span>${d.name}${sub(d)}<div class="bar" style="width:${(d.participation_pct / max * 100).toFixed(1)}%;background:${color(d.participation_pct)}"></div></span><span class="val">${fmtPct(d.participation_pct)}</span>`)
+      .on("mouseenter", (e, d) => highlight(d.id))
+      .on("mouseleave", () => highlight(pinned))
+      .on("click", (e, d) => { pinned = pinned === d.id ? null : d.id; highlight(pinned); });
+  }
+
+  function select(id) {
+    ds = datasets.find(d => d.id === id) || datasets[0];
+    pinned = null; tip.style("opacity", 0);
+    const hasData = ds.units.length > 0;
+    document.getElementById("notice").hidden = hasData;
+    toggle.selectAll("button").attr("aria-pressed", d => d.id === ds.id);
+    if (history.replaceState) history.replaceState(null, "", ds === datasets[0] ? location.pathname : "#" + ds.id);
+
+    document.getElementById("subtitle").textContent =
+      [ds.population, ds.period].filter(Boolean).join(", ") + ". Share of eligible patients who attended at least one cardiac rehab session.";
+    document.getElementById("note").textContent = ds.note || "";
+    const src = document.getElementById("source");
+    src.textContent = "Source: ";
+    const a = document.createElement(ds.source_url ? "a" : "span");
+    if (ds.source_url) a.href = ds.source_url;
+    a.textContent = ds.source_title || "not yet specified.";
+    src.appendChild(a);
+    document.getElementById("definition").textContent = ds.definition || "";
+    document.getElementById("rank-title").textContent = ds.geography === "division" ? "Regions ranked" : "States ranked";
+
+    // Color scale: quantized sequential ramp over the observed range
+    const vals = ds.units.map(d => d.participation_pct);
+    const extent = hasData ? d3.extent(vals) : [0, 1];
+    color = d3.scaleQuantize().domain([Math.floor(extent[0]), Math.ceil(extent[1])]).range(ramp);
+    shapes.attr("fill", f => { const u = ds.unitOf.get(f.id); return u ? color(u.participation_pct) : "var(--nodata)"; });
+    titles.text(f => `${f.properties.name}: ${fmtPct(ds.unitOf.get(f.id)?.participation_pct)}`);
+    divLines.attr("display", ds.geography === "division" ? null : "none");
+    highlight(null);
+
+    // Summary stats
+    const stats = document.getElementById("stats");
+    stats.innerHTML = "";
+    const addStat = (k, v, s) => stats.insertAdjacentHTML("beforeend",
+      `<div class="stat"><div class="k">${k}</div><div class="v">${v}</div>${s ? `<div class="s">${s}</div>` : ""}</div>`);
+    if (hasData) {
+      const sorted = [...ds.units].sort((a, b) => b.participation_pct - a.participation_pct);
+      const unit = ds.geography === "division" ? "region" : "state";
+      addStat(ds.national_pct != null ? "National" : "Median " + unit,
+        fmtPct(ds.national_pct != null ? ds.national_pct : d3.median(vals)),
+        ds.national_eligible ? `${fmtInt(ds.national_participants)} of ${fmtInt(ds.national_eligible)}` : "");
+      addStat("Highest", fmtPct(sorted[0].participation_pct), sorted[0].name);
+      addStat("Lowest", fmtPct(sorted[sorted.length - 1].participation_pct), sorted[sorted.length - 1].name);
+      addStat("Goal (Million Hearts)", "70%", "participation target");
+    }
+
+    // Legend
+    legend.selectAll("*").remove();
+    if (hasData) {
+      const w = 40;
+      ramp.forEach((c, i) => legend.append("rect").attr("x", i * w).attr("width", w).attr("height", 10).attr("fill", c));
+      color.thresholds().forEach((t, i) => legend.append("text").attr("x", (i + 1) * w).attr("y", 24).attr("text-anchor", "middle").text(t.toFixed(0) + "%"));
+      legend.append("text").attr("x", 0).attr("y", -6).text("Participation among eligible patients");
+    }
+    renderList();
+  }
+
+  const toggle = d3.select("#toggle");
+  toggle.selectAll("button").data(datasets).join("button")
+    .attr("type", "button").text(d => d.label).on("click", (e, d) => select(d.id));
+  document.getElementById("sort").addEventListener("click", e => {
+    desc = !desc; e.target.textContent = desc ? "highest first" : "lowest first"; renderList(); highlight(pinned);
+  });
+  select(location.hash.slice(1));
+})();
+</script>
+</body>
+</html>
