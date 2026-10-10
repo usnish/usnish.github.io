@@ -18,12 +18,15 @@
           <ul>
             {% for project in site.data.projects %}
             {% if project.items %}
-            <li class="nav-group">{{ project.title }}
-              <ul>
-                {% for item in project.items %}
-                <li><a href="{{ item.url }}">{{ item.title }}</a></li>
-                {% endfor %}
-              </ul>
+            <li>
+              <details class="nav-dropdown">
+                <summary>{{ project.title }}</summary>
+                <ul>
+                  {% for item in project.items %}
+                  <li><a href="{{ item.url }}">{{ item.title }}</a></li>
+                  {% endfor %}
+                </ul>
+              </details>
             </li>
             {% else %}
             <li><a href="{{ project.url }}">{{ project.title }}</a></li>
