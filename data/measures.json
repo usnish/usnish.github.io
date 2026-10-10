@@ -1,0 +1,50 @@
+[
+  {
+    "id": "cr_eligible",
+    "label": "CR-eligible events",
+    "title": "Cardiac Rehabilitation Eligibility Rate per 1,000 Medicare Fee-for-Service Beneficiaries, 2019-2020",
+    "unit": "Rate per 1,000 Beneficiaries",
+    "source": "Centers for Medicare & Medicaid Services, Chronic Conditions Warehouse, Part A and Part B claims for FFS beneficiaries",
+    "source_url": "https://heart-stroke-atlas.cdc.gov/"
+  },
+  {
+    "id": "ami_hosp",
+    "label": "Heart attack hospitalizations",
+    "title": "Heart Attack Hospitalization Rate per 1,000 Medicare Beneficiaries, All Races/Ethnicities, Both Sexes, Ages 65+, 2019-2021",
+    "unit": "Rate per 1,000 Beneficiaries (age-standardized)",
+    "source": "Medicare Provider Analysis and Review (MEDPAR), Centers for Medicare & Medicaid Services, Part A",
+    "source_url": "https://heart-stroke-atlas.cdc.gov/"
+  },
+  {
+    "id": "chd_hosp",
+    "label": "Coronary heart disease hospitalizations",
+    "title": "Coronary Heart Disease Hospitalization Rate per 1,000 Medicare Beneficiaries, All Races/Ethnicities, Both Sexes, Ages 65+, 2019-2021",
+    "unit": "Rate per 1,000 Beneficiaries (age-standardized)",
+    "source": "Medicare Provider Analysis and Review (MEDPAR), Centers for Medicare & Medicaid Services, Part A",
+    "source_url": "https://heart-stroke-atlas.cdc.gov/"
+  },
+  {
+    "id": "hf_hosp",
+    "label": "Heart failure hospitalizations",
+    "title": "Heart Failure Hospitalization Rate per 1,000 Medicare Beneficiaries, All Races/Ethnicities, Both Sexes, Ages 65+, 2019-2021",
+    "unit": "Rate per 1,000 Beneficiaries (age-standardized)",
+    "source": "Medicare Provider Analysis and Review (MEDPAR), Centers for Medicare & Medicaid Services, Part A",
+    "source_url": "https://heart-stroke-atlas.cdc.gov/"
+  },
+  {
+    "id": "cr_participation",
+    "label": "CR participation among eligible",
+    "title": "Cardiac Rehabilitation Participation Rate Among All Eligible Fee-for_Service Medicare Beneficiaries, 2019-2020",
+    "unit": "Percentage",
+    "source": "Centers for Medicare & Medicaid Services, Chronic Conditions Warehouse, Part A and Part B claims for FFS beneficiaries",
+    "source_url": "https://heart-stroke-atlas.cdc.gov/"
+  },
+  {
+    "id": "chd_prev",
+    "label": "Coronary heart disease prevalence",
+    "title": "Coronary heart disease among adults 18+, age-adjusted prevalence, 2023",
+    "unit": "% of adults (age-adjusted)",
+    "source": "CDC PLACES 2025 release (BRFSS 2023 model-based estimates)",
+    "source_url": "https://www.cdc.gov/places/"
+  }
+]

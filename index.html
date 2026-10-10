@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cardiac Rehab Eligibility</title>
+<meta name="description" content="County map of conditions that make patients eligible for cardiac rehabilitation: CR-eligible events, heart attack, coronary heart disease and heart failure.">
+<style>
+  :root {
+    --bg: #ffffff; --fg: #1a1a1a; --muted: #6b6b6b; --line: #e4e4e4; --panel: #f7f7f5;
+    --accent: #a04018; --nodata: #e9e9e9; --stroke: #ffffff; --hover: #1a1a1a;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #141414; --fg: #ececec; --muted: #a0a0a0; --line: #2c2c2c; --panel: #1d1d1d;
+      --accent: #e0875c; --nodata: #2a2a2a; --stroke: #141414; --hover: #ffffff;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #141414; --fg: #ececec; --muted: #a0a0a0; --line: #2c2c2c; --panel: #1d1d1d;
+    --accent: #e0875c; --nodata: #2a2a2a; --stroke: #141414; --hover: #ffffff;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--fg);
+    font: 15px/1.5 -apple-system, BlinkMacSystemFont, "Avenir Next", Avenir, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  main { max-width: 1180px; margin: 0 auto; padding: 32px 16px 48px; }
+  header h1 { font-size: 26px; line-height: 1.2; margin: 0 0 6px; }
+  header p { margin: 0; color: var(--muted); max-width: 75ch; }
+  .back { font-size: 13px; color: var(--muted); text-decoration: none; display: inline-block; margin-bottom: 12px; }
+  .back:hover { color: var(--accent); }
+  a { color: var(--accent); }
+
+  .measures { display: flex; flex-wrap: wrap; gap: 6px; margin: 18px 0 0; }
+  .measures button {
+    font: inherit; font-size: 13px; background: var(--bg); color: var(--muted); cursor: pointer;
+    border: 1px solid var(--line); border-radius: 6px; padding: 6px 10px; text-align: left;
+  }
+  .measures button:hover { color: var(--fg); }
+  .measures button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+  .measures .yr { display: block; font-size: 11px; opacity: .8; }
+  .mtitle { margin: 14px 0 0; font-size: 14px; color: var(--muted); }
+  .mtitle b { color: var(--fg); font-weight: 600; }
+
+  .stats { display: flex; flex-wrap: wrap; gap: 12px; margin: 14px 0 8px; }
+  .stat { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 10px 14px; min-width: 140px; }
+  .stat .k { font-size: 12px; color: var(--muted); }
+  .stat .v { font-size: 22px; font-weight: 650; font-variant-numeric: tabular-nums; }
+  .stat .s { font-size: 12px; color: var(--muted); }
+
+  .layout { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 24px; align-items: start; margin-top: 12px; }
+  @media (max-width: 900px) { .layout { grid-template-columns: minmax(0, 1fr); } }
+  .map-wrap { position: relative; }
+  svg.map { width: 100%; height: auto; display: block; }
+  .county { stroke: none; }
+  .county.active { stroke: var(--hover); stroke-width: 1.5; }
+  .legend text { fill: var(--muted); font-size: 11px; }
+
+  .tooltip {
+    position: absolute; pointer-events: none; background: var(--bg); color: var(--fg);
+    border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; font-size: 12px;
+    box-shadow: 0 4px 14px rgba(0,0,0,.12); opacity: 0; transition: opacity .1s; width: 250px;
+  }
+  .tooltip b { display: block; font-size: 14px; margin-bottom: 2px; }
+  .tooltip table { border-collapse: collapse; width: 100%; }
+  .tooltip td { padding: 1px 0; vertical-align: top; }
+  .tooltip td:last-child { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; padding-left: 8px; }
+  .tooltip tr.cur td { color: var(--accent); font-weight: 650; }
+
+  aside { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 14px; }
+  aside h2 { font-size: 14px; margin: 0 0 8px; display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  aside select, aside button {
+    font: inherit; font-size: 12px; background: var(--bg); color: var(--fg); border: 1px solid var(--line); border-radius: 5px; padding: 2px 6px;
+  }
+  aside button { color: var(--muted); cursor: pointer; }
+  .rank { list-style: none; margin: 8px 0 0; padding: 0; max-height: 520px; overflow-y: auto; }
+  .rank li { display: grid; grid-template-columns: 26px 1fr 48px; gap: 6px; align-items: center; padding: 3px 4px; border-radius: 4px; cursor: default; font-size: 13px; }
+  .rank li:hover { background: var(--line); }
+  .rank .n { color: var(--muted); font-size: 11px; text-align: right; font-variant-numeric: tabular-nums; }
+  .rank .st { color: var(--muted); font-size: 11px; }
+  .rank .val { text-align: right; font-variant-numeric: tabular-nums; }
+
+  section.about { margin-top: 32px; border-top: 1px solid var(--line); padding-top: 16px; color: var(--muted); font-size: 14px; max-width: 85ch; }
+  section.about h2 { font-size: 15px; color: var(--fg); margin: 0 0 6px; }
+  section.about li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<main>
+  <a class="back" href="https://usnish.github.io/">&larr; usnish.github.io</a>
+  <header>
+    <h1>Who could use cardiac rehab? A county map</h1>
+    <p>How common are the heart conditions that qualify patients for cardiac rehabilitation, county by county. Pick a measure; hover a county to compare all of them.</p>
+  </header>
+
+  <div class="measures" id="measures" role="group" aria-label="Measure"></div>
+  <p class="mtitle" id="mtitle"></p>
+  <div class="stats" id="stats"></div>
+
+  <div class="layout">
+    <div class="map-wrap">
+      <svg class="map" id="map" viewBox="0 0 975 640" role="img" aria-label="Choropleth map of U.S. counties"></svg>
+      <div class="tooltip" id="tooltip"></div>
+    </div>
+    <aside>
+      <h2>
+        <select id="state" aria-label="Filter by state"><option value="">All states</option></select>
+        <button id="sort" type="button">highest first</button>
+      </h2>
+      <ol class="rank" id="rank"></ol>
+    </aside>
+  </div>
+
+  <section class="about">
+    <h2>About the data</h2>
+    <ul id="sources"></ul>
+    <p><b>Eligibility.</b> Medicare covers cardiac rehab after a heart attack, bypass surgery, angioplasty/stenting, heart valve repair or replacement, heart or heart–lung transplant, stable angina, and stable heart failure with reduced ejection fraction. The CR-eligible rate counts Million Hearts primary qualifying events (heart attack, bypass, PCI, valve procedure, transplant) among Medicare fee-for-service beneficiaries; the hospitalization rates are broader proxies for the same population.</p>
+    <p><b>Caveats.</b> Medicare measures cover fee-for-service beneficiaries 65+ only (Medicare Advantage enrollees are not included). Hospitalization rates are age-standardized and spatially smoothed by CDC. Coronary heart disease prevalence is a modeled self-report estimate for all adults; PLACES has no estimates for Kentucky or Pennsylvania in this release, and reports Connecticut by planning region, which doesn't match these county shapes. CDC labels the CR eligibility period both 2018–2019 and 2019–2020. Gray counties have no data or were suppressed for small numbers.</p>
+  </section>
+</main>
+
+<script src="vendor/d3.min.js"></script>
+<script src="vendor/topojson-client.min.js"></script>
+<script>
+(async function () {
+  const [us, rows, measures] = await Promise.all([
+    d3.json("vendor/counties-albers-10m.json"),
+    d3.csv("data/counties.csv", r => {
+      for (const k in r) if (!["fips", "county", "state"].includes(k)) r[k] = r[k] === "" ? null : +r[k];
+      return r;
+    }),
+    d3.json("data/measures.json")
+  ]);
+  const stateNames = new Map(topojson.feature(us, us.objects.states).features.map(f => [f.id, f.properties.name]));
+  // Keep the 50 states + DC drawn on the map; drop territories from stats and lists
+  rows.splice(0, rows.length, ...rows.filter(r => stateNames.has(r.fips.slice(0, 2))));
+  const byFips = new Map(rows.map(r => [r.fips, r]));
+  const yearOf = m => (m.title.match(/\d{4}(?:-\d{4})?$/) || [""])[0];
+  const isPct = m => m.unit.startsWith("%") || m.id === "cr_participation";
+  const fmt = (m, v) => v == null ? "–" : isPct(m) ? v.toFixed(1) + "%" : v.toFixed(1);
+  const ramp = ["#fbe9dd", "#f6cdb1", "#eea983", "#e0825a", "#c75d35", "#a04018", "#6b2508"];
+
+  const svg = d3.select("#map");
+  const path = d3.geoPath();
+  const counties = topojson.feature(us, us.objects.counties).features;
+  const tip = d3.select("#tooltip");
+  const wrap = document.querySelector(".map-wrap");
+  let m, color, desc = true;
+
+  const shapes = svg.append("g").selectAll("path").data(counties).join("path")
+    .attr("class", "county").attr("d", path)
+    .on("mousemove", (e, f) => show(f, e))
+    .on("mouseleave", () => { tip.style("opacity", 0); shapes.classed("active", false); });
+  svg.append("path").datum(topojson.mesh(us, us.objects.states, (a, b) => a !== b))
+    .attr("fill", "none").attr("stroke", "var(--stroke)").attr("stroke-width", 1).attr("d", path).attr("pointer-events", "none");
+  const legend = svg.append("g").attr("class", "legend").attr("transform", "translate(570,20)");
+
+  function show(f, e) {
+    const r = byFips.get(f.id);
+    const [x, y] = d3.pointer(e, wrap);
+    const st = stateNames.get(f.id.slice(0, 2)) || "";
+    let html = `<b>${f.properties.name}, ${st}</b><table>`;
+    for (const mm of measures) {
+      html += `<tr class="${mm === m ? "cur" : ""}"><td>${mm.label}</td><td>${fmt(mm, r?.[mm.id])}</td></tr>`;
+    }
+    html += "</table>";
+    tip.html(html).style("opacity", 1)
+      .style("left", Math.min(x + 14, wrap.clientWidth - 260) + "px")
+      .style("top", Math.min(y + 14, wrap.clientHeight - 150) + "px");
+    shapes.classed("active", d => d === f);
+  }
+
+  function renderList() {
+    const st = document.getElementById("state").value;
+    const data = rows.filter(r => r[m.id] != null && (!st || r.fips.slice(0, 2) === st))
+      .sort((a, b) => desc ? b[m.id] - a[m.id] : a[m.id] - b[m.id]).slice(0, 100);
+    d3.select("#rank").selectAll("li").data(data, d => d.fips).join("li")
+      .html((d, i) => `<span class="n">${i + 1}</span><span>${d.county} <span class="st">${d.state}</span></span><span class="val">${fmt(m, d[m.id])}</span>`)
+      .on("mouseenter", (e, d) => shapes.classed("active", f => f.id === d.fips))
+      .on("mouseleave", () => shapes.classed("active", false));
+  }
+
+  function select(id) {
+    m = measures.find(d => d.id === id) || measures[0];
+    d3.selectAll("#measures button").attr("aria-pressed", d => d === m);
+    if (history.replaceState) history.replaceState(null, "", m === measures[0] ? location.pathname : "#" + m.id);
+    document.getElementById("mtitle").innerHTML = `<b>${m.title}</b> · ${m.unit}`;
+
+    const vals = rows.map(r => r[m.id]).filter(v => v != null);
+    color = d3.scaleQuantile().domain(vals).range(ramp);
+    shapes.attr("fill", f => { const v = byFips.get(f.id)?.[m.id]; return v == null ? "var(--nodata)" : color(v); });
+
+    const stats = document.getElementById("stats");
+    stats.innerHTML = "";
+    const add = (k, v, s) => stats.insertAdjacentHTML("beforeend",
+      `<div class="stat"><div class="k">${k}</div><div class="v">${v}</div>${s ? `<div class="s">${s}</div>` : ""}</div>`);
+    const sorted = rows.filter(r => r[m.id] != null).sort((a, b) => b[m.id] - a[m.id]);
+    add("Median county", fmt(m, d3.median(vals)), `${d3.format(",")(vals.length)} counties with data`);
+    add("Middle half", `${fmt(m, d3.quantile(vals.sort(d3.ascending), .25))}–${fmt(m, d3.quantile(vals, .75))}`, "25th–75th percentile");
+    add("Highest", fmt(m, sorted[0][m.id]), `${sorted[0].county}, ${sorted[0].state}`);
+    add("Lowest", fmt(m, sorted[sorted.length - 1][m.id]), `${sorted[sorted.length - 1].county}, ${sorted[sorted.length - 1].state}`);
+
+    legend.selectAll("*").remove();
+    const w = 52;
+    ramp.forEach((c, i) => legend.append("rect").attr("x", i * w).attr("width", w).attr("height", 10).attr("fill", c));
+    color.quantiles().forEach((t, i) => legend.append("text").attr("x", (i + 1) * w).attr("y", 24).attr("text-anchor", "middle").text(fmt(m, t)));
+    legend.append("text").attr("x", 0).attr("y", -6).text(m.unit + " · equal-count bins");
+
+    renderList();
+  }
+
+  d3.select("#measures").selectAll("button").data(measures).join("button")
+    .attr("type", "button").html(d => `${d.label}<span class="yr">${yearOf(d)}</span>`)
+    .on("click", (e, d) => select(d.id));
+
+  const stSel = d3.select("#state");
+  [...new Set(rows.map(r => r.fips.slice(0, 2)))].filter(s => stateNames.has(s))
+    .sort((a, b) => d3.ascending(stateNames.get(a), stateNames.get(b)))
+    .forEach(s => stSel.append("option").attr("value", s).text(stateNames.get(s)));
+  stSel.on("change", renderList);
+  document.getElementById("sort").addEventListener("click", e => {
+    desc = !desc; e.target.textContent = desc ? "highest first" : "lowest first"; renderList();
+  });
+
+  const src = d3.select("#sources");
+  for (const mm of measures) {
+    src.append("li").html(`<b>${mm.label}</b>: ${mm.title}. <a href="${mm.source_url}">${mm.source}</a>.`);
+  }
+  select(location.hash.slice(1));
+})();
+</script>
+</body>
+</html>
