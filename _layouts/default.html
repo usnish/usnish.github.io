@@ -13,38 +13,7 @@
 <body>
 <div class="page">
   <header class="sidebar">
-    <div id="logo"><a href="/">Usnish (Ush) Majumdar</a></div>
-    <div class="name-bn" lang="bn">উষ্ণীষ মজুমদার</div>
-    <ul class="nav">
-      <li>
-        <details class="nav-dropdown">
-          <summary>projects</summary>
-          <ul>
-            {% for project in site.data.projects %}
-            {% if project.items %}
-            <li>
-              <details class="nav-dropdown">
-                <summary>{{ project.title }}</summary>
-                <ul>
-                  {% for item in project.items %}
-                  <li><a href="{{ item.url }}">{{ item.title }}</a></li>
-                  {% endfor %}
-                </ul>
-              </details>
-            </li>
-            {% else %}
-            <li><a href="{{ project.url }}">{{ project.title }}</a></li>
-            {% endif %}
-            {% endfor %}
-            <li><a href="/projects/">all projects &rarr;</a></li>
-          </ul>
-        </details>
-      </li>
-      <li><a href="https://scholar.google.com/citations?hl=en&user=NT3r7pYAAAAJ&view_op=list_works">papers</a></li>
-      <li><a href="https://github.com/usnish/">code</a></li>
-      <li><a href="https://www.instagram.com/usnish/">photos</a></li>
-      <li><a href="https://www.linkedin.com/in/usnish/">linkedin</a></li>
-    </ul>
+    {% include sidebar.html %}
   </header>
   <main class="content">
     {{ content }}
