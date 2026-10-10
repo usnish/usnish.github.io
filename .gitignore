@@ -1,2 +1,4 @@
 _site/
 Gemfile*
+_viz/cache/
+__pycache__/

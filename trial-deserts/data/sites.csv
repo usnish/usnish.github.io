@@ -1,0 +1,3074 @@
+condition,lat,lon,city,state,trials
+diabetes,39.729,-104.832,Aurora,Colorado,13
+diabetes,38.029,-78.477,Charlottesville,Virginia,4
+diabetes,29.424,-98.494,San Antonio,Texas,35
+diabetes,33.521,-86.802,Birmingham,Alabama,17
+diabetes,33.448,-112.074,Phoenix,Arizona,6
+diabetes,33.509,-111.899,Scottsdale,Arizona,8
+diabetes,32.222,-110.926,Tucson,Arizona,11
+diabetes,33.669,-117.823,Irvine,California,2
+diabetes,32.847,-117.274,La Jolla,California,7
+diabetes,33.788,-118.358,Rolling Hills Estates,California,4
+diabetes,32.716,-117.165,San Diego,California,17
+diabetes,33.746,-117.868,Santa Ana,California,3
+diabetes,33.746,-117.826,Tustin,California,3
+diabetes,41.179,-73.189,Bridgeport,Connecticut,3
+diabetes,41.308,-72.928,New Haven,Connecticut,11
+diabetes,41.558,-73.052,Waterbury,Connecticut,3
+diabetes,26.591,-80.101,Atlantis,Florida,2
+diabetes,25.82,-80.355,Doral,Florida,4
+diabetes,30.093,-81.719,Fleming Island,Florida,6
+diabetes,30.332,-81.656,Jacksonville,Florida,10
+diabetes,25.774,-80.194,Miami,Florida,26
+diabetes,29.895,-81.315,Saint Augustine,Florida,3
+diabetes,26.715,-80.053,West Palm Beach,Florida,4
+diabetes,33.946,-84.335,Dunwoody,Georgia,4
+diabetes,34.298,-83.824,Gainesville,Georgia,1
+diabetes,33.544,-84.234,Stockbridge,Georgia,2
+diabetes,43.467,-112.034,Idaho Falls,Idaho,5
+diabetes,41.85,-87.65,Chicago,Illinois,18
+diabetes,41.577,-93.711,West Des Moines,Iowa,6
+diabetes,39.048,-95.678,Topeka,Kansas,7
+diabetes,37.989,-84.478,Lexington,Kentucky,6
+diabetes,32.509,-92.119,Monroe,Louisiana,5
+diabetes,39.24,-76.839,Columbia,Maryland,4
+diabetes,42.358,-71.06,Boston,Massachusetts,18
+diabetes,42.376,-71.236,Waltham,Massachusetts,1
+diabetes,42.473,-83.222,Southfield,Michigan,3
+diabetes,42.606,-83.15,Troy,Michigan,8
+diabetes,38.663,-90.577,Chesterfield,Missouri,2
+diabetes,40.714,-74.006,New York,New York,16
+diabetes,35.913,-79.056,Chapel Hill,North Carolina,8
+diabetes,36.073,-79.792,Greensboro,North Carolina,7
+diabetes,34.723,-76.726,Morehead City,North Carolina,12
+diabetes,34.236,-77.946,Wilmington,North Carolina,8
+diabetes,39.127,-84.514,Cincinnati,Ohio,9
+diabetes,40.743,-84.105,Lima,Ohio,2
+diabetes,40.441,-79.996,Pittsburgh,Pennsylvania,11
+diabetes,32.783,-96.807,Dallas,Texas,23
+diabetes,29.763,-95.363,Houston,Texas,33
+diabetes,30.057,-95.183,Kingwood,Texas,2
+diabetes,26.216,-98.325,Mission,Texas,2
+diabetes,29.619,-95.538,Missouri City,Texas,1
+diabetes,29.585,-98.553,Shavano Park,Texas,7
+diabetes,26.16,-97.991,Weslaco,Texas,5
+diabetes,33.015,-96.539,Wylie,Texas,1
+diabetes,33.306,-111.841,Chandler,Arizona,7
+diabetes,33.709,-117.954,Fountain Valley,California,5
+diabetes,33.982,-118.225,Huntington Park,California,4
+diabetes,32.768,-117.023,La Mesa,California,3
+diabetes,33.767,-118.189,Long Beach,California,10
+diabetes,34.052,-118.244,Los Angeles,California,16
+diabetes,34.228,-118.537,Northridge,California,6
+diabetes,28.989,-80.902,Edgewater,Florida,2
+diabetes,26.122,-80.143,Fort Lauderdale,Florida,1
+diabetes,28.244,-82.719,New Port Richey,Florida,4
+diabetes,26.976,-82.091,Port Charlotte,Florida,2
+diabetes,29.138,-80.996,Port Orange,Florida,4
+diabetes,28.6,-81.339,Winter Park,Florida,6
+diabetes,33.749,-84.388,Atlanta,Georgia,12
+diabetes,32.461,-84.988,Columbus,Georgia,7
+diabetes,43.614,-116.203,Boise,Idaho,2
+diabetes,37.692,-97.338,Wichita,Kansas,4
+diabetes,39.019,-84.582,Edgewood,Kentucky,2
+diabetes,30.224,-92.02,Lafayette,Louisiana,1
+diabetes,29.984,-90.153,Metairie,Louisiana,4
+diabetes,29.955,-90.075,New Orleans,Louisiana,5
+diabetes,39.084,-77.153,Rockville,Maryland,1
+diabetes,42.101,-72.59,Springfield,Massachusetts,2
+diabetes,40.8,-96.667,Lincoln,Nebraska,2
+diabetes,41.256,-95.94,Omaha,Nebraska,7
+diabetes,36.175,-115.137,Las Vegas,Nevada,12
+diabetes,42.653,-73.756,Albany,New York,3
+diabetes,35.613,-77.366,Greenville,North Carolina,3
+diabetes,39.961,-82.999,Columbus,Ohio,16
+diabetes,44.052,-123.087,Eugene,Oregon,1
+diabetes,39.961,-75.608,West Chester,Pennsylvania,5
+diabetes,34.503,-82.65,Anderson,South Carolina,1
+diabetes,32.794,-79.863,Mt. Pleasant,South Carolina,3
+diabetes,30.267,-97.743,Austin,Texas,15
+diabetes,31.064,-98.182,Lampasas,Texas,2
+diabetes,33.046,-96.994,Lewisville,Texas,5
+diabetes,30.508,-97.679,Round Rock,Texas,2
+diabetes,29.564,-95.025,Seabrook,Texas,1
+diabetes,40.61,-111.939,West Jordan,Utah,2
+diabetes,36.728,-76.585,Suffolk,Virginia,3
+diabetes,38.901,-77.265,Vienna,Virginia,2
+diabetes,29.652,-82.325,Gainesville,Florida,4
+diabetes,47.606,-122.332,Seattle,Washington,7
+diabetes,28.538,-81.379,Orlando,Florida,12
+diabetes,36.1,-80.244,Winston-Salem,North Carolina,8
+diabetes,34.421,-119.698,Santa Barbara,California,3
+diabetes,39.768,-86.158,Indianapolis,Indiana,7
+diabetes,42.331,-83.046,Detroit,Michigan,5
+diabetes,44.98,-93.264,Minneapolis,Minnesota,12
+diabetes,42.278,-83.741,Ann Arbor,Michigan,8
+diabetes,43.039,-87.906,Milwaukee,Wisconsin,6
+diabetes,36.748,-119.772,Fresno,California,1
+diabetes,33.2,-117.243,Vista,California,2
+diabetes,35.772,-78.639,Raleigh,North Carolina,4
+diabetes,41.024,-80.663,Boardman,Ohio,1
+diabetes,39.601,-82.946,Circleville,Ohio,1
+diabetes,37.293,-80.055,Salem,Virginia,1
+diabetes,42.263,-71.802,Worcester,Massachusetts,3
+diabetes,30.649,-91.156,Zachary,Louisiana,2
+diabetes,37.424,-122.166,Stanford,California,4
+diabetes,39.739,-104.985,Denver,Colorado,4
+diabetes,40.585,-105.084,Fort Collins,Colorado,1
+diabetes,44.022,-92.47,Rochester,Minnesota,6
+diabetes,41.499,-81.695,Cleveland,Ohio,5
+diabetes,29.301,-94.798,Galveston,Texas,2
+diabetes,39.684,-75.75,Newark,Delaware,1
+diabetes,33.119,-117.086,Escondido,California,6
+diabetes,47.483,-122.217,Renton,Washington,4
+diabetes,37.23,-80.414,Blacksburg,Virginia,2
+diabetes,21.307,-157.858,Honolulu,Hawaii,8
+diabetes,21.336,-158.058,Kapolei,Hawaii,2
+diabetes,35.319,-82.461,Hendersonville,North Carolina,1
+diabetes,38.952,-92.334,Columbia,Missouri,2
+diabetes,38.892,-121.293,Lincoln,California,3
+diabetes,34.101,-84.519,Woodstock,Georgia,5
+diabetes,35.783,-80.887,Statesville,North Carolina,4
+diabetes,46.877,-96.79,Fargo,North Dakota,4
+diabetes,40.421,-79.788,Monroeville,Pennsylvania,1
+diabetes,37.802,-80.446,Lewisburg,West Virginia,1
+diabetes,38.895,-77.036,Washington D.C.,District of Columbia,6
+diabetes,36.166,-86.784,Nashville,Tennessee,12
+diabetes,33.87,-117.925,Fullerton,California,1
+diabetes,39.29,-76.612,Baltimore,Maryland,10
+diabetes,31.223,-85.39,Dothan,Alabama,1
+diabetes,34.746,-92.29,Little Rock,Arkansas,6
+diabetes,33.93,-118.211,Lynwood,California,1
+diabetes,38.582,-121.494,Sacramento,California,7
+diabetes,39.803,-105.087,Arvada,Colorado,1
+diabetes,27.948,-82.458,Tampa,Florida,5
+diabetes,43.47,-111.967,Ammon,Idaho,2
+diabetes,38.254,-85.759,Louisville,Kentucky,7
+diabetes,31.311,-92.445,Alexandria,Louisiana,1
+diabetes,39.018,-77.209,Potomac,Maryland,1
+diabetes,39.384,-76.432,White Marsh,Maryland,1
+diabetes,39.1,-94.579,Kansas City,Missouri,7
+diabetes,40.67,-73.747,Laurelton,New York,1
+diabetes,40.745,-73.949,Long Island City,New York,3
+diabetes,39.759,-84.192,Dayton,Ohio,4
+diabetes,36.154,-95.993,Tulsa,Oklahoma,4
+diabetes,41.119,-78.76,DuBois,Pennsylvania,1
+diabetes,32.776,-79.933,Charleston,South Carolina,3
+diabetes,35.072,-81.65,Gaffney,South Carolina,3
+diabetes,32.814,-96.949,Irving,Texas,2
+diabetes,40.761,-111.891,Salt Lake City,Utah,12
+diabetes,34.048,-117.261,Loma Linda,California,2
+diabetes,26.011,-80.149,Hollywood,Florida,6
+diabetes,29.187,-82.14,Ocala,Florida,3
+diabetes,28.67,-81.208,Oviedo,Florida,2
+diabetes,33.956,-83.988,Lawrenceville,Georgia,4
+diabetes,33.587,-84.542,Union City,Georgia,3
+diabetes,43.826,-111.79,Rexburg,Idaho,1
+diabetes,39.843,-86.398,Brownsburg,Indiana,1
+diabetes,40.328,-74.791,Pennington,New Jersey,1
+diabetes,40.562,-74.14,Staten Island,New York,1
+diabetes,42.85,-78.8,West Seneca,New York,3
+diabetes,35.292,-81.536,Shelby,North Carolina,1
+diabetes,35.223,-97.439,Norman,Oklahoma,3
+diabetes,40.1,-79.587,Scottdale,Pennsylvania,2
+diabetes,32.767,-96.599,Mesquite,Texas,5
+diabetes,47.674,-122.122,Redmond,Washington,3
+diabetes,37.442,-122.143,Palo Alto,California,3
+diabetes,34.175,-86.844,Cullman,Alabama,1
+diabetes,34.201,-118.598,Canoga Park,California,7
+diabetes,37.949,-122.525,Greenbrae,California,2
+diabetes,33.803,-118.073,Los Alamitos,California,3
+diabetes,34.392,-118.543,Santa Clarita,California,2
+diabetes,32.745,-116.999,Spring Valley,California,4
+diabetes,37.906,-122.065,Walnut Creek,California,9
+diabetes,41.396,-72.897,Hamden,Connecticut,2
+diabetes,29.211,-81.023,Daytona Beach,Florida,1
+diabetes,26.461,-80.073,Delray Beach,Florida,1
+diabetes,28.836,-82.33,Inverness,Florida,1
+diabetes,28.802,-81.645,Mt. Dora,Florida,3
+diabetes,26.003,-80.224,Pembroke Pines,Florida,7
+diabetes,32.841,-83.632,Macon,Georgia,3
+diabetes,42.033,-87.733,Skokie,Illinois,5
+diabetes,41.635,-70.927,New Bedford,Massachusetts,2
+diabetes,37.215,-93.298,Springfield,Missouri,5
+diabetes,40.296,-74.051,Eatontown,New Jersey,1
+diabetes,40.608,-74.518,Warren Township,New Jersey,2
+diabetes,35.084,-106.651,Albuquerque,New Mexico,9
+diabetes,45.523,-122.676,Portland,Oregon,7
+diabetes,39.9,-79.716,Uniontown,Pennsylvania,4
+diabetes,27.801,-97.396,Corpus Christi,Texas,4
+diabetes,32.725,-97.321,Fort Worth,Texas,3
+diabetes,33.02,-96.699,Plano,Texas,1
+diabetes,41.223,-111.974,Ogden,Utah,2
+diabetes,40.592,-111.884,Sandy City,Utah,2
+diabetes,38.751,-77.475,Manassas,Virginia,7
+diabetes,33.792,-118.315,Lomita,California,3
+diabetes,34.95,-81.932,Spartanburg,South Carolina,2
+diabetes,35.046,-85.31,Chattanooga,Tennessee,3
+diabetes,37.554,-77.46,Richmond,Virginia,4
+diabetes,40.336,-75.927,Reading,Pennsylvania,1
+diabetes,40.038,-76.306,Lancaster,Pennsylvania,1
+diabetes,33.353,-111.789,Gilbert,Arizona,2
+diabetes,34.136,-117.865,Glendora,California,2
+diabetes,34.055,-117.752,Pomona,California,3
+diabetes,25.858,-80.278,Hialeah,Florida,3
+diabetes,28.949,-81.299,Orange City,Florida,1
+diabetes,38.047,-97.345,Newton,Kansas,3
+diabetes,44.504,-85.677,Buckley,Michigan,1
+diabetes,35.222,-101.831,Amarillo,Texas,1
+diabetes,30.047,-99.14,Kerrville,Texas,1
+diabetes,32.501,-94.74,Longview,Texas,2
+diabetes,32.834,-97.229,North Richland Hills,Texas,1
+diabetes,37.104,-113.584,St. George,Utah,2
+diabetes,36.98,-76.43,Newport News,Virginia,2
+diabetes,33.647,-117.689,Lake Forest,California,2
+diabetes,25.956,-80.139,Aventura,Florida,1
+diabetes,41.879,-87.843,Maywood,Illinois,1
+diabetes,34.001,-81.035,Columbia,South Carolina,3
+diabetes,36.187,-94.129,Springdale,Arkansas,1
+diabetes,30.312,-95.456,Conroe,Texas,3
+diabetes,32.64,-117.084,Chula Vista,California,4
+diabetes,34.73,-86.586,Huntsville,Alabama,4
+diabetes,33.66,-117.999,Huntington Beach,California,1
+diabetes,34.197,-119.177,Oxnard,California,1
+diabetes,34.107,-117.807,San Dimas,California,2
+diabetes,34.173,-118.554,Tarzana,California,2
+diabetes,34.444,-118.61,Valencia,California,2
+diabetes,34.536,-117.291,Victorville,California,1
+diabetes,26.245,-80.206,Margate,Florida,1
+diabetes,25.822,-80.29,Miami Springs,Florida,1
+diabetes,25.987,-80.232,Miramar,Florida,6
+diabetes,27.294,-80.35,Port Saint Lucie,Florida,1
+diabetes,26.213,-80.25,Tamarac,Florida,3
+diabetes,32.084,-81.1,Savannah,Georgia,4
+diabetes,42.639,-83.291,Pontiac,Michigan,2
+diabetes,38.8,-90.627,City of Saint Peters,Missouri,3
+diabetes,42.099,-75.918,Binghamton,New York,2
+diabetes,40.85,-73.866,The Bronx,New York,4
+diabetes,35.108,-77.044,New Bern,North Carolina,2
+diabetes,40.626,-75.37,Bethlehem,Pennsylvania,1
+diabetes,32.736,-97.108,Arlington,Texas,1
+diabetes,32.59,-96.857,DeSoto,Texas,1
+diabetes,31.759,-106.487,El Paso,Texas,2
+diabetes,29.786,-95.824,Katy,Texas,3
+diabetes,33.198,-96.615,McKinney,Texas,6
+diabetes,34.143,-118.255,Glendale,California,2
+diabetes,44.944,-93.093,Saint Paul,Minnesota,2
+diabetes,33.578,-101.855,Lubbock,Texas,1
+diabetes,28.569,-81.544,Ocoee,Florida,3
+diabetes,40.111,-88.207,Urbana,Illinois,1
+diabetes,47.66,-117.429,Spokane,Washington,1
+diabetes,39.767,-75.144,Sewell,New Jersey,1
+diabetes,39.952,-75.164,Philadelphia,Pennsylvania,10
+diabetes,27.966,-82.8,Clearwater,Florida,5
+diabetes,26.622,-81.841,Fort Myers,Florida,5
+diabetes,28.811,-81.878,Leesburg,Florida,1
+diabetes,43.612,-116.392,Meridian,Idaho,2
+diabetes,41.601,-93.609,Des Moines,Iowa,1
+diabetes,38.991,-77.026,Silver Spring,Maryland,2
+diabetes,42.726,-71.191,Methuen,Massachusetts,2
+diabetes,44.159,-94.009,Mankato,Minnesota,2
+diabetes,30.367,-89.093,Gulfport,Mississippi,2
+diabetes,38.771,-90.371,Hazelwood,Missouri,1
+diabetes,38.627,-90.198,St Louis,Missouri,6
+diabetes,46.872,-113.994,Missoula,Montana,2
+diabetes,35.227,-80.843,Charlotte,North Carolina,2
+diabetes,35.053,-78.878,Fayetteville,North Carolina,3
+diabetes,35.34,-97.487,Moore,Oklahoma,1
+diabetes,35.507,-97.763,Yukon,Oklahoma,1
+diabetes,34.939,-82.227,Greer,South Carolina,1
+diabetes,42.886,-78.878,Buffalo,New York,7
+diabetes,39.23,-76.602,Brooklyn,Maryland,1
+diabetes,33.21,-87.569,Tuscaloosa,Alabama,1
+diabetes,33.83,-116.545,Palm Springs,California,1
+diabetes,30.421,-87.217,Pensacola,Florida,2
+diabetes,27.771,-82.679,St. Petersburg,Florida,5
+diabetes,30.213,-93.204,Lake Charles,Louisiana,2
+diabetes,38.956,-76.946,Hyattsville,Maryland,1
+diabetes,42.253,-71.002,Quincy,Massachusetts,1
+diabetes,43.155,-77.616,Rochester,New York,4
+diabetes,34.985,-80.55,Monroe,North Carolina,2
+diabetes,34.853,-82.394,Greenville,South Carolina,5
+diabetes,29.706,-95.459,Bellaire,Texas,3
+diabetes,36.847,-76.285,Norfolk,Virginia,4
+diabetes,37.804,-122.271,Oakland,California,1
+diabetes,37.775,-122.419,San Francisco,California,4
+diabetes,35.468,-97.516,Oklahoma City,Oklahoma,8
+diabetes,33.66,-85.832,Anniston,Alabama,2
+diabetes,42.37,-87.902,Gurnee,Illinois,2
+diabetes,42.033,-88.083,Schaumburg,Illinois,1
+diabetes,42.283,-71.233,Needham,Massachusetts,2
+diabetes,33.689,-78.887,Myrtle Beach,South Carolina,2
+diabetes,43.544,-96.728,Sioux Falls,South Dakota,2
+diabetes,36.53,-87.359,Clarksville,Tennessee,1
+diabetes,25.902,-97.497,Brownsville,Texas,4
+diabetes,26.203,-98.23,McAllen,Texas,1
+diabetes,32.941,-97.134,Southlake,Texas,1
+diabetes,33.817,-118.037,Cypress,California,1
+diabetes,31.964,-83.782,Cordele,Georgia,2
+diabetes,37.817,-96.862,El Dorado,Kansas,3
+diabetes,29.899,-90.1,Marrero,Louisiana,1
+diabetes,42.028,-97.417,Norfolk,Nebraska,1
+diabetes,40.799,-81.378,Canton,Ohio,2
+diabetes,41.563,-83.654,Maumee,Ohio,3
+diabetes,41.66,-71.456,East Greenwich,Rhode Island,2
+diabetes,29.62,-95.635,Sugar Land,Texas,2
+diabetes,31.549,-97.147,Waco,Texas,2
+diabetes,38.793,-77.272,Burke,Virginia,3
+diabetes,37.506,-77.649,Midlothian,Virginia,1
+diabetes,30.628,-96.334,College Station,Texas,1
+diabetes,36.99,-86.444,Bowling Green,Kentucky,3
+diabetes,37.25,-83.193,Hazard,Kentucky,2
+diabetes,25.909,-80.309,Miami Lakes,Florida,7
+diabetes,34.698,-118.137,Lancaster,California,4
+diabetes,26.1,-80.4,Weston,Florida,4
+diabetes,43.19,-112.345,Blackfoot,Idaho,3
+diabetes,35.15,-90.049,Memphis,Tennessee,3
+diabetes,42.963,-85.668,Grand Rapids,Michigan,1
+diabetes,35.411,-80.843,Huntersville,North Carolina,1
+diabetes,39.63,-79.956,Morgantown,West Virginia,2
+diabetes,38.846,-77.306,Fairfax,Virginia,1
+diabetes,34.078,-117.69,Montclair,California,3
+diabetes,26.525,-80.066,Boynton Beach,Florida,1
+diabetes,28.305,-81.417,Kissimmee,Florida,1
+diabetes,33.857,-84.02,Snellville,Georgia,1
+diabetes,41.661,-91.53,Iowa City,Iowa,4
+diabetes,34.358,-86.294,Guntersville,Alabama,2
+diabetes,33.931,-117.549,Norco,California,1
+diabetes,34.106,-117.593,Rancho Cucamonga,California,1
+diabetes,34.962,-89.83,Olive Branch,Mississippi,3
+diabetes,32.855,-79.975,North Charleston,South Carolina,4
+diabetes,26.302,-98.163,Edinburg,Texas,1
+diabetes,29.691,-95.209,Pasadena,Texas,1
+diabetes,30.097,-95.616,Tomball,Texas,2
+diabetes,39.329,-82.101,Athens,Ohio,1
+diabetes,33.471,-81.975,Augusta,Georgia,2
+diabetes,33.858,-118.065,Cerritos,California,2
+diabetes,37.639,-120.997,Modesto,California,2
+diabetes,38.954,-94.734,Lenexa,Kansas,2
+diabetes,38.979,-76.492,Annapolis,Maryland,1
+diabetes,40.217,-74.743,Trenton,New Jersey,1
+diabetes,33.756,-96.537,Denison,Texas,1
+diabetes,46.783,-92.107,Duluth,Minnesota,3
+diabetes,35.994,-78.899,Durham,North Carolina,4
+diabetes,31.098,-97.343,Temple,Texas,2
+diabetes,33.619,-117.929,Newport Beach,California,2
+diabetes,38.104,-122.257,Vallejo,California,1
+diabetes,39.165,-86.526,Bloomington,Indiana,1
+diabetes,43.048,-76.147,Syracuse,New York,3
+diabetes,35.601,-82.554,Asheville,North Carolina,1
+diabetes,32.299,-90.185,Jackson,Mississippi,1
+diabetes,41.785,-73.933,Hyde Park,New York,1
+diabetes,40.334,-75.947,West Reading,Pennsylvania,1
+diabetes,33.531,-111.943,Paradise Valley,Arizona,1
+diabetes,37.978,-122.031,Concord,California,2
+diabetes,34.197,-118.644,West Hills,California,2
+diabetes,28.039,-81.95,Lakeland,Florida,4
+diabetes,27.91,-82.788,Largo,Florida,1
+diabetes,27.866,-82.326,Riverview,Florida,2
+diabetes,25.746,-80.368,University Park,Florida,2
+diabetes,33.449,-84.455,Fayetteville,Georgia,3
+diabetes,42.322,-83.176,Dearborn,Michigan,3
+diabetes,40.65,-73.95,Brooklyn,New York,3
+diabetes,41.026,-81.73,Wadsworth,Ohio,1
+diabetes,30.633,-97.677,Georgetown,Texas,1
+diabetes,30.523,-87.903,Fairhope,Alabama,3
+diabetes,33.662,-112.341,Sun City West,Arizona,1
+diabetes,33.415,-111.909,Tempe,Arizona,1
+diabetes,32.725,-114.624,Yuma,Arizona,1
+diabetes,34.074,-118.4,Beverly Hills,California,2
+diabetes,33.788,-117.853,Orange,California,2
+diabetes,34.108,-117.29,San Bernardino,California,1
+diabetes,38.44,-122.714,Santa Rosa,California,1
+diabetes,33.836,-118.341,Torrance,California,3
+diabetes,41.053,-73.539,Stamford,Connecticut,2
+diabetes,26.359,-80.083,Boca Raton,Florida,2
+diabetes,25.578,-80.338,Cutler Bay,Florida,2
+diabetes,29.028,-81.303,DeLand,Florida,2
+diabetes,25.981,-80.148,Hallandale,Florida,1
+diabetes,30.19,-82.639,Lake City,Florida,1
+diabetes,26.142,-81.796,Naples,Florida,1
+diabetes,29.286,-81.056,Ormond Beach,Florida,1
+diabetes,26.823,-80.139,Palm Beach Gardens,Florida,1
+diabetes,25.622,-80.325,Palmetto Bay,Florida,1
+diabetes,26.659,-80.241,Wellington,Florida,1
+diabetes,34.029,-84.199,Johns Creek,Georgia,2
+diabetes,33.953,-84.55,Marietta,Georgia,1
+diabetes,30.837,-83.979,Thomasville,Georgia,3
+diabetes,33.855,-84.217,Tucker,Georgia,1
+diabetes,41.88,-88.008,Lombard,Illinois,1
+diabetes,41.711,-87.758,Oak Lawn,Illinois,1
+diabetes,39.763,-86.4,Avon,Indiana,1
+diabetes,41.682,-85.977,Elkhart,Indiana,1
+diabetes,39.785,-85.769,Greenfield,Indiana,1
+diabetes,40.193,-85.386,Muncie,Indiana,1
+diabetes,39.829,-84.89,Richmond,Indiana,1
+diabetes,37.774,-87.113,Owensboro,Kentucky,1
+diabetes,32.516,-93.732,Bossier City,Louisiana,1
+diabetes,30.475,-90.1,Covington,Louisiana,1
+diabetes,32.525,-93.75,Shreveport,Louisiana,1
+diabetes,30.275,-89.781,Slidell,Louisiana,1
+diabetes,32.518,-92.148,West Monroe,Louisiana,1
+diabetes,39.153,-77.067,Olney,Maryland,1
+diabetes,38.803,-76.99,Oxon Hill,Maryland,2
+diabetes,38.361,-75.599,Salisbury,Maryland,1
+diabetes,43.013,-83.687,Flint,Michigan,3
+diabetes,31.712,-91.061,Fayette,Mississippi,1
+diabetes,38.577,-92.174,Jefferson City,Missouri,2
+diabetes,45.783,-108.501,Billings,Montana,1
+diabetes,41.433,-96.498,Fremont,Nebraska,2
+diabetes,40.601,-74.648,Bridgewater,New Jersey,1
+diabetes,40.622,-74.245,Linden,New Jersey,1
+diabetes,40.498,-74.488,Somerset,New Jersey,1
+diabetes,40.917,-72.662,Riverhead,New York,1
+diabetes,43.083,-73.785,Saratoga Springs,New York,1
+diabetes,42.322,-79.578,Westfield,New York,1
+diabetes,35.792,-78.781,Cary,North Carolina,1
+diabetes,35.914,-81.539,Lenoir,North Carolina,1
+diabetes,35.585,-80.81,Mooresville,North Carolina,1
+diabetes,41.455,-81.918,Westlake,Ohio,1
+diabetes,40.695,-80.305,Beaver,Pennsylvania,1
+diabetes,40.24,-76.92,Camp Hill,Pennsylvania,2
+diabetes,39.803,-79.808,Smithfield,Pennsylvania,1
+diabetes,40.246,-74.846,Yardley,Pennsylvania,2
+diabetes,35.007,-80.945,Fort Mill,South Carolina,2
+diabetes,34.715,-81.624,Union,South Carolina,1
+diabetes,42.487,-96.486,Dakota Dunes,South Dakota,1
+diabetes,35.961,-83.921,Knoxville,Tennessee,2
+diabetes,32.748,-96.472,Forney,Texas,1
+diabetes,29.883,-97.941,San Marcos,Texas,2
+diabetes,33.636,-96.609,Sherman,Texas,1
+diabetes,32.221,-98.202,Stephenville,Texas,3
+diabetes,38.882,-77.171,Falls Church,Virginia,1
+diabetes,39.186,-78.163,Winchester,Virginia,2
+diabetes,47.253,-122.444,Tacoma,Washington,1
+diabetes,42.585,-87.821,Kenosha,Wisconsin,1
+diabetes,43.049,-88.008,Wauwatosa,Wisconsin,1
+diabetes,47.162,-114.085,Arlee,Montana,1
+diabetes,25.865,-80.325,Hialeah Gardens,Florida,1
+diabetes,28.661,-81.366,Altamonte Springs,Florida,1
+diabetes,28.628,-81.363,Maitland,Florida,1
+diabetes,42.065,-71.248,Foxborough,Massachusetts,1
+diabetes,29.969,-95.697,Cypress,Texas,1
+diabetes,38.969,-77.341,Reston,Virginia,1
+diabetes,41.808,-72.25,Storrs,Connecticut,1
+diabetes,42.978,-78.8,Amherst,New York,2
+diabetes,25.791,-80.13,Miami Beach,Florida,2
+diabetes,25.942,-80.246,Miami Gardens,Florida,1
+diabetes,26.238,-80.125,Pompano Beach,Florida,2
+diabetes,40.486,-74.452,New Brunswick,New Jersey,5
+diabetes,33.422,-111.823,Mesa,Arizona,1
+diabetes,28.934,-81.96,The Villages,Florida,3
+diabetes,41.683,-86.25,South Bend,Indiana,1
+diabetes,34.957,-80.628,Houston,North Carolina,1
+diabetes,33.598,-112.272,Sun City,Arizona,1
+diabetes,34.265,-118.523,Granada Hills,California,1
+diabetes,33.718,-116.343,Indian Wells,California,1
+diabetes,34.063,-118.123,Monterey Park,California,1
+diabetes,34.385,-118.531,Newhall,California,1
+diabetes,34.282,-118.439,San Fernando,California,1
+diabetes,34.165,-118.397,Valley Village,California,1
+diabetes,29.635,-83.127,Cross City,Florida,1
+diabetes,33.794,-84.66,Lithia Springs,Georgia,1
+diabetes,33.941,-84.214,Norcross,Georgia,1
+diabetes,33.86,-84.684,Powder Springs,Georgia,1
+diabetes,33.573,-84.413,Riverdale,Georgia,1
+diabetes,42.07,-87.788,Glenview,Illinois,1
+diabetes,38.943,-76.73,Bowie,Maryland,1
+diabetes,42.241,-83.613,Ypsilanti,Michigan,1
+diabetes,48.196,-114.313,Kalispell,Montana,1
+diabetes,40.512,-74.859,Flemington,New Jersey,1
+diabetes,39.891,-74.922,Marlton,New Jersey,1
+diabetes,40.945,-74.075,Paramus,New Jersey,1
+diabetes,40.898,-74.016,Teaneck,New Jersey,1
+diabetes,40.756,-73.885,Jackson Heights,New York,1
+diabetes,40.771,-73.718,Lake Success,New York,1
+diabetes,41.204,-73.727,Mount Kisco,New York,1
+diabetes,41.081,-81.519,Akron,Ohio,1
+diabetes,35.16,-84.877,Cleveland,Tennessee,1
+diabetes,32.449,-99.733,Abilene,Texas,1
+diabetes,30.086,-94.102,Beaumont,Texas,1
+diabetes,33.138,-96.111,Greenville,Texas,1
+diabetes,27.506,-99.508,Laredo,Texas,1
+diabetes,47.979,-122.202,Everett,Washington,1
+diabetes,38.35,-81.633,Charleston,West Virginia,1
+diabetes,34.139,-117.977,Duarte,California,2
+diabetes,43.073,-89.401,Madison,Wisconsin,2
+diabetes,36.586,-79.395,Danville,Virginia,1
+diabetes,47.423,-120.31,Wenatchee,Washington,1
+diabetes,35.925,-86.869,Franklin,Tennessee,1
+diabetes,34.051,-84.071,Suwanee,Georgia,1
+diabetes,41.801,-87.937,Hinsdale,Illinois,1
+diabetes,39.022,-94.632,Fairway,Kansas,1
+diabetes,40.805,-81.936,Wooster,Ohio,1
+diabetes,40.963,-76.613,Danville,Pennsylvania,1
+diabetes,41.879,-71.383,Pawtucket,Rhode Island,1
+diabetes,33.492,-80.856,Orangeburg,South Carolina,1
+diabetes,31.579,-84.156,Albany,Georgia,3
+diabetes,39.114,-94.627,Kansas City,Kansas,1
+diabetes,34.092,-117.435,Fontana,California,1
+diabetes,28.084,-80.608,Melbourne,Florida,2
+diabetes,37.975,-87.556,Evansville,Indiana,3
+diabetes,44.89,-93.35,Edina,Minnesota,1
+diabetes,32.428,-90.132,Ridgeland,Mississippi,1
+diabetes,39.791,-74.929,Berlin,New Jersey,1
+diabetes,40.499,-74.399,Piscataway,New Jersey,1
+diabetes,32.367,-86.3,Montgomery,Alabama,1
+diabetes,41.572,-87.694,Hazel Crest,Illinois,1
+diabetes,41.262,-95.861,Council Bluffs,Iowa,1
+diabetes,41.477,-74.024,New Windsor,New York,1
+diabetes,40.478,-77.131,Newport,Pennsylvania,1
+diabetes,36.595,-82.189,Bristol,Tennessee,1
+diabetes,31.338,-94.729,Lufkin,Texas,1
+diabetes,41.06,-111.971,Layton,Utah,1
+diabetes,28.902,-82.593,Crystal River,Florida,1
+diabetes,28.852,-82.488,Lecanto,Florida,1
+diabetes,42.041,-87.69,Evanston,Illinois,1
+chd,30.332,-81.656,Jacksonville,Florida,19
+chd,33.306,-111.841,Chandler,Arizona,2
+chd,33.509,-111.899,Scottsdale,Arizona,6
+chd,34.746,-92.29,Little Rock,Arkansas,9
+chd,39.868,-104.972,Thornton,Colorado,2
+chd,41.764,-72.685,Hartford,Connecticut,5
+chd,33.749,-84.388,Atlanta,Georgia,19
+chd,39.768,-86.158,Indianapolis,Indiana,13
+chd,44.98,-93.264,Minneapolis,Minnesota,19
+chd,39.973,-74.583,Browns Mills,New Jersey,1
+chd,40.714,-74.006,New York,New York,42
+chd,40.8,-73.651,Roslyn,New York,7
+chd,39.127,-84.514,Cincinnati,Ohio,11
+chd,39.961,-82.999,Columbus,Ohio,18
+chd,39.963,-76.728,York,Pennsylvania,7
+chd,36.166,-86.784,Nashville,Tennessee,19
+chd,47.606,-122.332,Seattle,Washington,12
+chd,41.308,-72.928,New Haven,Connecticut,9
+chd,33.953,-84.55,Marietta,Georgia,4
+chd,41.85,-87.65,Chicago,Illinois,15
+chd,42.358,-71.06,Boston,Massachusetts,31
+chd,35.994,-78.899,Durham,North Carolina,15
+chd,38.846,-77.306,Fairfax,Virginia,3
+chd,44.022,-92.47,Rochester,Minnesota,12
+chd,34.052,-118.244,Los Angeles,California,20
+chd,29.652,-82.325,Gainesville,Florida,10
+chd,30.421,-87.217,Pensacola,Florida,5
+chd,37.692,-97.338,Wichita,Kansas,7
+chd,39.29,-76.612,Baltimore,Maryland,11
+chd,42.489,-83.145,Royal Oak,Michigan,3
+chd,35.601,-82.554,Asheville,North Carolina,3
+chd,39.952,-75.164,Philadelphia,Pennsylvania,11
+chd,29.989,-97.877,Kyle,Texas,2
+chd,43.039,-87.906,Milwaukee,Wisconsin,11
+chd,40.667,-111.888,Murray,Utah,6
+chd,38.882,-77.171,Falls Church,Virginia,4
+chd,41.499,-81.695,Cleveland,Ohio,18
+chd,30.267,-97.743,Austin,Texas,8
+chd,37.775,-122.419,San Francisco,California,12
+chd,38.254,-85.759,Louisville,Kentucky,9
+chd,35.227,-80.843,Charlotte,North Carolina,9
+chd,29.763,-95.363,Houston,Texas,20
+chd,40.761,-111.891,Salt Lake City,Utah,8
+chd,38.029,-78.477,Charlottesville,Virginia,10
+chd,37.554,-77.46,Richmond,Virginia,8
+chd,41.179,-73.189,Bridgeport,Connecticut,3
+chd,38.982,-94.671,Overland Park,Kansas,5
+chd,38.943,-76.73,Bowie,Maryland,3
+chd,29.999,-95.262,Humble,Texas,4
+chd,40.015,-105.271,Boulder,Colorado,1
+chd,42.101,-72.59,Springfield,Massachusetts,3
+chd,40.8,-96.667,Lincoln,Nebraska,6
+chd,41.256,-95.94,Omaha,Nebraska,7
+chd,40.65,-73.95,Brooklyn,New York,5
+chd,40.441,-79.996,Pittsburgh,Pennsylvania,9
+chd,37.802,-80.446,Lewisburg,West Virginia,1
+chd,39.729,-104.832,Aurora,Colorado,9
+chd,34.074,-118.4,Beverly Hills,California,5
+chd,33.669,-117.823,Irvine,California,2
+chd,38.44,-122.714,Santa Rosa,California,1
+chd,34.197,-118.644,West Hills,California,4
+chd,25.909,-80.309,Miami Lakes,Florida,6
+chd,41.583,-87.5,Hammond,Indiana,1
+chd,42.584,-83.245,Bloomfield Hills,Michigan,1
+chd,42.485,-83.377,Farmington Hills,Michigan,2
+chd,43.013,-83.687,Flint,Michigan,2
+chd,38.627,-90.198,St Louis,Missouri,12
+chd,40.701,-73.462,North Massapequa,New York,1
+chd,35.913,-79.056,Chapel Hill,North Carolina,4
+chd,32.783,-96.807,Dallas,Texas,25
+chd,29.424,-98.494,San Antonio,Texas,9
+chd,47.674,-122.122,Redmond,Washington,2
+chd,34.048,-117.261,Loma Linda,California,3
+chd,38.582,-121.494,Sacramento,California,4
+chd,34.171,-118.838,Thousand Oaks,California,4
+chd,33.956,-83.988,Lawrenceville,Georgia,3
+chd,42.331,-83.046,Detroit,Michigan,12
+chd,45.561,-94.162,Saint Cloud,Minnesota,5
+chd,39.926,-75.12,Camden,New Jersey,3
+chd,42.886,-78.878,Buffalo,New York,6
+chd,40.85,-73.866,The Bronx,New York,10
+chd,36.154,-95.993,Tulsa,Oklahoma,5
+chd,45.523,-122.676,Portland,Oregon,9
+chd,34.001,-81.035,Columbia,South Carolina,5
+chd,33.02,-96.699,Plano,Texas,12
+chd,31.223,-85.39,Dothan,Alabama,1
+chd,34.055,-117.752,Pomona,California,3
+chd,26.359,-80.083,Boca Raton,Florida,6
+chd,28.6,-81.339,Winter Park,Florida,4
+chd,35.956,-80.005,High Point,North Carolina,2
+chd,32.59,-96.857,DeSoto,Texas,1
+chd,47.483,-122.217,Renton,Washington,2
+chd,39.63,-79.956,Morgantown,West Virginia,4
+chd,32.944,-85.954,Alexander City,Alabama,2
+chd,33.521,-86.802,Birmingham,Alabama,10
+chd,30.604,-87.904,Daphne,Alabama,1
+chd,30.523,-87.903,Fairhope,Alabama,2
+chd,34.73,-86.586,Huntsville,Alabama,7
+chd,30.694,-88.043,Mobile,Alabama,4
+chd,33.448,-112.074,Phoenix,Arizona,8
+chd,32.222,-110.926,Tucson,Arizona,10
+chd,33.962,-118.353,Inglewood,California,1
+chd,32.847,-117.274,La Jolla,California,6
+chd,34.228,-118.537,Northridge,California,5
+chd,38.752,-121.288,Roseville,California,1
+chd,32.716,-117.165,San Diego,California,6
+chd,32.745,-116.999,Spring Valley,California,1
+chd,37.424,-122.166,Stanford,California,4
+chd,37.958,-121.291,Stockton,California,2
+chd,33.2,-117.243,Vista,California,1
+chd,37.906,-122.065,Walnut Creek,California,1
+chd,38.834,-104.821,Colorado Springs,Colorado,1
+chd,39.613,-105.017,Littleton,Colorado,4
+chd,41.026,-73.628,Greenwich,Connecticut,1
+chd,41.396,-72.897,Hamden,Connecticut,1
+chd,41.558,-73.052,Waterbury,Connecticut,2
+chd,27.966,-82.8,Clearwater,Florida,7
+chd,30.19,-82.639,Lake City,Florida,1
+chd,25.774,-80.194,Miami,Florida,10
+chd,25.987,-80.232,Miramar,Florida,1
+chd,28.244,-82.719,New Port Richey,Florida,1
+chd,29.187,-82.14,Ocala,Florida,2
+chd,29.286,-81.056,Ormond Beach,Florida,1
+chd,28.019,-82.115,Plant City,Florida,1
+chd,34.237,-84.491,Canton,Georgia,1
+chd,34.207,-84.14,Cumming,Georgia,1
+chd,34.029,-84.199,Johns Creek,Georgia,1
+chd,34.101,-84.519,Woodstock,Georgia,1
+chd,43.612,-116.392,Meridian,Idaho,2
+chd,42.088,-87.981,Arlington Heights,Illinois,2
+chd,40.116,-88.243,Champaign,Illinois,1
+chd,42.011,-87.841,Park Ridge,Illinois,3
+chd,37.975,-87.556,Evansville,Indiana,1
+chd,41.131,-85.129,Fort Wayne,Indiana,4
+chd,41.564,-87.513,Munster,Indiana,3
+chd,39.829,-84.89,Richmond,Indiana,4
+chd,41.577,-93.711,West Des Moines,Iowa,3
+chd,38.061,-97.93,Hutchinson,Kansas,1
+chd,39.114,-94.627,Kansas City,Kansas,8
+chd,36.99,-86.444,Bowling Green,Kentucky,1
+chd,37.989,-84.478,Lexington,Kentucky,5
+chd,30.475,-90.1,Covington,Louisiana,3
+chd,32.509,-92.119,Monroe,Louisiana,1
+chd,30.275,-89.781,Slidell,Louisiana,2
+chd,32.518,-92.148,West Monroe,Louisiana,2
+chd,39.035,-76.907,Beltsville,Maryland,1
+chd,39.24,-76.839,Columbia,Maryland,3
+chd,38.969,-76.863,Lanham,Maryland,2
+chd,39.153,-77.067,Olney,Maryland,1
+chd,42.963,-85.668,Grand Rapids,Michigan,5
+chd,43.616,-84.247,Midland,Michigan,4
+chd,42.658,-83.15,Rochester Hills,Michigan,2
+chd,42.473,-83.222,Southfield,Michigan,2
+chd,46.783,-92.107,Duluth,Minnesota,2
+chd,44.953,-92.995,Maplewood,Minnesota,1
+chd,44.948,-93.348,Saint Louis Park,Minnesota,1
+chd,32.299,-90.185,Jackson,Mississippi,2
+chd,34.258,-88.705,Tupelo,Mississippi,5
+chd,38.767,-90.412,Bridgeton,Missouri,1
+chd,39.1,-94.579,Kansas City,Missouri,8
+chd,36.175,-115.137,Las Vegas,Nevada,6
+chd,36.199,-115.118,North Las Vegas,Nevada,1
+chd,39.53,-119.814,Reno,Nevada,2
+chd,40.601,-74.648,Bridgewater,New Jersey,3
+chd,40.512,-74.859,Flemington,New Jersey,3
+chd,40.207,-74.081,Hamilton,New Jersey,1
+chd,40.732,-74.235,Irvington,New Jersey,1
+chd,40.622,-74.245,Linden,New Jersey,1
+chd,40.736,-74.172,Newark,New Jersey,4
+chd,40.79,-74.057,Secaucus,New Jersey,1
+chd,39.767,-75.144,Sewell,New Jersey,2
+chd,40.498,-74.488,Somerset,New Jersey,1
+chd,40.608,-74.518,Warren Township,New Jersey,1
+chd,42.653,-73.756,Albany,New York,4
+chd,40.866,-73.927,Inwood,New York,1
+chd,40.756,-73.885,Jackson Heights,New York,2
+chd,41.331,-74.187,Monroe,New York,1
+chd,43.094,-79.057,Niagara Falls,New York,1
+chd,42.768,-78.744,Orchard Park,New York,1
+chd,41.7,-73.921,Poughkeepsie,New York,3
+chd,43.083,-73.785,Saratoga Springs,New York,1
+chd,36.073,-79.792,Greensboro,North Carolina,5
+chd,35.263,-77.582,Kinston,North Carolina,1
+chd,34.985,-80.55,Monroe,North Carolina,1
+chd,35.783,-80.887,Statesville,North Carolina,1
+chd,34.236,-77.946,Wilmington,North Carolina,2
+chd,36.1,-80.244,Winston-Salem,North Carolina,9
+chd,46.877,-96.79,Fargo,North Dakota,2
+chd,40.799,-81.378,Canton,Ohio,4
+chd,40.743,-84.105,Lima,Ohio,1
+chd,40.589,-83.129,Marion,Ohio,2
+chd,35.223,-97.439,Norman,Oklahoma,1
+chd,40.245,-75.65,Pottstown,Pennsylvania,1
+chd,41.66,-71.456,East Greenwich,Rhode Island,1
+chd,32.776,-79.933,Charleston,South Carolina,8
+chd,34.8,-82.424,Gantt,South Carolina,1
+chd,33.873,-78.614,Little River,South Carolina,1
+chd,32.794,-79.863,Mt. Pleasant,South Carolina,1
+chd,34.95,-81.932,Spartanburg,South Carolina,3
+chd,44.081,-103.231,Rapid City,South Dakota,4
+chd,35.046,-85.31,Chattanooga,Tennessee,3
+chd,36.01,-84.27,Oak Ridge,Tennessee,2
+chd,35.362,-86.209,Tullahoma,Tennessee,1
+chd,35.222,-101.831,Amarillo,Texas,3
+chd,32.954,-96.89,Carrollton,Texas,1
+chd,32.837,-97.082,Euless,Texas,1
+chd,30.057,-95.183,Kingwood,Texas,3
+chd,33.046,-96.994,Lewisville,Texas,2
+chd,33.578,-101.855,Lubbock,Texas,1
+chd,33.198,-96.615,McKinney,Texas,4
+chd,32.767,-96.599,Mesquite,Texas,2
+chd,29.691,-95.209,Pasadena,Texas,1
+chd,29.883,-97.941,San Marcos,Texas,3
+chd,32.351,-95.301,Tyler,Texas,1
+chd,41.06,-111.971,Layton,Utah,1
+chd,39.116,-77.564,Leesburg,Virginia,1
+chd,38.751,-77.475,Manassas,Virginia,2
+chd,37.506,-77.649,Midlothian,Virginia,1
+chd,36.98,-76.43,Newport News,Virginia,2
+chd,36.847,-76.285,Norfolk,Virginia,5
+chd,36.728,-76.585,Suffolk,Virginia,1
+chd,39.186,-78.163,Winchester,Virginia,3
+chd,47.979,-122.202,Everett,Washington,3
+chd,35.15,-90.049,Memphis,Tennessee,10
+chd,27.948,-82.458,Tampa,Florida,7
+chd,42.278,-83.741,Ann Arbor,Michigan,8
+chd,35.772,-78.639,Raleigh,North Carolina,5
+chd,31.759,-106.487,El Paso,Texas,2
+chd,40.798,-73.7,Manhasset,New York,5
+chd,34.143,-118.255,Glendale,California,3
+chd,39.978,-86.118,Carmel,Indiana,4
+chd,40.893,-73.973,Englewood,New Jersey,4
+chd,40.765,-73.817,Flushing,New York,3
+chd,41.075,-73.775,Valhalla,New York,2
+chd,26.011,-80.149,Hollywood,Florida,2
+chd,28.538,-81.379,Orlando,Florida,1
+chd,37.442,-122.143,Palo Alto,California,7
+chd,33.836,-118.341,Torrance,California,7
+chd,41.661,-91.53,Iowa City,Iowa,6
+chd,40.979,-74.117,Ridgewood,New Jersey,3
+chd,40.681,-73.837,Queens,New York,1
+chd,35.613,-77.366,Greenville,North Carolina,2
+chd,39.94,-82.013,Zanesville,Ohio,2
+chd,40.003,-75.271,Wynnewood,Pennsylvania,1
+chd,41.824,-71.413,Providence,Rhode Island,5
+chd,29.301,-94.798,Galveston,Texas,1
+chd,33.767,-118.189,Long Beach,California,4
+chd,34.046,-118.431,West Los Angeles,California,1
+chd,41.271,-72.947,West Haven,Connecticut,1
+chd,27.814,-82.778,Bay Pines,Florida,1
+chd,33.775,-84.296,Decatur,Georgia,2
+chd,21.307,-157.858,Honolulu,Hawaii,1
+chd,41.854,-87.84,Hines,Illinois,1
+chd,35.084,-106.651,Albuquerque,New Mexico,4
+chd,37.293,-80.055,Salem,Virginia,1
+chd,38.419,-82.445,Huntington,West Virginia,1
+chd,38.895,-77.036,Washington D.C.,District of Columbia,7
+chd,47.61,-122.201,Bellevue,Washington,2
+chd,26.122,-80.143,Fort Lauderdale,Florida,2
+chd,28.359,-80.69,Merritt Island,Florida,1
+chd,37.271,-79.941,Roanoke,Virginia,1
+chd,25.791,-80.13,Miami Beach,Florida,3
+chd,26.142,-81.796,Naples,Florida,3
+chd,30.438,-84.281,Tallahassee,Florida,1
+chd,39.802,-89.644,Springfield,Illinois,2
+chd,29.596,-90.72,Houma,Louisiana,3
+chd,40.886,-74.043,Hackensack,New Jersey,3
+chd,32.725,-97.321,Fort Worth,Texas,2
+chd,43.073,-89.401,Madison,Wisconsin,2
+chd,38.981,-77.1,Bethesda,Maryland,3
+chd,31.308,-86.482,Andalusia,Alabama,1
+chd,33.353,-111.789,Gilbert,Arizona,2
+chd,33.662,-112.341,Sun City West,Arizona,1
+chd,33.66,-117.999,Huntington Beach,California,2
+chd,27.938,-82.286,Brandon,Florida,1
+chd,26.976,-82.091,Port Charlotte,Florida,3
+chd,29.138,-80.996,Port Orange,Florida,1
+chd,29.895,-81.315,Saint Augustine,Florida,1
+chd,26.659,-80.241,Wellington,Florida,1
+chd,30.837,-83.979,Thomasville,Georgia,2
+chd,39.048,-95.678,Topeka,Kansas,1
+chd,29.984,-90.153,Metairie,Louisiana,1
+chd,29.955,-90.075,New Orleans,Louisiana,5
+chd,30.534,-92.082,Opelousas,Louisiana,1
+chd,43.578,-70.322,Scarborough,Maine,1
+chd,38.707,-77.023,Ft. Washington,Maryland,1
+chd,39.084,-77.153,Rockville,Maryland,2
+chd,42.913,-85.705,Wyoming,Michigan,1
+chd,33.184,-90.489,Belzoni,Mississippi,1
+chd,34.989,-90.013,Southaven,Mississippi,2
+chd,38.8,-90.627,City of Saint Peters,Missouri,1
+chd,43.642,-72.252,Lebanon,New Hampshire,3
+chd,40.716,-74.365,Summit,New Jersey,1
+chd,40.917,-72.662,Riverhead,New York,1
+chd,41.081,-81.519,Akron,Ohio,3
+chd,40.038,-76.306,Lancaster,Pennsylvania,2
+chd,35.087,-89.81,Germantown,Tennessee,3
+chd,35.615,-88.814,Jackson,Tennessee,2
+chd,36.032,-84.028,Powell,Tennessee,2
+chd,32.545,-94.367,Marshall,Texas,1
+chd,30.097,-95.616,Tomball,Texas,2
+chd,40.889,-111.881,Bountiful,Utah,1
+chd,39.739,-104.985,Denver,Colorado,3
+chd,35.961,-83.921,Knoxville,Tennessee,4
+chd,39.478,-74.575,Pomona,New Jersey,4
+chd,40.748,-74.325,Short Hills,New Jersey,1
+chd,34.056,-117.183,Redlands,California,1
+chd,34.421,-119.698,Santa Barbara,California,2
+chd,26.591,-80.101,Atlantis,Florida,1
+chd,34.298,-83.824,Gainesville,Georgia,2
+chd,43.614,-116.203,Boise,Idaho,1
+chd,41.682,-85.977,Elkhart,Indiana,2
+chd,42.733,-84.556,Lansing,Michigan,2
+chd,43.419,-83.951,Saginaw,Michigan,1
+chd,42.241,-83.613,Ypsilanti,Michigan,4
+chd,38.952,-92.334,Columbia,Missouri,2
+chd,40.749,-73.641,Mineola,New York,2
+chd,43.048,-76.147,Syracuse,New York,1
+chd,35.468,-97.516,Oklahoma City,Oklahoma,5
+chd,45.408,-122.57,Clackamas,Oregon,1
+chd,36.548,-82.562,Kingsport,Tennessee,1
+chd,30.508,-97.679,Round Rock,Texas,2
+chd,44.476,-73.212,Burlington,Vermont,2
+chd,44.519,-88.02,Green Bay,Wisconsin,2
+chd,33.436,-112.35,Avondale,Arizona,1
+chd,35.842,-90.704,Jonesboro,Arkansas,2
+chd,32.64,-117.084,Chula Vista,California,3
+chd,37.978,-122.031,Concord,California,2
+chd,34.136,-117.865,Glendora,California,1
+chd,33.619,-117.929,Newport Beach,California,1
+chd,33.953,-117.396,Riverside,California,2
+chd,34.187,-118.449,Van Nuys,California,1
+chd,34.278,-119.293,Ventura,California,1
+chd,39.648,-104.988,Englewood,Colorado,1
+chd,41.395,-73.454,Danbury,Connecticut,1
+chd,41.053,-73.539,Stamford,Connecticut,1
+chd,25.721,-80.268,Coral Gables,Florida,1
+chd,29.211,-81.023,Daytona Beach,Florida,1
+chd,27.91,-82.788,Largo,Florida,2
+chd,30.159,-85.66,Panama City,Florida,1
+chd,33.855,-84.217,Tucker,Georgia,1
+chd,42.271,-89.094,Rockford,Illinois,1
+chd,41.483,-87.333,Merrillville,Indiana,1
+chd,37.774,-87.113,Owensboro,Kentucky,1
+chd,32.516,-93.732,Bossier City,Louisiana,1
+chd,32.525,-93.75,Shreveport,Louisiana,1
+chd,44.799,-68.773,Bangor,Maine,2
+chd,38.765,-76.898,Clinton,Maryland,1
+chd,38.361,-75.599,Salisbury,Maryland,1
+chd,38.991,-77.026,Silver Spring,Maryland,1
+chd,38.978,-77.007,Takoma Park,Maryland,1
+chd,44.159,-94.009,Mankato,Minnesota,1
+chd,40.925,-98.342,Grand Island,Nebraska,1
+chd,39.595,-75.17,Elmer,New Jersey,1
+chd,39.877,-75.065,Haddon Heights,New Jersey,1
+chd,43.155,-77.616,Rochester,New York,2
+chd,40.562,-74.14,Staten Island,New York,2
+chd,35.053,-78.878,Fayetteville,North Carolina,2
+chd,35.823,-78.826,Morrisville,North Carolina,1
+chd,39.924,-83.809,Springfield,Ohio,2
+chd,41.664,-83.555,Toledo,Ohio,2
+chd,40.626,-75.37,Bethlehem,Pennsylvania,2
+chd,40.24,-76.92,Camp Hill,Pennsylvania,2
+chd,39.938,-77.661,Chambersburg,Pennsylvania,2
+chd,40.334,-75.947,West Reading,Pennsylvania,2
+chd,34.503,-82.65,Anderson,South Carolina,2
+chd,36.163,-82.831,Greeneville,Tennessee,2
+chd,31.338,-94.729,Lufkin,Texas,1
+chd,26.203,-98.23,McAllen,Texas,2
+chd,47.185,-122.293,Puyallup,Washington,1
+chd,47.253,-122.444,Tacoma,Washington,1
+chd,42.378,-71.062,Charlestown,Massachusetts,1
+chd,26.1,-80.4,Weston,Florida,2
+chd,40.214,-77.009,Mechanicsburg,Pennsylvania,2
+chd,34.853,-82.394,Greenville,South Carolina,3
+chd,40.398,-105.075,Loveland,Colorado,1
+chd,41.786,-88.147,Naperville,Illinois,1
+chd,39.019,-84.582,Edgewood,Kentucky,2
+chd,44.89,-93.35,Edina,Minnesota,1
+chd,46.872,-113.994,Missoula,Montana,2
+chd,40.945,-74.075,Paramus,New Jersey,2
+chd,40.608,-75.49,Allentown,Pennsylvania,3
+chd,40.274,-76.884,Harrisburg,Pennsylvania,1
+chd,43.801,-91.24,La Crosse,Wisconsin,1
+chd,38.35,-81.633,Charleston,West Virginia,4
+chd,33.598,-112.272,Sun City,Arizona,1
+chd,34.201,-118.598,Canoga Park,California,1
+chd,34.265,-118.523,Granada Hills,California,2
+chd,33.982,-118.225,Huntington Park,California,1
+chd,33.718,-116.343,Indian Wells,California,1
+chd,34.698,-118.137,Lancaster,California,1
+chd,34.063,-118.123,Monterey Park,California,1
+chd,34.385,-118.531,Newhall,California,1
+chd,33.788,-117.853,Orange,California,1
+chd,34.282,-118.439,San Fernando,California,1
+chd,34.173,-118.554,Tarzana,California,2
+chd,34.444,-118.61,Valencia,California,1
+chd,34.165,-118.397,Valley Village,California,1
+chd,29.635,-83.127,Cross City,Florida,1
+chd,25.858,-80.278,Hialeah,Florida,1
+chd,26.238,-80.125,Pompano Beach,Florida,1
+chd,33.471,-81.975,Augusta,Georgia,3
+chd,33.946,-84.335,Dunwoody,Georgia,1
+chd,33.449,-84.455,Fayetteville,Georgia,1
+chd,33.794,-84.66,Lithia Springs,Georgia,1
+chd,32.841,-83.632,Macon,Georgia,1
+chd,33.941,-84.214,Norcross,Georgia,1
+chd,33.86,-84.684,Powder Springs,Georgia,1
+chd,33.573,-84.413,Riverdale,Georgia,1
+chd,32.084,-81.1,Savannah,Georgia,1
+chd,42.07,-87.788,Glenview,Illinois,3
+chd,48.196,-114.313,Kalispell,Montana,1
+chd,39.891,-74.922,Marlton,New Jersey,1
+chd,40.486,-74.452,New Brunswick,New Jersey,1
+chd,40.898,-74.016,Teaneck,New Jersey,1
+chd,40.771,-73.718,Lake Success,New York,1
+chd,41.204,-73.727,Mount Kisco,New York,1
+chd,35.16,-84.877,Cleveland,Tennessee,1
+chd,32.449,-99.733,Abilene,Texas,1
+chd,30.086,-94.102,Beaumont,Texas,2
+chd,33.138,-96.111,Greenville,Texas,1
+chd,27.506,-99.508,Laredo,Texas,1
+chd,32.221,-98.202,Stephenville,Texas,1
+chd,41.809,-88.011,Downers Grove,Illinois,1
+chd,41.667,-87.83,Palos Park,Illinois,1
+chd,42.607,-83.929,Howell,Michigan,1
+chd,40.926,-73.141,Stony Brook,New York,2
+chd,40.286,-76.65,Hershey,Pennsylvania,3
+chd,43.544,-96.728,Sioux Falls,South Dakota,1
+chd,31.098,-97.343,Temple,Texas,2
+chd,33.876,-84.762,Hiram,Georgia,1
+chd,44.669,-90.172,Marshfield,Wisconsin,1
+chd,45.12,-93.288,Coon Rapids,Minnesota,2
+chd,40.728,-74.078,Jersey City,New Jersey,2
+chd,42.7,-74.924,Cooperstown,New York,1
+chd,34.77,-92.267,North Little Rock,Arkansas,1
+chd,39.756,-105.221,Golden,Colorado,1
+chd,39.684,-75.75,Newark,Delaware,1
+chd,26.622,-81.841,Fort Myers,Florida,1
+chd,25.469,-80.478,Homestead,Florida,1
+chd,26.003,-80.224,Pembroke Pines,Florida,1
+chd,27.991,-82.693,Safety Harbor,Florida,1
+chd,27.336,-82.531,Sarasota,Florida,1
+chd,28.022,-81.733,Winter Haven,Florida,1
+chd,33.447,-84.147,McDonough,Georgia,1
+chd,37.944,-87.405,Newburgh,Indiana,1
+chd,41.524,-90.578,Davenport,Iowa,1
+chd,30.505,-90.463,Hammond,Louisiana,1
+chd,30.224,-92.02,Lafayette,Louisiana,1
+chd,43.594,-83.889,Bay City,Michigan,1
+chd,42.322,-83.176,Dearborn,Michigan,1
+chd,42.292,-85.587,Kalamazoo,Michigan,2
+chd,42.597,-82.878,Mount Clemens,Michigan,1
+chd,45.373,-84.955,Petoskey,Michigan,1
+chd,42.116,-75.959,Johnson City,New York,1
+chd,35.938,-77.791,Rocky Mount,North Carolina,1
+chd,40.33,-75.965,Wyomissing,Pennsylvania,1
+chd,34.925,-81.025,Rock Hill,South Carolina,1
+chd,36.122,-83.492,Jefferson City,Tennessee,1
+chd,29.969,-95.697,Cypress,Texas,1
+chd,28.805,-97.004,Victoria,Texas,1
+chd,34.606,-86.983,Decatur,Alabama,1
+chd,32.367,-86.3,Montgomery,Alabama,1
+chd,33.539,-112.186,Glendale,Arizona,1
+chd,35.373,-119.019,Bakersfield,California,1
+chd,36.748,-119.772,Fresno,California,1
+chd,33.87,-117.925,Fullerton,California,1
+chd,33.774,-117.941,Garden Grove,California,1
+chd,32.768,-117.023,La Mesa,California,1
+chd,33.846,-118.047,La Palma,California,1
+chd,33.93,-118.211,Lynwood,California,1
+chd,34.197,-119.177,Oxnard,California,1
+chd,36.678,-121.656,Salinas,California,1
+chd,34.107,-117.807,San Dimas,California,1
+chd,34.536,-117.291,Victorville,California,1
+chd,39.803,-105.087,Arvada,Colorado,1
+chd,41.826,-72.73,Bloomfield,Connecticut,1
+chd,41.528,-73.128,Middlebury,Connecticut,1
+chd,27.499,-82.575,Bradenton,Florida,1
+chd,26.271,-80.271,Coral Springs,Florida,1
+chd,25.865,-80.325,Hialeah Gardens,Florida,1
+chd,26.166,-80.208,Lauderdale Lakes,Florida,1
+chd,25.841,-80.326,Medley,Florida,1
+chd,28.801,-81.273,Sanford,Florida,1
+chd,28.035,-82.389,Temple Terrace,Florida,1
+chd,31.15,-81.491,Brunswick,Georgia,1
+chd,32.461,-84.988,Columbus,Georgia,1
+chd,31.964,-83.782,Cordele,Georgia,1
+chd,33.752,-84.748,Douglasville,Georgia,1
+chd,41.662,-86.159,Mishawaka,Indiana,1
+chd,42.5,-96.4,Sioux City,Iowa,1
+chd,30.443,-91.187,Baton Rouge,Louisiana,1
+chd,42.639,-83.291,Pontiac,Michigan,1
+chd,42.497,-82.937,Roseville,Michigan,1
+chd,42.497,-82.889,Saint Clair Shores,Michigan,1
+chd,33.496,-88.427,Columbus,Mississippi,1
+chd,41.124,-100.765,North Platte,Nebraska,1
+chd,36.04,-114.982,Henderson,Nevada,1
+chd,43.077,-70.758,Portsmouth,New Hampshire,1
+chd,40.296,-74.051,Eatontown,New Jersey,1
+chd,35.528,-108.743,Gallup,New Mexico,1
+chd,40.788,-73.846,College Point,New York,1
+chd,35.292,-81.536,Shelby,North Carolina,1
+chd,40.029,-75.621,Exton,Pennsylvania,1
+chd,41.814,-71.37,East Providence,Rhode Island,1
+chd,32.563,-97.142,Mansfield,Texas,1
+chd,30.18,-95.456,Shenandoah,Texas,1
+chd,33.636,-96.609,Sherman,Texas,1
+chd,30.158,-95.489,The Woodlands,Texas,1
+chd,36.819,-76.275,Chesapeake,Virginia,1
+chd,37.03,-76.345,Hampton,Virginia,1
+chd,37.27,-81.222,Bluefield,West Virginia,1
+chd,41.85,-87.965,Oakbrook Terrace,Illinois,1
+chd,43.657,-70.259,Portland,Maine,1
+chd,40.121,-75.118,Abington,Pennsylvania,1
+chd,42.041,-87.69,Evanston,Illinois,1
+cancer,40.441,-79.996,Pittsburgh,Pennsylvania,390
+cancer,26.622,-81.841,Fort Myers,Florida,83
+cancer,29.763,-95.363,Houston,Texas,1205
+cancer,34.048,-117.261,Loma Linda,California,48
+cancer,34.052,-118.244,Los Angeles,California,665
+cancer,38.895,-77.036,Washington D.C.,District of Columbia,291
+cancer,25.774,-80.194,Miami,Florida,382
+cancer,33.749,-84.388,Atlanta,Georgia,464
+cancer,41.85,-87.65,Chicago,Illinois,587
+cancer,41.879,-87.843,Maywood,Illinois,63
+cancer,42.358,-71.06,Boston,Massachusetts,845
+cancer,38.627,-90.198,St Louis,Missouri,546
+cancer,35.227,-80.843,Charlotte,North Carolina,175
+cancer,35.994,-78.899,Durham,North Carolina,321
+cancer,41.499,-81.695,Cleveland,Ohio,394
+cancer,39.961,-82.999,Columbus,Ohio,486
+cancer,45.523,-122.676,Portland,Oregon,344
+cancer,39.952,-75.164,Philadelphia,Pennsylvania,548
+cancer,36.166,-86.784,Nashville,Tennessee,596
+cancer,32.783,-96.807,Dallas,Texas,437
+cancer,37.442,-122.143,Palo Alto,California,196
+cancer,29.424,-98.494,San Antonio,Texas,360
+cancer,33.435,-112.358,Goodyear,Arizona,45
+cancer,33.448,-112.074,Phoenix,Arizona,245
+cancer,34.181,-118.309,Burbank,California,37
+cancer,33.669,-117.823,Irvine,California,216
+cancer,32.847,-117.274,La Jolla,California,193
+cancer,33.767,-118.189,Long Beach,California,69
+cancer,33.803,-118.073,Los Alamitos,California,31
+cancer,33.143,-117.166,San Marcos,California,20
+cancer,37.563,-122.326,San Mateo,California,23
+cancer,37.369,-122.036,Sunnyvale,California,24
+cancer,30.332,-81.656,Jacksonville,Florida,305
+cancer,30.438,-84.281,Tallahassee,Florida,12
+cancer,27.948,-82.458,Tampa,Florida,375
+cancer,26.1,-80.4,Weston,Florida,25
+cancer,33.953,-84.55,Marietta,Georgia,22
+cancer,38.592,-89.911,O'Fallon,Illinois,92
+cancer,39.802,-89.644,Springfield,Illinois,104
+cancer,40.111,-88.207,Urbana,Illinois,105
+cancer,42.446,-87.833,Zion,Illinois,41
+cancer,37.989,-84.478,Lexington,Kentucky,191
+cancer,38.254,-85.759,Louisville,Kentucky,176
+cancer,38.979,-76.492,Annapolis,Maryland,16
+cancer,39.29,-76.612,Baltimore,Maryland,405
+cancer,42.331,-83.046,Detroit,Michigan,324
+cancer,42.963,-85.668,Grand Rapids,Michigan,275
+cancer,44.98,-93.264,Minneapolis,Minnesota,246
+cancer,39.1,-94.579,Kansas City,Missouri,149
+cancer,40.925,-98.342,Grand Island,Nebraska,29
+cancer,41.256,-95.94,Omaha,Nebraska,260
+cancer,40.428,-74.416,East Brunswick,New Jersey,64
+cancer,40.788,-74.388,Florham Park,New Jersey,10
+cancer,40.714,-74.006,New York,New York,1144
+cancer,40.801,-72.868,Shirley,New York,21
+cancer,40.85,-73.866,The Bronx,New York,190
+cancer,36.1,-80.244,Winston-Salem,North Carolina,156
+cancer,41.519,-81.458,Mayfield Heights,Ohio,31
+cancer,34.853,-82.394,Greenville,South Carolina,108
+cancer,35.087,-89.81,Germantown,Tennessee,49
+cancer,32.725,-97.321,Fort Worth,Texas,134
+cancer,30.08,-95.417,Spring,Texas,3
+cancer,40.761,-111.891,Salt Lake City,Utah,313
+cancer,47.811,-122.377,Edmonds,Washington,61
+cancer,47.979,-122.202,Everett,Washington,27
+cancer,47.606,-122.332,Seattle,Washington,465
+cancer,47.253,-122.444,Tacoma,Washington,71
+cancer,34.746,-92.29,Little Rock,Arkansas,141
+cancer,41.764,-72.685,Hartford,Connecticut,99
+cancer,28.538,-81.379,Orlando,Florida,202
+cancer,21.307,-157.858,Honolulu,Hawaii,84
+cancer,40.286,-76.65,Hershey,Pennsylvania,104
+cancer,30.267,-97.743,Austin,Texas,192
+cancer,32.716,-117.165,San Diego,California,150
+cancer,25.763,-80.373,Sweetwater,Florida,1
+cancer,26.715,-80.053,West Palm Beach,Florida,60
+cancer,42.35,-71.156,Brighton,Massachusetts,10
+cancer,45.066,-93.202,New Brighton,Minnesota,3
+cancer,30.439,-97.62,Pflugerville,Texas,2
+cancer,40.706,-74.549,Basking Ridge,New Jersey,245
+cancer,40.394,-74.117,Middletown,New Jersey,248
+cancer,41.047,-74.023,Montvale,New Jersey,249
+cancer,40.843,-73.293,Commack,New York,251
+cancer,40.969,-73.713,Harrison,New York,235
+cancer,40.7,-73.593,Uniondale,New York,186
+cancer,39.729,-104.832,Aurora,Colorado,313
+cancer,33.353,-111.789,Gilbert,Arizona,71
+cancer,32.222,-110.926,Tucson,Arizona,146
+cancer,36.825,-119.703,Clovis,California,13
+cancer,33.87,-117.925,Fullerton,California,43
+cancer,37.386,-122.084,Mountain View,California,16
+cancer,33.619,-117.929,Newport Beach,California,80
+cancer,33.979,-118.033,Whittier,California,11
+cancer,39.739,-104.985,Denver,Colorado,230
+cancer,39.064,-108.551,Grand Junction,Colorado,30
+cancer,28.661,-81.366,Altamonte Springs,Florida,16
+cancer,25.858,-80.278,Hialeah,Florida,19
+cancer,27.771,-82.679,St. Petersburg,Florida,92
+cancer,33.381,-84.8,Newnan,Georgia,37
+cancer,41.131,-85.129,Fort Wayne,Indiana,65
+cancer,39.768,-86.158,Indianapolis,Indiana,242
+cancer,29.955,-90.075,New Orleans,Louisiana,124
+cancer,32.525,-93.75,Shreveport,Louisiana,46
+cancer,43.677,-70.371,Westbrook,Maine,11
+cancer,40.8,-96.667,Lincoln,Nebraska,40
+cancer,36.175,-115.137,Las Vegas,Nevada,99
+cancer,39.53,-119.814,Reno,Nevada,83
+cancer,40.886,-74.043,Hackensack,New Jersey,169
+cancer,40.486,-74.452,New Brunswick,New Jersey,189
+cancer,47.925,-97.033,Grand Forks,North Dakota,8
+cancer,39.127,-84.514,Cincinnati,Ohio,295
+cancer,45.431,-122.771,Tigard,Oregon,13
+cancer,32.776,-79.933,Charleston,South Carolina,161
+cancer,43.544,-96.728,Sioux Falls,South Dakota,148
+cancer,42.871,-97.397,Yankton,South Dakota,16
+cancer,35.961,-83.921,Knoxville,Tennessee,92
+cancer,32.449,-99.733,Abilene,Texas,26
+cancer,33.015,-97.097,Flower Mound,Texas,10
+cancer,33.578,-101.855,Lubbock,Texas,33
+cancer,40.667,-111.888,Murray,Utah,18
+cancer,37.506,-77.649,Midlothian,Virginia,43
+cancer,36.847,-76.285,Norfolk,Virginia,85
+cancer,37.271,-79.941,Roanoke,Virginia,59
+cancer,47.66,-117.429,Spokane,Washington,85
+cancer,43.073,-89.401,Madison,Wisconsin,210
+cancer,42.278,-83.741,Ann Arbor,Michigan,295
+cancer,31.327,-89.29,Hattiesburg,Mississippi,19
+cancer,37.775,-122.419,San Francisco,California,348
+cancer,37.424,-122.166,Stanford,California,69
+cancer,35.084,-106.651,Albuquerque,New Mexico,122
+cancer,38.981,-77.1,Bethesda,Maryland,190
+cancer,41.308,-72.928,New Haven,Connecticut,351
+cancer,29.652,-82.325,Gainesville,Florida,119
+cancer,29.187,-82.14,Ocala,Florida,18
+cancer,38.952,-92.334,Columbia,Missouri,52
+cancer,38.846,-77.306,Fairfax,Virginia,380
+cancer,33.788,-117.853,Orange,California,235
+cancer,34.139,-117.977,Duarte,California,404
+cancer,39.114,-94.627,Kansas City,Kansas,116
+cancer,33.66,-117.999,Huntington Beach,California,16
+cancer,34.698,-118.137,Lancaster,California,23
+cancer,34.116,-118.15,South Pasadena,California,26
+cancer,33.836,-118.341,Torrance,California,54
+cancer,34.098,-117.648,Upland,California,36
+cancer,33.509,-111.899,Scottsdale,Arizona,130
+cancer,38.44,-122.714,Santa Rosa,California,86
+cancer,26.134,-80.232,Plantation,Florida,85
+cancer,44.022,-92.47,Rochester,Minnesota,368
+cancer,35.233,-106.664,Rio Rancho,New Mexico,16
+cancer,33.306,-111.841,Chandler,Arizona,34
+cancer,33.709,-117.954,Fountain Valley,California,28
+cancer,33.982,-118.225,Huntington Park,California,2
+cancer,32.768,-117.023,La Mesa,California,1
+cancer,34.228,-118.537,Northridge,California,1
+cancer,28.989,-80.902,Edgewater,Florida,1
+cancer,26.122,-80.143,Fort Lauderdale,Florida,61
+cancer,28.244,-82.719,New Port Richey,Florida,3
+cancer,26.976,-82.091,Port Charlotte,Florida,9
+cancer,29.138,-80.996,Port Orange,Florida,2
+cancer,28.6,-81.339,Winter Park,Florida,4
+cancer,32.461,-84.988,Columbus,Georgia,5
+cancer,43.614,-116.203,Boise,Idaho,100
+cancer,41.577,-93.711,West Des Moines,Iowa,36
+cancer,37.692,-97.338,Wichita,Kansas,46
+cancer,39.019,-84.582,Edgewood,Kentucky,28
+cancer,30.224,-92.02,Lafayette,Louisiana,11
+cancer,29.984,-90.153,Metairie,Louisiana,33
+cancer,39.084,-77.153,Rockville,Maryland,12
+cancer,42.101,-72.59,Springfield,Massachusetts,20
+cancer,42.606,-83.15,Troy,Michigan,29
+cancer,42.653,-73.756,Albany,New York,60
+cancer,35.913,-79.056,Chapel Hill,North Carolina,239
+cancer,35.613,-77.366,Greenville,North Carolina,51
+cancer,34.723,-76.726,Morehead City,North Carolina,2
+cancer,34.236,-77.946,Wilmington,North Carolina,13
+cancer,44.052,-123.087,Eugene,Oregon,66
+cancer,39.961,-75.608,West Chester,Pennsylvania,6
+cancer,34.503,-82.65,Anderson,South Carolina,8
+cancer,32.794,-79.863,Mt. Pleasant,South Carolina,1
+cancer,31.064,-98.182,Lampasas,Texas,1
+cancer,33.046,-96.994,Lewisville,Texas,6
+cancer,26.216,-98.325,Mission,Texas,1
+cancer,30.508,-97.679,Round Rock,Texas,9
+cancer,29.564,-95.025,Seabrook,Texas,1
+cancer,26.16,-97.991,Weslaco,Texas,10
+cancer,40.61,-111.939,West Jordan,Utah,1
+cancer,36.728,-76.585,Suffolk,Virginia,2
+cancer,38.901,-77.265,Vienna,Virginia,1
+cancer,26.271,-80.271,Coral Springs,Florida,36
+cancer,29.895,-81.315,Saint Augustine,Florida,7
+cancer,39.704,-86.399,Plainfield,Indiana,4
+cancer,39.5,-76.641,Hunt Valley,Maryland,1
+cancer,34.019,-118.491,Santa Monica,California,105
+cancer,32.814,-96.949,Irving,Texas,77
+cancer,32.351,-95.301,Tyler,Texas,72
+cancer,41.661,-91.53,Iowa City,Iowa,174
+cancer,33.521,-86.802,Birmingham,Alabama,244
+cancer,39.684,-75.75,Newark,Delaware,92
+cancer,26.934,-80.094,Jupiter,Florida,20
+cancer,26.003,-80.224,Pembroke Pines,Florida,32
+cancer,42.019,-87.803,Niles,Illinois,18
+cancer,30.443,-91.187,Baton Rouge,Louisiana,73
+cancer,42.241,-83.613,Ypsilanti,Michigan,76
+cancer,43.642,-72.252,Lebanon,New Hampshire,117
+cancer,42.886,-78.878,Buffalo,New York,187
+cancer,43.155,-77.616,Rochester,New York,159
+cancer,40.799,-81.378,Canton,Ohio,88
+cancer,39.628,-84.159,Centerville,Ohio,64
+cancer,37.554,-77.46,Richmond,Virginia,216
+cancer,42.485,-83.377,Farmington Hills,Michigan,43
+cancer,39.963,-76.728,York,Pennsylvania,44
+cancer,34.074,-118.4,Beverly Hills,California,79
+cancer,34.173,-118.554,Tarzana,California,15
+cancer,38.55,-75.123,Millville,Delaware,33
+cancer,38.721,-75.076,Rehoboth Beach,Delaware,34
+cancer,47.678,-116.78,Coeur d'Alene,Idaho,77
+cancer,47.718,-116.952,Post Falls,Idaho,78
+cancer,48.277,-116.553,Sandpoint,Idaho,71
+cancer,40.484,-88.994,Bloomington,Illinois,70
+cancer,40.558,-90.035,Canton,Illinois,63
+cancer,40.416,-91.136,Carthage,Illinois,61
+cancer,40.124,-87.63,Danville,Illinois,85
+cancer,39.84,-88.955,Decatur,Illinois,97
+cancer,39.12,-88.543,Effingham,Illinois,94
+cancer,40.721,-89.273,Eureka,Illinois,62
+cancer,40.948,-90.371,Galesburg,Illinois,67
+cancer,41.246,-89.925,Kewanee,Illinois,62
+cancer,40.459,-90.672,Macomb,Illinois,63
+cancer,39.483,-88.373,Mattoon,Illinois,84
+cancer,40.514,-88.991,Normal,Illinois,36
+cancer,41.346,-88.843,Ottawa,Illinois,68
+cancer,40.568,-89.641,Pekin,Illinois,68
+cancer,40.694,-89.589,Peoria,Illinois,125
+cancer,41.328,-89.129,Peru,Illinois,67
+cancer,41.368,-89.465,Princeton,Illinois,62
+cancer,40.704,-89.407,Washington,Illinois,66
+cancer,41.417,-87.365,Crown Point,Indiana,50
+cancer,41.494,-87.522,Dyer,Indiana,39
+cancer,41.532,-87.255,Hobart,Indiana,30
+cancer,41.564,-87.513,Munster,Indiana,32
+cancer,41.473,-87.061,Valparaiso,Indiana,29
+cancer,42.035,-93.62,Ames,Iowa,50
+cancer,42.008,-91.644,Cedar Rapids,Iowa,53
+cancer,42.497,-94.168,Fort Dodge,Iowa,53
+cancer,42.049,-92.908,Marshalltown,Iowa,38
+cancer,37.774,-87.113,Owensboro,Kentucky,11
+cancer,42.317,-85.178,Battle Creek,Michigan,45
+cancer,42.292,-85.587,Kalamazoo,Michigan,69
+cancer,41.83,-86.254,Niles,Michigan,44
+cancer,43.875,-85.51,Reed City,Michigan,46
+cancer,42.11,-86.48,Saint Joseph,Michigan,47
+cancer,44.763,-85.621,Traverse City,Michigan,56
+cancer,42.913,-85.705,Wyoming,Michigan,51
+cancer,46.358,-94.201,Brainerd,Minnesota,48
+cancer,47.333,-93.793,Deer River,Minnesota,63
+cancer,46.817,-95.845,Detroit Lakes,Minnesota,25
+cancer,46.783,-92.107,Duluth,Minnesota,77
+cancer,47.427,-92.938,Hibbing,Minnesota,63
+cancer,44.944,-93.093,Saint Paul,Minnesota,108
+cancer,46.131,-92.867,Sandstone,Minnesota,62
+cancer,47.523,-92.537,Virginia,Minnesota,63
+cancer,37.306,-89.518,Cape Girardeau,Missouri,76
+cancer,45.783,-108.501,Billings,Montana,116
+cancer,45.68,-111.039,Bozeman,Montana,77
+cancer,47.5,-111.301,Great Falls,Montana,80
+cancer,46.872,-113.994,Missoula,Montana,82
+cancer,40.059,-74.137,Brick,New Jersey,3
+cancer,39.695,-74.259,Manahawkin,New Jersey,5
+cancer,40.2,-74.028,Neptune City,New Jersey,19
+cancer,40.347,-74.064,Red Bank,New Jersey,4
+cancer,43.039,-76.304,Camillus,New York,12
+cancer,43.065,-76.079,East Syracuse,New York,28
+cancer,40.926,-73.141,Stony Brook,New York,85
+cancer,35.195,-79.469,Pinehurst,North Carolina,43
+cancer,46.877,-96.79,Fargo,North Dakota,110
+cancer,41.719,-83.713,Sylvania,Ohio,34
+cancer,35.468,-97.516,Oklahoma City,Oklahoma,241
+cancer,46.592,-90.884,Ashland,Wisconsin,62
+cancer,44.519,-88.02,Green Bay,Wisconsin,88
+cancer,43.179,-88.117,Menomonee Falls,Wisconsin,37
+cancer,42.867,-88.333,Mukwonago,Wisconsin,39
+cancer,43.112,-88.499,Oconomowoc,Wisconsin,39
+cancer,46.721,-92.104,Superior,Wisconsin,29
+cancer,43.012,-88.231,Waukesha,Wisconsin,43
+cancer,41.801,-88.075,Lisle,Illinois,22
+cancer,35.772,-78.639,Raleigh,North Carolina,47
+cancer,38.419,-82.445,Huntington,West Virginia,25
+cancer,39.63,-79.956,Morgantown,West Virginia,79
+cancer,40.664,-74.211,Elizabeth,New Jersey,12
+cancer,40.796,-74.315,Livingston,New Jersey,34
+cancer,40.304,-73.992,Long Branch,New Jersey,34
+cancer,40.736,-74.172,Newark,New Jersey,39
+cancer,40.574,-74.61,Somerville,New Jersey,20
+cancer,26.213,-80.25,Tamarac,Florida,31
+cancer,32.841,-83.632,Macon,Georgia,15
+cancer,40.349,-74.659,Princeton,New Jersey,3
+cancer,41.321,-73.089,Derby,Connecticut,41
+cancer,41.141,-73.264,Fairfield,Connecticut,40
+cancer,41.712,-72.608,Glastonbury,Connecticut,25
+cancer,41.026,-73.628,Greenwich,Connecticut,40
+cancer,41.289,-72.682,Guilford,Connecticut,46
+cancer,41.391,-72.86,North Haven,Connecticut,45
+cancer,41.053,-73.539,Stamford,Connecticut,45
+cancer,41.243,-73.201,Trumbull,Connecticut,57
+cancer,41.558,-73.052,Waterbury,Connecticut,39
+cancer,41.342,-72.136,Waterford,Connecticut,44
+cancer,38.982,-94.671,Overland Park,Kansas,69
+cancer,39.041,-94.617,Westwood,Kansas,123
+cancer,47.474,-94.88,Bemidji,Minnesota,48
+cancer,38.661,-90.423,Creve Coeur,Missouri,67
+cancer,41.137,-95.891,Bellevue,Nebraska,36
+cancer,39.926,-75.12,Camden,New Jersey,37
+cancer,40.945,-74.075,Paramus,New Jersey,28
+cancer,40.771,-73.718,Lake Success,New York,102
+cancer,40.798,-73.7,Manhasset,New York,12
+cancer,40.749,-73.641,Mineola,New York,88
+cancer,40.735,-73.688,New Hyde Park,New York,45
+cancer,42.129,-80.085,Erie,Pennsylvania,48
+cancer,40.291,-79.932,Jefferson Hills,Pennsylvania,18
+cancer,40.421,-79.788,Monroeville,Pennsylvania,48
+cancer,40.623,-79.73,Natrona Heights,Pennsylvania,16
+cancer,40.626,-80.056,Wexford,Pennsylvania,17
+cancer,41.824,-71.413,Providence,Rhode Island,140
+cancer,41.378,-71.827,Westerly,Rhode Island,27
+cancer,44.476,-73.212,Burlington,Vermont,68
+cancer,37.609,-77.373,Mechanicsville,Virginia,26
+cancer,44.811,-91.498,Eau Claire,Wisconsin,64
+cancer,44.669,-90.172,Marshfield,Wisconsin,75
+cancer,43.039,-87.906,Milwaukee,Wisconsin,268
+cancer,45.871,-89.711,Minocqua,Wisconsin,46
+cancer,42.976,-88.108,New Berlin,Wisconsin,20
+cancer,42.886,-87.863,Oak Creek,Wisconsin,35
+cancer,45.506,-91.738,Rice Lake,Wisconsin,48
+cancer,44.524,-89.575,Stevens Point,Wisconsin,75
+cancer,43.425,-88.183,West Bend,Wisconsin,36
+cancer,44.891,-89.548,Weston,Wisconsin,66
+cancer,33.858,-118.065,Cerritos,California,12
+cancer,34.143,-118.255,Glendale,California,25
+cancer,45.12,-93.288,Coon Rapids,Minnesota,81
+cancer,40.745,-73.949,Long Island City,New York,13
+cancer,35.601,-82.554,Asheville,North Carolina,23
+cancer,35.823,-78.826,Morrisville,North Carolina,3
+cancer,39.728,-121.837,Chico,California,12
+cancer,33.037,-117.292,Encinitas,California,19
+cancer,38.582,-121.494,Sacramento,California,199
+cancer,38.834,-104.821,Colorado Springs,Colorado,60
+cancer,40.585,-105.084,Fort Collins,Colorado,46
+cancer,40.423,-104.709,Greeley,Colorado,39
+cancer,40.398,-105.075,Loveland,Colorado,39
+cancer,38.561,-89.897,Shiloh,Illinois,49
+cancer,41.524,-90.516,Bettendorf,Iowa,20
+cancer,38.881,-94.819,Olathe,Kansas,40
+cancer,39.048,-95.678,Topeka,Kansas,46
+cancer,42.065,-71.248,Foxborough,Massachusetts,20
+cancer,42.726,-71.191,Methuen,Massachusetts,14
+cancer,42.14,-71.516,Milford,Massachusetts,17
+cancer,42.175,-70.949,South Weymouth,Massachusetts,16
+cancer,42.529,-83.78,Brighton,Michigan,84
+cancer,42.309,-83.482,Canton,Michigan,73
+cancer,42.318,-84.022,Chelsea,Michigan,74
+cancer,42.733,-84.556,Lansing,Michigan,79
+cancer,42.368,-83.353,Livonia,Michigan,75
+cancer,45.561,-94.162,Saint Cloud,Minnesota,24
+cancer,38.8,-90.627,City of Saint Peters,Missouri,65
+cancer,35.072,-81.65,Gaffney,South Carolina,19
+cancer,34.939,-82.227,Greer,South Carolina,48
+cancer,34.95,-81.932,Spartanburg,South Carolina,28
+cancer,34.715,-81.624,Union,South Carolina,18
+cancer,32.948,-96.73,Richardson,Texas,34
+cancer,40.659,-73.641,Rockville Centre,New York,61
+cancer,25.721,-80.268,Coral Gables,Florida,56
+cancer,35.15,-90.049,Memphis,Tennessee,155
+cancer,39.24,-76.839,Columbia,Maryland,33
+cancer,41.929,-88.75,DeKalb,Illinois,60
+cancer,41.888,-88.305,Geneva,Illinois,61
+cancer,41.833,-87.929,Oak Brook,Illinois,33
+cancer,41.818,-88.173,Warrenville,Illinois,69
+cancer,37.949,-122.525,Greenbrae,California,6
+cancer,37.958,-121.291,Stockton,California,34
+cancer,40.696,-73.326,Babylon,New York,4
+cancer,47.185,-122.293,Puyallup,Washington,13
+cancer,36.063,-94.157,Fayetteville,Arkansas,32
+cancer,30.421,-87.217,Pensacola,Florida,34
+cancer,42.007,-87.94,Elk Grove,Illinois,1
+cancer,41.601,-93.609,Des Moines,Iowa,109
+cancer,42.489,-83.145,Royal Oak,Michigan,44
+cancer,43.048,-76.147,Syracuse,New York,82
+cancer,39.69,-84.169,Kettering,Ohio,30
+cancer,44.046,-123.022,Springfield,Oregon,12
+cancer,33.689,-78.887,Myrtle Beach,South Carolina,55
+cancer,31.759,-106.487,El Paso,Texas,39
+cancer,36.948,-81.085,Wytheville,Virginia,12
+cancer,41.075,-73.775,Valhalla,New York,40
+cancer,40.333,-74.6,Plainsboro,New Jersey,2
+cancer,61.218,-149.9,Anchorage,Alaska,64
+cancer,64.838,-147.716,Fairbanks,Alaska,20
+cancer,35.189,-114.053,Kingman,Arizona,23
+cancer,35.386,-94.399,Fort Smith,Arkansas,31
+cancer,35.842,-90.704,Jonesboro,Arkansas,36
+cancer,33.835,-117.915,Anaheim,California,37
+cancer,38.005,-121.806,Antioch,California,14
+cancer,35.119,-120.591,Arroyo Grande,California,33
+cancer,38.897,-121.077,Auburn,California,18
+cancer,34.085,-117.961,Baldwin Park,California,16
+cancer,33.882,-118.117,Bellflower,California,23
+cancer,37.872,-122.273,Berkeley,California,26
+cancer,33.868,-117.998,Buena Park,California,4
+cancer,37.584,-122.366,Burlingame,California,10
+cancer,38.669,-120.987,Cameron Park,California,17
+cancer,38.617,-121.328,Carmichael,California,29
+cancer,37.694,-122.086,Castro Valley,California,8
+cancer,38.545,-121.741,Davis,California,12
+cancer,37.702,-121.936,Dublin,California,31
+cancer,38.409,-121.372,Elk Grove,California,30
+cancer,37.831,-122.285,Emeryville,California,9
+cancer,34.092,-117.435,Fontana,California,19
+cancer,37.548,-121.989,Fremont,California,46
+cancer,36.748,-119.772,Fresno,California,41
+cancer,33.79,-118.298,Harbor City,California,17
+cancer,39.146,-121.591,Marysville,California,13
+cancer,37.302,-120.483,Merced,California,17
+cancer,37.639,-120.997,Modesto,California,44
+cancer,38.297,-122.286,Napa,California,19
+cancer,38.107,-122.57,Novato,California,8
+cancer,37.804,-122.271,Oakland,California,78
+cancer,34.063,-117.651,Ontario,California,18
+cancer,34.225,-118.45,Panorama City,California,22
+cancer,34.148,-118.145,Pasadena,California,28
+cancer,34.055,-117.752,Pomona,California,2
+cancer,38.589,-121.303,Rancho Cordova,California,7
+cancer,33.74,-116.413,Rancho Mirage,California,14
+cancer,37.485,-122.236,Redwood City,California,15
+cancer,37.936,-122.348,Richmond,California,14
+cancer,33.953,-117.396,Riverside,California,25
+cancer,38.791,-121.236,Rocklin,California,29
+cancer,38.34,-122.701,Rohnert Park,California,8
+cancer,38.752,-121.288,Roseville,California,56
+cancer,36.678,-121.656,Salinas,California,7
+cancer,37.339,-121.895,San Jose,California,38
+cancer,37.725,-122.156,San Leandro,California,31
+cancer,35.283,-120.66,San Luis Obispo,California,30
+cancer,37.974,-122.531,San Rafael,California,32
+cancer,34.421,-119.698,Santa Barbara,California,35
+cancer,37.354,-121.955,Santa Clara,California,39
+cancer,36.974,-122.031,Santa Cruz,California,17
+cancer,34.953,-120.436,Santa Maria,California,26
+cancer,37.655,-122.408,South San Francisco,California,30
+cancer,39.328,-120.183,Truckee,California,13
+cancer,38.357,-121.988,Vacaville,California,16
+cancer,38.104,-122.257,Vallejo,California,54
+cancer,37.906,-122.065,Walnut Creek,California,58
+cancer,38.679,-121.773,Woodland,California,29
+cancer,34.168,-118.606,Woodland Hills,California,18
+cancer,39.63,-106.043,Dillon,Colorado,5
+cancer,37.275,-107.88,Durango,Colorado,20
+cancer,39.645,-106.594,Edwards,Colorado,16
+cancer,39.756,-105.221,Golden,Colorado,19
+cancer,39.554,-104.969,Highlands Ranch,Colorado,30
+cancer,39.705,-105.081,Lakewood,Colorado,44
+cancer,39.552,-104.886,Lone Tree,Colorado,65
+cancer,40.167,-105.102,Longmont,Colorado,29
+cancer,38.254,-104.609,Pueblo,Colorado,28
+cancer,39.837,-105.037,Westminster,Colorado,21
+cancer,41.81,-72.831,Avon,Connecticut,6
+cancer,41.179,-73.189,Bridgeport,Connecticut,6
+cancer,41.395,-73.454,Danbury,Connecticut,11
+cancer,41.776,-72.521,Manchester,Connecticut,8
+cancer,41.538,-72.807,Meriden,Connecticut,10
+cancer,41.661,-72.78,New Britain,Connecticut,13
+cancer,41.118,-73.408,Norwalk,Connecticut,14
+cancer,41.801,-73.121,Torrington,Connecticut,36
+cancer,39.158,-75.524,Dover,Delaware,7
+cancer,38.775,-75.139,Lewes,Delaware,17
+cancer,38.913,-75.428,Milford,Delaware,6
+cancer,39.746,-75.547,Wilmington,Delaware,52
+cancer,25.956,-80.139,Aventura,Florida,40
+cancer,27.499,-82.575,Bradenton,Florida,7
+cancer,27.966,-82.8,Clearwater,Florida,16
+cancer,26.318,-80.1,Deerfield Beach,Florida,53
+cancer,25.82,-80.355,Doral,Florida,22
+cancer,28.759,-81.318,Lake Mary,Florida,12
+cancer,25.791,-80.13,Miami Beach,Florida,63
+cancer,25.89,-80.187,North Miami,Florida,24
+cancer,28.569,-81.544,Ocoee,Florida,8
+cancer,27.991,-82.693,Safety Harbor,Florida,5
+cancer,27.336,-82.531,Sarasota,Florida,97
+cancer,27.1,-82.454,Venice,Florida,9
+cancer,28.022,-81.733,Winter Haven,Florida,9
+cancer,31.579,-84.156,Albany,Georgia,9
+cancer,33.961,-83.378,Athens,Georgia,34
+cancer,33.471,-81.975,Augusta,Georgia,66
+cancer,33.775,-84.296,Decatur,Georgia,30
+cancer,34.003,-84.145,Duluth,Georgia,10
+cancer,33.449,-84.455,Fayetteville,Georgia,3
+cancer,34.029,-84.199,Johns Creek,Georgia,17
+cancer,33.956,-83.988,Lawrenceville,Georgia,10
+cancer,32.084,-81.1,Savannah,Georgia,53
+cancer,33.544,-84.234,Stockbridge,Georgia,2
+cancer,30.833,-83.28,Valdosta,Georgia,4
+cancer,20.889,-156.473,Kahului,Hawaii,6
+cancer,21.981,-159.372,Lihue,Hawaii,10
+cancer,21.382,-157.934,‘Aiea,Hawaii,27
+cancer,21.316,-158.007,‘Ewa Beach,Hawaii,21
+cancer,43.663,-116.687,Caldwell,Idaho,53
+cancer,44.008,-116.917,Fruitland,Idaho,46
+cancer,43.612,-116.392,Meridian,Idaho,55
+cancer,43.541,-116.563,Nampa,Idaho,74
+cancer,42.563,-114.461,Twin Falls,Idaho,31
+cancer,38.891,-90.184,Alton,Illinois,33
+cancer,41.761,-88.32,Aurora,Illinois,47
+cancer,42.154,-88.136,Barrington,Illinois,38
+cancer,41.749,-87.918,Burr Ridge,Illinois,8
+cancer,37.727,-89.217,Carbondale,Illinois,25
+cancer,37.76,-89.077,Carterville,Illinois,39
+cancer,38.525,-89.133,Centralia,Illinois,43
+cancer,42.241,-88.316,Crystal Lake,Illinois,38
+cancer,41.839,-89.48,Dixon,Illinois,44
+cancer,41.809,-88.011,Downers Grove,Illinois,38
+cancer,42.037,-88.281,Elgin,Illinois,38
+cancer,41.899,-87.94,Elmhurst,Illinois,17
+cancer,42.041,-87.69,Evanston,Illinois,52
+cancer,42.07,-87.788,Glenview,Illinois,61
+cancer,42.344,-88.042,Grayslake,Illinois,40
+cancer,41.61,-87.647,Harvey,Illinois,21
+cancer,41.572,-87.694,Hazel Crest,Illinois,38
+cancer,42.182,-87.8,Highland Park,Illinois,29
+cancer,41.6,-87.938,Homer Glen,Illinois,8
+cancer,42.259,-87.841,Lake Forest,Illinois,45
+cancer,42.283,-87.953,Libertyville,Illinois,41
+cancer,41.901,-87.857,Melrose Park,Illinois,9
+cancer,41.507,-90.515,Moline,Illinois,10
+cancer,38.317,-88.903,Mount Vernon,Illinois,40
+cancer,41.786,-88.147,Naperville,Illinois,21
+cancer,41.512,-87.966,New Lenox,Illinois,52
+cancer,41.711,-87.758,Oak Lawn,Illinois,53
+cancer,41.885,-87.784,Oak Park,Illinois,12
+cancer,41.63,-87.854,Orland Park,Illinois,76
+cancer,41.668,-87.796,Palos Heights,Illinois,17
+cancer,42.011,-87.841,Park Ridge,Illinois,56
+cancer,41.627,-88.204,Plainfield,Illinois,13
+cancer,42.271,-89.094,Rockford,Illinois,31
+cancer,42.033,-87.733,Skokie,Illinois,12
+cancer,41.641,-88.447,Yorkville,Illinois,20
+cancer,39.763,-86.4,Avon,Indiana,9
+cancer,39.978,-86.118,Carmel,Indiana,22
+cancer,41.582,-85.834,Goshen,Indiana,10
+cancer,40.486,-86.134,Kokomo,Indiana,2
+cancer,39.613,-86.374,Mooresville,Indiana,6
+cancer,38.286,-85.824,New Albany,Indiana,8
+cancer,41.73,-93.606,Ankeny,Iowa,70
+cancer,41.603,-93.724,Clive,Iowa,74
+cancer,41.059,-94.361,Creston,Iowa,20
+cancer,41.612,-93.885,Waukee,Iowa,86
+cancer,37.972,-100.873,Garden City,Kansas,24
+cancer,38.364,-98.765,Great Bend,Kansas,22
+cancer,38.879,-99.327,Hays,Kansas,31
+cancer,38.972,-95.235,Lawrence,Kansas,35
+cancer,37.411,-94.705,Pittsburg,Kansas,23
+cancer,38.84,-97.611,Salina,Kansas,35
+cancer,38.478,-82.638,Ashland,Kentucky,5
+cancer,37.809,-85.467,Bardstown,Kentucky,21
+cancer,36.949,-84.097,Corbin,Kentucky,25
+cancer,37.694,-85.859,Elizabethtown,Kentucky,13
+cancer,37.129,-84.083,London,Kentucky,20
+cancer,38.056,-83.943,Mount Sterling,Kentucky,18
+cancer,37.083,-88.6,Paducah,Kentucky,14
+cancer,29.975,-92.134,Abbeville,Louisiana,3
+cancer,30.475,-90.1,Covington,Louisiana,23
+cancer,44.311,-69.779,Augusta,Maine,17
+cancer,44.426,-69.006,Belfast,Maine,7
+cancer,43.915,-69.965,Brunswick,Maine,14
+cancer,44.033,-69.519,Damariscotta,Maine,9
+cancer,43.384,-70.545,Kennebunk,Maine,3
+cancer,44.185,-69.076,Rockport,Maine,9
+cancer,43.439,-70.774,Sanford,Maine,21
+cancer,43.578,-70.322,Scarborough,Maine,69
+cancer,43.641,-70.241,South Portland,Maine,30
+cancer,43.928,-69.976,Topsham,Maine,4
+cancer,39.536,-76.348,Bel Air,Maryland,21
+cancer,38.774,-76.076,Easton,Maryland,9
+cancer,39.607,-75.833,Elkton,Maryland,14
+cancer,39.414,-77.411,Frederick,Maryland,15
+cancer,39.143,-77.201,Gaithersburg,Maryland,10
+cancer,39.163,-76.625,Glen Burnie,Maryland,24
+cancer,39.026,-77.076,Kensington,Maryland,3
+cancer,38.888,-76.836,Largo,Maryland,16
+cancer,39.421,-76.626,Lutherville,Maryland,12
+cancer,39.153,-77.067,Olney,Maryland,5
+cancer,39.367,-76.795,Randallstown,Maryland,3
+cancer,42.558,-70.88,Beverly,Massachusetts,14
+cancer,42.505,-71.196,Burlington,Massachusetts,35
+cancer,42.614,-70.663,Gloucester,Massachusetts,13
+cancer,42.633,-71.316,Lowell,Massachusetts,4
+cancer,42.813,-70.877,Newburyport,Massachusetts,2
+cancer,42.528,-70.929,Peabody,Massachusetts,21
+cancer,42.48,-71.1,Stoneham,Massachusetts,7
+cancer,42.452,-71.137,Winchester,Massachusetts,4
+cancer,43.379,-84.66,Alma,Michigan,17
+cancer,45.062,-83.433,Alpena,Michigan,16
+cancer,43.594,-83.889,Bay City,Michigan,14
+cancer,42.736,-83.419,Clarkston,Michigan,41
+cancer,42.587,-82.92,Clinton Township,Michigan,37
+cancer,42.322,-83.176,Dearborn,Michigan,47
+cancer,45.745,-87.065,Escanaba,Michigan,29
+cancer,43.013,-83.687,Flint,Michigan,76
+cancer,43.981,-84.486,Gladwin,Michigan,16
+cancer,42.444,-82.907,Grosse Pointe Woods,Michigan,30
+cancer,45.82,-88.066,Iron Mountain,Michigan,3
+cancer,42.246,-84.401,Jackson,Michigan,32
+cancer,43.051,-83.319,Lapeer,Michigan,14
+cancer,42.701,-82.959,Macomb,Michigan,40
+cancer,45.958,-86.246,Manistique,Michigan,7
+cancer,46.544,-87.395,Marquette,Michigan,2
+cancer,43.616,-84.247,Midland,Michigan,18
+cancer,42.597,-82.878,Mount Clemens,Michigan,9
+cancer,43.598,-84.768,Mount Pleasant,Michigan,23
+cancer,42.481,-83.475,Novi,Michigan,43
+cancer,45.373,-84.955,Petoskey,Michigan,14
+cancer,42.639,-83.291,Pontiac,Michigan,69
+cancer,42.971,-82.425,Port Huron,Michigan,12
+cancer,43.419,-83.951,Saginaw,Michigan,42
+cancer,42.473,-83.222,Southfield,Michigan,18
+cancer,44.269,-83.515,Tawas City,Michigan,39
+cancer,42.49,-83.013,Warren,Michigan,33
+cancer,42.569,-83.384,West Bloomfield,Michigan,38
+cancer,42.214,-83.15,Wyandotte,Michigan,29
+cancer,46.533,-93.71,Aitkin,Minnesota,16
+cancer,46.343,-94.287,Baxter,Minnesota,17
+cancer,44.768,-93.278,Burnsville,Minnesota,49
+cancer,44.789,-93.602,Chaska,Minnesota,22
+cancer,46.659,-94.114,Crosslake,Minnesota,15
+cancer,44.89,-93.35,Edina,Minnesota,76
+cancer,47.903,-91.867,Ely,Minnesota,18
+cancer,47.576,-95.751,Fosston,Minnesota,21
+cancer,48.601,-93.411,International Falls,Minnesota,18
+cancer,45.072,-93.456,Maple Grove,Minnesota,50
+cancer,44.953,-92.995,Maplewood,Minnesota,59
+cancer,45.306,-93.794,Monticello,Minnesota,29
+cancer,46.454,-92.762,Moose Lake,Minnesota,18
+cancer,44.312,-94.461,New Ulm,Minnesota,27
+cancer,46.922,-95.059,Park Rapids,Minnesota,20
+cancer,46.603,-94.309,Pequot Lakes,Minnesota,15
+cancer,46.718,-94.404,Pine River,Minnesota,15
+cancer,45.57,-93.582,Princeton,Minnesota,26
+cancer,45.032,-93.339,Robbinsdale,Minnesota,38
+cancer,44.948,-93.348,Saint Louis Park,Minnesota,97
+cancer,44.798,-93.527,Shakopee,Minnesota,41
+cancer,46.356,-94.792,Staples,Minnesota,15
+cancer,45.056,-92.806,Stillwater,Minnesota,36
+cancer,48.119,-96.181,Thief River Falls,Minnesota,16
+cancer,44.851,-93.787,Waconia,Minnesota,39
+cancer,45.122,-95.043,Willmar,Minnesota,29
+cancer,44.924,-92.959,Woodbury,Minnesota,49
+cancer,43.62,-95.596,Worthington,Minnesota,15
+cancer,45.336,-92.997,Wyoming,Minnesota,26
+cancer,33.496,-88.427,Columbus,Mississippi,33
+cancer,33.769,-89.808,Grenada,Mississippi,34
+cancer,34.494,-89.008,New Albany,Mississippi,35
+cancer,34.367,-89.519,Oxford,Mississippi,37
+cancer,34.992,-90.128,Southhaven,Mississippi,40
+cancer,38.595,-90.546,Ballwin,Missouri,34
+cancer,37.614,-93.41,Bolivar,Missouri,23
+cancer,36.644,-93.219,Branson,Missouri,22
+cancer,37.781,-90.422,Farmington,Missouri,53
+cancer,37.084,-94.513,Joplin,Missouri,31
+cancer,38.911,-94.382,Lee's Summit,Missouri,52
+cancer,39.246,-94.419,Liberty,Missouri,5
+cancer,38.13,-92.653,Osage Beach,Missouri,36
+cancer,37.951,-91.771,Rolla,Missouri,32
+cancer,39.769,-94.847,Saint Joseph,Missouri,39
+cancer,37.981,-90.042,Sainte Genevieve,Missouri,54
+cancer,37.215,-93.298,Springfield,Missouri,74
+cancer,38.208,-91.16,Sullivan,Missouri,53
+cancer,38.558,-91.012,Washington,Missouri,22
+cancer,46.129,-112.942,Anaconda,Montana,63
+cancer,46.004,-112.535,Butte,Montana,8
+cancer,48.55,-109.684,Havre,Montana,24
+cancer,46.593,-112.036,Helena,Montana,17
+cancer,48.196,-114.313,Kalispell,Montana,68
+cancer,40.586,-98.388,Hastings,Nebraska,4
+cancer,40.699,-99.081,Kearney,Nebraska,31
+cancer,39.164,-119.767,Carson City,Nevada,14
+cancer,36.04,-114.982,Henderson,Nevada,19
+cancer,36.208,-115.984,Pahrump,Nevada,13
+cancer,39.935,-75.031,Cherry Hill,New Jersey,21
+cancer,40.893,-73.973,Englewood,New Jersey,15
+cancer,40.207,-74.081,Hamilton,New Jersey,12
+cancer,40.728,-74.078,Jersey City,New Jersey,21
+cancer,40.098,-74.218,Lakewood,New Jersey,17
+cancer,39.967,-74.943,Moorestown,New Jersey,8
+cancer,40.797,-74.482,Morristown,New Jersey,69
+cancer,40.917,-74.172,Paterson,New Jersey,20
+cancer,40.979,-74.117,Ridgewood,New Jersey,12
+cancer,39.767,-75.144,Sewell,New Jersey,27
+cancer,40.716,-74.365,Summit,New Jersey,26
+cancer,40.898,-74.016,Teaneck,New Jersey,12
+cancer,39.954,-74.198,Toms River,New Jersey,31
+cancer,40.48,-74.491,Voorhees Township,New Jersey,24
+cancer,32.312,-106.778,Las Cruces,New Mexico,8
+cancer,40.725,-73.245,Bay Shore,New York,19
+cancer,40.65,-73.95,Brooklyn,New York,53
+cancer,41.28,-73.872,Cortlandt Manor,New York,1
+cancer,40.794,-73.627,East Hills,New York,9
+cancer,40.765,-73.817,Flushing,New York,13
+cancer,43.31,-73.644,Glens Falls,New York,19
+cancer,40.869,-73.365,Greenlawn,New York,15
+cancer,41.204,-73.727,Mount Kisco,New York,17
+cancer,41.7,-73.921,Poughkeepsie,New York,8
+cancer,41.086,-73.858,Sleepy Hollow,New York,19
+cancer,40.562,-74.14,Staten Island,New York,12
+cancer,40.706,-73.306,West Islip,New York,12
+cancer,41.034,-73.763,White Plains,New York,23
+cancer,35.35,-80.2,Albemarle,North Carolina,10
+cancer,35.708,-79.814,Asheboro,North Carolina,10
+cancer,36.096,-79.438,Burlington,North Carolina,10
+cancer,35.792,-78.781,Cary,North Carolina,20
+cancer,36.022,-80.382,Clemmons,North Carolina,13
+cancer,35.409,-80.582,Concord,North Carolina,22
+cancer,35.334,-81.865,Forest City,North Carolina,8
+cancer,35.711,-78.614,Garner,North Carolina,3
+cancer,35.262,-81.187,Gastonia,North Carolina,19
+cancer,36.073,-79.792,Greensboro,North Carolina,22
+cancer,36.075,-79.1,Hillsborough,North Carolina,11
+cancer,35.411,-80.843,Huntersville,North Carolina,39
+cancer,36.12,-80.074,Kernersville,North Carolina,13
+cancer,35.474,-81.255,Lincolnton,North Carolina,7
+cancer,35.117,-80.724,Matthews,North Carolina,13
+cancer,34.985,-80.55,Monroe,North Carolina,16
+cancer,35.585,-80.81,Mooresville,North Carolina,10
+cancer,36.499,-80.607,Mount Airy,North Carolina,12
+cancer,36.158,-81.148,North Wilkesboro,North Carolina,5
+cancer,36.355,-79.664,Reidsville,North Carolina,11
+cancer,35.671,-80.474,Salisbury,North Carolina,14
+cancer,35.292,-81.536,Shelby,North Carolina,8
+cancer,35.783,-80.887,Statesville,North Carolina,6
+cancer,35.883,-80.082,Thomasville,North Carolina,10
+cancer,46.808,-100.784,Bismarck,North Dakota,52
+cancer,46.911,-98.708,Jamestown,North Dakota,18
+cancer,41.081,-81.519,Akron,Ohio,40
+cancer,40.915,-81.106,Alliance,Ohio,6
+cancer,39.329,-82.101,Athens,Ohio,13
+cancer,41.013,-81.605,Barberton,Ohio,5
+cancer,39.759,-84.192,Dayton,Ohio,82
+cancer,40.299,-83.068,Delaware,Ohio,23
+cancer,40.099,-83.114,Dublin,Ohio,24
+cancer,39.559,-84.304,Franklin,Ohio,47
+cancer,40.103,-84.633,Greenville,Ohio,47
+cancer,41.369,-81.638,Independence,Ohio,7
+cancer,40.758,-82.515,Mansfield,Ohio,26
+cancer,40.589,-83.129,Marion,Ohio,23
+cancer,41.138,-81.864,Medina,Ohio,5
+cancer,39.884,-82.754,Pickerington,Ohio,14
+cancer,41.449,-82.708,Sandusky,Ohio,12
+cancer,41.315,-81.836,Strongsville,Ohio,7
+cancer,41.664,-83.555,Toledo,Ohio,48
+cancer,40.039,-84.203,Troy,Ohio,41
+cancer,41.435,-81.536,Warrensville Heights,Ohio,8
+cancer,40.126,-82.929,Westerville,Ohio,25
+cancer,40.805,-81.936,Wooster,Ohio,10
+cancer,34.609,-98.39,Lawton,Oklahoma,23
+cancer,44.775,-117.834,Baker City,Oregon,23
+cancer,44.058,-121.315,Bend,Oregon,36
+cancer,45.408,-122.57,Clackamas,Oregon,35
+cancer,43.367,-124.218,Coos Bay,Oregon,20
+cancer,45.705,-121.521,Hood River,Oregon,18
+cancer,45.3,-122.973,Newberg,Oregon,38
+cancer,44.027,-116.963,Ontario,Oregon,48
+cancer,45.357,-122.607,Oregon City,Oregon,38
+cancer,44.273,-121.174,Redmond,Oregon,21
+cancer,40.608,-75.49,Allentown,Pennsylvania,71
+cancer,40.626,-75.37,Bethlehem,Pennsylvania,52
+cancer,40.304,-80.087,Bryn Mawr,Pennsylvania,10
+cancer,40.201,-77.189,Carlisle,Pennsylvania,15
+cancer,39.872,-75.591,Chadds Ford,Pennsylvania,25
+cancer,39.938,-77.661,Chambersburg,Pennsylvania,19
+cancer,40.685,-80.107,Cranberry Township,Pennsylvania,11
+cancer,40.963,-76.613,Danville,Pennsylvania,71
+cancer,41.471,-75.608,Dickson City,Pennsylvania,28
+cancer,40.15,-75.336,East Norriton,Pennsylvania,5
+cancer,41.0,-75.181,East Stroudsburg,Pennsylvania,32
+cancer,40.18,-76.179,Ephrata,Pennsylvania,19
+cancer,41.212,-80.497,Farrell,Pennsylvania,22
+cancer,40.296,-75.082,Furlong,Pennsylvania,3
+cancer,39.831,-77.231,Gettysburg,Pennsylvania,19
+cancer,40.301,-79.539,Greensburg,Pennsylvania,35
+cancer,40.274,-76.884,Harrisburg,Pennsylvania,29
+cancer,40.958,-75.975,Hazleton,Pennsylvania,36
+cancer,40.327,-78.922,Johnstown,Pennsylvania,19
+cancer,40.038,-76.306,Lancaster,Pennsylvania,30
+cancer,40.341,-76.411,Lebanon,Pennsylvania,20
+cancer,40.965,-76.884,Lewisburg,Pennsylvania,38
+cancer,39.873,-79.716,Meadowbrook,Pennsylvania,6
+cancer,41.641,-80.151,Meadville,Pennsylvania,5
+cancer,40.214,-77.009,Mechanicsburg,Pennsylvania,33
+cancer,39.917,-75.388,Media,Pennsylvania,16
+cancer,41.004,-80.347,New Castle,Pennsylvania,19
+cancer,40.042,-75.476,Paoli,Pennsylvania,13
+cancer,40.13,-75.515,Phoenixville,Pennsylvania,6
+cancer,40.686,-76.195,Pottsville,Pennsylvania,16
+cancer,41.979,-76.516,Sayre,Pennsylvania,20
+cancer,41.409,-75.665,Scranton,Pennsylvania,22
+cancer,40.334,-75.947,West Reading,Pennsylvania,28
+cancer,41.246,-75.881,Wilkes-Barre,Pennsylvania,51
+cancer,41.241,-77.001,Williamsport,Pennsylvania,12
+cancer,40.144,-75.116,Willow Grove,Pennsylvania,33
+cancer,40.003,-75.271,Wynnewood,Pennsylvania,24
+cancer,41.7,-71.416,Warwick,Rhode Island,3
+cancer,32.237,-80.86,Bluffton,South Carolina,19
+cancer,35.047,-81.982,Boiling Springs,South Carolina,35
+cancer,34.83,-82.602,Easley,South Carolina,32
+cancer,32.194,-80.738,Hilton Head Island,South Carolina,13
+cancer,34.925,-81.025,Rock Hill,South Carolina,12
+cancer,34.686,-82.953,Seneca,South Carolina,36
+cancer,45.465,-98.486,Aberdeen,South Dakota,15
+cancer,43.709,-98.03,Mitchell,South Dakota,12
+cancer,44.368,-100.351,Pierre,South Dakota,17
+cancer,35.042,-89.665,Collierville,Tennessee,37
+cancer,35.222,-101.831,Amarillo,Texas,21
+cancer,29.735,-94.977,Baytown,Texas,17
+cancer,30.312,-95.456,Conroe,Texas,21
+cancer,29.969,-95.697,Cypress,Texas,10
+cancer,29.507,-95.095,League City,Texas,23
+cancer,29.545,-95.091,Nassau Bay,Texas,13
+cancer,29.62,-95.635,Sugar Land,Texas,44
+cancer,30.158,-95.489,The Woodlands,Texas,50
+cancer,40.98,-111.887,Farmington,Utah,12
+cancer,40.562,-111.93,South Jordan,Utah,7
+cancer,44.21,-72.576,Berlin Corners,Vermont,22
+cancer,38.793,-77.272,Burke,Virginia,4
+cancer,38.029,-78.477,Charlottesville,Virginia,198
+cancer,38.099,-78.969,Fishersville,Virginia,6
+cancer,38.303,-77.461,Fredericksburg,Virginia,14
+cancer,37.414,-79.142,Lynchburg,Virginia,14
+cancer,38.934,-77.177,McLean,Virginia,10
+cancer,36.727,-78.129,South Hill,Virginia,30
+cancer,38.658,-77.25,Woodbridge,Virginia,13
+cancer,46.975,-123.816,Aberdeen,Washington,23
+cancer,47.61,-122.201,Bellevue,Washington,13
+cancer,48.76,-122.488,Bellingham,Washington,26
+cancer,46.716,-122.954,Centralia,Washington,22
+cancer,47.53,-122.033,Issaquah,Washington,50
+cancer,46.211,-119.137,Kennewick,Washington,33
+cancer,47.681,-122.209,Kirkland,Washington,14
+cancer,47.034,-122.823,Lacey,Washington,27
+cancer,46.138,-122.938,Longview,Washington,23
+cancer,48.421,-122.334,Mount Vernon,Washington,20
+cancer,47.483,-122.217,Renton,Washington,22
+cancer,48.504,-122.236,Sedro-Woolley,Washington,21
+cancer,47.645,-122.695,Silverdale,Washington,22
+cancer,46.065,-118.343,Walla Walla,Washington,23
+cancer,46.602,-120.506,Yakima,Washington,18
+cancer,39.286,-80.256,Bridgeport,West Virginia,18
+cancer,39.456,-77.964,Martinsburg,West Virginia,13
+cancer,39.267,-81.562,Parkersburg,West Virginia,22
+cancer,37.366,-81.103,Princeton,West Virginia,9
+cancer,40.064,-80.721,Wheeling,West Virginia,15
+cancer,45.14,-89.152,Antigo,Wisconsin,35
+cancer,44.262,-88.415,Appleton,Wisconsin,45
+cancer,43.968,-88.943,Berlin,Wisconsin,7
+cancer,42.678,-88.276,Burlington,Wisconsin,41
+cancer,44.937,-91.393,Chippewa Falls,Wisconsin,12
+cancer,42.96,-87.861,Cudahy,Wisconsin,31
+cancer,43.229,-88.11,Germantown,Wisconsin,41
+cancer,43.32,-87.953,Grafton,Wisconsin,43
+cancer,46.013,-91.485,Hayward,Wisconsin,23
+cancer,42.683,-89.019,Janesville,Wisconsin,15
+cancer,43.076,-88.774,Johnson Creek,Wisconsin,15
+cancer,42.585,-87.821,Kenosha,Wisconsin,41
+cancer,43.801,-91.24,La Crosse,Wisconsin,66
+cancer,45.463,-91.104,Ladysmith,Wisconsin,10
+cancer,45.1,-87.631,Marinette,Wisconsin,42
+cancer,45.139,-90.34,Medford,Wisconsin,23
+cancer,44.186,-88.463,Neenah,Wisconsin,13
+cancer,44.56,-90.596,Neillsville,Wisconsin,5
+cancer,45.123,-92.537,New Richmond,Wisconsin,44
+cancer,44.874,-88.143,Oconto Falls,Wisconsin,41
+cancer,44.025,-88.543,Oshkosh,Wisconsin,49
+cancer,42.726,-87.783,Racine,Wisconsin,46
+cancer,45.637,-89.412,Rhinelander,Wisconsin,32
+cancer,44.782,-88.609,Shawano,Wisconsin,10
+cancer,43.751,-87.715,Sheboygan,Wisconsin,63
+cancer,45.822,-91.889,Spooner,Wisconsin,25
+cancer,44.834,-87.377,Sturgeon Bay,Wisconsin,48
+cancer,44.154,-87.569,Two Rivers,Wisconsin,41
+cancer,44.358,-89.086,Waupaca,Wisconsin,9
+cancer,44.959,-89.63,Wausau,Wisconsin,42
+cancer,43.049,-88.008,Wauwatosa,Wisconsin,47
+cancer,43.017,-88.007,West Allis,Wisconsin,41
+cancer,44.384,-89.817,Wisconsin Rapids,Wisconsin,39
+cancer,41.14,-104.82,Cheyenne,Wyoming,26
+cancer,44.526,-109.057,Cody,Wyoming,24
+cancer,40.692,-112.001,West Valley City,Utah,70
+cancer,36.332,-94.119,Rogers,Arkansas,28
+cancer,36.187,-94.129,Springdale,Arkansas,55
+cancer,30.19,-82.639,Lake City,Florida,1
+cancer,28.949,-81.299,Orange City,Florida,26
+cancer,43.648,-93.368,Albert Lea,Minnesota,8
+cancer,47.237,-93.53,Grand Rapids,Minnesota,1
+cancer,44.159,-94.009,Mankato,Minnesota,12
+cancer,33.641,-117.919,Costa Mesa,California,8
+cancer,33.613,-117.713,Laguna Hills,California,11
+cancer,43.657,-70.259,Portland,Maine,22
+cancer,38.663,-90.577,Chesterfield,Missouri,13
+cancer,43.455,-76.51,Oswego,New York,13
+cancer,43.138,-75.571,Verona,New York,14
+cancer,43.212,-77.43,Webster,New York,28
+cancer,34.998,-78.323,Clinton,North Carolina,26
+cancer,35.385,-77.993,Goldsboro,North Carolina,27
+cancer,35.319,-82.461,Hendersonville,North Carolina,20
+cancer,34.754,-77.43,Jacksonville,North Carolina,26
+cancer,35.263,-77.582,Kinston,North Carolina,3
+cancer,36.548,-82.562,Kingsport,Tennessee,9
+cancer,36.596,-82.188,Bristol,Virginia,6
+cancer,36.933,-82.629,Norton,Virginia,2
+cancer,38.539,-90.407,Sunset Hills,Missouri,15
+cancer,40.688,-75.221,Easton,Pennsylvania,12
+cancer,40.442,-75.342,Quakertown,Pennsylvania,6
+cancer,40.987,-75.195,Stroudsburg,Pennsylvania,5
+cancer,34.056,-117.183,Redlands,California,5
+cancer,39.648,-104.988,Englewood,Colorado,14
+cancer,33.636,-96.609,Sherman,Texas,3
+cancer,40.756,-73.588,Westbury,New York,23
+cancer,41.801,-87.937,Hinsdale,Illinois,30
+cancer,39.346,-84.561,Fairfield,Ohio,9
+cancer,32.299,-90.185,Jackson,Mississippi,63
+cancer,39.022,-94.632,Fairway,Kansas,47
+cancer,27.814,-82.778,Bay Pines,Florida,14
+cancer,40.008,-75.234,Bala-Cynwyd,Pennsylvania,14
+cancer,35.046,-85.31,Chattanooga,Tennessee,47
+cancer,33.914,-98.493,Wichita Falls,Texas,5
+cancer,41.72,-72.832,Farmington,Connecticut,9
+cancer,26.359,-80.083,Boca Raton,Florida,24
+cancer,28.628,-81.363,Maitland,Florida,1
+cancer,33.198,-96.615,McKinney,Texas,5
+cancer,39.577,-123.775,Newport,California,2
+cancer,34.77,-92.267,North Little Rock,Arkansas,2
+cancer,33.196,-117.379,Oceanside,California,4
+cancer,36.33,-119.292,Visalia,California,1
+cancer,26.461,-80.073,Delray Beach,Florida,1
+cancer,43.077,-70.758,Portsmouth,New Hampshire,3
+cancer,42.983,-77.409,Victor,New York,4
+cancer,39.924,-83.809,Springfield,Ohio,16
+cancer,30.505,-97.82,Cedar Park,Texas,2
+cancer,29.538,-95.118,Webster,Texas,25
+cancer,30.694,-88.043,Mobile,Alabama,53
+cancer,33.422,-111.823,Mesa,Arizona,22
+cancer,33.94,-118.133,Downey,California,20
+cancer,36.961,-120.061,Madera,California,22
+cancer,26.011,-80.149,Hollywood,Florida,61
+cancer,44.799,-68.773,Bangor,Maine,13
+cancer,42.263,-71.802,Worcester,Massachusetts,50
+cancer,34.001,-81.035,Columbia,South Carolina,27
+cancer,27.801,-97.396,Corpus Christi,Texas,22
+cancer,38.882,-77.171,Falls Church,Virginia,29
+cancer,38.35,-81.633,Charleston,West Virginia,30
+cancer,28.305,-81.417,Kissimmee,Florida,5
+cancer,35.925,-86.869,Franklin,Tennessee,11
+cancer,33.08,-83.232,Milledgeville,Georgia,1
+cancer,40.681,-73.837,Queens,New York,3
+cancer,35.687,-105.938,Santa Fe,New Mexico,14
+cancer,33.746,-117.868,Santa Ana,California,1
+cancer,33.746,-117.826,Tustin,California,2
+cancer,33.889,-117.813,Yorba Linda,California,6
+cancer,34.106,-117.37,Rialto,California,2
+cancer,42.088,-87.981,Arlington Heights,Illinois,21
+cancer,41.862,-88.161,Winfield,Illinois,5
+cancer,38.991,-77.026,Silver Spring,Maryland,21
+cancer,33.919,-118.416,El Segundo,California,3
+cancer,41.563,-83.654,Maumee,Ohio,26
+cancer,38.881,-77.104,Arlington,Virginia,8
+cancer,37.293,-80.055,Salem,Virginia,13
+cancer,25.448,-80.479,Florida City,Florida,3
+cancer,29.384,-94.903,Texas City,Texas,2
+cancer,35.373,-119.019,Bakersfield,California,25
+cancer,39.083,-74.824,Cape May Court House,New Jersey,3
+cancer,39.386,-74.604,Egg Harbor,New Jersey,4
+cancer,40.328,-74.791,Pennington,New Jersey,9
+cancer,31.847,-81.596,Hinesville,Georgia,2
+cancer,31.608,-81.886,Jesup,Georgia,1
+cancer,35.108,-77.044,New Bern,North Carolina,6
+cancer,35.938,-77.791,Rocky Mount,North Carolina,1
+cancer,39.333,-82.982,Chillicothe,Ohio,17
+cancer,36.313,-82.353,Johnson City,Tennessee,7
+cancer,38.505,-122.47,St. Helena,California,5
+cancer,34.109,-83.763,Braselton,Georgia,3
+cancer,34.298,-83.824,Gainesville,Georgia,10
+cancer,39.829,-84.89,Richmond,Indiana,14
+cancer,42.066,-94.867,Carroll,Iowa,31
+cancer,39.486,-75.026,Vineland,New Jersey,2
+cancer,42.7,-74.924,Cooperstown,New York,6
+cancer,39.274,-81.573,Belpre,Ohio,15
+cancer,40.393,-82.486,Mount Vernon,Ohio,14
+cancer,41.557,-83.627,Perrysburg,Ohio,17
+cancer,39.332,-84.407,West Chester,Ohio,42
+cancer,26.302,-98.163,Edinburg,Texas,5
+cancer,44.419,-72.015,Saint Johnsbury,Vermont,26
+cancer,36.819,-76.275,Chesapeake,Virginia,9
+cancer,37.414,-76.526,Gloucester,Virginia,2
+cancer,36.692,-79.873,Martinsville,Virginia,4
+cancer,41.587,-109.203,Rock Springs,Wyoming,2
+cancer,40.498,-74.488,Somerset,New Jersey,4
+cancer,32.946,-87.117,Centreville,Alabama,1
+cancer,39.401,-76.602,Towson,Maryland,20
+cancer,42.58,-83.03,Sterling Heights,Michigan,9
+cancer,44.899,-97.115,Watertown,South Dakota,1
+cancer,29.301,-94.798,Galveston,Texas,13
+cancer,28.034,-80.589,Palm Bay,Florida,12
+cancer,44.943,-123.035,Salem,Oregon,12
+cancer,32.736,-97.108,Arlington,Texas,16
+cancer,32.542,-97.321,Burleson,Texas,2
+cancer,32.759,-97.797,Weatherford,Texas,2
+cancer,30.604,-87.904,Daphne,Alabama,16
+cancer,28.549,-81.773,Clermont,Florida,16
+cancer,37.23,-80.414,Blacksburg,Virginia,16
+cancer,45.639,-122.661,Vancouver,Washington,54
+cancer,39.116,-77.564,Leesburg,Virginia,8
+cancer,34.056,-118.431,"Westwood, Los Angeles",California,2
+cancer,31.098,-97.343,Temple,Texas,29
+cancer,44.447,-95.788,Marshall,Minnesota,6
+cancer,40.691,-73.806,Jamaica,New York,6
+cancer,26.203,-98.23,McAllen,Texas,15
+cancer,39.186,-78.163,Winchester,Virginia,14
+cancer,40.858,-74.164,Clifton,New Jersey,1
+cancer,34.596,-120.138,Solvang,California,5
+cancer,33.539,-112.186,Glendale,Arizona,13
+cancer,34.187,-118.449,Van Nuys,California,3
+cancer,40.015,-105.271,Boulder,Colorado,15
+cancer,39.613,-105.017,Littleton,Colorado,17
+cancer,39.868,-104.972,Thornton,Colorado,13
+cancer,45.086,-93.263,Fridley,Minnesota,6
+cancer,45.447,-122.53,Happy Valley,Oregon,4
+cancer,40.695,-80.305,Beaver,Pennsylvania,19
+cancer,40.861,-79.895,Butler,Pennsylvania,12
+cancer,40.325,-79.701,Irwin,Pennsylvania,1
+cancer,40.174,-80.246,Washington,Pennsylvania,22
+cancer,37.789,-79.884,Low Moor,Virginia,7
+cancer,38.697,-76.848,Brandywine,Maryland,6
+cancer,40.31,-75.13,Doylestown,Pennsylvania,7
+cancer,30.837,-83.979,Thomasville,Georgia,5
+cancer,40.417,-86.875,Lafayette,Indiana,5
+cancer,42.441,-76.497,Ithaca,New York,4
+cancer,27.506,-99.508,Laredo,Texas,5
+cancer,35.489,-120.671,Atascadero,California,3
+cancer,34.159,-118.501,Encino,California,6
+cancer,33.982,-118.454,Marina del Rey,California,5
+cancer,34.282,-118.55,Porter Ranch,California,4
+cancer,39.579,-104.877,Centennial,Colorado,6
+cancer,39.173,-77.272,Germantown,Maryland,3
+cancer,40.105,-74.951,Bensalem,Pennsylvania,4
+cancer,40.178,-75.129,Horsham,Pennsylvania,7
+cancer,40.175,-74.923,Langhorne,Pennsylvania,2
+cancer,40.354,-75.305,Sellersville,Pennsylvania,5
+cancer,37.03,-76.345,Hampton,Virginia,5
+cancer,38.751,-77.475,Manassas,Virginia,4
+cancer,36.98,-76.43,Newport News,Virginia,9
+cancer,38.969,-77.341,Reston,Virginia,3
+cancer,36.853,-75.978,Virginia Beach,Virginia,13
+cancer,37.662,-121.875,Pleasanton,California,1
+cancer,38.821,-102.353,Cheyenne Wells,Colorado,1
+cancer,39.994,-105.09,Lafayette,Colorado,17
+cancer,42.663,-82.842,Chesterfield,Michigan,1
+cancer,42.409,-82.892,Grosse Pointe Farms,Michigan,1
+cancer,42.371,-83.47,Plymouth,Michigan,1
+cancer,36.835,-76.298,Portsmouth,Virginia,7
+cancer,41.596,-73.911,Wappingers Falls,New York,1
+cancer,33.2,-117.243,Vista,California,7
+cancer,41.701,-87.779,Chicago Ridge,Illinois,9
+cancer,41.854,-87.84,Hines,Illinois,13
+cancer,43.491,-83.399,Caro,Michigan,3
+cancer,43.327,-83.08,Marlette,Michigan,3
+cancer,43.234,-86.248,Muskegon,Michigan,30
+cancer,43.169,-86.264,Norton Shores,Michigan,26
+cancer,44.276,-84.239,West Branch,Michigan,3
+cancer,45.573,-93.224,Cambridge,Minnesota,15
+cancer,38.577,-92.174,Jefferson City,Missouri,5
+cancer,42.981,-70.948,Exeter,New Hampshire,2
+cancer,39.709,-84.063,Beavercreek,Ohio,13
+cancer,41.024,-80.663,Boardman,Ohio,12
+cancer,41.044,-83.65,Findlay,Ohio,13
+cancer,41.238,-80.818,Warren,Ohio,11
+cancer,41.1,-80.65,Youngstown,Ohio,14
+cancer,42.327,-122.876,Medford,Oregon,9
+cancer,47.567,-122.633,Bremerton,Washington,3
+cancer,47.215,-123.101,Shelton,Washington,5
+cancer,46.942,-122.606,Yelm,Washington,4
+cancer,37.104,-113.584,St. George,Utah,8
+cancer,41.262,-95.861,Council Bluffs,Iowa,11
+cancer,41.408,-92.916,Pella,Iowa,14
+cancer,38.019,-122.134,Martinez,California,6
+cancer,33.83,-116.545,Palm Springs,California,4
+cancer,39.985,-104.821,Brighton,Colorado,4
+cancer,39.519,-104.761,Parker,Colorado,8
+cancer,39.766,-105.077,Wheat Ridge,Colorado,9
+cancer,28.019,-82.115,Plant City,Florida,4
+cancer,42.168,-88.428,Huntley,Illinois,3
+cancer,41.683,-86.25,South Bend,Indiana,4
+cancer,42.06,-93.88,Boone,Iowa,5
+cancer,42.015,-94.377,Jefferson,Iowa,5
+cancer,37.679,-95.457,Chanute,Kansas,4
+cancer,37.753,-100.017,Dodge City,Kansas,4
+cancer,37.817,-96.862,El Dorado,Kansas,4
+cancer,37.224,-95.708,Independence,Kansas,4
+cancer,37.646,-98.114,Kingman,Kansas,4
+cancer,37.043,-100.921,Liberal,Kansas,4
+cancer,39.184,-96.572,Manhattan,Kansas,1
+cancer,38.371,-97.664,McPherson,Kansas,3
+cancer,38.047,-97.345,Newton,Kansas,4
+cancer,37.34,-95.261,Parsons,Kansas,5
+cancer,37.644,-98.738,Pratt,Kansas,5
+cancer,37.265,-97.372,Wellington,Kansas,4
+cancer,37.24,-96.996,Winfield,Kansas,4
+cancer,29.899,-90.1,Marrero,Louisiana,13
+cancer,32.509,-92.119,Monroe,Louisiana,6
+cancer,39.51,-76.164,Aberdeen,Maryland,7
+cancer,39.653,-78.763,Cumberland,Maryland,15
+cancer,43.208,-71.538,Concord,New Hampshire,16
+cancer,42.996,-71.455,Manchester,New Hampshire,16
+cancer,40.884,-72.39,Southampton,New York,3
+cancer,35.533,-82.911,Clyde,North Carolina,3
+cancer,35.697,-82.561,Weaverville,North Carolina,3
+cancer,45.498,-122.431,Gresham,Oregon,11
+cancer,45.384,-122.764,Tualatin,Oregon,15
+cancer,40.245,-75.65,Pottstown,Pennsylvania,2
+cancer,40.336,-75.927,Reading,Pennsylvania,2
+cancer,40.363,-79.866,West Mifflin,Pennsylvania,9
+cancer,33.993,-81.074,West Columbia,South Carolina,9
+cancer,37.925,-76.859,Tappahannock,Virginia,9
+cancer,48.117,-122.761,Port Townsend,Washington,3
+cancer,43.061,-88.106,Brookfield,Wisconsin,11
+cancer,44.029,-88.163,Chilton,Wisconsin,11
+cancer,42.889,-88.038,Franklin,Wisconsin,11
+cancer,42.961,-88.013,Greenfield,Wisconsin,4
+cancer,43.216,-88.03,Mequon,Wisconsin,11
+cancer,28.039,-81.95,Lakeland,Florida,14
+cancer,42.333,-88.267,McHenry,Illinois,1
+cancer,40.426,-86.908,West Lafayette,Indiana,2
+cancer,39.372,-104.856,Castle Rock,Colorado,1
+cancer,25.933,-80.163,North Miami Beach,Florida,3
+cancer,42.084,-88.013,Rolling Meadows,Illinois,2
+cancer,40.102,-75.274,Plymouth Meeting,Pennsylvania,1
+cancer,30.628,-96.334,College Station,Texas,3
+cancer,47.47,-122.347,Burien,Washington,1
+cancer,41.271,-72.947,West Haven,Connecticut,16
+cancer,27.721,-82.433,Ruskin,Florida,11
+cancer,31.311,-92.445,Alexandria,Louisiana,3
+cancer,29.596,-90.72,Houma,Louisiana,2
+cancer,29.994,-90.242,Kenner,Louisiana,2
+cancer,44.797,-68.761,Brewer,Maine,21
+cancer,39.575,-76.996,Westminster,Maryland,12
+cancer,39.714,-82.599,Lancaster,Ohio,10
+cancer,39.415,-81.455,Marietta,Ohio,11
+cancer,40.236,-83.367,Marysville,Ohio,12
+cancer,40.058,-82.401,Newark,Ohio,17
+cancer,38.732,-82.998,Portsmouth,Ohio,14
+cancer,40.37,-80.634,Steubenville,Ohio,5
+cancer,39.94,-82.013,Zanesville,Ohio,19
+cancer,44.565,-123.262,Corvallis,Oregon,9
+cancer,42.439,-123.331,Grants Pass,Oregon,4
+cancer,40.519,-78.395,Altoona,Pennsylvania,12
+cancer,39.801,-76.983,Hanover,Pennsylvania,7
+cancer,40.621,-79.153,Indiana,Pennsylvania,20
+cancer,40.348,-79.864,McKeesport,Pennsylvania,9
+cancer,40.509,-80.239,Moon Township,Pennsylvania,9
+cancer,40.06,-75.183,Mount Pleasant,Pennsylvania,8
+cancer,41.379,-79.704,Seneca,Pennsylvania,21
+cancer,39.9,-79.716,Uniontown,Pennsylvania,14
+cancer,40.046,-86.009,Noblesville,Indiana,4
+cancer,30.057,-95.183,Kingwood,Texas,13
+cancer,31.846,-102.368,Odessa,Texas,6
+cancer,38.712,-77.146,Fort Belvoir,Virginia,4
+cancer,47.423,-120.31,Wenatchee,Washington,3
+cancer,39.37,-74.55,Northfield,New Jersey,1
+cancer,42.788,-86.109,Holland,Michigan,4
+cancer,38.789,-90.323,Florissant,Missouri,4
+cancer,33.103,-96.671,Allen,Texas,5
+cancer,33.756,-96.537,Denison,Texas,10
+cancer,33.215,-97.133,Denton,Texas,12
+cancer,32.501,-94.74,Longview,Texas,10
+cancer,31.762,-95.631,Palestine,Texas,9
+cancer,33.661,-95.556,Paris,Texas,4
+cancer,40.794,-74.15,Belleville,New Jersey,5
+cancer,39.821,-84.019,Fairborn,Ohio,4
+cancer,34.09,-118.362,West Hollywood,California,8
+cancer,33.875,-117.566,Corona,California,13
+cancer,36.154,-95.993,Tulsa,Oklahoma,37
+cancer,28.24,-82.328,Wesley Chapel,Florida,17
+cancer,42.865,-71.374,Londonderry,New Hampshire,6
+cancer,41.452,-82.035,Avon,Ohio,24
+cancer,41.465,-81.509,Beachwood,Ohio,28
+cancer,39.881,-83.093,Grove City,Ohio,13
+cancer,41.666,-81.34,Mentor,Ohio,28
+cancer,44.081,-103.231,Rapid City,South Dakota,17
+cancer,43.649,-72.319,White River Junction,Vermont,5
+cancer,44.393,-88.74,New London,Wisconsin,6
+cancer,40.743,-84.105,Lima,Ohio,9
+cancer,40.081,-82.809,New Albany,Ohio,8
+cancer,39.445,-83.829,Wilmington,Ohio,4
+cancer,29.999,-95.262,Humble,Texas,5
+cancer,43.775,-88.439,Fond du Lac,Wisconsin,6
+cancer,30.826,-96.653,Nashville,Texas,2
+cancer,41.039,-73.748,East White Plains,New York,11
+cancer,40.512,-74.859,Flemington,New Jersey,6
+cancer,40.783,-73.966,Manhattan,New York,3
+cancer,40.766,-73.015,Patchogue,New York,5
+cancer,40.925,-73.047,Port Jefferson Station,New York,6
+cancer,40.917,-72.662,Riverhead,New York,3
+cancer,35.721,-77.916,Wilson,North Carolina,15
+cancer,30.275,-98.872,Fredericksburg,Texas,4
+cancer,26.191,-97.696,Harlingen,Texas,8
+cancer,29.703,-98.124,New Braunfels,Texas,4
+cancer,47.673,-117.239,Spokane Valley,Washington,3
+cancer,37.802,-80.446,Lewisburg,West Virginia,1
+cancer,39.936,-91.41,Quincy,Illinois,5
+cancer,42.493,-92.343,Waterloo,Iowa,3
+cancer,38.767,-90.412,Bridgeton,Missouri,6
+cancer,40.7,-73.831,Richmond Hill,New York,3
+cancer,34.151,-118.449,Sherman Oaks,California,1
+cancer,26.617,-80.072,Lake Worth,Florida,2
+cancer,47.821,-122.315,Lynnwood,Washington,1
+cancer,40.599,-77.571,Lewistown,Pennsylvania,5
+cancer,34.73,-86.586,Huntsville,Alabama,12
+cancer,34.61,-112.316,Prescott Valley,Arizona,1
+cancer,41.524,-72.076,Norwich,Connecticut,12
+cancer,39.024,-94.694,Merriam,Kansas,4
+cancer,40.797,-81.522,Massillon,Ohio,3
+cancer,28.325,-81.533,Celebration,Florida,12
+cancer,34.504,-93.055,Hot Springs,Arkansas,11
+cancer,40.033,-83.158,Hilliard,Ohio,11
+cancer,34.258,-88.705,Tupelo,Mississippi,4
+cancer,41.223,-111.974,Ogden,Utah,10
+cancer,41.156,-73.596,Long Ridge,Connecticut,1
+cancer,42.575,-70.93,Danvers,Massachusetts,5
+cancer,42.337,-71.209,Newton,Massachusetts,10
+cancer,42.45,-73.245,Pittsfield,Massachusetts,1
+cancer,42.221,-70.94,Weymouth,Massachusetts,5
+cancer,34.195,-82.162,Greenwood,South Carolina,6
+cancer,33.554,-117.214,Murrieta,California,9
+cancer,42.964,-78.738,Williamsville,New York,9
+cancer,26.962,-82.353,Englewood,Florida,2
+cancer,28.917,-81.923,Lady Lake,Florida,1
+cancer,30.086,-94.102,Beaumont,Texas,9
+cancer,32.844,-97.143,Bedford,Texas,10
+cancer,32.934,-97.078,Grapevine,Texas,8
+cancer,29.564,-95.286,Pearland,Texas,9
+cancer,33.02,-96.699,Plano,Texas,9
+cancer,37.271,-76.707,Williamsburg,Virginia,4
+cancer,38.278,-85.737,Jeffersonville,Indiana,7
+cancer,26.34,-81.779,Bonita Springs,Florida,9
+cancer,40.854,-74.829,Hackettstown,New Jersey,2
+cancer,41.058,-74.753,Newton,New Jersey,2
+cancer,40.991,-74.28,Pompton,New Jersey,3
+cancer,33.377,-79.294,Georgetown,South Carolina,9
+cancer,36.01,-84.27,Oak Ridge,Tennessee,2
+cancer,38.645,-121.272,Fair Oaks,California,2
+cancer,26.245,-80.206,Margate,Florida,13
+cancer,33.598,-112.272,Sun City,Arizona,2
+cancer,27.91,-82.788,Largo,Florida,7
+cancer,41.958,-70.667,Plymouth,Massachusetts,5
+cancer,40.019,-82.879,Gahanna,Ohio,12
+cancer,33.249,-111.634,Queen Creek,Arizona,4
+cancer,41.361,-81.813,Middleburg Heights,Ohio,6
+cancer,36.728,-108.219,Farmington,New Mexico,6
+cancer,34.095,-118.127,Alhambra,California,5
+cancer,34.444,-118.61,Valencia,California,3
+cancer,34.278,-119.293,Ventura,California,4
+cancer,34.146,-118.806,Westlake Village,California,3
+cancer,34.916,-85.109,Ringgold,Georgia,4
+cancer,42.866,-73.771,Clifton Park,New York,4
+cancer,36.163,-85.502,Cookeville,Tennessee,4
+cancer,36.077,-87.388,Dickson,Tennessee,3
+cancer,36.388,-86.447,Gallatin,Tennessee,4
+cancer,36.305,-86.62,Hendersonville,Tennessee,3
+cancer,36.208,-86.291,Lebanon,Tennessee,5
+cancer,36.2,-86.519,Mount Juliet,Tennessee,6
+cancer,35.846,-86.39,Murfreesboro,Tennessee,5
+cancer,35.483,-86.46,Shelbyville,Tennessee,6
+cancer,35.983,-86.519,Smyrna,Tennessee,5
+cancer,31.549,-97.147,Waco,Texas,10
+cancer,41.708,-86.895,Michigan City,Indiana,3
+cancer,36.595,-82.189,Bristol,Tennessee,1
+cancer,41.614,-81.149,Chardon,Ohio,13
+cancer,41.405,-81.723,Parma,Ohio,11
+cancer,41.455,-81.918,Westlake,Ohio,15
+cancer,28.516,-82.573,Weeki Wachee,Florida,1
+cancer,42.601,-76.18,Cortland,New York,2
+cancer,40.592,-111.884,Sandy City,Utah,2
+cancer,33.346,-84.109,Locust Grove,Georgia,1
+cancer,29.966,-90.153,Jefferson,Louisiana,4
+cancer,42.326,-87.841,North Chicago,Illinois,3
+cancer,41.119,-78.76,DuBois,Pennsylvania,1
+cancer,35.956,-80.005,High Point,North Carolina,6
+cancer,40.802,-124.164,Eureka,California,1
+cancer,32.136,-81.623,Pembroke,Georgia,1
+cancer,32.449,-81.783,Statesboro,Georgia,1
+cancer,41.223,-75.895,Newton,Pennsylvania,1
+cancer,47.177,-122.187,Bonney Lake,Washington,5
+cancer,47.322,-122.313,Federal Way,Washington,5
+cancer,47.329,-122.58,Gig Harbor,Washington,7
+cancer,47.045,-122.902,Olympia,Washington,22
+cancer,27.294,-80.35,Port Saint Lucie,Florida,10
+cancer,33.531,-111.943,Paradise Valley,Arizona,1
+cancer,35.148,-114.568,Bullhead City,Arizona,6
+cancer,38.13,-121.272,Lodi,California,1
+cancer,37.797,-121.216,Manteca,California,1
+cancer,37.74,-121.426,Tracy,California,1
+cancer,26.563,-81.95,Cape Coral,Florida,5
+cancer,29.211,-81.023,Daytona Beach,Florida,7
+cancer,30.093,-81.719,Fleming Island,Florida,4
+cancer,28.852,-82.488,Lecanto,Florida,1
+cancer,26.142,-81.796,Naples,Florida,5
+cancer,30.312,-81.396,Neptune Beach,Florida,1
+cancer,26.823,-80.139,Palm Beach Gardens,Florida,1
+cancer,27.496,-81.441,Sebring,Florida,1
+cancer,28.804,-81.726,Tavares,Florida,1
+cancer,28.934,-81.96,The Villages,Florida,1
+cancer,28.181,-82.682,Trinity,Florida,3
+cancer,26.659,-80.241,Wellington,Florida,3
+cancer,30.505,-90.463,Hammond,Louisiana,2
+cancer,41.091,-73.918,Nyack,New York,5
+cancer,40.876,-81.402,North Canton,Ohio,1
+cancer,40.844,-81.764,Orrville,Ohio,1
+cancer,31.997,-102.078,Midland,Texas,5
+cancer,44.975,-92.757,Hudson,Wisconsin,2
+cancer,42.308,-71.279,Wellesley Hills,Massachusetts,1
+cancer,41.278,-73.026,Orange,Connecticut,9
+cancer,30.367,-89.093,Gulfport,Mississippi,8
+cancer,33.581,-112.237,Peoria,Arizona,6
+cancer,40.899,-74.093,Saddle Brook,New Jersey,1
+cancer,34.046,-118.431,West Los Angeles,California,6
+cancer,30.239,-90.92,Gonzales,Louisiana,2
+cancer,42.737,-84.484,East Lansing,Michigan,4
+cancer,40.499,-74.399,Piscataway,New Jersey,2
+cancer,41.45,-81.481,Orange,Ohio,6
+cancer,40.726,-73.853,Rego Park,New York,11
+cancer,42.317,-71.818,North Worcester,Massachusetts,1
+cancer,43.911,-69.821,Bath,Maine,9
+cancer,42.486,-83.105,Madison Heights,Michigan,3
+cancer,42.561,-77.696,Dansville,New York,4
+cancer,43.093,-75.651,Oneida,New York,1
+cancer,19.73,-155.091,Hilo,Hawaii,1
+cancer,34.14,-118.035,Arcadia,California,4
+cancer,34.136,-117.865,Glendora,California,1
+cancer,34.437,-119.632,Montecito,California,1
+cancer,34.096,-118.106,San Gabriel,California,1
+cancer,34.269,-118.781,Simi Valley,California,2
+cancer,35.55,-120.706,Templeton,California,1
+cancer,34.171,-118.838,Thousand Oaks,California,1
+cancer,42.171,-87.845,Deerfield,Illinois,1
+cancer,41.543,-87.685,Flossmoor,Illinois,2
+cancer,41.573,-87.784,Tinley Park,Illinois,2
+cancer,43.698,-85.484,Big Rapids,Michigan,2
+cancer,38.765,-76.898,Clinton,Maryland,6
+cancer,33.854,-118.134,Lakewood,California,2
+cancer,44.661,-84.715,Grayling,Michigan,1
+cancer,26.525,-80.066,Boynton Beach,Florida,1
+cancer,39.272,-76.732,Catonsville,Maryland,1
+cancer,35.205,-89.874,Bartlett,Tennessee,3
+cancer,36.093,-87.515,Tennessee City,Tennessee,1
+cancer,40.105,-85.68,Anderson,Indiana,1
+cancer,39.956,-86.014,Fishers,Indiana,1
+cancer,46.188,-123.831,Astoria,Oregon,1
+cancer,45.487,-122.804,Beaverton,Oregon,2
+cancer,45.523,-122.99,Hillsboro,Oregon,2
+cancer,45.595,-121.179,The Dalles,Oregon,1
+cancer,46.165,-123.924,Warrenton,Oregon,1
+cancer,41.004,-76.455,Bloomsburg,Pennsylvania,1
+cancer,36.033,-86.783,Brentwood,Tennessee,1
+cancer,38.994,-80.232,Buckhannon,West Virginia,1
+cancer,28.351,-80.725,Rockledge,Florida,5
+cancer,39.981,-75.357,Broomall,Pennsylvania,5
+cancer,42.814,-73.94,Schenectady,New York,4
+cancer,33.158,-117.351,Carlsbad,California,2
+cancer,29.286,-81.056,Ormond Beach,Florida,1
+cancer,42.033,-88.083,Schaumburg,Illinois,2
+cancer,37.881,-84.573,Nicholasville,Kentucky,1
+cancer,40.905,-74.21,Totowa,New Jersey,1
+cancer,35.507,-97.763,Yukon,Oklahoma,1
+cancer,42.213,-88.153,Lake Barrington,Illinois,2
+cancer,38.805,-77.047,Alexandria,Virginia,8
+cancer,25.909,-80.309,Miami Lakes,Florida,3
+cancer,32.287,-81.081,Hardeeville,South Carolina,1
+cancer,39.614,-86.107,Greenwood,Indiana,5
+cancer,39.13,-94.562,North Kansas City,Missouri,3
+cancer,39.058,-76.936,Calverton,Maryland,1
+cancer,34.197,-119.177,Oxnard,California,5
+cancer,34.392,-118.543,Santa Clarita,California,3
+cancer,41.396,-72.897,Hamden,Connecticut,4
+cancer,34.075,-84.294,Alpharetta,Georgia,1
+cancer,34.237,-84.491,Canton,Georgia,1
+cancer,34.207,-84.14,Cumming,Georgia,1
+cancer,38.395,-75.156,Ocean Pines,Maryland,2
+cancer,38.361,-75.599,Salisbury,Maryland,3
+cancer,40.772,-73.93,Astoria,New York,4
+cancer,42.099,-75.918,Binghamton,New York,1
+cancer,42.874,-77.288,Canandaigua,New York,3
+cancer,41.158,-81.242,Ravenna,Ohio,4
+cancer,39.918,-75.259,Darby,Pennsylvania,1
+cancer,41.42,-75.632,Dunmore,Pennsylvania,1
+cancer,34.195,-79.763,Florence,South Carolina,6
+cancer,32.352,-80.978,Okatie,South Carolina,1
+cancer,40.377,-111.796,American Fork,Utah,3
+cancer,37.677,-113.062,Cedar City,Utah,5
+cancer,41.735,-111.834,Logan,Utah,3
+cancer,40.234,-111.659,Provo,Utah,3
+cancer,40.522,-111.939,Riverton,Utah,3
+cancer,40.525,-111.864,Draper,Utah,1
+cancer,33.631,-112.333,Surprise,Arizona,3
+cancer,33.415,-111.909,Tempe,Arizona,4
+cancer,36.6,-121.895,Monterey,California,2
+cancer,42.376,-71.236,Waltham,Massachusetts,1
+cancer,35.053,-78.878,Fayetteville,North Carolina,2
+cancer,40.165,-77.084,Allen,Pennsylvania,1
+cancer,41.675,-72.858,Plainville,Connecticut,1
+cancer,42.52,-70.896,Salem,Massachusetts,1
+cancer,37.771,-122.261,Alameda,California,1
+cancer,30.295,-81.393,Jacksonville Beach,Florida,2
+cancer,32.616,-83.627,Warner Robins,Georgia,2
+cancer,39.739,-75.224,Mullica Hill,New Jersey,3
+cancer,33.472,-86.801,Homewood,Alabama,6
+cancer,33.609,-91.207,Arkansas City,Arkansas,1
+cancer,32.855,-79.975,North Charleston,South Carolina,5
+cancer,34.197,-118.644,West Hills,California,1
+cancer,34.596,-92.489,Bryant,Arkansas,1
+cancer,35.089,-92.442,Conway,Arkansas,1
+cancer,34.228,-92.003,Pine Bluff,Arkansas,1
+cancer,38.954,-94.734,Lenexa,Kansas,2
+cancer,27.119,-82.444,Nokomis,Florida,1
+cancer,39.993,-74.788,Mount Holly,New Jersey,1
+cancer,40.721,-73.267,Brightwaters,New York,2
+cancer,40.868,-73.426,Huntington,New York,2
+cancer,30.523,-87.903,Fairhope,Alabama,9
+cancer,39.091,-94.416,Independence,Missouri,2
+cancer,40.639,-73.64,Oceanside,New York,3
+cancer,25.708,-80.293,South Miami,Florida,2
+cancer,30.213,-93.204,Lake Charles,Louisiana,3
+cancer,40.423,-78.434,Duncansville,Pennsylvania,2
+cancer,40.33,-75.965,Wyomissing,Pennsylvania,1
+cancer,32.736,-94.581,Jackson,Texas,1
+cancer,32.518,-96.804,Red Oak,Texas,1
+cancer,30.097,-95.616,Tomball,Texas,2
+cancer,43.873,-116.499,Emmett,Idaho,3
+cancer,36.146,-81.161,Wilkesboro,North Carolina,3
+cancer,41.026,-81.73,Wadsworth,Ohio,2
+cancer,44.797,-106.956,Sheridan,Wyoming,4
+cancer,28.927,-82.037,Oxford,Florida,2
+cancer,41.483,-87.333,Merrillville,Indiana,3
+cancer,39.193,-76.724,Hanover,Maryland,4
+cancer,34.421,-84.119,Dawsonville,Georgia,1
+cancer,32.941,-97.134,Southlake,Texas,1
+cancer,42.279,-71.15,West Roxbury,Massachusetts,1
+cancer,39.165,-86.526,Bloomington,Indiana,2
+cancer,42.903,-78.755,Cheektowaga,New York,2
+cancer,42.939,-74.188,Amsterdam,New York,1
+cancer,34.686,-120.437,Mission Hills,California,2
+cancer,38.517,-75.235,Frankford,Delaware,1
+cancer,40.716,-73.85,Forest Hills,New York,5
+cancer,34.018,-78.267,Supply,North Carolina,2
+cancer,38.967,-94.617,Leawood,Kansas,2
+cancer,38.812,-94.532,Belton,Missouri,1
+cancer,26.238,-80.125,Pompano Beach,Florida,2
+cancer,33.244,-86.816,Alabaster,Alabama,1
+cancer,33.402,-86.954,Bessemer,Alabama,1
+cancer,30.407,-87.684,Foley,Alabama,1
+cancer,37.978,-122.031,Concord,California,2
+cancer,30.159,-85.66,Panama City,Florida,2
+cancer,34.77,-84.97,Dalton,Georgia,3
+cancer,34.989,-90.013,Southaven,Mississippi,3
+cancer,35.16,-84.877,Cleveland,Tennessee,3
+cancer,40.735,-73.793,Fresh Meadows,New York,1
+cancer,40.601,-75.395,Fountain Hill,Pennsylvania,2
+cancer,46.342,-120.187,Granger,Washington,1
+cancer,42.375,-71.106,Cambridge,Massachusetts,1
+cancer,40.328,-80.04,Bethel Park,Pennsylvania,1
+cancer,38.478,-107.876,Montrose,Colorado,1
+cancer,40.485,-106.832,Steamboat Springs,Colorado,1
+cancer,43.702,-72.29,Hanover,New Hampshire,1
+cancer,35.733,-81.341,Hickory,North Carolina,2
+cancer,39.099,-76.848,Laurel,Maryland,2
+cancer,40.011,-75.23,Cynwyd,Pennsylvania,1
+cancer,40.727,-73.634,Garden City,New York,2
+cancer,38.796,-77.614,Gainesville,Virginia,2
+cancer,30.821,-88.071,Saraland,Alabama,6
+cancer,35.156,-89.776,Cordova,Tennessee,1
+cancer,41.77,-87.936,Willowbrook,Illinois,1
+cancer,32.881,-97.155,Colleyville,Texas,1
+cancer,43.135,-87.936,Glendale,Wisconsin,1
+cancer,38.534,-89.989,Swansea,Illinois,1
+cancer,29.96,-90.216,River Ridge,Louisiana,1
+cancer,31.223,-85.39,Dothan,Alabama,5
+cancer,27.938,-82.286,Brandon,Florida,1
+cancer,28.084,-80.608,Melbourne,Florida,1
+cancer,28.078,-82.764,Palm Harbor,Florida,1
+cancer,41.357,-88.421,Morris,Illinois,1
+cancer,38.201,-84.873,Frankfort,Kentucky,1
+cancer,37.748,-84.295,Richmond,Kentucky,2
+cancer,42.932,-76.566,Auburn,New York,1
+cancer,44.637,-123.106,Albany,Oregon,1
+cancer,37.228,-77.402,Petersburg,Virginia,1
+cancer,36.154,-109.553,Chinle,Arizona,1
+cancer,36.295,-76.251,Elizabeth City,North Carolina,1
+cancer,31.814,-106.412,Fort Bliss,Texas,1
+cancer,40.666,-73.488,Seaford,New York,1
+cancer,31.45,-83.508,Tifton,Georgia,2
+cancer,33.21,-87.569,Tuscaloosa,Alabama,3
+cancer,29.453,-98.442,Fort Sam Houston,Texas,1
+cancer,44.793,-69.297,Detroit,Maine,1
+cancer,40.767,-72.996,East Patchogue,New York,1
+cancer,25.469,-80.478,Homestead,Florida,2
+cancer,32.387,-96.848,Waxahachie,Texas,1
+cancer,36.054,-98.588,Canton,Oklahoma,1
+cancer,43.144,-70.651,York Village,Maine,2
+cancer,34.962,-77.962,Kenansville,North Carolina,1
+cancer,34.899,-77.547,Richlands,North Carolina,1
+cancer,35.547,-77.052,Washington,North Carolina,1
+cancer,40.799,-76.862,Selinsgrove,Pennsylvania,2
+cancer,39.891,-74.922,Marlton,New Jersey,1
+cancer,34.72,-80.771,Lancaster,South Carolina,4
+cancer,37.343,-85.342,Campbellsville,Kentucky,2
+cancer,38.21,-84.559,Georgetown,Kentucky,2
+cancer,36.996,-85.912,Glasgow,Kentucky,2
+cancer,37.25,-83.193,Hazard,Kentucky,2
+cancer,38.641,-83.744,Maysville,Kentucky,2
+cancer,37.271,-87.176,Morehead,Kentucky,3
+cancer,38.026,-84.495,Mount Vernon,Kentucky,2
+cancer,37.092,-84.604,Somerset,Kentucky,2
+cancer,37.99,-84.18,Winchester,Kentucky,2
+cancer,34.069,-117.939,West Covina,California,2
+cancer,27.198,-80.253,Stuart,Florida,5
+cancer,40.057,-81.233,Fairview,Ohio,1
+cancer,31.506,-97.205,Woodway,Texas,1
+cancer,40.121,-75.118,Abington,Pennsylvania,3
+cancer,42.332,-71.121,Brookline,Massachusetts,1
+cancer,42.978,-78.8,Amherst,New York,3
+cancer,40.193,-85.386,Muncie,Indiana,2
+cancer,37.706,-86.221,Dyer,Kentucky,1
+cancer,43.899,-91.081,West Salem,Wisconsin,1
+cancer,39.986,-75.275,Penn Wynne,Pennsylvania,1
+cancer,28.28,-81.608,Reunion,Florida,1
+cancer,29.706,-95.459,Bellaire,Texas,2
+cancer,36.196,-86.623,Hermitage,Tennessee,1
+cancer,39.64,-106.374,Vail,Colorado,1
+cancer,38.513,-90.436,Fenton,Missouri,1
+cancer,32.432,-80.67,Beaufort,South Carolina,3
+cancer,37.479,-82.519,Pikeville,Kentucky,1
+cancer,25.578,-80.338,Cutler Bay,Florida,1
+cancer,41.154,-96.042,Papillion,Nebraska,3
+cancer,41.446,-74.423,Middletown,New York,3
+cancer,41.672,-72.949,Bristol,Connecticut,1
+cancer,42.083,-71.018,Brockton,Massachusetts,1
+cancer,42.375,-71.039,East Boston,Massachusetts,1
+cancer,41.653,-70.283,Hyannis,Massachusetts,1
+cancer,34.058,-118.301,Koreatown,California,1
+cancer,28.219,-82.458,Land O' Lakes,Florida,1
+cancer,39.232,-84.378,Blue Ash,Ohio,1
+cancer,40.988,-74.064,Washington Township,New Jersey,1
+cancer,40.519,-74.412,Edison,New Jersey,4
+cancer,42.934,-72.278,Keene,New Hampshire,1
+cancer,43.414,-71.985,New London,New Hampshire,1
+cancer,43.365,-72.173,Newport,New Hampshire,1
+cancer,43.667,-92.975,Austin,Minnesota,1
+cancer,44.841,-93.298,Bloomington,Minnesota,1
+cancer,45.516,-122.768,West Haven-Sylvan,Oregon,1
+cancer,41.484,-81.711,Ohio City,Ohio,1
+cancer,29.026,-80.927,New Smyrna Beach,Florida,1
+cancer,35.487,-80.622,Kannapolis,North Carolina,1
+cancer,35.91,-79.075,Carrboro,North Carolina,1
+cancer,42.31,-71.12,Jamaica Plain,Massachusetts,2
+cancer,40.793,-77.86,State College,Pennsylvania,2
+cancer,37.882,-119.856,Mather,California,2
+cancer,38.956,-76.946,Hyattsville,Maryland,1
+cancer,41.836,-83.407,North Shores,Michigan,1
+cancer,37.13,-80.409,Christiansburg,Virginia,1
+cancer,43.48,-76.315,New Haven,New York,1
+cancer,33.409,-91.06,Greenville,Mississippi,1
+cancer,33.516,-90.18,Greenwood,Mississippi,1
+cancer,38.525,-118.625,Hawthorne,Nevada,1
+cancer,36.13,-115.119,Winchester,Nevada,1
+cancer,40.973,-117.736,Winnemucca,Nevada,1
+cancer,36.33,-78.399,Henderson,North Carolina,1
+cancer,34.774,-79.463,Laurinburg,North Carolina,1
+cancer,34.618,-79.01,Lumberton,North Carolina,1
+cancer,35.508,-78.339,Smithfield,North Carolina,1
+cancer,30.364,-97.98,Lakeway,Texas,1
+cancer,39.02,-94.666,Shawnee Mission,Kansas,1
+cancer,40.683,-74.443,Berkeley Heights,New Jersey,1
+cancer,33.855,-84.217,Tucker,Georgia,1
+cancer,34.835,-97.603,Lindsay,Oklahoma,1
+cancer,41.814,-71.37,East Providence,Rhode Island,2
+cancer,47.358,-121.974,Georgetown,Washington,1
+cancer,34.201,-118.598,Canoga Park,California,1
+cancer,33.962,-118.353,Inglewood,California,1
+cancer,33.792,-118.315,Lomita,California,1
+cancer,34.282,-118.439,San Fernando,California,1
+cancer,34.165,-118.397,Valley Village,California,1
+cancer,39.617,-104.951,Greenwood Village,Colorado,1
+cancer,29.028,-81.303,DeLand,Florida,1
+cancer,25.822,-80.29,Miami Springs,Florida,1
+cancer,33.653,-84.449,College Park,Georgia,1
+cancer,33.941,-84.214,Norcross,Georgia,1
+cancer,43.467,-112.034,Idaho Falls,Idaho,1
+cancer,30.275,-89.781,Slidell,Louisiana,1
+cancer,42.337,-83.273,Dearborn Heights,Michigan,1
+cancer,32.428,-90.132,Ridgeland,Mississippi,1
+cancer,42.028,-97.417,Norfolk,Nebraska,1
+cancer,36.199,-115.118,North Las Vegas,Nevada,1
+cancer,40.788,-74.014,West New York,New Jersey,1
+cancer,39.878,-84.302,Englewood,Ohio,1
+cancer,39.515,-84.398,Middletown,Ohio,1
+cancer,33.019,-80.176,Summerville,South Carolina,1
+cancer,35.615,-88.814,Jackson,Tennessee,1
+cancer,40.364,-111.739,Pleasant Grove,Utah,1
+cancer,38.83,-77.196,Annandale,Virginia,1
+cancer,41.222,-73.056,Milford,Connecticut,1
+cancer,32.913,-96.639,Garland,Texas,1
+cancer,40.826,-73.502,Syosset,New York,1
+cancer,47.307,-122.228,Auburn,Washington,2
+cancer,41.336,-75.963,Dallas,Pennsylvania,1
+cancer,33.857,-84.02,Snellville,Georgia,1
+cancer,42.765,-71.468,Nashua,New Hampshire,1
+cancer,34.473,-81.881,Clinton,South Carolina,2
+cancer,21.402,-157.741,Kailua,Hawaii,1
+cancer,41.898,-87.814,River Forest,Illinois,1
+cancer,41.898,-84.037,Adrian,Michigan,1
+cancer,41.916,-83.398,Monroe,Michigan,1
+cancer,42.09,-76.808,Elmira,New York,1
+cancer,35.957,-75.624,Nags Head,North Carolina,1
+cancer,40.601,-74.648,Bridgewater,New Jersey,1
+cancer,40.813,-74.442,Monroe,New Jersey,1
+cancer,40.081,-75.09,Rockledge,Pennsylvania,1
+cancer,41.711,-72.208,Willimantic,Connecticut,1
+cancer,43.493,-70.453,Biddeford,Maine,1
+cancer,43.088,-70.736,Kittery,Maine,1
+cancer,44.214,-70.545,Norway,Maine,2
+cancer,43.322,-70.581,Wells,Maine,1
+cancer,48.233,-101.296,Minot,North Dakota,1
+cancer,40.345,-74.184,Holmdel,New Jersey,2
+cancer,40.664,-73.708,Valley Stream,New York,2
+cancer,40.684,-73.51,Wantagh,New York,2
+cancer,41.43,-73.68,Carmel,New York,1
+cancer,35.79,-83.974,Alcoa,Tennessee,1
+cancer,40.198,-83.01,Lewis Center,Ohio,1
+cancer,36.593,-78.616,Henrico,Virginia,1
+cancer,37.534,-77.121,Quinton,Virginia,1
+cancer,31.131,-97.489,Woodland,Texas,1
+cancer,39.934,-74.891,Mount Laurel,New Jersey,1
+cancer,33.641,-117.603,Rancho Santa Margarita,California,1
+cancer,40.804,-74.012,North Bergen,New Jersey,1
+cancer,40.415,-74.365,Old Bridge,New Jersey,1
+cancer,40.507,-74.265,Perth Amboy,New Jersey,1
+cancer,27.866,-82.326,Riverview,Florida,1
+cancer,40.781,-73.677,North Hills,New York,1
+cancer,38.245,-78.111,Orange,Virginia,1
+cancer,47.71,-117.46,Northwest,Washington,1
+cancer,41.562,-72.651,Middletown,Connecticut,1
+cancer,32.367,-86.3,Montgomery,Alabama,1
+cancer,35.198,-111.651,Flagstaff,Arizona,1
+cancer,46.417,-117.018,Lewiston,Idaho,1
+cancer,40.116,-88.243,Champaign,Illinois,1
+cancer,37.975,-87.556,Evansville,Indiana,1
+cancer,39.396,-101.052,Colby,Kansas,1
+cancer,44.388,-68.204,Bar Harbor,Maine,1
+cancer,46.408,-105.841,Miles City,Montana,1
+cancer,41.124,-100.765,North Platte,Nebraska,1
+cancer,33.394,-104.525,Roswell,New Mexico,2
+cancer,41.749,-77.301,Wellsboro,Pennsylvania,1
+cancer,30.894,-102.879,Fort Stockton,Texas,1
+cancer,43.48,-110.762,Jackson,Wyoming,1
+cancer,33.351,-82.239,Fort Eisenhower,Georgia,1
+cancer,30.487,-95.987,Anderson,Texas,1
+cancer,42.388,-71.1,Somerville,Massachusetts,1
+cancer,42.658,-83.15,Rochester Hills,Michigan,1
+cancer,33.151,-96.824,Frisco,Texas,1
+cancer,41.638,-70.904,Fairhaven,Massachusetts,1
+cancer,41.701,-71.155,Fall River,Massachusetts,1
+cancer,41.433,-96.498,Fremont,Nebraska,1
+cancer,38.473,-77.997,Culpeper,Virginia,1
+cancer,33.813,-84.634,Austell,Georgia,1
+cancer,40.217,-74.743,Trenton,New Jersey,1
+cancer,37.36,-90.698,Annapolis,Missouri,1
+cancer,38.701,-90.362,Overland,Missouri,1
+cancer,37.364,-118.395,Bishop,California,1
+cancer,40.822,-74.16,Nutley,New Jersey,1
+cancer,37.311,-121.933,Fruitdale,California,1
+cancer,41.616,-87.529,Calumet City,Illinois,1
+cancer,41.107,-73.796,Hawthorne,New York,1
+copd,33.521,-86.802,Birmingham,Alabama,12
+copd,37.442,-122.143,Palo Alto,California,2
+copd,39.114,-94.627,Kansas City,Kansas,7
+copd,35.913,-79.056,Chapel Hill,North Carolina,1
+copd,40.441,-79.996,Pittsburgh,Pennsylvania,10
+copd,39.952,-75.164,Philadelphia,Pennsylvania,14
+copd,37.775,-122.419,San Francisco,California,2
+copd,40.714,-74.006,New York,New York,6
+copd,39.729,-104.832,Aurora,Colorado,6
+copd,32.222,-110.926,Tucson,Arizona,4
+copd,41.85,-87.65,Chicago,Illinois,11
+copd,39.29,-76.612,Baltimore,Maryland,11
+copd,42.278,-83.741,Ann Arbor,Michigan,7
+copd,29.763,-95.363,Houston,Texas,13
+copd,44.544,-73.148,Colchester,Vermont,3
+copd,30.694,-88.043,Mobile,Alabama,5
+copd,33.767,-118.189,Long Beach,California,3
+copd,34.052,-118.244,Los Angeles,California,5
+copd,34.228,-118.537,Northridge,California,3
+copd,32.716,-117.165,San Diego,California,4
+copd,40.015,-105.271,Boulder,Colorado,1
+copd,39.705,-105.081,Lakewood,Colorado,2
+copd,38.895,-77.036,Washington D.C.,District of Columbia,1
+copd,27.938,-82.286,Brandon,Florida,4
+copd,29.028,-81.303,DeLand,Florida,1
+copd,26.624,-80.125,Greenacres City,Florida,3
+copd,25.858,-80.278,Hialeah,Florida,3
+copd,30.332,-81.656,Jacksonville,Florida,5
+copd,26.625,-81.625,Lehigh Acres,Florida,1
+copd,26.684,-80.28,Loxahatchee Groves,Florida,3
+copd,25.774,-80.194,Miami,Florida,17
+copd,28.538,-81.379,Orlando,Florida,9
+copd,30.421,-87.217,Pensacola,Florida,2
+copd,26.134,-80.232,Plantation,Florida,3
+copd,27.336,-82.531,Sarasota,Florida,2
+copd,27.771,-82.679,St. Petersburg,Florida,4
+copd,27.948,-82.458,Tampa,Florida,8
+copd,34.369,-84.934,Adairsville,Georgia,2
+copd,40.116,-88.243,Champaign,Illinois,1
+copd,40.514,-88.991,Normal,Illinois,1
+copd,40.694,-89.589,Peoria,Illinois,3
+copd,41.583,-87.5,Hammond,Indiana,2
+copd,32.525,-93.75,Shreveport,Louisiana,4
+copd,41.635,-70.927,New Bedford,Massachusetts,1
+copd,42.258,-83.211,Allen Park,Michigan,3
+copd,42.529,-83.78,Brighton,Michigan,1
+copd,42.331,-83.046,Detroit,Michigan,8
+copd,42.485,-83.377,Farmington Hills,Michigan,3
+copd,38.952,-92.334,Columbia,Missouri,1
+copd,39.708,-91.358,Hannibal,Missouri,3
+copd,38.627,-90.198,St Louis,Missouri,5
+copd,36.175,-115.137,Las Vegas,Nevada,7
+copd,40.207,-74.081,Hamilton,New Jersey,2
+copd,40.736,-74.172,Newark,New Jersey,1
+copd,42.886,-78.878,Buffalo,New York,2
+copd,41.477,-74.024,New Windsor,New York,3
+copd,35.613,-77.366,Greenville,North Carolina,2
+copd,35.783,-80.887,Statesville,North Carolina,2
+copd,36.1,-80.244,Winston-Salem,North Carolina,9
+copd,41.664,-83.555,Toledo,Ohio,1
+copd,36.154,-95.993,Tulsa,Oklahoma,4
+copd,45.523,-122.676,Portland,Oregon,3
+copd,39.917,-75.388,Media,Pennsylvania,1
+copd,34.001,-81.035,Columbia,South Carolina,3
+copd,35.046,-85.31,Chattanooga,Tennessee,3
+copd,36.305,-86.62,Hendersonville,Tennessee,2
+copd,30.267,-97.743,Austin,Texas,2
+copd,32.783,-96.807,Dallas,Texas,10
+copd,33.756,-96.537,Denison,Texas,2
+copd,31.759,-106.487,El Paso,Texas,5
+copd,29.619,-95.538,Missouri City,Texas,1
+copd,29.62,-95.635,Sugar Land,Texas,1
+copd,33.015,-96.539,Wylie,Texas,2
+copd,37.778,-81.188,Beckley,West Virginia,1
+copd,35.994,-78.899,Durham,North Carolina,4
+copd,42.358,-71.06,Boston,Massachusetts,15
+copd,44.476,-73.212,Burlington,Vermont,2
+copd,39.739,-104.985,Denver,Colorado,3
+copd,41.499,-81.695,Cleveland,Ohio,6
+copd,30.407,-87.684,Foley,Alabama,1
+copd,34.765,-87.699,Sheffield,Alabama,2
+copd,33.448,-112.074,Phoenix,Arizona,7
+copd,33.774,-117.941,Garden Grove,California,2
+copd,33.619,-117.929,Newport Beach,California,10
+copd,33.836,-118.341,Torrance,California,1
+copd,27.966,-82.8,Clearwater,Florida,3
+copd,25.578,-80.338,Cutler Bay,Florida,2
+copd,28.883,-81.309,DeBary,Florida,1
+copd,25.469,-80.478,Homestead,Florida,2
+copd,33.749,-84.388,Atlanta,Georgia,3
+copd,33.712,-84.105,Lithonia,Georgia,1
+copd,32.296,-81.235,Rincon,Georgia,4
+copd,41.697,-87.817,Palos Hills,Illinois,1
+copd,41.862,-88.161,Winfield,Illinois,2
+copd,41.564,-87.513,Munster,Indiana,1
+copd,39.24,-76.839,Columbia,Maryland,1
+copd,41.639,-70.97,North Dartmouth,Massachusetts,2
+copd,45.561,-94.162,Saint Cloud,Minnesota,1
+copd,46.872,-113.994,Missoula,Montana,3
+copd,41.154,-96.042,Papillion,Nebraska,1
+copd,39.402,-75.039,Millville,New Jersey,1
+copd,39.767,-75.144,Sewell,New Jersey,2
+copd,39.954,-74.198,Toms River,New Jersey,2
+copd,42.601,-76.18,Cortland,New York,1
+copd,42.167,-76.821,Horseheads,New York,1
+copd,35.956,-80.005,High Point,North Carolina,1
+copd,35.245,-81.341,Kings Mountain,North Carolina,2
+copd,35.108,-77.044,New Bern,North Carolina,2
+copd,39.961,-82.999,Columbus,Ohio,9
+copd,35.468,-97.516,Oklahoma City,Oklahoma,4
+copd,41.119,-78.76,DuBois,Pennsylvania,14
+copd,34.925,-81.025,Rock Hill,South Carolina,6
+copd,35.925,-86.869,Franklin,Tennessee,5
+copd,36.313,-82.353,Johnson City,Tennessee,1
+copd,32.725,-97.321,Fort Worth,Texas,1
+copd,29.999,-95.262,Humble,Texas,1
+copd,30.047,-99.14,Kerrville,Texas,1
+copd,32.563,-97.142,Mansfield,Texas,2
+copd,41.111,-112.026,Clearfield,Utah,1
+copd,39.63,-79.956,Morgantown,West Virginia,4
+copd,42.96,-87.861,Cudahy,Wisconsin,2
+copd,33.353,-111.789,Gilbert,Arizona,2
+copd,38.582,-121.494,Sacramento,California,2
+copd,38.882,-77.171,Falls Church,Virginia,2
+copd,43.039,-87.906,Milwaukee,Wisconsin,3
+copd,33.306,-111.841,Chandler,Arizona,1
+copd,33.631,-112.333,Surprise,Arizona,1
+copd,33.846,-118.047,La Palma,California,3
+copd,40.587,-122.392,Redding,California,2
+copd,34.444,-118.61,Valencia,California,1
+copd,26.525,-80.066,Boynton Beach,Florida,4
+copd,26.622,-81.841,Fort Myers,Florida,1
+copd,25.909,-80.309,Miami Lakes,Florida,9
+copd,26.823,-80.139,Palm Beach Gardens,Florida,1
+copd,26.003,-80.224,Pembroke Pines,Florida,2
+copd,31.964,-83.782,Cordele,Georgia,5
+copd,33.449,-84.455,Fayetteville,Georgia,1
+copd,41.701,-87.779,Chicago Ridge,Illinois,1
+copd,42.041,-87.69,Evanston,Illinois,2
+copd,39.768,-86.158,Indianapolis,Indiana,5
+copd,30.649,-91.156,Zachary,Louisiana,4
+copd,42.486,-83.105,Madison Heights,Michigan,1
+copd,44.022,-92.47,Rochester,Minnesota,2
+copd,36.04,-114.982,Henderson,Nevada,4
+copd,40.767,-74.205,East Orange,New Jersey,1
+copd,40.765,-73.817,Flushing,New York,1
+copd,35.733,-81.341,Hickory,North Carolina,1
+copd,35.823,-78.826,Morrisville,North Carolina,1
+copd,46.877,-96.79,Fargo,North Dakota,1
+copd,39.759,-84.192,Dayton,Ohio,1
+copd,35.053,-97.936,Chickasha,Oklahoma,1
+copd,34.503,-82.65,Anderson,South Carolina,4
+copd,34.72,-80.771,Lancaster,South Carolina,2
+copd,36.166,-86.784,Nashville,Tennessee,1
+copd,33.103,-96.671,Allen,Texas,1
+copd,30.086,-94.102,Beaumont,Texas,2
+copd,29.706,-95.459,Bellaire,Texas,1
+copd,29.795,-98.732,Boerne,Texas,5
+copd,32.954,-96.89,Carrollton,Texas,2
+copd,32.095,-96.469,Corsicana,Texas,2
+copd,29.969,-95.697,Cypress,Texas,3
+copd,32.59,-96.857,DeSoto,Texas,2
+copd,26.191,-97.696,Harlingen,Texas,1
+copd,30.057,-95.183,Kingwood,Texas,2
+copd,31.064,-98.182,Lampasas,Texas,2
+copd,29.424,-98.494,San Antonio,Texas,3
+copd,37.271,-76.707,Williamsburg,Virginia,3
+copd,37.293,-80.055,Salem,Virginia,1
+copd,40.667,-111.888,Murray,Utah,1
+copd,47.606,-122.332,Seattle,Washington,3
+copd,35.227,-80.843,Charlotte,North Carolina,3
+copd,28.902,-82.593,Crystal River,Florida,3
+copd,25.82,-80.355,Doral,Florida,3
+copd,26.011,-80.149,Hollywood,Florida,2
+copd,33.946,-84.335,Dunwoody,Georgia,1
+copd,43.614,-116.203,Boise,Idaho,3
+copd,36.99,-86.444,Bowling Green,Kentucky,3
+copd,30.213,-93.204,Lake Charles,Louisiana,2
+copd,44.799,-68.773,Bangor,Maine,2
+copd,42.736,-83.419,Clarkston,Michigan,2
+copd,42.322,-83.176,Dearborn,Michigan,3
+copd,39.53,-119.814,Reno,Nevada,2
+copd,35.653,-97.478,Edmond,Oklahoma,2
+copd,39.961,-75.608,West Chester,Pennsylvania,1
+copd,34.853,-82.394,Greenville,South Carolina,2
+copd,35.961,-83.921,Knoxville,Tennessee,5
+copd,33.138,-96.111,Greenville,Texas,1
+copd,29.786,-95.824,Katy,Texas,1
+copd,32.767,-96.599,Mesquite,Texas,2
+copd,29.616,-95.558,Stafford,Texas,1
+copd,40.398,-105.075,Loveland,Colorado,1
+copd,41.764,-72.685,Hartford,Connecticut,1
+copd,37.989,-84.478,Lexington,Kentucky,3
+copd,33.509,-111.899,Scottsdale,Arizona,3
+copd,30.097,-95.616,Tomball,Texas,3
+copd,34.175,-86.844,Cullman,Alabama,2
+copd,41.661,-72.78,New Britain,Connecticut,1
+copd,39.746,-75.547,Wilmington,Delaware,2
+copd,27.814,-82.778,Bay Pines,Florida,1
+copd,28.811,-81.878,Leesburg,Florida,2
+copd,29.187,-82.14,Ocala,Florida,5
+copd,28.6,-81.339,Winter Park,Florida,3
+copd,33.775,-84.296,Decatur,Georgia,2
+copd,32.084,-81.1,Savannah,Georgia,2
+copd,37.975,-87.556,Evansville,Indiana,1
+copd,37.774,-87.113,Owensboro,Kentucky,1
+copd,39.018,-77.209,Potomac,Maryland,1
+copd,39.32,-76.516,Rosedale,Maryland,1
+copd,44.98,-93.264,Minneapolis,Minnesota,3
+copd,40.562,-74.14,Staten Island,New York,1
+copd,43.048,-76.147,Syracuse,New York,1
+copd,40.85,-73.866,The Bronx,New York,2
+copd,41.979,-76.516,Sayre,Pennsylvania,2
+copd,35.072,-81.65,Gaffney,South Carolina,3
+copd,34.95,-81.932,Spartanburg,South Carolina,6
+copd,34.715,-81.624,Union,South Carolina,4
+copd,44.081,-103.231,Rapid City,South Dakota,4
+copd,33.046,-96.994,Lewisville,Texas,3
+copd,33.198,-96.615,McKinney,Texas,6
+copd,47.979,-122.202,Everett,Washington,1
+copd,38.029,-78.477,Charlottesville,Virginia,1
+copd,41.256,-95.94,Omaha,Nebraska,3
+copd,41.824,-71.413,Providence,Rhode Island,1
+copd,42.101,-72.59,Springfield,Massachusetts,1
+copd,33.931,-117.549,Norco,California,1
+copd,26.563,-81.95,Cape Coral,Florida,2
+copd,30.19,-82.639,Lake City,Florida,2
+copd,26.142,-81.796,Naples,Florida,3
+copd,29.286,-81.056,Ormond Beach,Florida,3
+copd,26.213,-80.25,Tamarac,Florida,4
+copd,42.505,-71.196,Burlington,Massachusetts,2
+copd,42.326,-83.331,Garden City,Michigan,2
+copd,42.963,-85.668,Grand Rapids,Michigan,1
+copd,38.663,-90.577,Chesterfield,Missouri,1
+copd,41.204,-73.727,Mount Kisco,New York,2
+copd,40.589,-83.129,Marion,Ohio,2
+copd,42.327,-122.876,Medford,Oregon,4
+copd,40.24,-76.92,Camp Hill,Pennsylvania,2
+copd,40.1,-79.587,Scottdale,Pennsylvania,1
+copd,39.803,-79.808,Smithfield,Pennsylvania,1
+copd,36.847,-76.285,Norfolk,Virginia,2
+copd,43.073,-89.401,Madison,Wisconsin,1
+copd,47.66,-117.429,Spokane,Washington,2
+copd,35.373,-119.019,Bakersfield,California,1
+copd,37.639,-120.997,Modesto,California,1
+copd,27.499,-82.575,Bradenton,Florida,3
+copd,28.949,-81.299,Orange City,Florida,1
+copd,26.636,-80.096,Palm Springs,Florida,1
+copd,25.622,-80.325,Palmetto Bay,Florida,3
+copd,28.934,-81.96,The Villages,Florida,1
+copd,33.573,-84.413,Riverdale,Georgia,1
+copd,33.708,-84.135,Stonecrest,Georgia,1
+copd,43.013,-83.687,Flint,Michigan,3
+copd,40.701,-73.462,North Massapequa,New York,1
+copd,29.564,-95.286,Pearland,Texas,1
+copd,40.761,-111.891,Salt Lake City,Utah,1
+copd,39.127,-84.514,Cincinnati,Ohio,2
+copd,31.223,-85.39,Dothan,Alabama,1
+copd,28.305,-81.417,Kissimmee,Florida,3
+copd,33.68,-84.439,East Point,Georgia,2
+copd,41.483,-87.333,Merrillville,Indiana,1
+copd,42.473,-83.222,Southfield,Michigan,3
+copd,42.606,-83.15,Troy,Michigan,3
+copd,33.636,-96.609,Sherman,Texas,1
+copd,41.601,-93.609,Des Moines,Iowa,1
+copd,38.784,-90.481,Saint Charles,Missouri,1
+copd,42.263,-71.802,Worcester,Massachusetts,1
+copd,41.661,-91.53,Iowa City,Iowa,1
+copd,38.361,-75.599,Salisbury,Maryland,1
+copd,43.642,-72.252,Lebanon,New Hampshire,1
+copd,40.334,-75.947,West Reading,Pennsylvania,1
+copd,41.851,-87.882,Westchester,Illinois,1
+copd,40.193,-85.386,Muncie,Indiana,1
+copd,44.953,-92.995,Maplewood,Minnesota,2
+copd,47.681,-122.209,Kirkland,Washington,1
+copd,33.415,-111.909,Tempe,Arizona,1
+copd,41.786,-88.147,Naperville,Illinois,1
+copd,41.473,-87.061,Valparaiso,Indiana,2
+copd,39.421,-76.626,Lutherville,Maryland,1
+copd,42.099,-75.918,Binghamton,New York,1
+copd,40.65,-73.95,Brooklyn,New York,1
+copd,39.175,-84.294,Milford,Ohio,1
+copd,28.556,-82.39,Brooksville,Florida,1
+copd,26.122,-80.143,Fort Lauderdale,Florida,2
+copd,28.244,-82.719,New Port Richey,Florida,1
+copd,33.583,-84.339,Morrow,Georgia,1
+copd,30.443,-91.187,Baton Rouge,Louisiana,1
+copd,30.224,-92.02,Lafayette,Louisiana,2
+copd,39.084,-77.153,Rockville,Maryland,1
+copd,41.701,-71.155,Fall River,Massachusetts,1
+copd,39.967,-74.943,Moorestown,New Jersey,1
+copd,35.292,-81.536,Shelby,North Carolina,2
+copd,29.582,-95.761,Richmond,Texas,1
+copd,29.538,-95.118,Webster,Texas,1
+copd,33.422,-111.823,Mesa,Arizona,1
+copd,36.766,-121.758,Castroville,California,1
+copd,33.962,-118.353,Inglewood,California,1
+copd,32.768,-117.023,La Mesa,California,1
+copd,33.792,-118.315,Lomita,California,1
+copd,33.6,-117.672,Mission Viejo,California,1
+copd,34.055,-117.752,Pomona,California,1
+copd,34.173,-118.554,Tarzana,California,1
+copd,34.171,-118.838,Thousand Oaks,California,1
+copd,33.2,-117.243,Vista,California,1
+copd,28.989,-80.902,Edgewater,Florida,1
+copd,26.617,-80.072,Lake Worth,Florida,1
+copd,28.039,-81.95,Lakeland,Florida,1
+copd,33.855,-84.217,Tucker,Georgia,1
+copd,42.5,-96.4,Sioux City,Iowa,1
+copd,37.692,-97.338,Wichita,Kansas,1
+copd,32.509,-92.119,Monroe,Louisiana,1
+copd,38.803,-76.99,Oxon Hill,Maryland,1
+copd,30.367,-89.093,Gulfport,Mississippi,1
+copd,34.962,-89.83,Olive Branch,Mississippi,1
+copd,41.433,-96.498,Fremont,Nebraska,1
+copd,40.925,-98.342,Grand Island,Nebraska,1
+copd,39.739,-75.224,Mullica Hill,New Jersey,1
+copd,42.653,-73.756,Albany,New York,1
+copd,40.681,-73.474,Massapequa,New York,1
+copd,36.073,-79.792,Greensboro,North Carolina,1
+copd,35.411,-80.843,Huntersville,North Carolina,1
+copd,34.723,-76.726,Morehead City,North Carolina,1
+copd,39.232,-84.378,Blue Ash,Ohio,1
+copd,35.223,-97.439,Norman,Oklahoma,1
+copd,32.776,-79.933,Charleston,South Carolina,1
+copd,43.544,-96.728,Sioux Falls,South Dakota,1
+copd,35.362,-86.209,Tullahoma,Tennessee,1
+copd,32.449,-99.733,Abilene,Texas,1
+copd,25.902,-97.497,Brownsville,Texas,1
+copd,32.748,-96.472,Forney,Texas,1
+copd,26.203,-98.23,McAllen,Texas,1
+copd,33.661,-95.556,Paris,Texas,1
+copd,33.02,-96.699,Plano,Texas,1
+copd,31.549,-97.147,Waco,Texas,1
+copd,41.223,-111.974,Ogden,Utah,1
+copd,40.692,-112.001,West Valley City,Utah,1
+copd,37.554,-77.46,Richmond,Virginia,1
+copd,36.728,-76.585,Suffolk,Virginia,1
+copd,32.387,-96.848,Waxahachie,Texas,1
+copd,28.661,-81.366,Altamonte Springs,Florida,1
+copd,30.228,-85.025,Orange,Florida,1
+copd,39.048,-95.678,Topeka,Kansas,1
+copd,38.793,-77.272,Burke,Virginia,1
+copd,36.853,-75.978,Virginia Beach,Virginia,1
+copd,32.847,-117.274,La Jolla,California,1
+copd,41.577,-93.711,West Des Moines,Iowa,1
+copd,40.626,-75.37,Bethlehem,Pennsylvania,1

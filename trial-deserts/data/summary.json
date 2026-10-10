@@ -1,0 +1,136 @@
+{
+  "far_minutes": 60,
+  "cap_minutes": 240,
+  "conditions": [
+    {
+      "id": "diabetes",
+      "label": "Type 2 diabetes",
+      "query": "type 2 diabetes",
+      "places_measure": "DIABETES",
+      "studies": 276,
+      "sites": 525,
+      "pct_pop_far": 20.2,
+      "pct_patients_far": 21.6,
+      "patients_far": 6809691,
+      "pct_far_by_group": {
+        "White, non-Hispanic": 25.1,
+        "Black": 11.9,
+        "Hispanic or Latino": 13.5,
+        "Asian": 6.0,
+        "American Indian / Alaska Native": 59.2
+      },
+      "pct_far_by_svi": {
+        "Least vulnerable quarter": 12.9,
+        "2nd": 22.9,
+        "3rd": 26.0,
+        "Most vulnerable quarter": 19.0
+      },
+      "pct_far_metro": 10.8,
+      "pct_far_nonmetro": 78.5
+    },
+    {
+      "id": "chd",
+      "label": "Coronary heart disease",
+      "query": "coronary artery disease",
+      "places_measure": "CHD",
+      "studies": 137,
+      "sites": 516,
+      "pct_pop_far": 19.7,
+      "pct_patients_far": 23.4,
+      "patients_far": 3904044,
+      "pct_far_by_group": {
+        "White, non-Hispanic": 24.4,
+        "Black": 11.6,
+        "Hispanic or Latino": 13.4,
+        "Asian": 5.4,
+        "American Indian / Alaska Native": 56.5
+      },
+      "pct_far_by_svi": {
+        "Least vulnerable quarter": 11.4,
+        "2nd": 22.4,
+        "3rd": 26.3,
+        "Most vulnerable quarter": 18.8
+      },
+      "pct_far_metro": 10.3,
+      "pct_far_nonmetro": 78.0
+    },
+    {
+      "id": "cancer",
+      "label": "Cancer",
+      "query": "cancer",
+      "places_measure": "CANCER",
+      "studies": 5724,
+      "sites": 1685,
+      "pct_pop_far": 7.0,
+      "pct_patients_far": 7.8,
+      "patients_far": 1599954,
+      "pct_far_by_group": {
+        "White, non-Hispanic": 8.3,
+        "Black": 5.2,
+        "Hispanic or Latino": 5.3,
+        "Asian": 1.2,
+        "American Indian / Alaska Native": 38.1
+      },
+      "pct_far_by_svi": {
+        "Least vulnerable quarter": 2.3,
+        "2nd": 6.8,
+        "3rd": 10.5,
+        "Most vulnerable quarter": 8.7
+      },
+      "pct_far_metro": 1.7,
+      "pct_far_nonmetro": 40.3
+    },
+    {
+      "id": "copd",
+      "label": "COPD",
+      "query": "COPD",
+      "places_measure": "COPD",
+      "studies": 74,
+      "sites": 347,
+      "pct_pop_far": 28.3,
+      "pct_patients_far": 34.1,
+      "patients_far": 5890203,
+      "pct_far_by_group": {
+        "White, non-Hispanic": 33.6,
+        "Black": 21.4,
+        "Hispanic or Latino": 20.1,
+        "Asian": 11.5,
+        "American Indian / Alaska Native": 65.7
+      },
+      "pct_far_by_svi": {
+        "Least vulnerable quarter": 19.6,
+        "2nd": 31.8,
+        "3rd": 35.0,
+        "Most vulnerable quarter": 27.1
+      },
+      "pct_far_metro": 19.0,
+      "pct_far_nonmetro": 86.0
+    }
+  ],
+  "date": "2026-10-10",
+  "drive_model": {
+    "metro": {
+      "a": 8.301,
+      "b": 0.9801,
+      "r2": 0.926,
+      "n": 200,
+      "median_abs_err_min": 3.5,
+      "km_range": [
+        1.2,
+        144.1
+      ]
+    },
+    "nonmetro": {
+      "a": 7.074,
+      "b": 1.1307,
+      "r2": 0.646,
+      "n": 200,
+      "median_abs_err_min": 9.3,
+      "km_range": [
+        3.1,
+        141.6
+      ]
+    }
+  },
+  "places_note": "PLACES 2025 release (BRFSS 2023); Kentucky and Pennsylvania from the 2024 release (BRFSS 2022)"
+}

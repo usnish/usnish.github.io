@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clinical Trial Deserts</title>
+<meta name="description" content="Who lives within an hour of a recruiting clinical trial for diabetes, heart disease, cancer or COPD, and who doesn't.">
+<link rel="stylesheet" href="../assets/viz/viz.css">
+<style>
+  .site { fill: var(--warn); fill-opacity: .7; stroke: var(--bg); stroke-width: .4; pointer-events: none; }
+  .big { font-size: 15px; color: var(--fg); margin: 14px 0 0; max-width: 80ch; }
+  .big b { color: var(--accent); }
+  .charts { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 28px; }
+</style>
+</head>
+<body>
+<main>
+  <a class="back" href="/">&larr; usnish.github.io</a>
+  <header>
+    <h1>Clinical trial deserts</h1>
+    <p class="lede">Clinical trials are how new treatments get tested, and often how patients get access to them first. But you can only join a trial you can get to. For four common chronic diseases, this maps how far every community is from the nearest site currently recruiting patients for an interventional trial.</p>
+  </header>
+
+  <div class="controls" id="conds" role="group" aria-label="Condition"></div>
+  <p class="big" id="headline"></p>
+  <div class="controls" id="measures" role="group" aria-label="Map measure" style="margin-top:14px"></div>
+  <p class="mtitle" id="mtitle"></p>
+  <div class="stats" id="stats"></div>
+
+  <div class="layout">
+    <div class="map-wrap" id="wrap">
+      <svg class="map" id="map" viewBox="0 0 975 640" role="img" aria-label="County map of distance to clinical trials"></svg>
+      <div class="tooltip" id="tooltip"></div>
+    </div>
+    <aside class="panel">
+      <h2>
+        <select id="state" aria-label="Filter by state"><option value="">All states</option></select>
+        <button id="sort" type="button">highest first</button>
+      </h2>
+      <ol class="rank" id="rank"></ol>
+    </aside>
+  </div>
+  <div class="toggle-row"><label><input type="checkbox" id="showsites" checked> Show recruiting trial sites</label></div>
+
+  <section class="chart">
+    <h2>Who is more than an hour from a trial</h2>
+    <p id="chartnote">Share of each group living more than an hour's drive from the nearest recruiting site.</p>
+    <div class="charts">
+      <div class="bars" id="bars-race"></div>
+      <div class="bars" id="bars-place"></div>
+    </div>
+  </section>
+
+  <section class="about">
+    <h2>How this was estimated</h2>
+    <p><b>Trials.</b> Every interventional study on <a href="https://clinicaltrials.gov/">ClinicalTrials.gov</a> with overall status "recruiting" that matches the condition search shown, keeping only U.S. sites whose own status is "recruiting". ClinicalTrials.gov places sites at their city's center, so a site dot marks a city, not a building. Pulled <span id="pulled"></span>.</p>
+    <p><b>Drive time.</b> For each of the ~84,000 census tracts, the straight-line distance from the tract's 2020 population center to the nearest recruiting site was converted to driving minutes with a model fitted to real routes: <span id="model"></span></p>
+    <p><b>Disease burden.</b> CDC <a href="https://www.cdc.gov/places/">PLACES</a> county estimates of adults with each condition (crude prevalence × adult population): <span id="placesnote"></span>. Connecticut uses its statewide rate because PLACES reports Connecticut by planning region rather than county.</p>
+    <p><b>Groups.</b> Race, ethnicity and social vulnerability come from CDC/ATSDR SVI 2022 (American Community Survey 2018–2022) at the tract level, so group shares describe where people live, not who has the disease. Metro and nonmetro follow USDA's 2023 Rural-Urban Continuum Codes.</p>
+    <p><b>Caveats.</b> Living near a site doesn't mean a patient qualifies; eligibility criteria exclude many people, and some trials enroll remotely. Condition searches are broad (for example "cancer" includes every tumor type), so the nearest site may be running a trial for a different form of the disease.</p>
+    <p>Data and build scripts: <a href="https://github.com/usnish/usnish.github.io/tree/master/trial-deserts">github.com/usnish/usnish.github.io</a>.</p>
+  </section>
+</main>
+
+<script src="../assets/viz/d3.min.js"></script>
+<script src="../assets/viz/topojson-client.min.js"></script>
+<script src="../assets/viz/vizkit.js"></script>
+<script>
+(async function () {
+  const [us, rows, sites, sum] = await Promise.all([
+    d3.json("../assets/viz/counties-albers-10m.json"),
+    d3.csv("data/counties.csv", d3.autoType),
+    d3.csv("data/sites.csv", d3.autoType),
+    d3.json("data/summary.json")
+  ]);
+  rows.forEach(r => r.fips = String(r.fips).padStart(5, "0"));
+  const by = new Map(rows.map(r => [r.fips, r]));
+  const conds = sum.conditions.map(c => ({ ...c, sub: `${VK.int(c.studies)} trials` }));
+  const F = sum.far_minutes;
+  const measures = [
+    { id: "min", label: "Average drive", sub: "to the nearest site", fmt: v => v == null ? "–" : v >= sum.cap_minutes - 0.5 ? (sum.cap_minutes / 60) + "+ hrs" : Math.round(v) + " min", unit: "Average drive to the nearest recruiting site, minutes" },
+    { id: "pct_far", label: `Residents >${F} min away`, sub: "share of county", fmt: v => v == null ? "–" : v.toFixed(0) + "%", unit: `Share of residents more than ${F} minutes from a recruiting site`,
+      scale: () => d3.scaleThreshold().domain([1, 10, 25, 50, 75, 99]).range(VK.RAMP) },
+    { id: "patients_far", label: `Patients >${F} min away`, sub: "adults with the condition", fmt: v => v == null ? "–" : VK.int(v), unit: `Adults with the condition living more than ${F} minutes from a site` },
+  ];
+  let c = conds[0], m = measures[0], desc = true;
+
+  const dm = sum.drive_model;
+  document.getElementById("model").textContent =
+    `${dm.metro.a.toFixed(1)} + ${dm.metro.b.toFixed(2)} min per km in metro counties (R² ${dm.metro.r2}) and ${dm.nonmetro.a.toFixed(1)} + ${dm.nonmetro.b.toFixed(2)} min per km elsewhere (R² ${dm.nonmetro.r2}), ` +
+    `from OSRM driving times between random pairs of tract population centers. It ignores traffic. ` +
+    `Drives are capped at ${sum.cap_minutes / 60} hours, beyond which the trip is impractical as a regular commitment and the model is unreliable (much of Alaska has no road connection at all).`;
+  document.getElementById("pulled").textContent = sum.date;
+  document.getElementById("placesnote").textContent = sum.places_note;
+
+  const wrap = document.getElementById("wrap"), svg = d3.select("#map");
+  const map = VK.countyMap({ svg, us, tooltip: "#tooltip", wrap, html: (fips, name) => {
+    const r = by.get(fips);
+    if (!r) return `<b>${name}</b>No data`;
+    return `<b>${name}</b><table>${measures.map(x => `<tr class="${x === m ? "cur" : ""}"><td>${x.label}</td><td>${x.fmt(r[`${c.id}_${x.id}`])}</td></tr>`).join("")}
+      <tr><td>Adults with ${c.label.toLowerCase()}</td><td>${r[`${c.id}_prev`] != null ? r[`${c.id}_prev`] + "%" : "–"}</td></tr></table>`;
+  }});
+  const r = d3.scaleSqrt().domain([1, d3.max(sites, s => s.trials)]).range([1.2, 9]);
+  const siteG = map.overlay;
+  const cname = new Map(map.counties.map(f => [f.id, f.properties.name]));
+  const stSel = d3.select("#state");
+  [...map.stateNames].sort((a, b) => d3.ascending(a[1], b[1])).forEach(([id, n]) => stSel.append("option").attr("value", id).text(n));
+
+  function draw() {
+    VK.pressButtons("#conds", conds, c, d => { c = d; draw(); });
+    VK.pressButtons("#measures", measures, m, d => { m = d; draw(); });
+    document.getElementById("headline").innerHTML =
+      `<b>${c.pct_patients_far}%</b> of adults with ${c.label.toLowerCase()}, about ${VK.int(Math.round(c.patients_far / 1000) * 1000)} people, live more than an hour's drive from any site recruiting for one of its ${VK.int(c.studies)} open trials. ` +
+      `In nonmetro counties it's <b>${c.pct_far_nonmetro}%</b> of residents; in metro areas, ${c.pct_far_metro}%.`;
+    VK.stats(document.getElementById("stats"), [
+      ["Recruiting trials", VK.int(c.studies), `search: “${c.query}”`],
+      ["U.S. site locations", VK.int(c.sites), "cities with a recruiting site"],
+      [`Residents >${F} min away`, c.pct_pop_far + "%", "of the U.S. population"],
+      [`Patients >${F} min away`, c.pct_patients_far + "%", `≈${VK.int(Math.round(c.patients_far / 1000) * 1000)} adults`],
+    ]);
+    document.getElementById("mtitle").innerHTML = `<b>${m.unit}</b> · ${c.label}`;
+    const key = `${c.id}_${m.id}`;
+    const vals = rows.map(x => x[key]).filter(v => v != null && !isNaN(v));
+    const color = m.scale ? m.scale() : d3.scaleQuantile().domain(vals).range(VK.RAMP);
+    map.fill(f => by.get(f)?.[key], color);
+    VK.legend(map.legend, color, v => m.id === "patients_far" ? d3.format(".2s")(v) : m.fmt(v).replace(" min", ""),
+      m.unit.replace(", minutes", " (min)") + (m.scale ? "" : " · equal-count bins"));
+    siteG.selectAll("circle").data(sites.filter(s => s.condition === c.id).map(s => ({ ...s, p: VK.projection([s.lon, s.lat]) })).filter(s => s.p), s => s.lat + "," + s.lon)
+      .join("circle").attr("class", "site").attr("cx", s => s.p[0]).attr("cy", s => s.p[1]).attr("r", s => r(s.trials))
+      .attr("display", document.getElementById("showsites").checked ? null : "none");
+    VK.bars(document.getElementById("bars-race"), Object.entries(c.pct_far_by_group).map(([k, v]) => ({ group: "By race and ethnicity", label: k, value: v })), { max: 100 });
+    VK.bars(document.getElementById("bars-place"), [
+      ...Object.entries(c.pct_far_by_svi).map(([k, v]) => ({ group: "By social vulnerability", label: k, value: v })),
+      { group: "By rurality", label: "Metro counties", value: c.pct_far_metro },
+      { group: "By rurality", label: "Nonmetro counties", value: c.pct_far_nonmetro },
+    ], { max: 100 });
+    document.getElementById("chartnote").textContent = `Share of each group living more than an hour's drive from the nearest site recruiting for a ${c.label.toLowerCase()} trial.`;
+    renderList();
+  }
+  function renderList() {
+    const st = stSel.property("value"), key = `${c.id}_${m.id}`;
+    const data = rows.filter(x => x[key] != null && (!st || x.fips.slice(0, 2) === st))
+      .sort((a, b) => desc ? b[key] - a[key] : a[key] - b[key]).slice(0, 100);
+    d3.select("#rank").selectAll("li").data(data, d => d.fips).join("li")
+      .html((d, i) => `<span class="n">${i + 1}</span><span>${cname.get(d.fips) || d.fips} <span class="st">${map.stateNames.get(d.fips.slice(0, 2)) || ""}</span></span><span class="val">${m.fmt(d[key])}</span>`)
+      .on("mouseenter", (e, d) => map.highlight(d.fips)).on("mouseleave", () => map.highlight(null));
+  }
+  stSel.on("change", renderList);
+  d3.select("#sort").on("click", function () { desc = !desc; this.textContent = desc ? "highest first" : "lowest first"; renderList(); });
+  d3.select("#showsites").on("change", function () { siteG.selectAll("circle").attr("display", this.checked ? null : "none"); });
+  draw();
+})();
+</script>
+</body>
+</html>

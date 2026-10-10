@@ -1,0 +1,26 @@
+{
+  "metro": {
+    "a": 8.301,
+    "b": 0.9801,
+    "r2": 0.926,
+    "n": 200,
+    "median_abs_err_min": 3.5,
+    "km_range": [
+      1.2,
+      144.1
+    ]
+  },
+  "nonmetro": {
+    "a": 7.074,
+    "b": 1.1307,
+    "r2": 0.646,
+    "n": 200,
+    "median_abs_err_min": 9.3,
+    "km_range": [
+      3.1,
+      141.6
+    ]
+  },
+  "source": "OSRM demo server (router.project-osrm.org) driving times between random 2020 tract population centers",
+  "date": "2026-10-10"
+}

@@ -1,0 +1,58 @@
+{
+  "facilities": 6906,
+  "beyond_range_km": 150,
+  "beyond_range_pop": 170112,
+  "beyond_range_states": [
+    "02",
+    "16",
+    "32",
+    "41",
+    "48"
+  ],
+  "median_one_way_min": 11.8,
+  "median_annual_hours": 61,
+  "metro_mean_annual_hours": 69,
+  "nonmetro_mean_annual_hours": 143,
+  "people_far": 21953429,
+  "pct_people_far": 6.6,
+  "no_vehicle_hh": 10462152,
+  "no_vehicle_far_hh": 447770,
+  "hours_by_svi_quarter": {
+    "Least vulnerable quarter": 79,
+    "2nd": 85,
+    "3rd": 85,
+    "Most vulnerable quarter": 69
+  },
+  "pct_no_vehicle_by_svi_quarter": {
+    "Least vulnerable quarter": 3.4,
+    "2nd": 6.0,
+    "3rd": 8.5,
+    "Most vulnerable quarter": 16.1
+  },
+  "far_minutes": 30,
+  "sessions_per_year": 156,
+  "drive_model": {
+    "metro": {
+      "a": 8.301,
+      "b": 0.9801,
+      "r2": 0.926,
+      "n": 200,
+      "median_abs_err_min": 3.5,
+      "km_range": [
+        1.2,
+        144.1
+      ]
+    },
+    "nonmetro": {
+      "a": 7.074,
+      "b": 1.1307,
+      "r2": 0.646,
+      "n": 200,
+      "median_abs_err_min": 9.3,
+      "km_range": [
+        3.1,
+        141.6
+      ]
+    }
+  }
+}

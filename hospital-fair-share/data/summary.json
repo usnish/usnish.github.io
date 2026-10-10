@@ -1,0 +1,53 @@
+{
+  "year": 2023,
+  "fed_rate": 0.21,
+  "hospitals": 2686,
+  "dropped_missing": 2,
+  "excluded_outliers": 47,
+  "max_margin": 0.5,
+  "geocoded_at_zip": 394,
+  "with_positive_income": 1824,
+  "fed_tax_est_total": 15860546304,
+  "charity_total": 16568066138,
+  "charity_total_profitable": 12534187194,
+  "pct_profitable_charity_below_tax": 59.6,
+  "median_charity_pct_costs": 1.48,
+  "by_county_uninsured": {
+    "Lowest uninsured quarter": {
+      "hospitals": 718,
+      "median_charity_pct_costs": 0.96,
+      "pct_charity_below_tax": 72.5,
+      "uninsured_range": [
+        1.6,
+        5.1
+      ]
+    },
+    "2nd": {
+      "hospitals": 643,
+      "median_charity_pct_costs": 1.32,
+      "pct_charity_below_tax": 70.5,
+      "uninsured_range": [
+        5.1,
+        6.8
+      ]
+    },
+    "3rd": {
+      "hospitals": 660,
+      "median_charity_pct_costs": 1.59,
+      "pct_charity_below_tax": 59.2,
+      "uninsured_range": [
+        6.8,
+        9.7
+      ]
+    },
+    "Highest uninsured quarter": {
+      "hospitals": 665,
+      "median_charity_pct_costs": 3.68,
+      "pct_charity_below_tax": 36.9,
+      "uninsured_range": [
+        9.7,
+        44.9
+      ]
+    }
+  }
+}
