@@ -5,3 +5,7 @@
   repo: https://github.com/usnish/biochemical-pathways-poster
   image: /biochemical-pathways-poster/poster_thumb.jpg
   description: Printable, high-resolution renders of Roche's Biochemical Pathways (Part 1, Metabolic Pathways) poster, preserved from biochemical-pathways.com before it went offline.
+
+- title: Cardiac Rehab by State
+  url: /cardiac-rehab-map/
+  description: Interactive D3 map of cardiac rehabilitation participation among eligible patients, by U.S. state. Data is still being assembled.
