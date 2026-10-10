@@ -1,0 +1,7 @@
+start,end,pct,low,high,kind,label,population,source,url
+1997,1997,,13.9,31.0,published,"1997: 13.9% after heart attack, 31.0% after bypass","Medicare FFS 65+ hospitalized for heart attack or bypass surgery, alive 30 days; overall rate not reported in the abstract","Suaya JA et al. Circulation 2007",https://doi.org/10.1161/CIRCULATIONAHA.107.701466
+2007,2011,16.3,,,published,2007–2011,"5% Medicare sample; heart attack, PCI or bypass; ≥1 CR visit within 12 months","Beatty AL et al. Circulation 2018",https://doi.org/10.1161/CIRCULATIONAHA.117.029471
+2009,2012,19.5,,,published,2009–2012,"5% Medicare sample; heart attack, bypass, PCI or valve surgery; average annual participation","Fletcher DR et al. Circ Cardiovasc Qual Outcomes 2021",https://doi.org/10.1161/CIRCOUTCOMES.120.006572
+2016,2016,24.4,,,published,2016,"Medicare FFS 65+, Million Hearts qualifying events; ≥1 session within 365 days","Ritchey MD et al. Circ Cardiovasc Qual Outcomes 2020",https://doi.org/10.1161/CIRCOUTCOMES.119.005902
+2017,2017,28.6,,,published,2017,"Medicare FFS 65+, Million Hearts qualifying events; ≥1 session within 365 days","Keteyian SJ et al. J Cardiopulm Rehabil Prev 2022",https://doi.org/10.1097/HCR.0000000000000675
+2019.5,2021,33.0,,,subset,Jul 2019–2021,"Medicare FFS after revascularization or valve replacement only (excludes medically managed heart attacks)","Fu W et al. J Cardiopulm Rehabil Prev 2025",https://doi.org/10.1097/HCR.0000000000000921
