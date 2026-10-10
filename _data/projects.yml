@@ -29,7 +29,7 @@
       repo: https://github.com/usnish/usnish.github.io/tree/master/trial-deserts
       description: Who lives within an hour of a recruiting clinical trial for diabetes, coronary heart disease, cancer or COPD, broken down by race, social vulnerability and rurality.
 
-    - title: Nonprofit Hospital Fair Share
-      url: /hospital-fair-share/
-      repo: https://github.com/usnish/usnish.github.io/tree/master/hospital-fair-share
-      description: Charity care at 2,700 nonprofit hospitals compared with a conservative estimate of their federal tax break, mapped against how many people in each county lack insurance.
+    - title: Nonprofit Hospital Charity Care
+      url: /hospital-charity-care/
+      repo: https://github.com/usnish/usnish.github.io/tree/master/hospital-charity-care
+      description: Charity care reported by 2,700 U.S. nonprofit hospitals in 2023, mapped alongside the share of residents without health insurance in each county.

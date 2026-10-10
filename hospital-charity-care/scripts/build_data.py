@@ -1,18 +1,16 @@
-"""Build the nonprofit hospital "fair share" data.
+"""Build the nonprofit hospital charity care data.
 
 From CMS's Hospital Provider Cost Report (HCRIS) for 2023, take every nonprofit
-short-term acute care and critical access hospital, and compare the charity care
-it reported with a deliberately conservative estimate of one tax break it gets:
-the federal income tax it would owe at the 21% corporate rate on its positive
-net income. State income, property and sales tax exemptions, tax-exempt bond
-financing and deductible donations are left out, so the true value of the
-exemption is higher than this estimate.
+short-term acute care and critical access hospital and its reported charity care
+(at cost). For context, also compute a rough, partial estimate of its federal
+income tax exemption: 21% of positive net income. State and local exemptions,
+tax-exempt bonds and deductible donations are not included.
 
 Hospitals are geocoded with the Census geocoder and placed in counties; county
 uninsured and poverty rates come from CDC/ATSDR SVI 2022 (ACS 2018-2022).
 
 Writes data/hospitals.csv, data/counties.csv, data/summary.json.
-Usage: python3 hospital-fair-share/scripts/build_data.py   (needs numpy, scipy)
+Usage: python3 hospital-charity-care/scripts/build_data.py   (needs numpy, scipy)
 """
 import json
 import sys

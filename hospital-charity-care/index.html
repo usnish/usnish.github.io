@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hospital Charity Care</title>
+<meta name="description" content="Charity care reported by 2,700 U.S. nonprofit hospitals in 2023, mapped alongside the share of residents without health insurance in each county.">
+<link rel="stylesheet" href="../assets/viz/viz.css">
+<style>
+  .dot { stroke: var(--bg); stroke-width: .6; cursor: pointer; fill-opacity: .9; }
+  .dot.dim { opacity: .12; }
+  .dot.sel { stroke: var(--hover); stroke-width: 2; }
+</style>
+</head>
+<body>
+<main>
+  <a class="back" href="/">&larr; usnish.github.io</a>
+  <header>
+    <h1>Charity care at nonprofit hospitals</h1>
+    <p class="lede">Nonprofit hospitals provide free and discounted care to patients who can't afford to pay, and in turn are exempt from most taxes. This map shows the charity care each U.S. nonprofit acute care and critical access hospital reported to Medicare for 2023, alongside how many people in its county lack health insurance.</p>
+  </header>
+
+  <div class="stats" id="stats"></div>
+
+  <div class="layout">
+    <div class="map-wrap" id="wrap">
+      <svg class="map" id="map" viewBox="0 0 975 640" role="img" aria-label="Map of nonprofit hospitals' charity care over county uninsured rates"></svg>
+      <div class="tooltip" id="tooltip"></div>
+      <div class="card" id="card" hidden></div>
+    </div>
+    <aside class="panel">
+      <h2>
+        <select id="state" aria-label="Filter by state"><option value="">All states</option></select>
+        <select id="sort" aria-label="Sort hospitals">
+          <option value="dollars">Charity care ($)</option>
+          <option value="pct">Charity care (% of costs)</option>
+          <option value="beds">Beds</option>
+        </select>
+      </h2>
+      <ol class="rank" id="rank"></ol>
+    </aside>
+  </div>
+  <p class="mtitle">Each dot is a hospital, sized by charity care dollars and colored by charity care as a share of the hospital's total costs. Counties are shaded by the share of residents without health insurance.</p>
+
+  <section class="chart">
+    <h2>Charity care is highest where more people are uninsured</h2>
+    <p>Median charity care as a share of total costs, for hospitals grouped by their county's uninsured rate.</p>
+    <div class="bars" id="bars-pct"></div>
+  </section>
+
+  <section class="about">
+    <h2>About the data</h2>
+    <p><b>Hospitals and finances.</b> CMS <a href="https://data.cms.gov/provider-compliance/cost-report/hospital-provider-cost-report">Hospital Provider Cost Report</a> (HCRIS), 2023 release: nonprofit (church or other voluntary) short-term acute care and critical access hospitals in the 50 states and DC, using each hospital's latest 2023 report. Charity care is the cost (not charges) of free and discounted care reported on Worksheet S-10. Locations from the Census Bureau geocoder; <span id="zipnote"></span> <span id="outnote"></span></p>
+    <p><b>Charity care is one part of community benefit.</b> Nonprofit hospitals also report other community benefit on IRS Form 990 Schedule H, including unreimbursed Medicaid costs, health professions education, research, subsidized services and community health programs. None of that is counted here, so charity care alone understates what many hospitals contribute.</p>
+    <p><b>Tax exemption estimate.</b> Each hospital's details include a rough estimate of its federal income tax exemption: 21% (the federal corporate rate) of positive net income. It leaves out state and local exemptions, tax-exempt bonds and deductible donations, and cost-report net income includes investment gains that swing from year to year, so it is context only. The <a href="https://lownhospitalsindex.org/">Lown Institute</a> publishes a fuller analysis built on IRS filings.</p>
+    <p><b>Caveats.</b> Charity care policies and reporting practices differ between hospitals and states, and states with broader Medicaid coverage tend to need less charity care. Hospitals in a larger system report separately here. County uninsured rates are CDC/ATSDR Social Vulnerability Index 2022 estimates (American Community Survey 2018–2022).</p>
+    <p>Data and build script: <a href="https://github.com/usnish/usnish.github.io/tree/master/hospital-charity-care">github.com/usnish/usnish.github.io</a>.</p>
+  </section>
+</main>
+
+<script src="../assets/viz/d3.min.js"></script>
+<script src="../assets/viz/topojson-client.min.js"></script>
+<script src="../assets/viz/vizkit.js"></script>
+<script>
+(async function () {
+  const [us, hosp, cty, sum] = await Promise.all([
+    d3.json("../assets/viz/counties-albers-10m.json"),
+    d3.csv("data/hospitals.csv", d3.autoType),
+    d3.csv("data/counties.csv", d3.autoType),
+    d3.json("data/summary.json")
+  ]);
+  const pct = v => v == null || isNaN(v) ? "–" : v.toFixed(1) + "%";
+  hosp.forEach(h => {
+    h.fips = String(h.county).padStart(5, "0");
+    const p = VK.projection([h.lon, h.lat]); h.x = p && p[0]; h.y = p && p[1];
+  });
+  const byCounty = new Map(cty.map(c => [String(c.fips).padStart(5, "0"), c]));
+
+  VK.stats(document.getElementById("stats"), [
+    ["Nonprofit hospitals", VK.int(sum.hospitals), `acute care and critical access, ${sum.year}`],
+    ["Total charity care", VK.money(sum.charity_total), "at cost"],
+    ["Median charity care", sum.median_charity_pct_costs.toFixed(1) + "%", "of a hospital's total costs"],
+    ["In the least-insured counties", sum.by_county_uninsured["Highest uninsured quarter"].median_charity_pct_costs.toFixed(1) + "%",
+      `median, vs ${sum.by_county_uninsured["Lowest uninsured quarter"].median_charity_pct_costs.toFixed(1)}% in the best-insured`],
+  ]);
+  document.getElementById("zipnote").textContent =
+    `${sum.geocoded_at_zip} hospitals whose address did not match are placed at their ZIP code's center.`;
+  document.getElementById("outnote").textContent =
+    `${sum.excluded_outliers} hospitals reporting net income above ${sum.max_margin * 100}% of total costs are left out, since margins that large usually reflect one-time items or reporting differences.`;
+
+  const wrap = document.getElementById("wrap"), svg = d3.select("#map");
+  const map = VK.countyMap({ svg, us, tooltip: "#tooltip", wrap, html: (fips, name) => {
+    const c = byCounty.get(fips), n = hosp.filter(h => h.fips === fips).length;
+    return `<b>${name}</b><table><tr class="cur"><td>Uninsured</td><td>${pct(c?.pct_uninsured)}</td></tr>
+      <tr><td>Below 150% of poverty</td><td>${pct(c?.pct_poverty150)}</td></tr>
+      <tr><td>Nonprofit hospitals</td><td>${n}</td></tr></table>`;
+  }});
+  // Counties in a light neutral gray ramp so the hospital dots carry the color
+  const grays = ["#f4f4f4", "#e6e6e6", "#d6d6d6", "#c4c4c4", "#afafaf", "#969696"];
+  const vals = cty.map(c => c.pct_uninsured).filter(v => v != null);
+  const color = d3.scaleQuantile().domain(vals).range(grays);
+  map.fill(f => byCounty.get(f)?.pct_uninsured, color);
+  VK.legend(map.legend, color, v => v.toFixed(0) + "%", "Residents without health insurance (counties)");
+
+  const dotColor = d3.scaleQuantile().domain(hosp.map(h => h.charity_pct_costs)).range(VK.RAMP.slice(2));
+  const r = d3.scaleSqrt().domain([0, d3.max(hosp, h => h.charity_care)]).range([1.3, 14]);
+  const lg = svg.append("g").attr("class", "legend").attr("transform", "translate(560,74)");
+  VK.legend(lg, dotColor, v => v.toFixed(1) + "%", "Charity care as % of total costs (hospitals)");
+  const dots = map.overlay.selectAll("circle").data(hosp.filter(h => h.x != null).sort((a, b) => b.charity_care - a.charity_care))
+    .join("circle").attr("class", "dot").attr("cx", d => d.x).attr("cy", d => d.y)
+    .attr("r", d => r(d.charity_care)).attr("fill", d => dotColor(d.charity_pct_costs))
+    .on("mousemove", (e, d) => hoverDot(e, d)).on("mouseleave", () => d3.select("#tooltip").style("opacity", 0))
+    .on("click", (e, d) => { e.stopPropagation(); openCard(d); });
+
+  function hoverDot(e, d) {
+    const [x, y] = d3.pointer(e, wrap);
+    d3.select("#tooltip").html(`<b>${d.name}</b>${d.city}, ${d.state}<table>
+      <tr class="cur"><td>Charity care</td><td>${VK.money(d.charity_care)}</td></tr>
+      <tr><td>Share of total costs</td><td>${d.charity_pct_costs.toFixed(1)}%</td></tr>
+      <tr><td>County uninsured</td><td>${pct(d.county_uninsured)}</td></tr></table><div class="note">Click for details</div>`)
+      .style("opacity", 1).style("left", Math.min(x + 14, wrap.clientWidth - 270) + "px").style("top", Math.min(y + 14, wrap.clientHeight - 140) + "px");
+  }
+  const card = document.getElementById("card");
+  function openCard(d) {
+    card.innerHTML = `<button class="close" aria-label="Close">×</button><h3>${d.name}</h3>
+      <div style="color:var(--muted)">${d.city}, ${d.state} · ${d.type} · ${d.beds} beds</div>
+      <table>
+        <tr><td>Charity care (cost)</td><td>${VK.money(d.charity_care)}</td></tr>
+        <tr><td>Charity care / total costs</td><td>${d.charity_pct_costs.toFixed(2)}%</td></tr>
+        <tr><td>Total costs</td><td>${VK.money(d.total_costs)}</td></tr>
+        <tr><td>Net income</td><td>${VK.money(d.net_income)}</td></tr>
+        <tr><td>Est. federal income tax exemption*</td><td>${d.fed_tax_est > 0 ? VK.money(d.fed_tax_est) : "–"}</td></tr>
+        <tr><td>County uninsured</td><td>${pct(d.county_uninsured)}</td></tr>
+        <tr><td>Fiscal year ending</td><td>${d.fy_end}</td></tr>
+        <tr><td>Medicare CCN</td><td>${d.ccn}</td></tr>
+      </table>
+      <div style="font-size:11px;color:var(--muted);margin-top:6px">*21% of positive net income; rough and partial. See “About the data.”</div>`;
+    card.hidden = false;
+    card.querySelector(".close").onclick = () => { card.hidden = true; dots.classed("sel", false); };
+    dots.classed("sel", x => x === d);
+  }
+  svg.on("click", () => { card.hidden = true; dots.classed("sel", false); });
+
+  const stSel = d3.select("#state");
+  [...new Set(hosp.map(h => h.state))].sort().forEach(s => stSel.append("option").attr("value", s).text(s));
+  function update() {
+    const st = stSel.property("value");
+    dots.classed("dim", d => st && d.state !== st).attr("pointer-events", d => st && d.state !== st ? "none" : null);
+    const [cmp, fmt] = {
+      dollars: [(a, b) => b.charity_care - a.charity_care, h => VK.money(h.charity_care)],
+      pct: [(a, b) => b.charity_pct_costs - a.charity_pct_costs, h => h.charity_pct_costs.toFixed(1) + "%"],
+      beds: [(a, b) => b.beds - a.beds, h => VK.int(h.beds)],
+    }[d3.select("#sort").property("value")];
+    const data = hosp.filter(h => !st || h.state === st).sort(cmp).slice(0, 100);
+    d3.select("#rank").selectAll("li").data(data, d => d.ccn).join("li")
+      .html((d, i) => `<span class="n">${i + 1}</span><span>${d.name} <span class="st">${d.city}, ${d.state}</span></span><span class="val">${fmt(d)}</span>`)
+      .style("cursor", "pointer")
+      .on("mouseenter", (e, d) => dots.classed("sel", x => x === d)).on("mouseleave", () => dots.classed("sel", false))
+      .on("click", (e, d) => openCard(d));
+  }
+  stSel.on("change", update); d3.select("#sort").on("change", update);
+  update();
+
+  VK.bars(document.getElementById("bars-pct"), Object.entries(sum.by_county_uninsured).map(([k, v]) => ({
+    label: `${k.replace(" uninsured quarter", "")} <span style="color:var(--muted);font-size:11px">${v.uninsured_range[0]}–${v.uninsured_range[1]}% uninsured</span>`,
+    value: v.median_charity_pct_costs })), { fmt: v => v.toFixed(1) + "%" });
+})();
+</script>
+</body>
+</html>
