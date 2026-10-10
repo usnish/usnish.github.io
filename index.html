@@ -81,6 +81,31 @@
   .rank .st { color: var(--muted); font-size: 11px; }
   .rank .val { text-align: right; font-variant-numeric: tabular-nums; }
 
+  .hatch-line { stroke: #000; stroke-opacity: .45; stroke-width: 1.4; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .hatch-line { stroke: #fff; stroke-opacity: .5; } }
+  :root[data-theme="dark"] .hatch-line { stroke: #fff; stroke-opacity: .5; }
+  .rank li.low { opacity: .55; }
+  .rank li.low .val::after { content: "*"; }
+  label.lowtoggle { display: block; font-size: 12px; color: var(--muted); margin-top: 6px; }
+  label.lowtoggle[hidden] { display: none; }
+
+  section.trend { margin-top: 36px; border-top: 1px solid var(--line); padding-top: 16px; }
+  section.trend h2 { font-size: 18px; margin: 0 0 4px; }
+  section.trend > p { margin: 0 0 8px; color: var(--muted); font-size: 14px; max-width: 85ch; }
+  svg.trend-chart { width: 100%; max-width: 900px; height: auto; display: block; overflow: visible; }
+  .trend-chart .axis text { fill: var(--muted); font-size: 12px; }
+  .trend-chart .axis line, .trend-chart .axis path { stroke: var(--line); }
+  .trend-chart .grid line { stroke: var(--line); }
+  .trend-chart .lbl { fill: var(--fg); font-size: 12px; font-variant-numeric: tabular-nums; }
+  .trend-chart .goal { stroke: var(--accent); stroke-dasharray: 5 4; }
+  .trend-chart .goal-lbl { fill: var(--accent); font-size: 12px; }
+  .trend-chart .pt { cursor: default; }
+  table.src { border-collapse: collapse; font-size: 13px; margin-top: 12px; max-width: 900px; width: 100%; }
+  table.src th, table.src td { text-align: left; padding: 5px 8px 5px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+  table.src th { color: var(--muted); font-weight: 500; font-size: 12px; }
+  table.src td.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .tablewrap { overflow-x: auto; }
+
   section.about { margin-top: 32px; border-top: 1px solid var(--line); padding-top: 16px; color: var(--muted); font-size: 14px; max-width: 85ch; }
   section.about h2 { font-size: 15px; color: var(--fg); margin: 0 0 6px; }
   section.about li { margin-bottom: 4px; }
@@ -108,15 +133,24 @@
         <select id="state" aria-label="Filter by state"><option value="">All states</option></select>
         <button id="sort" type="button">highest first</button>
       </h2>
+      <label class="lowtoggle" id="lowtoggle"><input type="checkbox" id="hidelow" checked> Hide counties with fewer than 50 eligible patients</label>
       <ol class="rank" id="rank"></ol>
     </aside>
   </div>
+
+  <section class="trend">
+    <h2>National cardiac rehab participation over time</h2>
+    <p>Share of eligible Medicare patients who attended at least one cardiac rehab session, from published national studies. Studies differ in which events qualify and how patients were sampled, so treat the line as a rough trend. Horizontal bars show multi-year study periods.</p>
+    <svg class="trend-chart" id="trend" viewBox="0 0 900 360" role="img" aria-label="Chart of national cardiac rehab participation over time"></svg>
+    <div class="tablewrap"><table class="src" id="trend-table"></table></div>
+  </section>
 
   <section class="about">
     <h2>About the data</h2>
     <ul id="sources"></ul>
     <p><b>Eligibility.</b> Medicare covers cardiac rehab after a heart attack, bypass surgery, angioplasty/stenting, heart valve repair or replacement, heart or heart–lung transplant, stable angina, and stable heart failure with reduced ejection fraction. The CR-eligible rate counts Million Hearts primary qualifying events (heart attack, bypass, PCI, valve procedure, transplant) among Medicare fee-for-service beneficiaries; the hospitalization rates are broader proxies for the same population.</p>
     <p><b>Caveats.</b> Medicare measures cover fee-for-service beneficiaries 65+ only (Medicare Advantage enrollees are not included). Hospitalization rates are age-standardized and spatially smoothed by CDC. Coronary heart disease prevalence is a modeled self-report estimate for all adults; PLACES has no estimates for Kentucky or Pennsylvania in this release, and reports Connecticut by planning region, which doesn't match these county shapes. CDC labels the CR eligibility period both 2018–2019 and 2019–2020. Gray counties have no data or were suppressed for small numbers.</p>
+    <p><b>Small counts.</b> CDC publishes rates without counts. To flag unreliable rates, the page estimates each county's CR-eligible patients as the eligibility rate × the county's 2019 Original Medicare enrollment (<a href="https://data.cms.gov/summary-statistics-on-use-and-payments/medicare-geographic-comparisons/medicare-geographic-variation-by-national-state-county">CMS Geographic Variation PUF</a>, all ages). CR measures in counties with fewer than 50 estimated eligible patients are hatched; at that size a single patient moves the rate by 2 or more points. Most of the 70%+ participation rates are in such counties: Sheridan County, Nebraska's 99.6% rests on roughly 9 patients.</p>
   </section>
 </main>
 
@@ -132,6 +166,10 @@
     }),
     d3.json("data/measures.json")
   ]);
+  const trend = await d3.csv("data/national_trend.csv", d3.autoType);
+  const LOW_N = 50;
+  const lowCountMeasures = new Set(["cr_eligible", "cr_participation"]);
+  const isLow = r => r && lowCountMeasures.has(m.id) && r.est_eligible != null && r.est_eligible < LOW_N;
   const stateNames = new Map(topojson.feature(us, us.objects.states).features.map(f => [f.id, f.properties.name]));
   // Keep the 50 states + DC drawn on the map; drop territories from stats and lists
   rows.splice(0, rows.length, ...rows.filter(r => stateNames.has(r.fips.slice(0, 2))));
@@ -152,6 +190,11 @@
     .attr("class", "county").attr("d", path)
     .on("mousemove", (e, f) => show(f, e))
     .on("mouseleave", () => { tip.style("opacity", 0); shapes.classed("active", false); });
+  svg.append("defs").append("pattern").attr("id", "hatch").attr("patternUnits", "userSpaceOnUse")
+    .attr("width", 4).attr("height", 4).attr("patternTransform", "rotate(45)")
+    .append("line").attr("class", "hatch-line").attr("x1", 0).attr("y1", 0).attr("x2", 0).attr("y2", 4);
+  const hatches = svg.append("g").attr("pointer-events", "none").selectAll("path").data(counties).join("path")
+    .attr("d", path).attr("fill", "url(#hatch)");
   svg.append("path").datum(topojson.mesh(us, us.objects.states, (a, b) => a !== b))
     .attr("fill", "none").attr("stroke", "var(--stroke)").attr("stroke-width", 1).attr("d", path).attr("pointer-events", "none");
   const legend = svg.append("g").attr("class", "legend").attr("transform", "translate(570,20)");
@@ -165,6 +208,7 @@
       html += `<tr class="${mm === m ? "cur" : ""}"><td>${mm.label}</td><td>${fmt(mm, r?.[mm.id])}</td></tr>`;
     }
     html += "</table>";
+    if (r?.est_eligible != null) html += `<div style="margin-top:4px;color:var(--muted)">≈${d3.format(",")(r.est_eligible)} CR-eligible patients (est.)${r.est_eligible < LOW_N ? " · small count, rates unreliable" : ""}</div>`;
     tip.html(html).style("opacity", 1)
       .style("left", Math.min(x + 14, wrap.clientWidth - 260) + "px")
       .style("top", Math.min(y + 14, wrap.clientHeight - 150) + "px");
@@ -173,9 +217,10 @@
 
   function renderList() {
     const st = document.getElementById("state").value;
-    const data = rows.filter(r => r[m.id] != null && (!st || r.fips.slice(0, 2) === st))
+    const hideLow = lowCountMeasures.has(m.id) && document.getElementById("hidelow").checked;
+    const data = rows.filter(r => r[m.id] != null && (!st || r.fips.slice(0, 2) === st) && !(hideLow && isLow(r)))
       .sort((a, b) => desc ? b[m.id] - a[m.id] : a[m.id] - b[m.id]).slice(0, 100);
-    d3.select("#rank").selectAll("li").data(data, d => d.fips).join("li")
+    d3.select("#rank").selectAll("li").data(data, d => d.fips).join("li").classed("low", isLow)
       .html((d, i) => `<span class="n">${i + 1}</span><span>${d.county} <span class="st">${d.state}</span></span><span class="val">${fmt(m, d[m.id])}</span>`)
       .on("mouseenter", (e, d) => shapes.classed("active", f => f.id === d.fips))
       .on("mouseleave", () => shapes.classed("active", false));
@@ -190,22 +235,33 @@
     const vals = rows.map(r => r[m.id]).filter(v => v != null);
     color = d3.scaleQuantile().domain(vals).range(ramp);
     shapes.attr("fill", f => { const v = byFips.get(f.id)?.[m.id]; return v == null ? "var(--nodata)" : color(v); });
+    hatches.attr("display", f => { const r = byFips.get(f.id); return r?.[m.id] != null && isLow(r) ? null : "none"; });
+    document.getElementById("lowtoggle").hidden = !lowCountMeasures.has(m.id);
 
     const stats = document.getElementById("stats");
     stats.innerHTML = "";
     const add = (k, v, s) => stats.insertAdjacentHTML("beforeend",
       `<div class="stat"><div class="k">${k}</div><div class="v">${v}</div>${s ? `<div class="s">${s}</div>` : ""}</div>`);
-    const sorted = rows.filter(r => r[m.id] != null).sort((a, b) => b[m.id] - a[m.id]);
+    const sorted = rows.filter(r => r[m.id] != null && !isLow(r)).sort((a, b) => b[m.id] - a[m.id]);
+    if (m.id === "cr_participation") {
+      add("Overall (weighted)", fmt(m, nationalEstimate()), "weighted by est. eligible patients");
+    }
     add("Median county", fmt(m, d3.median(vals)), `${d3.format(",")(vals.length)} counties with data`);
     add("Middle half", `${fmt(m, d3.quantile(vals.sort(d3.ascending), .25))}–${fmt(m, d3.quantile(vals, .75))}`, "25th–75th percentile");
-    add("Highest", fmt(m, sorted[0][m.id]), `${sorted[0].county}, ${sorted[0].state}`);
-    add("Lowest", fmt(m, sorted[sorted.length - 1][m.id]), `${sorted[sorted.length - 1].county}, ${sorted[sorted.length - 1].state}`);
+    const note = lowCountMeasures.has(m.id) ? ` · ≥${LOW_N} eligible` : "";
+    add("Highest", fmt(m, sorted[0][m.id]), `${sorted[0].county}, ${sorted[0].state}${note}`);
+    add("Lowest", fmt(m, sorted[sorted.length - 1][m.id]), `${sorted[sorted.length - 1].county}, ${sorted[sorted.length - 1].state}${note}`);
 
     legend.selectAll("*").remove();
     const w = 52;
     ramp.forEach((c, i) => legend.append("rect").attr("x", i * w).attr("width", w).attr("height", 10).attr("fill", c));
     color.quantiles().forEach((t, i) => legend.append("text").attr("x", (i + 1) * w).attr("y", 24).attr("text-anchor", "middle").text(fmt(m, t)));
     legend.append("text").attr("x", 0).attr("y", -6).text(m.unit + " · equal-count bins");
+    if (lowCountMeasures.has(m.id)) {
+      legend.append("rect").attr("y", 34).attr("width", 18).attr("height", 10).attr("fill", ramp[3]);
+      legend.append("rect").attr("y", 34).attr("width", 18).attr("height", 10).attr("fill", "url(#hatch)");
+      legend.append("text").attr("x", 24).attr("y", 43).text(`Fewer than ${LOW_N} eligible patients (est.) — rate unreliable`);
+    }
 
     renderList();
   }
@@ -219,6 +275,71 @@
     .sort((a, b) => d3.ascending(stateNames.get(a), stateNames.get(b)))
     .forEach(s => stSel.append("option").attr("value", s).text(stateNames.get(s)));
   stSel.on("change", renderList);
+  document.getElementById("hidelow").addEventListener("change", renderList);
+
+  // Eligible-weighted participation across counties with both measures
+  function nationalEstimate() {
+    const rs = rows.filter(r => r.cr_participation != null && r.est_eligible);
+    return d3.sum(rs, r => r.cr_participation * r.est_eligible) / d3.sum(rs, r => r.est_eligible);
+  }
+  drawTrend();
+  function drawTrend() {
+    const est = nationalEstimate();
+    const crm = measures.find(d => d.id === "cr_participation");
+    const pts = trend.map(d => ({ ...d }));
+    pts.push({ start: 2019, end: 2020, pct: +est.toFixed(1), kind: "estimate", label: "2019–2020 (estimate)",
+      population: "Medicare FFS; this page's county participation rates weighted by estimated eligible patients (excludes suppressed counties)",
+      source: "CDC Atlas of Heart Disease and Stroke + CMS enrollment (derived here)", url: crm.source_url });
+
+    const W = 900, H = 360, mg = { t: 16, r: 24, b: 34, l: 44 };
+    const x = d3.scaleLinear().domain([1995, 2023]).range([mg.l, W - mg.r]);
+    const y = d3.scaleLinear().domain([0, 75]).range([H - mg.b, mg.t]);
+    const g = d3.select("#trend");
+    g.append("g").attr("class", "grid").selectAll("line").data(y.ticks(5)).join("line")
+      .attr("x1", mg.l).attr("x2", W - mg.r).attr("y1", y).attr("y2", y);
+    g.append("g").attr("class", "axis").attr("transform", `translate(0,${H - mg.b})`)
+      .call(d3.axisBottom(x).tickFormat(d3.format("d")).ticks(8)).call(a => a.select(".domain").remove());
+    g.append("g").attr("class", "axis").attr("transform", `translate(${mg.l},0)`)
+      .call(d3.axisLeft(y).ticks(5).tickFormat(d => d + "%")).call(a => a.select(".domain").remove()).call(a => a.selectAll("line").remove());
+    g.append("line").attr("class", "goal").attr("x1", mg.l).attr("x2", W - mg.r).attr("y1", y(70)).attr("y2", y(70));
+    g.append("text").attr("class", "goal-lbl").attr("x", W - mg.r).attr("y", y(70) - 6).attr("text-anchor", "end").text("Million Hearts goal: 70%");
+
+    const mid = d => (d.start + d.end) / 2;
+    const line = pts.filter(d => d.pct != null && d.kind === "published").sort((a, b) => mid(a) - mid(b));
+    g.append("path").datum(line).attr("fill", "none").attr("stroke", "var(--accent)").attr("stroke-opacity", .45).attr("stroke-width", 1.5)
+      .attr("d", d3.line().x(d => x(mid(d))).y(d => y(d.pct)));
+
+    const p = g.append("g").selectAll("g").data(pts).join("g").attr("class", "pt");
+    p.append("title").text(d => `${String(d.label).split(":")[0]}: ${d.pct != null ? d.pct + "%" : d.low + "–" + d.high + "%"}\n${d.population}\n${d.source}`);
+    p.filter(d => d.end > d.start).append("line")
+      .attr("x1", d => x(d.start)).attr("x2", d => x(d.end)).attr("y1", d => y(d.pct)).attr("y2", d => y(d.pct))
+      .attr("stroke", "var(--accent)").attr("stroke-width", 3).attr("stroke-linecap", "round").attr("stroke-opacity", .5);
+    p.filter(d => d.low != null).append("line")
+      .attr("x1", d => x(d.start)).attr("x2", d => x(d.start)).attr("y1", d => y(d.low)).attr("y2", d => y(d.high))
+      .attr("stroke", "var(--accent)").attr("stroke-width", 3).attr("stroke-linecap", "round").attr("stroke-opacity", .5);
+    p.filter(d => d.low != null).selectAll("circle").data(d => [[d.start, d.low], [d.start, d.high]]).join("circle")
+      .attr("cx", d => x(d[0])).attr("cy", d => y(d[1])).attr("r", 4).attr("fill", "var(--accent)");
+    p.filter(d => d.pct != null).append("circle")
+      .attr("cx", d => x(mid(d))).attr("cy", d => y(d.pct)).attr("r", 5.5)
+      .attr("fill", d => d.kind === "published" ? "var(--accent)" : "var(--bg)")
+      .attr("stroke", "var(--accent)").attr("stroke-width", 2);
+    p.append("text").attr("class", "lbl")
+      .attr("x", d => x(mid(d)) + (d.kind === "subset" ? 10 : 0))
+      .attr("y", d => d.pct != null ? y(d.pct) - (d.kind === "estimate" ? -20 : 12) : y(d.high) - 10)
+      .attr("text-anchor", d => d.kind === "subset" ? "start" : "middle")
+      .text(d => d.pct != null ? d.pct.toFixed(1) + "%" : "AMI 13.9% · CABG 31.0%");
+
+    const lg = g.append("g").attr("transform", `translate(${mg.l + 8},${y(62)})`);
+    [["var(--accent)", "Published national rate"], ["var(--bg)", "Subset or estimate (see table)"]].forEach(([f, t], i) => {
+      lg.append("circle").attr("cx", 5).attr("cy", i * 18).attr("r", 5).attr("fill", f).attr("stroke", "var(--accent)").attr("stroke-width", 2);
+      lg.append("text").attr("class", "lbl").attr("x", 16).attr("y", i * 18 + 4).text(t);
+    });
+
+    const tb = d3.select("#trend-table");
+    tb.append("tr").html("<th>Period</th><th class='num'>Participation</th><th>Population</th><th>Source</th>");
+    tb.selectAll("tr.r").data(pts).join("tr").attr("class", "r").html(d =>
+      `<td>${String(d.label).split(":")[0]}</td><td class="num">${d.pct != null ? d.pct.toFixed(1) + "%" : d.low + "% / " + d.high + "%"}</td><td>${d.population}</td><td><a href="${d.url}">${d.source}</a></td>`);
+  }
   document.getElementById("sort").addEventListener("click", e => {
     desc = !desc; e.target.textContent = desc ? "highest first" : "lowest first"; renderList();
   });

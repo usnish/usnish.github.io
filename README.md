@@ -23,6 +23,14 @@ python3 -m http.server 8000
 
 CR-eligible events follow the Million Hearts surveillance definition: heart attack, bypass surgery, PCI/stenting, heart valve repair or replacement, heart or heart–lung transplant.
 
+## Small counts
+
+CDC publishes county rates without counts. `fetch_data.py` estimates each county's CR-eligible patients as the eligibility rate × 2019 Original Medicare enrollment from the [CMS Geographic Variation PUF](https://data.cms.gov/summary-statistics-on-use-and-payments/medicare-geographic-comparisons/medicare-geographic-variation-by-national-state-county) (`est_eligible` in `data/counties.csv`). The page hatches CR measures in counties with fewer than 50 estimated eligible patients (720 counties) and hides them from the ranked list by default. Most extreme participation rates fall here, e.g. Sheridan County, NE: 99.6% on ~9 patients. Weighting counties by estimated eligible patients gives 31.6% nationally, versus a 36.0% unweighted county median.
+
+## National trend
+
+`data/national_trend.csv` holds national Medicare participation rates from published studies (1997 Suaya; 2007–2011 Beatty; 2009–2012 Fletcher; 2016 Ritchey; 2017 Keteyian; Jul 2019–2021 Fu, procedures only), plotted under the map together with the eligible-weighted 2019–2020 estimate computed from the county data. Definitions differ across studies; see the `population` column.
+
 ## Refreshing the data
 
 ```sh

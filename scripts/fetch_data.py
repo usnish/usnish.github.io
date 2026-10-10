@@ -10,6 +10,11 @@ Sources:
   - CDC Interactive Atlas of Heart Disease and Stroke (heart-stroke-atlas.cdc.gov),
     Medicare fee-for-service claims, beneficiaries 65+.
   - CDC PLACES county estimates (data.cdc.gov), BRFSS-based model, adults 18+.
+  - CMS Medicare Geographic Variation PUF (data.cms.gov), 2019 county counts of
+    Original Medicare beneficiaries, used to estimate how many CR-eligible
+    patients each county has. The Atlas publishes rates only, and rates built on
+    a handful of patients swing wildly (a county with ~9 eligible patients shows
+    99.6% participation), so the page flags counties with few eligible patients.
 """
 import csv
 import json
@@ -20,6 +25,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 ATLAS = "https://heart-stroke-atlas.cdc.gov/api/api/data"
 PLACES = "https://data.cdc.gov/resource/swc5-untb.json"  # PLACES county data, 2025 release
+CMS_GV = "https://data.cms.gov/data-api/v1/dataset/6219697b-8f6c-4164-bed4-cd9317c58ebc/data"
 
 # Atlas hospitalization themes need explicit filters: 2019-2021, all races,
 # both sexes, ages 65+, spatially smoothed.
@@ -74,7 +80,19 @@ def main():
                      "source_url": "https://www.cdc.gov/places/"})
     print(f"chd_prev: {len(places)} counties")
 
-    cols = ["fips", "county", "state"] + [m["id"] for m in measures]
+    # Estimated CR-eligible patients = eligibility rate per 1,000 x Original Medicare
+    # enrollment (all ages; CMS doesn't publish 65+ counts by county).
+    ffs = {}
+    for offset in range(0, 10000, 5000):
+        for d in get(CMS_GV, {"size": 5000, "offset": offset, "filter[BENE_GEO_LVL]": "County", "filter[YEAR]": 2019}):
+            if d["BENES_OM_CNT"].isdigit():
+                ffs[d["BENE_GEO_CD"]] = int(d["BENES_OM_CNT"])
+    for r in rows.values():
+        n, rate = ffs.get(r["fips"]), r.get("cr_eligible")
+        r["est_eligible"] = round(rate * n / 1000) if n and rate not in (None, "") else ""
+    print(f"est_eligible: {sum(1 for r in rows.values() if r['est_eligible'] != '')} counties")
+
+    cols = ["fips", "county", "state"] + [m["id"] for m in measures] + ["est_eligible"]
     with open(ROOT / "data" / "counties.csv", "w", newline="") as f:
         w = csv.DictWriter(f, fieldnames=cols, restval="")
         w.writeheader()
