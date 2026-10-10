@@ -8,4 +8,9 @@
 
 - title: Cardiac Rehab by State
   url: /cardiac-rehab-map/
-  description: Interactive D3 map of cardiac rehabilitation participation among eligible Medicare patients, by U.S. state (1997 Medicare data; newer data to come).
+  description: Interactive D3 map of cardiac rehabilitation participation among eligible Medicare patients, by region (2016 CDC data) and by state (1997).
+
+- title: Cardiac Rehab Eligibility by County
+  url: /cr-eligibility-map/
+  repo: https://github.com/usnish/cr-eligibility-map
+  description: County map of conditions that qualify patients for cardiac rehab (CR-eligible events, heart attack, coronary heart disease and heart failure), CR participation among eligible Medicare patients, and national participation trends since 1997.
