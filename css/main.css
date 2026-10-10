@@ -127,9 +127,30 @@ ul.nav a:hover, .nav-dropdown summary:hover { color: #74340f; text-decoration: n
   padding-left: 12px;
 }
 .nav-dropdown ul a { font-size: 14px; }
+.nav-dropdown .nav-group {
+  color: #9a9a9a;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-top: 6px;
+}
+.nav-dropdown .nav-group ul { margin: 2px 0 4px; padding-left: 10px; }
+.nav-dropdown .nav-group li { text-transform: none; letter-spacing: 0; font-weight: 400; }
 
 /* projects page ################################ */
 .project { margin-bottom: 32px; }
+.project-group { margin: 8px 0 32px; }
+.project-group-title {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #8a8a8a;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+}
 .project h2 {
   font-size: 18px;
   margin: 10px 0 6px;

@@ -1,0 +1,6 @@
+<div class="project">
+  {% if include.project.image %}<a href="{{ include.project.url }}"><img src="{{ include.project.image }}" alt="{{ include.project.title }}" class="project-thumb"></a>{% endif %}
+  <h2><a href="{{ include.project.url }}">{{ include.project.title }}</a></h2>
+  <p>{{ include.project.description }}</p>
+  {% if include.project.repo %}<p class="project-meta"><a href="{{ include.project.repo }}">source on GitHub</a></p>{% endif %}
+</div>

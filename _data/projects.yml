@@ -1,16 +1,20 @@
 # Projects listed in the sidebar dropdown and on /projects/.
-# Add a new entry here to publish another GitHub Pages project.
+# Add a new entry here to publish another GitHub Pages project. An entry with
+# `items` is a group: it shows as a heading with its items nested underneath.
 - title: Biochemical Pathways Poster
   url: /biochemical-pathways-poster/
   repo: https://github.com/usnish/biochemical-pathways-poster
   image: /biochemical-pathways-poster/poster_thumb.jpg
   description: Printable, high-resolution renders of Roche's Biochemical Pathways (Part 1, Metabolic Pathways) poster, preserved from biochemical-pathways.com before it went offline.
 
-- title: Cardiac Rehab by State
-  url: /cardiac-rehab-map/
-  description: Interactive D3 map of cardiac rehabilitation participation among eligible Medicare patients, by region (2016 CDC data) and by state (1997).
+- title: Data Visualizations
+  items:
+    - title: Cardiac Rehab Participation by Region and State
+      url: /cardiac-rehab-map/
+      repo: https://github.com/usnish/usnish.github.io/tree/master/cardiac-rehab-map
+      description: Interactive D3 map of cardiac rehabilitation participation among eligible Medicare patients, by region (2016 CDC data) and by state (1997).
 
-- title: Cardiac Rehab Eligibility by County
-  url: /cr-eligibility-map/
-  repo: https://github.com/usnish/cr-eligibility-map
-  description: County map of conditions that qualify patients for cardiac rehab (CR-eligible events, heart attack, coronary heart disease and heart failure), CR participation among eligible Medicare patients, and national participation trends since 1997.
+    - title: Cardiac Rehab Eligibility by County
+      url: /cr-eligibility-map/
+      repo: https://github.com/usnish/usnish.github.io/tree/master/cr-eligibility-map
+      description: County map of conditions that qualify patients for cardiac rehab (CR-eligible events, heart attack, coronary heart disease and heart failure), CR participation among eligible Medicare patients, and national participation trends since 1997.

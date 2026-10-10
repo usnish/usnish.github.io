@@ -5,7 +5,7 @@ title: Usnish (Ush) Majumdar
 
 <figure class="cover">
   <img src="/img/coverpic6.jpg" width="1650" height="994" alt="The Manhattan skyline seen across the water from the Rockaways">
-  <figcaption>Manhattan from the Rockaways</figcaption>
+  <figcaption>manhattan from the rockaways</figcaption>
 </figure>
 
 # Hello!

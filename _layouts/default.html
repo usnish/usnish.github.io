@@ -17,7 +17,17 @@
           <summary>projects</summary>
           <ul>
             {% for project in site.data.projects %}
+            {% if project.items %}
+            <li class="nav-group">{{ project.title }}
+              <ul>
+                {% for item in project.items %}
+                <li><a href="{{ item.url }}">{{ item.title }}</a></li>
+                {% endfor %}
+              </ul>
+            </li>
+            {% else %}
             <li><a href="{{ project.url }}">{{ project.title }}</a></li>
+            {% endif %}
             {% endfor %}
             <li><a href="/projects/">all projects &rarr;</a></li>
           </ul>

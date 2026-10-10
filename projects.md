@@ -1,16 +1,18 @@
 ---
 layout: default
-title: Projects | Usnish Majumdar
+title: Projects | Usnish (Ush) Majumdar
 permalink: /projects/
 ---
 
 # Projects
 
 {% for project in site.data.projects %}
-<div class="project">
-  {% if project.image %}<a href="{{ project.url }}"><img src="{{ project.image }}" alt="{{ project.title }}" class="project-thumb"></a>{% endif %}
-  <h2><a href="{{ project.url }}">{{ project.title }}</a></h2>
-  <p>{{ project.description }}</p>
-  {% if project.repo %}<p class="project-meta"><a href="{{ project.repo }}">source on GitHub</a></p>{% endif %}
-</div>
+{% if project.items %}
+<section class="project-group">
+  <h2 class="project-group-title">{{ project.title }}</h2>
+  {% for item in project.items %}{% include project-card.html project=item %}{% endfor %}
+</section>
+{% else %}
+{% include project-card.html project=project %}
+{% endif %}
 {% endfor %}
