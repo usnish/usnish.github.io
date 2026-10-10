@@ -8,4 +8,4 @@
 
 - title: Cardiac Rehab by State
   url: /cardiac-rehab-map/
-  description: Interactive D3 map of cardiac rehabilitation participation among eligible patients, by U.S. state. Data is still being assembled.
+  description: Interactive D3 map of cardiac rehabilitation participation among eligible Medicare patients, by U.S. state (1997 Medicare data; newer data to come).
