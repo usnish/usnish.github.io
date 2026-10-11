@@ -33,3 +33,8 @@
       url: /hospital-charity-care/
       repo: https://github.com/usnish/usnish.github.io/tree/master/hospital-charity-care
       description: Charity care reported by 2,700 U.S. nonprofit hospitals in 2023, plotted against a rough estimate of each hospital's federal income tax exemption.
+
+    - title: How Much More Medicare Pays for Medicare Advantage
+      url: /medicare-advantage-payments/
+      repo: https://github.com/usnish/usnish.github.io/tree/master/medicare-advantage-payments
+      description: A step-by-step breakdown of MedPAC's estimate that Medicare will pay $76 billion more in 2026 for Medicare Advantage enrollees than traditional Medicare would have spent on them.

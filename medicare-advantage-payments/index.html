@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Medicare Advantage Payments</title>
+<meta name="description" content="Why Medicare expects to pay about $76 billion more in 2026 for people in Medicare Advantage than traditional Medicare would have spent on them, step by step.">
+<link rel="stylesheet" href="../assets/viz/viz.css">
+<style>
+  .wf { display: grid; grid-template-columns: minmax(150px, 250px) minmax(0, 1fr) 120px; gap: 0 14px; max-width: 980px; margin-top: 18px; font-size: 13px; }
+  .wf .row { display: contents; }
+  .wf .lbl { padding: 10px 0; border-top: 1px solid var(--line); }
+  .wf .lbl b { display: block; font-size: 14px; font-weight: 600; }
+  .wf .lbl span { color: var(--muted); font-size: 12px; }
+  .wf .track { position: relative; border-top: 1px solid var(--line); min-height: 58px; }
+  .wf .num { padding: 10px 0; border-top: 1px solid var(--line); text-align: right; font-variant-numeric: tabular-nums; }
+  .wf .num b { display: block; font-size: 15px; }
+  .wf .num span { color: var(--muted); font-size: 12px; }
+  .wf .zero { position: absolute; top: 0; bottom: 0; width: 0; border-left: 1.5px solid var(--muted); }
+  .wf .grid { position: absolute; top: 0; bottom: 0; width: 0; border-left: 1px solid var(--line); }
+  .wf .bar { position: absolute; top: 50%; height: 22px; transform: translateY(-50%); border-radius: 4px; cursor: default; }
+  .wf .bar.up { background: var(--accent); }
+  .wf .bar.down { background: var(--faint); }
+  .wf .bar.total { background: var(--accent-dark); }
+  .wf .bar.contested { background: repeating-linear-gradient(135deg, var(--accent) 0 5px, color-mix(in srgb, var(--accent) 45%, var(--bg)) 5px 9px); }
+  .wf .link { position: absolute; top: -29px; height: 29px; width: 0; border-left: 1px dashed var(--muted); opacity: .7; }
+  .wf .prior { position: absolute; top: 50%; height: 30px; transform: translateY(-50%); width: 0; border-left: 2px dashed var(--muted); }
+  .wf .prior-lbl { position: absolute; top: 50%; transform: translate(6px, -50%); color: var(--muted); font-size: 11px; line-height: 1.25; white-space: nowrap; }
+  .wf .tag { display: inline-block; font-size: 10px; letter-spacing: .05em; text-transform: uppercase; color: var(--warn); border: 1px solid currentColor; border-radius: 3px; padding: 0 4px; margin-left: 6px; vertical-align: 2px; font-weight: 600; }
+  .wf .inside { grid-column: 1 / -1; margin: -4px 0 10px; padding: 8px 12px; background: var(--panel); border-radius: 6px; font-size: 12px; color: var(--muted); }
+  .wf .inside b { color: var(--fg); font-weight: 600; }
+  .wf .axis { position: relative; height: 26px; border-top: 1px solid var(--line); }
+  .wf .axis span { position: absolute; top: 5px; transform: translateX(-50%); font-size: 11px; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .wf .axis-title { grid-column: 2; font-size: 12px; color: var(--muted); text-align: center; }
+  sup.fn { font-size: 10px; color: var(--muted); }
+  @media (max-width: 640px) {
+    .wf { grid-template-columns: minmax(0, 1fr) 92px; }
+    .wf .lbl { grid-column: 1 / -1; padding-bottom: 2px; }
+    .wf .track { border-top: 0; }
+    .wf .num { border-top: 0; padding-top: 4px; }
+    .wf .spacer { display: none; }
+    .wf .axis-title { grid-column: 1; }
+    .wf .link { display: none; }
+    .wf .prior-lbl { display: none; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <a class="back" href="/">&larr; usnish.github.io</a>
+  <header>
+    <h1>How much more Medicare pays for Medicare Advantage</h1>
+    <p class="lede">About half of people on Medicare get their coverage through a private Medicare Advantage plan, which Medicare pays a set amount per enrollee. MedPAC, the commission that advises Congress on Medicare, estimates those payments will run about 14% above what traditional Medicare would have spent on the same people in 2026. Here's how that gap builds up.</p>
+  </header>
+
+  <div class="stats" id="stats"></div>
+
+  <section class="chart" style="border-top:0;margin-top:20px;padding-top:0">
+    <h2>MedPAC traces most of the gap to who enrolls, not to the payment formula</h2>
+    <p>Each step shows how much it adds to Medicare Advantage payments, in percentage points of what traditional Medicare would have spent on the same enrollees (2026, projected).</p>
+    <div class="wf" id="wf" role="img" aria-label="Waterfall chart of the 2026 Medicare Advantage payment gap"></div>
+    <div class="tooltip" id="tooltip" style="position:fixed"></div>
+  </section>
+
+  <section class="about">
+    <h2>About the data</h2>
+    <p><b>Sources.</b> Step sizes, totals and the 2026 payment and premium figures are MedPAC's March 2026 estimates (<a id="src-medpac26">Report to Congress, ch. 12</a>); the 2025 comparison is from the <a id="src-medpac25">March 2025 report</a>. The quality bonus figure is KFF's 2026 estimate (<a id="src-kff26">analysis</a>), which KFF calls conservative; MedPAC puts it closer to $16 billion. All figures are projections for 2026.</p>
+    <p><b>How the steps fit together.</b> MedPAC estimates that, before coding and selection effects, Medicare Advantage payments would come to about 99% of traditional Medicare spending: benchmarks (including quality bonuses) are set above traditional Medicare in many counties, but plans bid well below them, and Medicare keeps part of the difference. <sup class="fn">†</sup>The −1 point for that step is derived from MedPAC's 99% figure; MedPAC doesn't publish it as a dollar amount. The effects compound rather than add, so the dollar figures for each step don't sum exactly to the total.</p>
+    <p><b>What's disputed.</b> Favorable selection is the largest and most contested piece. MedPAC estimates it by comparing people who join Medicare Advantage with traditional Medicare enrollees who have the same risk scores. Insurers, through AHIP and in industry-funded reviews, argue that this comparison misses differences in access and health that risk scores don't capture. Coding intensity is less disputed: Medicare already cuts every plan's risk scores by a set amount each year, and MedPAC's 4% is what's left after that cut.</p>
+    <p><b>Why the gap shrank.</b> MedPAC's estimate fell from 20% ($84 billion) for 2025 to 14% ($76 billion) for 2026, mainly because CMS's revised risk-adjustment model (V28), phased in from 2024 to 2026, stopped paying for some diagnoses that were coded more often in Medicare Advantage. MedPAC also revised its coding estimate with newer data.</p>
+    <p><b>What the extra payments buy.</b> Part of the money above traditional Medicare goes back to enrollees as rebates, which plans use for extra benefits such as dental, vision and lower cost sharing. MedPAC estimates the higher payments also raise Part B premiums for everyone on Medicare, including people in traditional Medicare.</p>
+    <p>Figures and sources: <a href="https://github.com/usnish/usnish.github.io/tree/master/medicare-advantage-payments">github.com/usnish/usnish.github.io</a>.</p>
+  </section>
+</main>
+
+<script src="../assets/viz/d3.min.js"></script>
+<script src="../assets/viz/vizkit.js"></script>
+<script>
+(async function () {
+  const F = await d3.json("data/figures.json");
+  for (const [k, s] of Object.entries(F.sources)) { const a = document.getElementById("src-" + k); if (a) a.href = s.url; }
+  const B = v => "$" + (v / 1e9).toFixed(v % 1e9 ? 1 : 0) + "B";
+  const pts = p => (p > 0 ? "+" : p < 0 ? "−" : "") + Math.abs(p) + (Math.abs(p) === 1 ? " pt" : " pts");
+
+  VK.stats(document.getElementById("stats"), [
+    ["Paid above traditional Medicare", B(F.gap_total.dollars), `${F.gap_total.points}% more, ${F.year} (projected)`],
+    ["Total Medicare Advantage payments", B(F.ma_total_payments.value), `${F.year} (projected)`],
+    ["Quality bonuses", B(F.inside_rules[0].dollars), "part of the payment rules step"],
+    ["Higher Part B premiums", B(F.part_b_premium_effect.dollars), "paid by everyone on Medicare"],
+  ]);
+
+  // Horizontal waterfall in HTML so it reflows on narrow screens
+  const DOM = [-2, 22];
+  const x = d3.scaleLinear().domain(DOM).range([0, 100]);
+  const ticks = [0, 5, 10, 15, 20];
+  const wf = d3.select("#wf");
+  const tip = d3.select("#tooltip");
+  const showTip = (e, html) => tip.html(html).style("opacity", 1)
+    .style("left", Math.min(e.clientX + 14, innerWidth - 280) + "px").style("top", (e.clientY + 14) + "px");
+  const hideTip = () => tip.style("opacity", 0);
+
+  function track(row, draw) {
+    const t = row.append("div").attr("class", "track");
+    ticks.forEach(v => t.append("div").attr("class", v ? "grid" : "zero").style("left", x(v) + "%"));
+    draw(t);
+    return t;
+  }
+  const bar = (t, a, b, cls) => t.append("div").attr("class", "bar " + cls)
+    .style("left", x(Math.min(a, b)) + "%").style("width", (x(Math.max(a, b)) - x(Math.min(a, b))) + "%");
+
+  let run = 0;
+  F.steps.forEach((s, i) => {
+    const row = wf.append("div").attr("class", "row");
+    row.append("div").attr("class", "lbl")
+      .html(`<b>${s.label}${s.contested ? '<span class="tag">Contested</span>' : ""}</b><span>${s.sub}</span>`);
+    const from = run, to = run + s.points;
+    track(row, t => {
+      const b = bar(t, from, to, s.points < 0 ? "down" : s.contested ? "contested" : "up");
+      if (i > 0 && F.steps[i - 1].key !== "rules") t.append("div").attr("class", "link").style("left", x(from) + "%");
+      b.on("mousemove", e => showTip(e, `<b>${s.label}</b><table>
+          <tr class="cur"><td>Effect</td><td>${pts(s.points)}</td></tr>
+          <tr><td>Dollars</td><td>${s.dollars ? B(s.dollars) : "not published"}</td></tr>
+          <tr><td>Running total</td><td>${to}% above FFS</td></tr></table>
+          <div class="note">${s.how || (s.contested ? "Insurers dispute how this is measured. See “What's disputed.”" : "MedPAC estimate, after CMS's annual coding cut.")}</div>`))
+        .on("mouseleave", hideTip);
+    });
+    row.append("div").attr("class", "num")
+      .html(`<b>${pts(s.points)}${s.status === "derived" ? '<sup class="fn">†</sup>' : ""}</b><span>${s.dollars ? B(s.dollars) : "net of bids"}</span>`);
+    run = to;
+    if (s.key === "rules") {
+      const q = F.inside_rules[0];
+      wf.append("div").attr("class", "inside").html(`Inside this step: <b>${B(q.dollars)} in quality bonuses</b> (KFF; MedPAC estimates closer to ${B(q.alt.dollars)}) and benchmarks set above traditional Medicare in many counties, offset almost entirely by plans bidding below traditional Medicare costs.`);
+    }
+  });
+
+  const tot = wf.append("div").attr("class", "row");
+  tot.append("div").attr("class", "lbl").html(`<b>Paid above traditional Medicare</b><span>${F.year}, projected</span>`);
+  track(tot, t => {
+    bar(t, 0, F.gap_total.points, "total")
+      .on("mousemove", e => showTip(e, `<b>Total, ${F.year}</b><table>
+        <tr class="cur"><td>Above FFS</td><td>${F.gap_total.points}%</td></tr>
+        <tr><td>Dollars</td><td>${B(F.gap_total.dollars)}</td></tr>
+        <tr><td>${F.gap_prior.year} estimate</td><td>${F.gap_prior.points}% · ${B(F.gap_prior.dollars)}</td></tr></table>`))
+      .on("mouseleave", hideTip);
+    t.append("div").attr("class", "link").style("left", x(F.gap_total.points) + "%");
+    t.append("div").attr("class", "prior").style("left", x(F.gap_prior.points) + "%");
+    t.append("div").attr("class", "prior-lbl").style("left", x(F.gap_prior.points) + "%")
+      .html(`${F.gap_prior.year} estimate:<br>${F.gap_prior.points}%, ${B(F.gap_prior.dollars)}`);
+  });
+  tot.append("div").attr("class", "num").html(`<b>${F.gap_total.points}%</b><span>${B(F.gap_total.dollars)}</span>`);
+
+  wf.append("div").attr("class", "spacer");
+  const ax = wf.append("div").attr("class", "axis");
+  ticks.forEach(v => ax.append("span").style("left", x(v) + "%").text(v ? "+" + v : "0"));
+  wf.append("div").attr("class", "spacer");
+  wf.append("div").attr("class", "spacer");
+  wf.append("div").attr("class", "axis-title").text("Percentage points above traditional Medicare (0 = what it would have spent)");
+})();
+</script>
+</body>
+</html>

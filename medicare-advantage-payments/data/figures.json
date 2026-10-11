@@ -1,0 +1,25 @@
+{
+  "_note": "Hand-entered from published reports. 'status' is 'reported' for figures taken from a named source, 'derived' for arithmetic on reported figures. Points are percent of what traditional Medicare (FFS) would have spent on the same enrollees.",
+  "year": 2026,
+  "ma_total_payments": { "value": 615e9, "status": "reported", "source": "medpac26" },
+  "gap_total": { "points": 14, "dollars": 76e9, "status": "reported", "source": "medpac26" },
+  "gap_prior": { "year": 2025, "points": 20, "dollars": 84e9, "status": "reported", "source": "medpac25" },
+  "part_b_premium_effect": { "dollars": 11e9, "status": "reported", "source": "medpac26" },
+  "steps": [
+    { "key": "rules", "label": "Payment rules", "sub": "benchmarks, quality bonuses and plan bids, before coding and selection",
+      "points": -1, "dollars": null, "status": "derived", "source": "medpac26",
+      "how": "MedPAC puts MA payments at 99% of FFS before coding and selection effects; 99 − 100 = −1 point." },
+    { "key": "selection", "label": "Favorable selection", "sub": "MA enrollees cost less than their risk scores predict",
+      "points": 11, "dollars": 57e9, "status": "reported", "source": "medpac26", "contested": true },
+    { "key": "coding", "label": "Coding intensity", "sub": "MA risk scores run higher than for similar FFS enrollees",
+      "points": 4, "dollars": 22e9, "status": "reported", "source": "medpac26" }
+  ],
+  "inside_rules": [
+    { "label": "Quality bonus program", "dollars": 13.4e9, "status": "reported", "source": "kff26", "alt": { "dollars": 16e9, "source": "medpac26" } }
+  ],
+  "sources": {
+    "medpac26": { "name": "MedPAC, March 2026 Report to Congress, ch. 12", "url": "https://www.medpac.gov/wp-content/uploads/2026/03/Mar26_Ch12_MedPAC_Report_To_Congress_SEC.pdf" },
+    "medpac25": { "name": "MedPAC, March 2025 Report to Congress, ch. 11", "url": "https://www.medpac.gov/wp-content/uploads/2025/03/Mar25_Ch11_MedPAC_Report_To_Congress_SEC.pdf" },
+    "kff26": { "name": "KFF, Medicare will spend more than $13 billion on the MA quality bonus program in 2026", "url": "https://www.kff.org/medicare/medicare-will-spend-more-than-13-billion-on-the-medicare-advantage-quality-bonus-program-in-2026/" }
+  }
+}
