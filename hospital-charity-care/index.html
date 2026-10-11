@@ -20,11 +20,9 @@
   .region { fill: var(--faint); font-size: 12px; }
   .rail-bg { fill: var(--panel); }
   .rail-label { fill: var(--muted); font-size: 11px; }
-  .size-key circle { fill: none; stroke: var(--muted); }
-  .size-key text { fill: var(--muted); font-size: 11px; }
   /* The plot scales down with the screen, so its text has to scale up to stay readable */
   @media (max-width: 600px) {
-    .axis text, .rail-label, .size-key text { font-size: 19px; }
+    .axis text, .rail-label { font-size: 19px; }
     .axis-title { font-size: 21px; }
     .region { display: none; }
     .axis .tick:first-of-type text { display: none; } /* $10K would collide with the $0 band label */
@@ -43,7 +41,7 @@
 
   <div class="layout">
     <div class="map-wrap" id="wrap">
-      <svg class="plot" id="plot" viewBox="0 0 975 680" role="img" aria-label="Scatter plot of nonprofit hospitals' charity care against their estimated federal income tax exemption, sized by beds"></svg>
+      <svg class="plot" id="plot" viewBox="0 0 975 680" role="img" aria-label="Scatter plot of nonprofit hospitals' charity care against their estimated federal income tax exemption"></svg>
       <div class="tooltip" id="tooltip"></div>
       <div class="card" id="card" hidden></div>
     </div>
@@ -60,7 +58,7 @@
       <ol class="rank" id="rank"></ol>
     </aside>
   </div>
-  <p class="mtitle">Both axes are logarithmic: each gridline is ten times the one before. Dots are sized by licensed beds. On the dashed line, charity care equals the estimated federal exemption. The shaded band along the bottom holds the <span id="n-noinc"></span> hospitals with no positive net income in 2023, so no federal income tax to estimate (they still hold other exemptions); the band at left holds the <span id="n-nocare"></span> that reported no charity care.</p>
+  <p class="mtitle">Both axes are logarithmic: each gridline is ten times the one before. On the dashed line, charity care equals the estimated federal exemption. The shaded band along the bottom holds the <span id="n-noinc"></span> hospitals with no positive net income in 2023, so no federal income tax to estimate (they still hold other exemptions); the band at left holds the <span id="n-nocare"></span> that reported no charity care.</p>
 
   <section class="chart">
     <h2>Charity care is highest where more people are uninsured</h2>
@@ -110,7 +108,7 @@
   const LO = 1e4, HI = 5e8;
   const x = d3.scaleLog().domain([LO, HI]).range([M.left, W - M.right]).clamp(true);
   const y = d3.scaleLog().domain([LO, HI]).range([H - M.bottom, M.top]).clamp(true);
-  const r = d3.scaleSqrt().domain([0, d3.max(hosp, h => h.beds)]).range([1.5, 13]);
+  const R = 3.5;
   const ticks = [1e4, 1e5, 1e6, 1e7, 1e8];
   const fmtTick = v => VK.money(v).replace(".0", "");
 
@@ -147,16 +145,8 @@
   svg.append("text").attr("class", "region").attr("x", x(1.6e4)).attr("y", y(2.5e8)).text("Est. exemption larger than charity care ↖");
   svg.append("text").attr("class", "region").attr("x", x(3e8)).attr("y", y(1.6e4)).attr("text-anchor", "end").text("↘ Charity care larger than est. exemption");
 
-  // Bed-size key
-  const key = svg.append("g").attr("class", "size-key").attr("transform", `translate(${x1 - 150},${y(1.8e5)})`);
-  key.append("text").attr("y", -26).text("Licensed beds");
-  [[25, 0], [250, 38], [1000, 84]].forEach(([b, dx]) => {
-    key.append("circle").attr("cx", dx + r(b)).attr("cy", 0).attr("r", r(b));
-    key.append("text").attr("x", dx + r(b)).attr("y", 26).attr("text-anchor", "middle").text(VK.int(b));
-  });
-
-  const dots = svg.append("g").selectAll("circle").data(hosp.slice().sort((a, b) => b.beds - a.beds))
-    .join("circle").attr("class", "dot").attr("cx", d => d.px).attr("cy", d => d.py).attr("r", d => r(d.beds))
+  const dots = svg.append("g").selectAll("circle").data(hosp)
+    .join("circle").attr("class", "dot").attr("cx", d => d.px).attr("cy", d => d.py).attr("r", R)
     .on("mousemove", (e, d) => hoverDot(e, d)).on("mouseleave", () => d3.select("#tooltip").style("opacity", 0))
     .on("click", (e, d) => { e.stopPropagation(); openCard(d); });
 

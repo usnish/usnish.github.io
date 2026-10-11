@@ -1,6 +1,6 @@
 # Charity care at nonprofit hospitals
 
-Charity care reported by U.S. nonprofit acute care and critical access hospitals for 2023, plotted against a rough estimate of each hospital's federal income tax exemption (log scales, dots sized by beds).
+Charity care reported by U.S. nonprofit acute care and critical access hospitals for 2023, plotted against a rough estimate of each hospital's federal income tax exemption (log scales).
 
 **Live:** https://usnish.github.io/hospital-charity-care/
 
