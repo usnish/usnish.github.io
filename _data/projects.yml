@@ -32,4 +32,4 @@
     - title: Nonprofit Hospital Charity Care
       url: /hospital-charity-care/
       repo: https://github.com/usnish/usnish.github.io/tree/master/hospital-charity-care
-      description: Charity care reported by 2,700 U.S. nonprofit hospitals in 2023, mapped alongside the share of residents without health insurance in each county.
+      description: Charity care reported by 2,700 U.S. nonprofit hospitals in 2023, plotted against a rough estimate of each hospital's federal income tax exemption.
