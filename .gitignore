@@ -2,3 +2,5 @@ _site/
 Gemfile*
 _viz/cache/
 __pycache__/
+# plaintext sources of password-protected pages (published only encrypted; see _viz/encrypt_page.py)
+*/_src/

@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Medicare Advantage Network Rules</title>
+<meta name="description" content="How far Medicare Advantage network rules let a plan's nearest in-network doctor be, compared with how far the nearest doctor actually is, county by county and specialty by specialty.">
+<link rel="stylesheet" href="../assets/viz/viz.css">
+<style>
+  .big { font-size: 15px; color: var(--fg); margin: 14px 0 0; max-width: 80ch; }
+  .big b { color: var(--accent); }
+  .charts { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 28px; }
+  .tbl-wrap { overflow-x: auto; }
+  .tbl { border-collapse: collapse; font-size: 13px; min-width: 560px; width: 100%; max-width: 900px; }
+  .tbl th { text-align: right; font-weight: 600; color: var(--muted); font-size: 12px; padding: 6px 8px; border-bottom: 1px solid var(--line); vertical-align: bottom; }
+  .tbl td { text-align: right; padding: 5px 8px; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+  .tbl th:first-child, .tbl td:first-child { text-align: left; }
+  .tbl tr.cur td { color: var(--accent); font-weight: 600; }
+  .key { display: inline-block; width: 10px; height: 10px; border-radius: 2px; vertical-align: -1px; margin-right: 4px; }
+</style>
+</head>
+<body>
+<main>
+  <a class="back" href="/">&larr; usnish.github.io</a>
+  <header>
+    <h1>How far a Medicare Advantage network can send you</h1>
+    <p class="lede">Medicare Advantage plans may limit members to a network of doctors and hospitals. CMS's only check on how far away that network can be is a maximum drive time, set county by county for each specialty and loosened the more rural the county. This map compares that limit with how far older residents actually live from the nearest specialist who treats Medicare patients. The gap is how much farther a plan's network can send them and still pass.</p>
+  </header>
+
+  <div class="controls" id="specs" role="group" aria-label="Specialty"></div>
+  <p class="big" id="headline"></p>
+  <div class="controls" id="measures" role="group" aria-label="Map measure" style="margin-top:14px"></div>
+  <p class="mtitle" id="mtitle"></p>
+  <div class="stats" id="stats"></div>
+
+  <div class="layout">
+    <div class="map-wrap" id="wrap">
+      <svg class="map" id="map" viewBox="0 0 975 640" role="img" aria-label="County map of Medicare Advantage network drive-time limits"></svg>
+      <div class="tooltip" id="tooltip"></div>
+    </div>
+    <aside class="panel">
+      <h2>
+        <select id="state" aria-label="Filter by state"><option value="">All states</option></select>
+        <button id="sort" type="button">highest first</button>
+      </h2>
+      <ol class="rank" id="rank"></ol>
+      <p style="font-size:11px;color:var(--muted);margin:8px 0 0">Alaska is mapped but not ranked: many communities have no road connection, and CMS limits there run to several hours.</p>
+    </aside>
+  </div>
+
+  <section class="chart">
+    <h2>The rules loosen faster than the distances grow</h2>
+    <p id="chartnote"></p>
+    <div class="bars" id="bars"></div>
+  </section>
+
+  <section class="chart">
+    <h2>Every specialty, in rural counties</h2>
+    <p>The base drive-time limit for rural counties against the average drive from older rural residents to the nearest provider. Click a row to map that specialty.</p>
+    <div class="tbl-wrap"><table class="tbl" id="rural"></table></div>
+  </section>
+
+  <section class="about">
+    <h2>How this was estimated</h2>
+    <p><b>The rules.</b> Maximum drive times by county and specialty come from the CMS <a href="https://www.cms.gov/medicare/health-drug-plans/medicare-advantage-application">2026 HSD Reference File</a>, which CMS uses to review Medicare Advantage networks under 42 CFR 422.116. Every county is one of five types (Large Metro, Metro, Micro, Rural, or Counties with Extreme Access Considerations) based on population and density, and each type has a base limit. CMS raises the limit in counties where no provider exists within the base limit. There is also a maximum distance, not shown here. A network passes if 90% of the plan's members in the county live within the limits of at least one in-network provider. Plans can also get credit for telehealth providers in many specialties and can request exceptions.</p>
+    <p><b>Nearest provider.</b> Clinicians come from the CMS <a href="https://data.cms.gov/provider-data/dataset/mj5m-pzi6">Doctors and Clinicians</a> national file (everyone enrolled in Medicare, by primary specialty), placed at the center of their practice ZIP code. Primary care is internal medicine, family practice, general practice and geriatrics physicians; nurse practitioners and physician assistants are not counted. Oncology is medical, hematology/oncology and surgical oncology. Hospitals are Medicare-certified acute care and critical access hospitals, located with the Census geocoder; skilled nursing is every Medicare-certified nursing home, at CMS's coordinates.</p>
+    <p><b>Drive time.</b> For each census tract, the straight-line distance from its 2020 population center to the nearest provider was converted to driving minutes with a model fitted to real routes: <span id="model"></span> Times are capped at <span id="cap"></span> minutes. County figures are averaged over residents 65 and older (CDC/ATSDR SVI 2022, from the 2018–2022 American Community Survey).</p>
+    <p><b>Caveats.</b> This compares the rules with the nearest provider of any kind, not with any plan's actual network, which can only be the same distance or farther. A provider listed in a ZIP code may not see new patients or accept a given plan. The drive model is rough for short city trips, and ZIP-code placement adds a few minutes of error, so the "past the limit" share is unreliable where limits are 10 to 20 minutes (Large Metro counties, and primary care everywhere). CMS measures access with its own travel-time data. Alaska and Connecticut counties follow the codes in CMS enrollment files.</p>
+    <p>Related: <a href="/dialysis-time-tax/">the dialysis time tax</a> and <a href="/trial-deserts/">clinical trial deserts</a>, built with the same drive-time model. Data and build scripts: <a href="https://github.com/usnish/usnish.github.io/tree/master/ma-network-standards">github.com/usnish/usnish.github.io</a>.</p>
+  </section>
+</main>
+
+<script src="../assets/viz/d3.min.js"></script>
+<script src="../assets/viz/topojson-client.min.js"></script>
+<script src="../assets/viz/vizkit.js"></script>
+<script>
+(async function () {
+  const [us, rows, sum] = await Promise.all([
+    d3.json("../assets/viz/counties-albers-10m.json"),
+    d3.csv("data/counties.csv", d3.autoType),
+    d3.json("data/summary.json")
+  ]);
+  rows.forEach(r => { r.fips = String(r.fips).padStart(5, "0"); });
+  const by = new Map(rows.map(r => [r.fips, r]));
+  const ok = v => v != null && v !== "" && !isNaN(v);
+  const min = v => ok(v) ? Math.round(v) + " min" : "–";
+  const plus = v => ok(v) ? (v >= 0 ? "+" : "−") + Math.abs(Math.round(v)) + " min" : "–";
+  const pct = v => ok(v) ? (v < 1 && v > 0 ? "<1" : Math.round(v)) + "%" : "–";
+  const DES = { "Large Metro": "Large metro", "Metro": "Metro", "Micro": "Micro", "Rural": "Rural", "CEAC": "Extreme access" };
+
+  const specs = sum.specialties.map(s => ({ ...s, sub: s.id === "hospital" ? "acute inpatient" : s.id === "snf" ? "nursing facility" : "" }));
+  const measures = [
+    { id: "slack", label: "Extra drive allowed", sub: "limit minus nearest", fmt: plus, unit: "Minutes a network's nearest provider can be beyond the actual nearest one" },
+    { id: "limit", label: "Drive the rules allow", sub: "CMS maximum", fmt: min, unit: "CMS maximum drive time to the nearest in-network provider" },
+    { id: "near", label: "Drive to the nearest", sub: "average resident 65+", fmt: min, unit: "Average drive from residents 65+ to the nearest provider" },
+    { id: "pct_beyond", label: "Nearest is past the limit", sub: "share of residents 65+", fmt: pct, unit: "Share of residents 65+ whose nearest provider is beyond the limit" },
+  ];
+  let sp = specs.find(s => s.id === "cardiology"), m = measures[0], desc = true;
+  const key = r => r[`${sp.id}_${m.id}`];
+
+  const dm = sum.drive_model;
+  document.getElementById("model").textContent =
+    `${dm.metro.a.toFixed(1)} + ${dm.metro.b.toFixed(2)} min per km in metro counties and ${dm.nonmetro.a.toFixed(1)} + ${dm.nonmetro.b.toFixed(2)} min per km elsewhere, using OSRM driving times between random pairs of tract population centers.`;
+  document.getElementById("cap").textContent = sum.cap_minutes;
+
+  const wrap = document.getElementById("wrap"), svg = d3.select("#map");
+  const map = VK.countyMap({ svg, us, tooltip: "#tooltip", wrap, html: (fips, name) => {
+    const r = by.get(fips);
+    if (!r || !ok(r[`${sp.id}_limit`])) return `<b>${name}</b>No CMS limit for ${sp.label.toLowerCase()}`;
+    const base = sp.base[r.designation];
+    const lim = r[`${sp.id}_limit`];
+    return `<b>${name}</b><table>
+      <tr><td>County type</td><td>${DES[r.designation] || r.designation}</td></tr>
+      ${measures.map(x => `<tr class="${x === m ? "cur" : ""}"><td>${x.label}</td><td>${x.fmt(r[`${sp.id}_${x.id}`])}</td></tr>`).join("")}</table>
+      <div class="note">${sp.label}. ${lim !== base ? `Raised from the base ${DES[r.designation].toLowerCase()} limit of ${base} min because providers are scarce.` : `Base limit for ${DES[r.designation].toLowerCase()} counties.`}</div>`;
+  }});
+
+  const stSel = d3.select("#state");
+  [...map.stateNames].sort((a, b) => d3.ascending(a[1], b[1])).forEach(([id, n]) => stSel.append("option").attr("value", id).text(n));
+  const cname = new Map(map.counties.map(f => [f.id, f.properties.name]));
+
+  function draw() {
+    VK.pressButtons("#specs", specs, sp, d => { sp = d; draw(); }, d => d.label, d => d.sub);
+    VK.pressButtons("#measures", measures, m, d => { m = d; draw(); });
+    const rural = sp.by_designation.find(d => d.designation === "Rural");
+    const what = sp.id === "hospital" ? "a hospital" : sp.id === "snf" ? "a skilled nursing facility" : sp.id === "primary" ? "a primary care doctor" : `a ${sp.label.toLowerCase().replace("ology", "ologist").replace("psychiatry", "psychiatrist")}`;
+    document.getElementById("headline").innerHTML =
+      `In rural counties, a Medicare Advantage network passes CMS's ${sp.label.toLowerCase()} standard if its nearest in-network ${what.replace(/^an? /, "")} is within <b>${rural.limit_base} minutes</b>. ` +
+      `For older rural residents, the nearest ${what.replace(/^an? /, "")} of any kind is <b>${Math.round(rural.near_mean)} minutes</b> away on average, so a compliant network can add about <b>${Math.round(rural.limit_mean - rural.near_mean)} minutes</b> each way.`;
+    VK.stats(document.getElementById("stats"), [
+      ["Providers", VK.int(sp.providers), sp.id === "hospital" || sp.id === "snf" ? "Medicare-certified" : `at ${VK.int(sp.points)} ZIP codes`],
+      ["Average limit", min(sp.limit_mean), "residents 65+, all counties"],
+      ["Average nearest", min(sp.near_mean), "residents 65+"],
+      ["Nearest past the limit", VK.int(Math.round(sp.old_beyond / 1000) * 1000), `residents 65+ (${pct(sp.pct_beyond)})`],
+    ]);
+    document.getElementById("mtitle").innerHTML = `<b>${m.unit}</b> · ${sp.label}, by county`;
+    const vals = rows.map(key).filter(ok);
+    const color = d3.scaleQuantile().domain(vals).range(VK.RAMP);
+    map.fill(f => { const r = by.get(f); return r ? key(r) : null; }, color);
+    VK.legend(map.legend, color, v => m.fmt(v).replace(" min", ""), m.unit.slice(0, 64) + " · equal-count bins");
+    renderList();
+    chart();
+    table();
+  }
+
+  function renderList() {
+    const st = stSel.property("value");
+    const data = rows.filter(r => ok(key(r)) && r.fips.slice(0, 2) !== "02" && (!st || r.fips.slice(0, 2) === st))
+      .sort((a, b) => desc ? key(b) - key(a) : key(a) - key(b)).slice(0, 100);
+    d3.select("#rank").selectAll("li").data(data, d => d.fips).join("li")
+      .html((d, i) => `<span class="n">${i + 1}</span><span>${cname.get(d.fips) || d.fips} <span class="st">${map.stateNames.get(d.fips.slice(0, 2)) || ""}</span></span><span class="val">${m.fmt(key(d))}</span>`)
+      .on("mouseenter", (e, d) => map.highlight(d.fips)).on("mouseleave", () => map.highlight(null));
+  }
+  stSel.on("change", renderList);
+  d3.select("#sort").on("click", function () { desc = !desc; this.textContent = desc ? "highest first" : "lowest first"; renderList(); });
+
+  function chart() {
+    document.getElementById("chartnote").innerHTML =
+      `${sp.label}: <span class="key" style="background:var(--accent)"></span>average CMS limit and <span class="key" style="background:var(--warn)"></span>average drive to the nearest provider, for residents 65+ in each type of county. ` +
+      `"Extreme access" counties are the most remote, mostly in Alaska and the interior West.`;
+    const rowsB = [];
+    for (const d of sp.by_designation) {
+      rowsB.push({ group: `${DES[d.designation]} · ${(sum.designation_pop[d.designation] / 1e6).toFixed(1)}M residents 65+`, label: "Limit", value: d.limit_mean });
+      rowsB.push({ group: `${DES[d.designation]} · ${(sum.designation_pop[d.designation] / 1e6).toFixed(1)}M residents 65+`, label: "Nearest", value: d.near_mean, color: "var(--warn)" });
+    }
+    VK.bars(document.getElementById("bars"), rowsB, { fmt: v => Math.round(v) + " min" });
+  }
+
+  function table() {
+    const t = d3.select("#rural").html(`<thead><tr><th>Specialty</th><th>Rural limit</th><th>Average nearest</th><th>Extra drive allowed</th><th>Nearest past the limit</th><th>Counties with a raised limit<br>(any type)</th></tr></thead>`);
+    t.append("tbody").selectAll("tr").data(specs).join("tr").attr("class", d => d === sp ? "cur" : null).style("cursor", "pointer")
+      .on("click", (e, d) => { sp = d; draw(); window.scrollTo({ top: document.getElementById("specs").offsetTop - 20, behavior: "smooth" }); })
+      .html(d => { const r = d.by_designation.find(x => x.designation === "Rural");
+        return `<td>${d.label}</td><td>${r.limit_base} min</td><td>${min(r.near_mean)}</td><td>${plus(r.limit_mean - r.near_mean)}</td><td>${pct(r.pct_beyond)}</td><td>${VK.int(d.counties_customized)}</td>`; });
+  }
+  draw();
+})();
+</script>
+</body>
+</html>

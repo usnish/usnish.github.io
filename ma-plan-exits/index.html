@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Medicare Advantage Plan Exits</title>
+<meta name="description" content="Which Medicare Advantage members lose their plan or get moved into another one next year, county by county, from the CMS plan crosswalk.">
+<link rel="stylesheet" href="../assets/viz/viz.css">
+<style>
+  .big { font-size: 15px; color: var(--fg); margin: 14px 0 0; max-width: 80ch; }
+  .big b { color: var(--accent); }
+  .tbl-wrap { overflow-x: auto; }
+  .tbl { border-collapse: collapse; font-size: 13px; min-width: 620px; width: 100%; max-width: 940px; }
+  .tbl th { text-align: right; font-weight: 600; color: var(--muted); font-size: 12px; padding: 6px 8px; border-bottom: 1px solid var(--line); vertical-align: bottom; }
+  .tbl td { text-align: right; padding: 5px 8px; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+  .tbl th:first-child, .tbl td:first-child { text-align: left; }
+  .stack { display: flex; height: 14px; border-radius: 3px; overflow: hidden; background: var(--panel); min-width: 160px; }
+  .stack span { display: block; height: 100%; }
+  .key { display: inline-block; width: 10px; height: 10px; border-radius: 2px; vertical-align: -1px; margin: 0 4px 0 10px; }
+  .key:first-child { margin-left: 0; }
+  .tooltip .gone { color: var(--warn); }
+</style>
+</head>
+<body>
+<main>
+  <a class="back" href="/">&larr; usnish.github.io</a>
+  <header>
+    <h1>Medicare Advantage plans ending in 2027</h1>
+    <p class="lede">Every fall, insurers decide which Medicare Advantage plans to keep, merge or drop for the next year, and CMS publishes a crosswalk of where each plan's members go. Some are moved into another plan automatically. Others find their plan is ending, or pulling out of their county, and must choose new coverage during open enrollment. This follows every member of an individual plan through that crosswalk, county by county.</p>
+  </header>
+
+  <div class="controls" id="years" role="group" aria-label="Plan year"></div>
+  <p class="big" id="headline"></p>
+  <div class="controls" id="measures" role="group" aria-label="Map measure" style="margin-top:14px"></div>
+  <p class="mtitle" id="mtitle"></p>
+  <div class="stats" id="stats"></div>
+
+  <div class="layout">
+    <div class="map-wrap" id="wrap">
+      <svg class="map" id="map" viewBox="0 0 975 640" role="img" aria-label="County map of Medicare Advantage plan exits"></svg>
+      <div class="tooltip" id="tooltip"></div>
+    </div>
+    <aside class="panel">
+      <h2>
+        <select id="state" aria-label="Filter by state"><option value="">All states</option></select>
+        <button id="sort" type="button">highest first</button>
+      </h2>
+      <ol class="rank" id="rank"></ol>
+      <p style="font-size:11px;color:var(--muted);margin:8px 0 0">Counties with at least 500 members in individual Medicare Advantage plans.</p>
+    </aside>
+  </div>
+
+  <section class="chart">
+    <h2>What happens to members, by insurer</h2>
+    <p id="legend1"></p>
+    <div class="tbl-wrap"><table class="tbl" id="insurers"></table></div>
+  </section>
+
+  <section class="chart">
+    <h2>By type of plan</h2>
+    <p id="kindnote"></p>
+    <div class="tbl-wrap"><table class="tbl" id="kinds"></table></div>
+  </section>
+
+  <section class="about">
+    <h2>How this was estimated</h2>
+    <p><b>Members.</b> Enrollment by plan and county comes from the CMS <a href="https://www.cms.gov/data-research/statistics-trends-and-reports/medicare-advantagepart-d-contract-and-enrollment-data/monthly-enrollment-contract/plan/state/county">monthly enrollment file</a> for September before each plan year, for individual Medicare Advantage plans (HMO, PPO, PFFS, including special needs plans). Employer group plans, PACE, cost plans and medical savings accounts are left out. CMS hides counts of 10 or fewer, so very small plans in a county are missed.</p>
+    <p><b>Where they go.</b> The CMS <a href="https://www.cms.gov/data-research/statistics-trends-and-reports/medicare-advantagepart-d-contract-and-enrollment-data/plan-crosswalks">plan crosswalk</a> (the version released October 1 each year) lists each plan's status for the coming year and the plan or plans its members move into. A member counts as moved to a plan only if that plan's next-year service area, from the CMS <a href="https://www.cms.gov/data-research/statistics-trends-and-reports/medicare-advantagepart-d-contract-and-enrollment-data/benefits-data">Plan Benefit Package</a> files, includes their county. Members whose plan ends outright are counted as <i>plan ended</i>. Members whose plan continues elsewhere, but not in their county, are counted as <i>plan leaving county</i>. Members in both groups get a special enrollment period to choose new coverage. Without a choice, they end up in traditional Medicare.</p>
+    <p><b>Plans and insurers.</b> Counts of plans and insurers include only plans anyone eligible for Medicare in the county can join, not special needs plans. Insurers are grouped by parent company where CMS lists one.</p>
+    <p><b>Caveats.</b> The crosswalk is preliminary; a few plans change status after October. "Moved" members keep coverage without acting, but their new plan can have a different network, drug list and costs. Members who are moved can still switch during open enrollment. Members of plans whose contract is new for the coming year are matched by organization name rather than parent company.</p>
+    <p>Related: <a href="/ma-network-standards/">how far a Medicare Advantage network can send you</a>. Data and build scripts: <a href="https://github.com/usnish/usnish.github.io/tree/master/ma-plan-exits">github.com/usnish/usnish.github.io</a>.</p>
+  </section>
+</main>
+
+<script src="../assets/viz/d3.min.js"></script>
+<script src="../assets/viz/topojson-client.min.js"></script>
+<script src="../assets/viz/vizkit.js"></script>
+<script>
+(async function () {
+  const [us, rows, sum] = await Promise.all([
+    d3.json("../assets/viz/counties-albers-10m.json"),
+    d3.csv("data/counties.csv", d3.autoType),
+    d3.json("data/summary.json")
+  ]);
+  rows.forEach(r => {
+    r.fips = String(r.fips).padStart(5, "0");
+    for (const y of [2026, 2027]) {
+      r[`plans_change_${y}`] = r[`plans_prev_${y}`] || r[`plans_next_${y}`] ? r[`plans_next_${y}`] - r[`plans_prev_${y}`] : null;
+    }
+  });
+  const by = new Map(rows.map(r => [r.fips, r]));
+  const ok = v => v != null && v !== "" && !isNaN(v);
+  const pct = v => ok(v) ? (v > 0 && v < 1 ? "<1" : Math.round(v)) + "%" : "–";
+  const signed = v => ok(v) ? (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v) : "–";
+  const M = n => n >= 1e6 ? (n / 1e6).toFixed(1) + "M" : VK.int(Math.round(n / 1000) * 1000);
+  const COL = { stays: "var(--line)", moved: "var(--accent)", leaving: "#d8a05a", ended: "var(--warn)" };
+  const LAB = { stays: "Stays in plan", moved: "Moved to another plan", leaving: "Plan leaving county", ended: "Plan ended" };
+
+  const years = [
+    { id: 2027, label: "2027", sub: "September 2026 members" },
+    { id: 2026, label: "2026", sub: "last year, for comparison" },
+  ];
+  const measures = [
+    { id: "pct_must_choose", label: "Must pick a new plan", sub: "plan ends or leaves county", fmt: pct, unit: "Share of members whose plan ends or leaves their county" },
+    { id: "pct_moved", label: "Moved automatically", sub: "into a different plan", fmt: pct, unit: "Share of members moved into a different plan" },
+    { id: "plans_change", label: "Change in plans", sub: "plans anyone can join", fmt: signed, unit: "Change in the number of plans anyone can join", diverging: true },
+    { id: "insurers_next", label: "Insurers next year", sub: "offering plans anyone can join", fmt: v => ok(v) ? String(v) : "–", unit: "Insurers offering plans anyone can join", low: true },
+  ];
+  let year = years[0], m = measures[0], desc = true;
+  const key = r => r[`${m.id}_${year.id}`];
+
+  const wrap = document.getElementById("wrap"), svg = d3.select("#map");
+  const map = VK.countyMap({ svg, us, tooltip: "#tooltip", wrap, html: (fips, name) => {
+    const r = by.get(fips), y = year.id;
+    if (!r || !(r[`members_${y}`] || r[`plans_prev_${y}`])) return `<b>${name}</b>No Medicare Advantage data`;
+    const n = r[`members_${y}`];
+    const gone = r[`insurers_gone_${y}`], neu = r[`insurers_new_${y}`];
+    return `<b>${name}</b><table>
+      <tr><td>Members (individual plans)</td><td>${VK.int(n)}</td></tr>
+      ${["stays", "moved", "leaving", "ended"].map(o => `<tr class="${(m.id === "pct_must_choose" && (o === "leaving" || o === "ended")) || (m.id === "pct_moved" && o === "moved") ? "cur" : ""}"><td>${LAB[o]}</td><td>${VK.int(r[`${o}_${y}`])} · ${n ? pct(100 * r[`${o}_${y}`] / n) : "–"}</td></tr>`).join("")}
+      <tr class="${m.id === "plans_change" ? "cur" : ""}"><td>Plans anyone can join</td><td>${r[`plans_prev_${y}`]} → ${r[`plans_next_${y}`]}</td></tr>
+      <tr class="${m.id === "insurers_next" ? "cur" : ""}"><td>Insurers offering them</td><td>${r[`insurers_prev_${y}`]} → ${r[`insurers_next_${y}`]}</td></tr></table>` +
+      (gone ? `<div class="note gone">Leaving: ${gone}</div>` : "") + (neu ? `<div class="note">New: ${neu}</div>` : "");
+  }});
+
+  const stSel = d3.select("#state");
+  [...map.stateNames].sort((a, b) => d3.ascending(a[1], b[1])).forEach(([id, n]) => stSel.append("option").attr("value", id).text(n));
+  const cname = new Map(map.counties.map(f => [f.id, f.properties.name]));
+
+  function draw() {
+    VK.pressButtons("#years", years, year, d => { year = d; draw(); });
+    VK.pressButtons("#measures", measures, m, d => { m = d; draw(); });
+    const s = sum[year.id], other = sum[year.id === 2027 ? 2026 : 2027];
+    const must = s.leaving + s.ended;
+    document.querySelector("h1").textContent = `Medicare Advantage plans ending in ${year.id}`;
+    document.getElementById("headline").innerHTML =
+      `Going into ${year.id}, <b>${M(must)}</b> people (${pct(s.pct_must_choose)} of individual Medicare Advantage members) have a plan that is ending or leaving their county and must choose new coverage. ` +
+      `Another <b>${M(s.moved)}</b> (${pct(s.pct_moved)}) are being moved into a different plan automatically. ` +
+      (year.id === 2027 ? `A year earlier, the numbers were ${M(other.leaving + other.ended)} and ${M(other.moved)}.` : `For 2027 they are ${M(other.leaving + other.ended)} and ${M(other.moved)}.`);
+    VK.stats(document.getElementById("stats"), [
+      ["Must pick a new plan", M(must), `${M(s.ended)} plan ended · ${M(s.leaving)} leaving county`],
+      ["Moved automatically", M(s.moved), "into a different plan"],
+      ["Counties losing plans", VK.int(s.counties_lost_plans), `${VK.int(s.counties_gained_plans)} gained plans`],
+      ["Counties with 0–1 insurers", VK.int(s.counties_one_or_no_insurer), `offering plans anyone can join (was ${VK.int(s.counties_one_or_no_insurer_prev)})`],
+    ]);
+    document.getElementById("mtitle").innerHTML = `<b>${m.unit}</b> · ${year.id}, by county`;
+    const vals = rows.map(key).filter(ok);
+    let color;
+    if (m.diverging) {
+      const ramp = ["#b4532a", "#d98a5f", "#f0c3a6", "#ececec", "#bcb2d8", "#7b6fa6", "#3b3550"];
+      color = d3.scaleThreshold().domain([-10, -5, -1, 1, 3, 6]).range(ramp);
+    } else if (m.low) {
+      color = d3.scaleThreshold().domain([1, 2, 3, 5, 7, 10]).range([...VK.RAMP].reverse());
+    } else {
+      color = d3.scaleQuantile().domain(vals.filter(v => v > 0)).range(VK.RAMP);
+    }
+    map.fill(f => { const r = by.get(f); return r ? key(r) : null; }, m.diverging || m.low ? color : v => v === 0 ? "var(--panel)" : color(v));
+    VK.legend(map.legend, color, v => m.id === "plans_change" ? signed(v) : m.fmt(v),
+      m.unit + (m.diverging || m.low ? "" : " · equal-count bins, 0 shown blank"));
+    renderList();
+    tables();
+  }
+
+  function renderList() {
+    const st = stSel.property("value");
+    const data = rows.filter(r => r[`members_${year.id}`] >= 500 && ok(key(r)) && (!st || r.fips.slice(0, 2) === st))
+      .sort((a, b) => desc ? key(b) - key(a) : key(a) - key(b)).slice(0, 100);
+    d3.select("#rank").selectAll("li").data(data, d => d.fips).join("li")
+      .html((d, i) => `<span class="n">${i + 1}</span><span>${cname.get(d.fips) || d.fips} <span class="st">${map.stateNames.get(d.fips.slice(0, 2)) || ""}</span></span><span class="val">${m.fmt(key(d))}</span>`)
+      .on("mouseenter", (e, d) => map.highlight(d.fips)).on("mouseleave", () => map.highlight(null));
+  }
+  stSel.on("change", renderList);
+  d3.select("#sort").on("click", function () { desc = !desc; this.textContent = desc ? "highest first" : "lowest first"; renderList(); });
+
+  function stack(d) {
+    const n = d.stays + d.moved + d.leaving + d.ended;
+    return `<div class="stack">${["moved", "leaving", "ended", "stays"].map(o => `<span style="width:${(100 * d[o] / n).toFixed(2)}%;background:${COL[o]}" title="${LAB[o]}: ${pct(100 * d[o] / n)}"></span>`).join("")}</div>`;
+  }
+  function tables() {
+    const s = sum[year.id];
+    document.getElementById("legend1").innerHTML = `The twelve largest insurers by membership going into ${year.id}. ` +
+      ["moved", "leaving", "ended", "stays"].map(o => `<span class="key" style="background:${COL[o]}"></span>${LAB[o]}`).join("");
+    const row = d => { const n = d.stays + d.moved + d.leaving + d.ended;
+      return `<td>${d.name}</td><td>${M(n)}</td><td>${stack(d)}</td><td>${pct(100 * d.moved / n)}</td><td>${pct(100 * (d.leaving + d.ended) / n)}</td><td>${M(d.leaving + d.ended)}</td>`; };
+    const head = `<thead><tr><th>Insurer</th><th>Members</th><th style="text-align:left">Outcome</th><th>Moved</th><th>Must choose</th><th>Must choose<br>(people)</th></tr></thead>`;
+    d3.select("#insurers").html(head + `<tbody>${s.by_insurer.map(d => `<tr>${row(d)}</tr>`).join("")}</tbody>`);
+    d3.select("#kinds").html(head.replace("Insurer", "Plan type") + `<tbody>${s.by_kind.map(d => `<tr>${row(d)}</tr>`).join("")}</tbody>`);
+    const d = s.by_kind.find(k => k.name.startsWith("Dual"));
+    document.getElementById("kindnote").textContent =
+      `Dual-eligible special needs plans serve people with both Medicare and Medicaid. Insurers are reorganizing them to line up with their state Medicaid contracts, partly because of federal integration rules that start taking effect in 2027. That's why so many of their members are being moved rather than dropped: ${pct(100 * d.moved / (d.stays + d.moved + d.leaving + d.ended))} going into ${year.id}.`;
+  }
+  draw();
+})();
+</script>
+</body>
+</html>

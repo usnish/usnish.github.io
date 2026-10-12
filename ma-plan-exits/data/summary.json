@@ -1,0 +1,272 @@
+{
+ "2026": {
+  "year": 2026,
+  "enrollment_month": "September 2025",
+  "members": 28381138,
+  "stays": 23893258,
+  "moved": 1568480,
+  "leaving": 812806,
+  "ended": 2106594,
+  "pct_must_choose": 10.3,
+  "pct_moved": 5.5,
+  "members_no_crosswalk": 0,
+  "counties_lost_plans": 1832,
+  "counties_gained_plans": 819,
+  "counties_insurer_left": 1540,
+  "counties_one_or_no_insurer": 204,
+  "counties_one_or_no_insurer_prev": 166,
+  "plans_prev": 3719,
+  "plans_next": 3373,
+  "by_kind": [
+   {
+    "name": "Plans open to anyone",
+    "stays": 17826398,
+    "moved": 780102,
+    "leaving": 735013,
+    "ended": 2002551
+   },
+   {
+    "name": "Dual-eligible special needs plans",
+    "stays": 5042745,
+    "moved": 946433,
+    "leaving": 50867,
+    "ended": 88494
+   },
+   {
+    "name": "Other special needs plans",
+    "stays": 1408233,
+    "moved": 10813,
+    "leaving": 27000,
+    "ended": 34692
+   }
+  ],
+  "by_insurer": [
+   {
+    "name": "UnitedHealthcare",
+    "stays": 7363612,
+    "moved": 344560,
+    "leaving": 105485,
+    "ended": 495596
+   },
+   {
+    "name": "Humana",
+    "stays": 4703097,
+    "moved": 376850,
+    "leaving": 56316,
+    "ended": 42905
+   },
+   {
+    "name": "Aetna (CVS)",
+    "stays": 2274156,
+    "moved": 151228,
+    "leaving": 191013,
+    "ended": 200256
+   },
+   {
+    "name": "Elevance (Anthem)",
+    "stays": 1365016,
+    "moved": 301501,
+    "leaving": 74081,
+    "ended": 110953
+   },
+   {
+    "name": "Kaiser Permanente",
+    "stays": 1248503,
+    "moved": 41397,
+    "leaving": 30155,
+    "ended": 78911
+   },
+   {
+    "name": "Wellcare (Centene)",
+    "stays": 724091,
+    "moved": 132975,
+    "leaving": 29810,
+    "ended": 57859
+   },
+   {
+    "name": "HCSC (Blue Cross)",
+    "stays": 684705,
+    "moved": 11143,
+    "leaving": 38814,
+    "ended": 107094
+   },
+   {
+    "name": "Highmark",
+    "stays": 226915,
+    "moved": 5980,
+    "leaving": 33533,
+    "ended": 116991
+   },
+   {
+    "name": "Healthfirst, Inc.",
+    "stays": 353057,
+    "moved": 0,
+    "leaving": 109,
+    "ended": 6964
+   },
+   {
+    "name": "Blue Cross Blue Shield of Michigan Mutual Ins. Co.",
+    "stays": 203992,
+    "moved": 0,
+    "leaving": 49495,
+    "ended": 61463
+   },
+   {
+    "name": "MHH Healthcare, L.P.",
+    "stays": 246983,
+    "moved": 66004,
+    "leaving": 0,
+    "ended": 0
+   },
+   {
+    "name": "SCAN",
+    "stays": 302561,
+    "moved": 1850,
+    "leaving": 1913,
+    "ended": 0
+   }
+  ],
+  "statuses": {
+   "Renewal Plan": 5064,
+   "Terminated/Non-renewed Contract": 1013,
+   "Consolidated Renewal Plan": 746,
+   "Renewal Plan with SAE": 515,
+   "Renewal Plan with SAR": 733
+  }
+ },
+ "2027": {
+  "year": 2027,
+  "enrollment_month": "September 2026",
+  "members": 29304217,
+  "stays": 23823013,
+  "moved": 2312909,
+  "leaving": 813385,
+  "ended": 2354910,
+  "pct_must_choose": 10.8,
+  "pct_moved": 7.9,
+  "members_no_crosswalk": 0,
+  "counties_lost_plans": 2205,
+  "counties_gained_plans": 512,
+  "counties_insurer_left": 1673,
+  "counties_one_or_no_insurer": 322,
+  "counties_one_or_no_insurer_prev": 214,
+  "plans_prev": 3373,
+  "plans_next": 3194,
+  "by_kind": [
+   {
+    "name": "Plans open to anyone",
+    "stays": 17726001,
+    "moved": 926797,
+    "leaving": 770672,
+    "ended": 2079935
+   },
+   {
+    "name": "Dual-eligible special needs plans",
+    "stays": 4779465,
+    "moved": 1388781,
+    "leaving": 29160,
+    "ended": 229605
+   },
+   {
+    "name": "Other special needs plans",
+    "stays": 1864874,
+    "moved": 22196,
+    "leaving": 13718,
+    "ended": 45370
+   }
+  ],
+  "by_insurer": [
+   {
+    "name": "UnitedHealthcare",
+    "stays": 6178740,
+    "moved": 936414,
+    "leaving": 133627,
+    "ended": 377504
+   },
+   {
+    "name": "Humana",
+    "stays": 5325828,
+    "moved": 472377,
+    "leaving": 196505,
+    "ended": 405494
+   },
+   {
+    "name": "Aetna (CVS)",
+    "stays": 2466181,
+    "moved": 23166,
+    "leaving": 90064,
+    "ended": 215066
+   },
+   {
+    "name": "Elevance (Anthem)",
+    "stays": 1246317,
+    "moved": 191901,
+    "leaving": 12364,
+    "ended": 49596
+   },
+   {
+    "name": "Kaiser Permanente",
+    "stays": 1391605,
+    "moved": 56721,
+    "leaving": 5079,
+    "ended": 30925
+   },
+   {
+    "name": "Wellcare (Centene)",
+    "stays": 519242,
+    "moved": 201976,
+    "leaving": 45932,
+    "ended": 122356
+   },
+   {
+    "name": "HCSC (Blue Cross)",
+    "stays": 618067,
+    "moved": 36288,
+    "leaving": 12231,
+    "ended": 110149
+   },
+   {
+    "name": "Devoted Health",
+    "stays": 498513,
+    "moved": 13552,
+    "leaving": 0,
+    "ended": 8901
+   },
+   {
+    "name": "SCAN",
+    "stays": 444129,
+    "moved": 4634,
+    "leaving": 2414,
+    "ended": 5334
+   },
+   {
+    "name": "Healthfirst, Inc.",
+    "stays": 371798,
+    "moved": 0,
+    "leaving": 74,
+    "ended": 0
+   },
+   {
+    "name": "MHH Healthcare, L.P.",
+    "stays": 321143,
+    "moved": 23734,
+    "leaving": 41,
+    "ended": 0
+   },
+   {
+    "name": "Highmark",
+    "stays": 287912,
+    "moved": 11069,
+    "leaving": 4480,
+    "ended": 13934
+   }
+  ],
+  "statuses": {
+   "Renewal Plan": 4899,
+   "Terminated/Non-renewed Contract": 1006,
+   "Consolidated Renewal Plan": 808,
+   "Renewal Plan with SAE": 546,
+   "Renewal Plan with SAR": 789
+  }
+ }
+}

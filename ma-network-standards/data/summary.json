@@ -1,0 +1,604 @@
+{
+ "cap_minutes": 240,
+ "specialties": [
+  {
+   "id": "primary",
+   "label": "Primary care",
+   "hsd": "Primary Care",
+   "providers": 337399,
+   "points": 14497,
+   "near_mean": 12.6,
+   "limit_mean": 18.1,
+   "pct_beyond": 19.91,
+   "old_beyond": 10898482,
+   "base": {
+    "Metro": 15,
+    "Rural": 40,
+    "Micro": 30,
+    "CEAC": 70,
+    "Large Metro": 10
+   },
+   "counties_customized": 142,
+   "by_designation": [
+    {
+     "designation": "Large Metro",
+     "limit_mean": 10.0,
+     "limit_base": 10,
+     "near_mean": 10.2,
+     "pct_beyond": 45.5
+    },
+    {
+     "designation": "Metro",
+     "limit_mean": 15.5,
+     "limit_base": 15,
+     "near_mean": 12.2,
+     "pct_beyond": 12.1
+    },
+    {
+     "designation": "Micro",
+     "limit_mean": 30.4,
+     "limit_base": 30,
+     "near_mean": 15.8,
+     "pct_beyond": 2.1
+    },
+    {
+     "designation": "Rural",
+     "limit_mean": 40.1,
+     "limit_base": 40,
+     "near_mean": 17.5,
+     "pct_beyond": 0.9
+    },
+    {
+     "designation": "CEAC",
+     "limit_mean": 70.9,
+     "limit_base": 70,
+     "near_mean": 27.0,
+     "pct_beyond": 1.7
+    }
+   ]
+  },
+  {
+   "id": "cardiology",
+   "label": "Cardiology",
+   "hsd": "Cardiology",
+   "providers": 71435,
+   "points": 6711,
+   "near_mean": 15.8,
+   "limit_mean": 33.7,
+   "pct_beyond": 1.53,
+   "old_beyond": 836092,
+   "base": {
+    "Metro": 30,
+    "Rural": 75,
+    "Micro": 50,
+    "CEAC": 95,
+    "Large Metro": 20
+   },
+   "counties_customized": 95,
+   "by_designation": [
+    {
+     "designation": "Large Metro",
+     "limit_mean": 20.1,
+     "limit_base": 20,
+     "near_mean": 11.0,
+     "pct_beyond": 0.7
+    },
+    {
+     "designation": "Metro",
+     "limit_mean": 30.3,
+     "limit_base": 30,
+     "near_mean": 14.4,
+     "pct_beyond": 1.7
+    },
+    {
+     "designation": "Micro",
+     "limit_mean": 51.3,
+     "limit_base": 50,
+     "near_mean": 21.4,
+     "pct_beyond": 1.4
+    },
+    {
+     "designation": "Rural",
+     "limit_mean": 75.5,
+     "limit_base": 75,
+     "near_mean": 28.5,
+     "pct_beyond": 1.4
+    },
+    {
+     "designation": "CEAC",
+     "limit_mean": 98.6,
+     "limit_base": 95,
+     "near_mean": 53.1,
+     "pct_beyond": 10.9
+    }
+   ]
+  },
+  {
+   "id": "oncology",
+   "label": "Oncology",
+   "hsd": "Oncology - Medical, Surgical",
+   "providers": 26347,
+   "points": 3797,
+   "near_mean": 19.1,
+   "limit_mean": 43.8,
+   "pct_beyond": 1.68,
+   "old_beyond": 919066,
+   "base": {
+    "Metro": 45,
+    "Rural": 75,
+    "Micro": 60,
+    "CEAC": 110,
+    "Large Metro": 20
+   },
+   "counties_customized": 305,
+   "by_designation": [
+    {
+     "designation": "Large Metro",
+     "limit_mean": 20.6,
+     "limit_base": 20,
+     "near_mean": 12.0,
+     "pct_beyond": 1.8
+    },
+    {
+     "designation": "Metro",
+     "limit_mean": 45.9,
+     "limit_base": 45,
+     "near_mean": 16.4,
+     "pct_beyond": 0.5
+    },
+    {
+     "designation": "Micro",
+     "limit_mean": 64.3,
+     "limit_base": 60,
+     "near_mean": 28.6,
+     "pct_beyond": 2.9
+    },
+    {
+     "designation": "Rural",
+     "limit_mean": 77.2,
+     "limit_base": 75,
+     "near_mean": 41.2,
+     "pct_beyond": 5.4
+    },
+    {
+     "designation": "CEAC",
+     "limit_mean": 122.0,
+     "limit_base": 110,
+     "near_mean": 76.3,
+     "pct_beyond": 13.9
+    }
+   ]
+  },
+  {
+   "id": "nephrology",
+   "label": "Nephrology",
+   "hsd": "Nephrology",
+   "providers": 18188,
+   "points": 4078,
+   "near_mean": 19.4,
+   "limit_mean": 49.1,
+   "pct_beyond": 1.12,
+   "old_beyond": 613738,
+   "base": {
+    "Metro": 45,
+    "Rural": 90,
+    "Micro": 80,
+    "CEAC": 125,
+    "Large Metro": 30
+   },
+   "counties_customized": 101,
+   "by_designation": [
+    {
+     "designation": "Large Metro",
+     "limit_mean": 30.0,
+     "limit_base": 30,
+     "near_mean": 11.8,
+     "pct_beyond": 0.1
+    },
+    {
+     "designation": "Metro",
+     "limit_mean": 45.3,
+     "limit_base": 45,
+     "near_mean": 16.8,
+     "pct_beyond": 0.9
+    },
+    {
+     "designation": "Micro",
+     "limit_mean": 81.0,
+     "limit_base": 80,
+     "near_mean": 30.4,
+     "pct_beyond": 1.7
+    },
+    {
+     "designation": "Rural",
+     "limit_mean": 90.5,
+     "limit_base": 90,
+     "near_mean": 42.2,
+     "pct_beyond": 3.3
+    },
+    {
+     "designation": "CEAC",
+     "limit_mean": 128.3,
+     "limit_base": 125,
+     "near_mean": 76.2,
+     "pct_beyond": 11.8
+    }
+   ]
+  },
+  {
+   "id": "neurology",
+   "label": "Neurology",
+   "hsd": "Neurology",
+   "providers": 41291,
+   "points": 4916,
+   "near_mean": 18.6,
+   "limit_mean": 43.4,
+   "pct_beyond": 1.6,
+   "old_beyond": 874007,
+   "base": {
+    "Metro": 45,
+    "Rural": 75,
+    "Micro": 60,
+    "CEAC": 110,
+    "Large Metro": 20
+   },
+   "counties_customized": 330,
+   "by_designation": [
+    {
+     "designation": "Large Metro",
+     "limit_mean": 20.4,
+     "limit_base": 20,
+     "near_mean": 11.4,
+     "pct_beyond": 1.0
+    },
+    {
+     "designation": "Metro",
+     "limit_mean": 45.3,
+     "limit_base": 45,
+     "near_mean": 15.5,
+     "pct_beyond": 0.5
+    },
+    {
+     "designation": "Micro",
+     "limit_mean": 63.9,
+     "limit_base": 60,
+     "near_mean": 28.8,
+     "pct_beyond": 3.0
+    },
+    {
+     "designation": "Rural",
+     "limit_mean": 78.3,
+     "limit_base": 75,
+     "near_mean": 42.6,
+     "pct_beyond": 6.6
+    },
+    {
+     "designation": "CEAC",
+     "limit_mean": 118.4,
+     "limit_base": 110,
+     "near_mean": 79.5,
+     "pct_beyond": 16.3
+    }
+   ]
+  },
+  {
+   "id": "psychiatry",
+   "label": "Psychiatry",
+   "hsd": "Psychiatry",
+   "providers": 43859,
+   "points": 6898,
+   "near_mean": 16.6,
+   "limit_mean": 42.8,
+   "pct_beyond": 0.74,
+   "old_beyond": 407216,
+   "base": {
+    "Metro": 45,
+    "Rural": 75,
+    "Micro": 60,
+    "CEAC": 110,
+    "Large Metro": 20
+   },
+   "counties_customized": 183,
+   "by_designation": [
+    {
+     "designation": "Large Metro",
+     "limit_mean": 20.0,
+     "limit_base": 20,
+     "near_mean": 10.8,
+     "pct_beyond": 0.7
+    },
+    {
+     "designation": "Metro",
+     "limit_mean": 45.2,
+     "limit_base": 45,
+     "near_mean": 14.6,
+     "pct_beyond": 0.3
+    },
+    {
+     "designation": "Micro",
+     "limit_mean": 61.5,
+     "limit_base": 60,
+     "near_mean": 24.0,
+     "pct_beyond": 1.1
+    },
+    {
+     "designation": "Rural",
+     "limit_mean": 76.2,
+     "limit_base": 75,
+     "near_mean": 34.0,
+     "pct_beyond": 2.0
+    },
+    {
+     "designation": "CEAC",
+     "limit_mean": 115.1,
+     "limit_base": 110,
+     "near_mean": 63.4,
+     "pct_beyond": 8.6
+    }
+   ]
+  },
+  {
+   "id": "endocrinology",
+   "label": "Endocrinology",
+   "hsd": "Endocrinology",
+   "providers": 11529,
+   "points": 3297,
+   "near_mean": 23.6,
+   "limit_mean": 61.4,
+   "pct_beyond": 1.57,
+   "old_beyond": 860791,
+   "base": {
+    "Metro": 60,
+    "Rural": 110,
+    "Micro": 100,
+    "CEAC": 145,
+    "Large Metro": 30
+   },
+   "counties_customized": 253,
+   "by_designation": [
+    {
+     "designation": "Large Metro",
+     "limit_mean": 30.0,
+     "limit_base": 30,
+     "near_mean": 12.0,
+     "pct_beyond": 0.3
+    },
+    {
+     "designation": "Metro",
+     "limit_mean": 61.0,
+     "limit_base": 60,
+     "near_mean": 18.5,
+     "pct_beyond": 0.9
+    },
+    {
+     "designation": "Micro",
+     "limit_mean": 103.1,
+     "limit_base": 100,
+     "near_mean": 43.1,
+     "pct_beyond": 2.2
+    },
+    {
+     "designation": "Rural",
+     "limit_mean": 112.5,
+     "limit_base": 110,
+     "near_mean": 61.9,
+     "pct_beyond": 7.3
+    },
+    {
+     "designation": "CEAC",
+     "limit_mean": 154.5,
+     "limit_base": 145,
+     "near_mean": 103.7,
+     "pct_beyond": 18.2
+    }
+   ]
+  },
+  {
+   "id": "pulmonology",
+   "label": "Pulmonology",
+   "hsd": "Pulmonology",
+   "providers": 20311,
+   "points": 4060,
+   "near_mean": 19.3,
+   "limit_mean": 43.7,
+   "pct_beyond": 1.94,
+   "old_beyond": 1063782,
+   "base": {
+    "Metro": 45,
+    "Rural": 75,
+    "Micro": 60,
+    "CEAC": 110,
+    "Large Metro": 20
+   },
+   "counties_customized": 314,
+   "by_designation": [
+    {
+     "designation": "Large Metro",
+     "limit_mean": 20.4,
+     "limit_base": 20,
+     "near_mean": 11.8,
+     "pct_beyond": 1.5
+    },
+    {
+     "designation": "Metro",
+     "limit_mean": 46.0,
+     "limit_base": 45,
+     "near_mean": 16.3,
+     "pct_beyond": 0.6
+    },
+    {
+     "designation": "Micro",
+     "limit_mean": 63.7,
+     "limit_base": 60,
+     "near_mean": 28.7,
+     "pct_beyond": 2.7
+    },
+    {
+     "designation": "Rural",
+     "limit_mean": 77.6,
+     "limit_base": 75,
+     "near_mean": 44.4,
+     "pct_beyond": 8.2
+    },
+    {
+     "designation": "CEAC",
+     "limit_mean": 122.1,
+     "limit_base": 110,
+     "near_mean": 85.5,
+     "pct_beyond": 20.4
+    }
+   ]
+  },
+  {
+   "id": "hospital",
+   "label": "Hospital",
+   "hsd": "Acute Inpatient Hospitals",
+   "providers": 4462,
+   "points": 4462,
+   "near_mean": 16.4,
+   "limit_mean": 45.0,
+   "pct_beyond": 0.78,
+   "old_beyond": 424889,
+   "base": {
+    "Metro": 45,
+    "Rural": 75,
+    "Micro": 80,
+    "CEAC": 110,
+    "Large Metro": 20
+   },
+   "counties_customized": 21,
+   "by_designation": [
+    {
+     "designation": "Large Metro",
+     "limit_mean": 21.5,
+     "limit_base": 20,
+     "near_mean": 12.9,
+     "pct_beyond": 2.2
+    },
+    {
+     "designation": "Metro",
+     "limit_mean": 45.0,
+     "limit_base": 45,
+     "near_mean": 16.3,
+     "pct_beyond": 0.2
+    },
+    {
+     "designation": "Micro",
+     "limit_mean": 80.0,
+     "limit_base": 80,
+     "near_mean": 20.5,
+     "pct_beyond": 0.0
+    },
+    {
+     "designation": "Rural",
+     "limit_mean": 75.0,
+     "limit_base": 75,
+     "near_mean": 23.6,
+     "pct_beyond": 0.2
+    },
+    {
+     "designation": "CEAC",
+     "limit_mean": 110.4,
+     "limit_base": 110,
+     "near_mean": 28.4,
+     "pct_beyond": 0.8
+    }
+   ]
+  },
+  {
+   "id": "snf",
+   "label": "Skilled nursing",
+   "hsd": "Skilled Nursing Facilities",
+   "providers": 14690,
+   "points": 14690,
+   "near_mean": 13.3,
+   "limit_mean": 44.3,
+   "pct_beyond": 0.38,
+   "old_beyond": 205688,
+   "base": {
+    "Metro": 45,
+    "Rural": 75,
+    "Micro": 80,
+    "CEAC": 95,
+    "Large Metro": 20
+   },
+   "counties_customized": 38,
+   "by_designation": [
+    {
+     "designation": "Large Metro",
+     "limit_mean": 20.0,
+     "limit_base": 20,
+     "near_mean": 10.7,
+     "pct_beyond": 0.7
+    },
+    {
+     "designation": "Metro",
+     "limit_mean": 45.0,
+     "limit_base": 45,
+     "near_mean": 13.0,
+     "pct_beyond": 0.2
+    },
+    {
+     "designation": "Micro",
+     "limit_mean": 80.0,
+     "limit_base": 80,
+     "near_mean": 16.4,
+     "pct_beyond": 0.2
+    },
+    {
+     "designation": "Rural",
+     "limit_mean": 75.0,
+     "limit_base": 75,
+     "near_mean": 17.4,
+     "pct_beyond": 0.1
+    },
+    {
+     "designation": "CEAC",
+     "limit_mean": 96.9,
+     "limit_base": 95,
+     "near_mean": 31.3,
+     "pct_beyond": 2.7
+    }
+   ]
+  }
+ ],
+ "designations": [
+  "Large Metro",
+  "Metro",
+  "Micro",
+  "Rural",
+  "CEAC"
+ ],
+ "drive_model": {
+  "metro": {
+   "a": 8.301,
+   "b": 0.9801,
+   "r2": 0.926,
+   "n": 200,
+   "median_abs_err_min": 3.5,
+   "km_range": [
+    1.2,
+    144.1
+   ]
+  },
+  "nonmetro": {
+   "a": 7.074,
+   "b": 1.1307,
+   "r2": 0.646,
+   "n": 200,
+   "median_abs_err_min": 9.3,
+   "km_range": [
+    3.1,
+    141.6
+   ]
+  }
+ },
+ "old_pop": 54731884,
+ "designation_pop": {
+  "Large Metro": 16083032,
+  "Metro": 28093556,
+  "Micro": 6029167,
+  "Rural": 3665645,
+  "CEAC": 860484
+ }
+}

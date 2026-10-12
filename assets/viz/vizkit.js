@@ -43,7 +43,7 @@ window.VK = (function () {
     g.selectAll("*").remove();
     const w = 52;
     color.range().forEach((c, i) => g.append("rect").attr("x", i * w).attr("width", w).attr("height", 10).attr("fill", c));
-    (color.quantiles ? color.quantiles() : color.thresholds()).forEach((t, i) =>
+    (color.quantiles ? color.quantiles() : color.thresholds ? color.thresholds() : color.domain()).forEach((t, i) =>
       g.append("text").attr("x", (i + 1) * w).attr("y", 24).attr("text-anchor", "middle").text(fmt(t)));
     g.append("text").attr("x", 0).attr("y", -6).text(title);
     if (extra) extra(g.append("g").attr("transform", "translate(0,40)"));

@@ -33,3 +33,13 @@
       url: /hospital-charity-care/
       repo: https://github.com/usnish/usnish.github.io/tree/master/hospital-charity-care
       description: Charity care reported by 2,700 U.S. nonprofit hospitals in 2023, plotted against a rough estimate of each hospital's federal income tax exemption.
+
+    - title: Medicare Advantage Network Rules
+      url: /ma-network-standards/
+      repo: https://github.com/usnish/usnish.github.io/tree/master/ma-network-standards
+      description: How far CMS lets a Medicare Advantage plan's nearest in-network doctor or hospital be, compared with how far older residents actually live from the nearest one, by county and specialty.
+
+    - title: Medicare Advantage Plans Ending in 2027
+      url: /ma-plan-exits/
+      repo: https://github.com/usnish/usnish.github.io/tree/master/ma-plan-exits
+      description: Which Medicare Advantage members must pick a new plan for 2027, or are being moved into a different one, by county, insurer and plan type, from the CMS plan crosswalk.
