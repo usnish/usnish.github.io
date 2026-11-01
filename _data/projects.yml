@@ -5,19 +5,19 @@
   url: /biochemical-pathways-poster/
   repo: https://github.com/usnish/biochemical-pathways-poster
   image: /biochemical-pathways-poster/poster_thumb.jpg
-  description: Printable, high-resolution renders of Roche's Biochemical Pathways (Part 1, Metabolic Pathways) poster, preserved from biochemical-pathways.com before it went offline.
+  description: Printable high-resolution renders of Roche's Biochemical Pathways (Part 1, Metabolic Pathways) poster, saved from biochemical-pathways.com before it went offline.
 
 - title: Data Visualizations
   items:
     - title: Cardiac Rehab Participation by Region and State
       url: /cardiac-rehab-map/
       repo: https://github.com/usnish/usnish.github.io/tree/master/cardiac-rehab-map
-      description: Interactive D3 map of cardiac rehabilitation participation among eligible Medicare patients, by region (2016 CDC data) and by state (1997).
+      description: Map of cardiac rehab participation among eligible Medicare patients, by region (2016 CDC data) and by state (1997).
 
     - title: Cardiac Rehab Eligibility by County
       url: /cr-eligibility-map/
       repo: https://github.com/usnish/usnish.github.io/tree/master/cr-eligibility-map
-      description: County map of conditions that qualify patients for cardiac rehab (CR-eligible events, heart attack, coronary heart disease and heart failure), CR participation among eligible Medicare patients, and national participation trends since 1997.
+      description: County map of who qualifies for cardiac rehab (heart attack, coronary heart disease, heart failure) and how many eligible Medicare patients take part, plus national participation trends since 1997.
 
     - title: The Dialysis Time Tax
       url: /dialysis-time-tax/
@@ -27,7 +27,7 @@
     - title: Clinical Trial Deserts
       url: /trial-deserts/
       repo: https://github.com/usnish/usnish.github.io/tree/master/trial-deserts
-      description: Who lives within an hour of a recruiting clinical trial for diabetes, coronary heart disease, cancer or COPD, broken down by race, social vulnerability and rurality.
+      description: Who lives within an hour of a recruiting clinical trial for diabetes, coronary heart disease, cancer or COPD, split by race, social vulnerability and rurality.
 
     - title: Nonprofit Hospital Charity Care
       url: /hospital-charity-care/

@@ -113,7 +113,7 @@
 </head>
 <body>
 <main>
-  <a class="back" href="https://usnish.github.io/">&larr; usnish.github.io</a>
+  <a class="back" href="/projects/">&larr; all projects</a>
   <header>
     <h1>Who could use cardiac rehab? A county map</h1>
     <p>How common are the heart conditions that qualify patients for cardiac rehabilitation, county by county. Pick a measure; hover a county to compare all of them.</p>
@@ -260,7 +260,7 @@
     if (lowCountMeasures.has(m.id)) {
       legend.append("rect").attr("y", 34).attr("width", 18).attr("height", 10).attr("fill", ramp[3]);
       legend.append("rect").attr("y", 34).attr("width", 18).attr("height", 10).attr("fill", "url(#hatch)");
-      legend.append("text").attr("x", 24).attr("y", 43).text(`Fewer than ${LOW_N} eligible patients (est.) — rate unreliable`);
+      legend.append("text").attr("x", 24).attr("y", 43).text(`Fewer than ${LOW_N} eligible patients (est.), rate unreliable`);
     }
 
     renderList();
