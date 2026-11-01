@@ -12,27 +12,10 @@
     --muted: #6b6b6b;
     --line: #e4e4e4;
     --panel: #f7f7f5;
-    --accent: #a04018;
+    --accent: #1f4e79;
     --nodata: #e9e9e9;
     --stroke: #ffffff;
     --hover: #1a1a1a;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --bg: #141414;
-      --fg: #ececec;
-      --muted: #a0a0a0;
-      --line: #2c2c2c;
-      --panel: #1d1d1d;
-      --accent: #e0875c;
-      --nodata: #2a2a2a;
-      --stroke: #141414;
-      --hover: #ffffff;
-    }
-  }
-  :root[data-theme="dark"] {
-    --bg: #141414; --fg: #ececec; --muted: #a0a0a0; --line: #2c2c2c;
-    --panel: #1d1d1d; --accent: #e0875c; --nodata: #2a2a2a; --stroke: #141414; --hover: #ffffff;
   }
   * { box-sizing: border-box; }
   body {
@@ -137,7 +120,7 @@
 (async function () {
   const fmtPct = d => d == null || isNaN(d) ? "–" : d.toFixed(1) + "%";
   const fmtInt = d3.format(",");
-  const ramp = ["#fbe9dd", "#f4c3a3", "#e8956b", "#cf6639", "#a04018", "#6b2508"];
+  const ramp = ["#eff3ff", "#c6dbef", "#9ecae1", "#6baed6", "#3182bd", "#08519c"];
 
   const [us, datasets, divisions] = await Promise.all([
     d3.json("vendor/states-albers-10m.json"),

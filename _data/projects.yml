@@ -43,3 +43,7 @@
       url: /ma-plan-exits/
       repo: https://github.com/usnish/usnish.github.io/tree/master/ma-plan-exits
       description: Which Medicare Advantage members must pick a new plan for 2027, or are being moved into a different one, by county, insurer and plan type, from the CMS plan crosswalk.
+
+    - title: Cardiac Rehab Costs in Medicare Advantage
+      url: /ma-cardiac-rehab/
+      description: What Medicare Advantage members pay for cardiac rehab and intensive cardiac rehab, by county, for 2026 and 2027, compared with traditional Medicare's 20% coinsurance. Password-protected.

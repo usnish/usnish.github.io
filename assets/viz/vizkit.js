@@ -1,6 +1,6 @@
 // Small shared helpers for the data visualization pages (needs d3 + topojson-client)
 window.VK = (function () {
-  const RAMP = ["#f1eef6", "#d8d2e8", "#bcb2d8", "#9c90c2", "#7b6fa6", "#5b5478", "#3b3550"];
+  const RAMP = ["#eff3ff", "#c6dbef", "#9ecae1", "#6baed6", "#4292c6", "#2171b5", "#084594"];
   const projection = d3.geoAlbersUsa().scale(1300).translate([487.5, 305]); // matches us-atlas *-albers-10m
   const int = d3.format(",");
   const money = v => v == null || isNaN(v) ? "–" : (Math.abs(v) >= 1e9 ? "$" + (v / 1e9).toFixed(1) + "B"

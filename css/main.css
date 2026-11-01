@@ -175,16 +175,3 @@ ul.nav a:hover, .nav-dropdown summary:hover { color: #143556; text-decoration: n
   .cover { margin-top: 24px; }
 }
 
-/* dark mode, same palette as assets/viz/viz.css ######################################## */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) { color-scheme: dark; }
-  body { background: #141414; color: #ececec; }
-  body:before { background: #8db4e0; }
-  a { color: #8db4e0; }
-  a:hover, ul.nav a:hover, .nav-dropdown summary:hover, #logo a:hover { color: #b5d0ee; }
-  .content p a { text-decoration-color: rgba(141, 180, 224, 0.4); }
-  a:focus-visible, summary:focus-visible { outline-color: #8db4e0; }
-  #logo a { color: #f2f2f2; }
-  .name-bn, ul.nav a, .nav-dropdown summary { color: #a3a3a3; }
-  .project-group-title { color: #ececec; border-color: #2c2c2c; }
-}
