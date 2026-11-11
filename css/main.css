@@ -82,28 +82,32 @@ img { border-radius: 6px; }
   letter-spacing: 0.01em;
   color: #6b6b6b;
 }
-.name-first { position: relative; cursor: help; }
-.name-first::after {
+.name-bn { display: inline-block; cursor: help; }
+#logo a[data-tip] { display: inline-block; }
+[data-tip] { position: relative; }
+[data-tip]::after {
   content: attr(data-tip);
   position: absolute;
   left: 0;
-  top: calc(100% + 6px);
+  bottom: calc(100% + 6px);
   padding: 4px 8px;
   border-radius: 4px;
   background: #1f4e79;
   color: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, 'Avenir Next', Avenir, 'Segoe UI', Roboto, Helvetica, Arial, 'Charis SIL', 'Doulos SIL', sans-serif;
   font-size: 13px;
   font-weight: 500;
+  line-height: 1.4;
   letter-spacing: 0.03em;
   white-space: nowrap;
   pointer-events: none;
   opacity: 0;
-  transform: translateY(-3px);
+  transform: translateY(4px);
   transition: opacity 0.12s ease, transform 0.12s ease;
   z-index: 10;
 }
-.name-first:hover::after,
-#logo a:focus-visible .name-first::after { opacity: 1; transform: none; }
+[data-tip]:hover::after,
+[data-tip]:focus-visible::after { opacity: 1; transform: none; }
 
 ul.nav {
   list-style: none;
