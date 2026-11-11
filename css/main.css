@@ -82,6 +82,12 @@ img { border-radius: 6px; }
   letter-spacing: 0.01em;
   color: #6b6b6b;
 }
+.name-phonetic {
+  margin-top: 2px;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: #8a8a8a;
+}
 
 ul.nav {
   list-style: none;
