@@ -63,6 +63,21 @@ GAINS_TOTAL = 43
 GAINS_SUPPORTERS = ["Mike McGuire", "Randy Villegas", "Zack Mullock", "Bob Brooks", "William Lawrence",
                     "Katy Padilla Stout"]
 
+# The path forward (2027-2030). The named seats and members come from the research team's path work and
+# were already on the page; the counts are computed here. Each one is checked against the roster below.
+# House seats Republicans won or lead in 2026 where the Democratic nominee ran on M4A (CA-23's Democrat
+# trails in an uncalled race and is not counted).
+HOUSE_PICKUPS = ["TN-9", "ME-2", "CA-23"]
+# Senators the Senate path research named as needing to change position first, in its order.
+SENATE_PERSUADE = ["Ruben Gallego", "Chris Murphy", "Angela Alsobrooks", "Andy Kim", "Tammy Duckworth",
+                   "Patty Murray", "Maria Cantwell"]
+# Seats with 2028 primaries the research named (New York and Pennsylvania). No challengers are named.
+SENATE_PRIMARY = ["Chuck Schumer", "John Fetterman"]
+# Minnesota: Klobuchar's row stands for her appointed successor until the Nov 2, 2027 special election.
+SENATE_SPECIAL = "Amy Klobuchar"
+# Republican-held 2028 seats where the research said a supporter could be the Democratic nominee.
+SENATE_PICKUPS_2028 = ["Florida", "Wisconsin"]
+
 HOUSE_XML = "https://www.govinfo.gov/bulkdata/BILLSTATUS/119/hr/BILLSTATUS-119hr3069.xml"
 SENATE_XML = "https://www.govinfo.gov/bulkdata/BILLSTATUS/119/s/BILLSTATUS-119s1506.xml"
 
@@ -251,11 +266,80 @@ def main():
     }
     gains_rate = len(GAINS_SUPPORTERS) / GAINS_TOTAL
 
+    # Path forward: running counts if every member in each group moved ---------------------
+    # House groups are disjoint and taken in timeline order.
+    nm = lambda m: f'{m["n"]} ({m["d"]})'
+    h_lapsed = [m for m in H if m["lapsed"]]
+    h_near = [m for m in H if safe(m) and not sup(m) and not m["lapsed"] and m["g"] == "opt"]
+    h_rest = [m for m in H if safe(m) and not sup(m) and not m["lapsed"] and m["g"] != "opt"]
+    h_likely = [m for m in H if m["rating"] == "likely" and not sup(m) and not m["lapsed"]]
+    h_holds = house["holds"]
+    for d in HOUSE_PICKUPS:
+        assert not any(m["d"] == d for m in H), f"pickup seat already held by a counted Democrat: {d}"
+    # Every safe-seat non-supporter is in exactly one of the three groups
+    safe_non = [m for m in H if safe(m) and not sup(m)]
+    assert {id(m) for m in safe_non} <= {id(m) for m in h_lapsed + h_near + h_rest}
+    assert len({id(m) for m in h_lapsed + h_near + h_rest}) == len(h_lapsed) + len(h_near) + len(h_rest)
+    h0 = house["supporters"]
+    h1 = h0 + len(h_lapsed)
+    h2 = h1 + len(h_near)
+    h3 = h2 + len(h_rest)
+    h4 = h3 + len(HOUSE_PICKUPS)
+    assert h3 == after_safe + sum(1 for m in h_lapsed if not safe(m)), "path and ladder disagree"
+
+    s_by = {m["n"]: m for m in Sn}
+    for n in SENATE_PERSUADE + SENATE_PRIMARY + [SENATE_SPECIAL]:
+        assert n in s_by and not sup(s_by[n]), f"path senator not a seated non-supporter: {n}"
+    assert not set(SENATE_PERSUADE) & set(SENATE_PRIMARY + [SENATE_SPECIAL])
+    s0 = senate["supporters"]
+    s1 = s0 + len(SENATE_PERSUADE)
+    s2 = s1 + 1                                   # Minnesota special
+    s3 = s2 + len(SENATE_PRIMARY)
+    s4 = s3 + len(SENATE_PICKUPS_2028)
+    moved = set(SENATE_PERSUADE + SENATE_PRIMARY + [SENATE_SPECIAL])
+    s_left = [m for m in Sn if not sup(m) and m["n"] not in moved]
+    by_next = dict(Counter(m["next"] for m in Sn))
+    check("senate by next election", by_next, tallies["senate_by_next_election"])
+    up = lambda y: [m for m in Sn if m["next"] == y]
+    s_opt_rest = [m for m in Sn if not sup(m) and m["g"] != "opt"]
+    path = {
+        "house": {
+            "start": h0,
+            "lapsed": {"n": len(h_lapsed), "after": h1, "names": [nm(m) for m in h_lapsed],
+                       "not_safe": [nm(m) for m in h_lapsed if not safe(m)]},
+            "near": {"n": len(h_near), "after": h2, "by_pos": dict(Counter(m["pos"] for m in h_near)),
+                     "names": [nm(m) for m in h_near]},
+            "rest_safe": {"n": len(h_rest), "after": h3, "by_pos": dict(Counter(m["pos"] for m in h_rest))},
+            "pickups": {"seats": HOUSE_PICKUPS, "n": len(HOUSE_PICKUPS), "after": h4},
+            "holds_n": len(h_holds),
+            "likely": {"n": len(h_likely), "after": h4 + len(h_likely)},
+            "ceiling_gap": 218 - h4,
+        },
+        "senate": {
+            "start": s0,
+            "persuade": {"names": SENATE_PERSUADE, "n": len(SENATE_PERSUADE), "after": s1},
+            "special": {"after": s2},
+            "primary": {"names": SENATE_PRIMARY, "n": len(SENATE_PRIMARY), "after": s3},
+            "pickups": {"states": SENATE_PICKUPS_2028, "n": len(SENATE_PICKUPS_2028), "after": s4},
+            "gap_50": 50 - s4,
+            "left": len(s_left),
+            "left_swing": sum(1 for m in s_left if m["n"] in SENATE_SWING),
+            "up_2028": {"n": len(up("2028")), "supporters": sum(map(sup, up("2028"))),
+                        "supporter_names": [m["n"] for m in up("2028") if sup(m)],
+                        "others": [f'{m["n"]} ({m["st"]})' for m in up("2028") if not sup(m)]},
+            "up_2030": {"n": len(up("2030")), "supporters": sum(map(sup, up("2030")))},
+            "option_gap": 50 - senate["medicare_option"],
+            "option_rest": {"n": len(s_opt_rest), "by_pos": dict(Counter(m["pos"] for m in s_opt_rest))},
+            "to_60": 60 - senate["seated"],
+        },
+    }
+
     summary = {
         "as_of": AS_OF,
         "house": house,
         "senate": senate,
         "ladder": ladder,
+        "path": path,
         "gains": {"total": GAINS_TOTAL, "supporters": len(GAINS_SUPPORTERS), "names": GAINS_SUPPORTERS,
                   "rate": round(gains_rate, 4)},
         "dates_found": sum(1 for m in out if m["dt"]),
@@ -273,6 +357,12 @@ def main():
     print("ladder:", [(b["key"], b["n"], b["cum"]) for b in ladder])
     print(f"Senate {senate['supporters']} of {senate['seated']}; +{senate['other_states']} other states = "
           f"{senate['if_all_other_states']}; swing {senate['swing']}; Medicare option {senate['medicare_option']}")
+    ph, ps = path["house"], path["senate"]
+    print(f"path House {ph['start']} -> {ph['lapsed']['after']} -> {ph['near']['after']} -> "
+          f"{ph['rest_safe']['after']} -> {ph['pickups']['after']} (+{ph['likely']['n']} likely = {ph['likely']['after']})")
+    print(f"path Senate {ps['start']} -> {ps['persuade']['after']} -> {ps['special']['after']} -> "
+          f"{ps['primary']['after']} -> {ps['pickups']['after']}; {ps['left']} left ({ps['left_swing']} swing); "
+          f"2028 up {ps['up_2028']['n']} ({ps['up_2028']['supporters']} supporters)")
 
 
 if __name__ == "__main__":

@@ -4,15 +4,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Medicare for All Votes</title>
-<meta name="description" content="Where every Democrat in the incoming 120th Congress stands on Medicare for All, member by member with sources, and the arithmetic of 218 House votes and 50 or 60 senators from 2027 through 2030.">
+<meta name="description" content="What would have to happen, stage by stage from January 2027 through 2030, for Medicare for All to become law, with the House and Senate counts at each step and where every Democrat in the incoming 120th Congress stands, with sources.">
 <link rel="canonical" href="https://usnish.xyz/medicare-for-all-votes/">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Counting to 218: where every Democrat stands on Medicare for All">
-<meta property="og:description" content="117 of 260 House Democrats and 22 of 55 Senate Democrats in the incoming Congress are on record for Medicare for All. Every member's position with its source, and the arithmetic of 218, 50 and 60.">
+<meta property="og:title" content="Counting to 218: the path to Medicare for All, 2027 to 2030">
+<meta property="og:description" content="117 of 260 House Democrats and 22 of 55 Senate Democrats in the incoming Congress are on record for Medicare for All. What would have to happen from 2027 to 2030 for it to become law, with every member's position and source.">
 <meta property="og:url" content="https://usnish.xyz/medicare-for-all-votes/">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Counting to 218: where every Democrat stands on Medicare for All">
-<meta name="twitter:description" content="117 of 260 House Democrats and 22 of 55 Senate Democrats in the incoming Congress are on record for Medicare for All. Every member's position with its source, and the arithmetic of 218, 50 and 60.">
+<meta name="twitter:title" content="Counting to 218: the path to Medicare for All, 2027 to 2030">
+<meta name="twitter:description" content="117 of 260 House Democrats and 22 of 55 Senate Democrats in the incoming Congress are on record for Medicare for All. What would have to happen from 2027 to 2030 for it to become law, with every member's position and source.">
 <meta name="author" content="Usnish Majumdar, MD">
 <link rel="stylesheet" href="../assets/viz/viz.css">
 <style>
@@ -21,7 +21,7 @@
   :root {
     color-scheme: light;
     --p-cos: #1d5ba6; --p-new: #62a8ee; --p-opt: #2a9d8f; --p-aca: #e3a008; --p-opp: #cc3f4f;
-    --on-accent: #ffffff; --guess: #1c1c1c;
+    --on-accent: #ffffff;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
@@ -29,7 +29,7 @@
       --bg: #17191c; --fg: #e9e8e4; --muted: #a9a8a3; --faint: #7a7a78; --line: #30333a; --panel: #1f2227;
       --accent: #7fb0e6; --accent-dark: #a9cbf0; --nodata: #2a2d33; --stroke: #17191c; --hover: #ffffff; --dot: #e9e8e4; --warn: #e07a55;
       --p-cos: #2e5dab; --p-new: #4f97e8; --p-opt: #14a07e; --p-aca: #c48600; --p-opp: #de4f63;
-      --on-accent: #10161e; --guess: #f0efec;
+      --on-accent: #10161e;
     }
   }
   :root[data-theme="dark"] {
@@ -37,18 +37,16 @@
     --bg: #17191c; --fg: #e9e8e4; --muted: #a9a8a3; --faint: #7a7a78; --line: #30333a; --panel: #1f2227;
     --accent: #7fb0e6; --accent-dark: #a9cbf0; --nodata: #2a2d33; --stroke: #17191c; --hover: #ffffff; --dot: #e9e8e4; --warn: #e07a55;
     --p-cos: #2e5dab; --p-new: #4f97e8; --p-opt: #14a07e; --p-aca: #c48600; --p-opp: #de4f63;
-    --on-accent: #10161e; --guess: #f0efec;
+    --on-accent: #10161e;
   }
   body { background: var(--bg); color: var(--fg); }
   .byline { font-size: 13px; color: var(--muted); margin: 10px 0 0; }
-  .q { font-size: 17px; font-weight: 600; margin: 4px 0 10px; max-width: 62ch; line-height: 1.4; }
   .note, section.chart > p.note { font-size: 12px; color: var(--muted); margin: 6px 0 0; max-width: 80ch; }
   section.chart > p { color: var(--fg); }
   section.chart > p.sub { color: var(--muted); }
   section.chart h3 { font-size: 15px; margin: 22px 0 6px; }
 
-  /* guess */
-  .guess-box { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 16px; }
+  /* count bars and controls */
   .slider-row { display: flex; align-items: center; gap: 10px 14px; flex-wrap: wrap; margin: 0 0 10px; }
   .slider-row label { font-size: 14px; color: var(--muted); flex: 0 0 15em; }
   .slider-row output { font-size: 22px; font-weight: 700; color: var(--fg); font-variant-numeric: tabular-nums; min-width: 3ch; display: inline-block; }
@@ -57,9 +55,6 @@
   .btn { font: inherit; font-size: 15px; font-weight: 600; padding: 9px 16px; border-radius: 8px; border: 0; background: var(--accent); color: var(--on-accent); cursor: pointer; }
   .btn[disabled] { opacity: .35; cursor: default; }
   .btn.ghost { background: var(--bg); color: var(--muted); border: 1px solid var(--line); font-weight: 500; }
-  .hint { font-size: 12px; color: var(--muted); margin: 8px 0 0; }
-  .result { font-size: 15px; margin: 14px 0 0; max-width: 72ch; }
-  .result b { color: var(--fg); }
   .barwrap { margin: 14px 0 0; }
   .barwrap h4 { font-size: 13px; margin: 0 0 2px; font-weight: 600; }
   svg.track { display: block; width: 100%; overflow: visible; }
@@ -69,8 +64,44 @@
   svg .rule.soft { opacity: .55; }
   svg .base { fill: var(--nodata); }
   svg .beyond { fill: none; stroke: var(--faint); stroke-dasharray: 2 3; }
-  svg .gmark { fill: none; stroke: var(--guess); stroke-width: 2.5; }
-  svg .gtext { fill: var(--fg); font-weight: 600; }
+  .stand { font-size: 17px; font-weight: 600; margin: 4px 0 6px; max-width: 64ch; line-height: 1.45; }
+  .stand b { font-variant-numeric: tabular-nums; }
+
+  /* path: a vertical timeline */
+  .path { list-style: none; margin: 16px 0 0; padding: 0; max-width: 820px; }
+  .path > li { position: relative; padding: 0 0 26px 30px; }
+  .path > li::before { content: ""; position: absolute; left: 6px; top: 12px; bottom: -2px; width: 2px; background: var(--line); }
+  .path > li:last-child { padding-bottom: 4px; }
+  .path > li:last-child::before { display: none; }
+  .path > li::after { content: ""; position: absolute; left: 0; top: 3px; width: 14px; height: 14px; border-radius: 50%; box-sizing: border-box; background: var(--bg); border: 2px solid var(--accent); }
+  .path > li.gate::after { background: var(--accent); }
+  .path > li.pre::after { border-color: var(--faint); }
+  .path .when { display: block; font-size: 12px; font-weight: 650; color: var(--accent); letter-spacing: .03em; font-variant-numeric: tabular-nums; }
+  .path > li.pre .when { color: var(--muted); }
+  section.chart .path h3 { font-size: 16px; margin: 2px 0 6px; }
+  .path p { font-size: 14px; margin: 0 0 7px; max-width: 74ch; color: var(--fg); }
+  .path p.who { font-size: 13px; color: var(--muted); }
+  .path p.who b { color: var(--fg); font-weight: 600; }
+  .path p.read { font-size: 13px; color: var(--muted); }
+  .foot { display: flex; flex-wrap: wrap; gap: 8px 22px; align-items: center; margin: 9px 0 0; }
+  .run { display: grid; grid-template-columns: max-content minmax(70px, 150px) max-content; gap: 4px 8px; align-items: center; font-size: 12px; }
+  .run .lab { color: var(--muted); }
+  .run .trk { position: relative; height: 8px; background: var(--nodata); border-radius: 4px; overflow: hidden; }
+  .run .trk i { position: absolute; top: 0; bottom: 0; }
+  .run .trk i.was { background: var(--p-cos); }
+  .run .trk i.add { background: var(--p-new); }
+  .run .trk i.met { background: var(--accent); }
+  .run .num { font-variant-numeric: tabular-nums; color: var(--fg); }
+  .run .num em { font-style: normal; color: var(--muted); }
+  .diff { display: inline-flex; align-items: center; gap: 3px; font-size: 12px; color: var(--muted); }
+  .diff i { display: inline-block; width: 6px; height: 12px; border-radius: 2px; background: var(--nodata); }
+  .diff[data-d="1"] i:nth-of-type(-n+1), .diff[data-d="2"] i:nth-of-type(-n+2),
+  .diff[data-d="3"] i:nth-of-type(-n+3), .diff[data-d="4"] i:nth-of-type(-n+4) { background: var(--fg); }
+  .diff span { margin-left: 5px; }
+  .must { margin: 8px 0 0; padding-left: 22px; max-width: 76ch; font-size: 14px; }
+  .must li { margin: 0 0 7px; }
+  .bind { background: var(--panel); border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 8px; padding: 12px 14px; font-size: 14px; max-width: 76ch; margin: 14px 0 0; }
+  section.chart > p.bind { color: var(--fg); }
 
   /* position fills, shared by dots, swatches and bars */
   .g-cos { fill: var(--p-cos); background: var(--p-cos); }
@@ -117,9 +148,6 @@
   @media (max-width: 600px) { .dele .hide-sm { display: none; } .slider-row label { flex-basis: 100%; } }
 
   /* ladder */
-  .predict { display: flex; gap: 8px; flex-wrap: wrap; margin: 8px 0 0; }
-  .predict button { font: inherit; font-size: 14px; background: var(--bg); color: var(--fg); border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; cursor: pointer; text-align: left; }
-  .predict button[aria-pressed="true"] { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
   .steps { list-style: none; padding: 0; margin: 12px 0 0; max-width: 760px; }
   .steps li { display: grid; grid-template-columns: 14px minmax(0, 1fr) 52px 60px; gap: 10px; align-items: baseline; padding: 6px 0; border-bottom: 1px solid var(--line); font-size: 13px; }
   .steps li.off { display: none; }
@@ -137,12 +165,6 @@
   .panel h3 { margin: 0 0 6px !important; font-size: 14px !important; }
   .panel ul { margin: 0; padding-left: 18px; }
   .panel li { margin: 0 0 6px; }
-  .timeline { list-style: none; margin: 10px 0 0; padding: 0; max-width: 78ch; }
-  .timeline li { display: grid; grid-template-columns: 9.5em 1fr; gap: 12px; padding: 7px 0; border-bottom: 1px solid var(--line); font-size: 14px; }
-  .timeline .when { color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; }
-  @media (max-width: 560px) { .timeline li { grid-template-columns: 1fr; gap: 2px; } }
-  .wins { margin: 8px 0 0; padding-left: 20px; max-width: 78ch; font-size: 14px; }
-  .wins li { margin: 0 0 8px; }
   table.prior { border-collapse: collapse; width: 100%; font-size: 13px; margin-top: 10px; }
   table.prior th, table.prior td { text-align: left; padding: 6px 8px 6px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
   table.prior th { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; font-weight: 600; }
@@ -153,65 +175,143 @@
 <main>
   <a class="back" href="/projects/">&larr; all projects</a>
   <header>
-    <h1>Counting to 218: where every Democrat stands on Medicare for All</h1>
-    <p class="lede">Democrats won both chambers on November 3, 2026, and Medicare for All polls better than it ever has. A bill still needs 218 House votes, 50 or 60 senators, and a president who will sign it. This page counts, member by member and with a source for each, who in the incoming 120th Congress is on record for it, and what it would take to get from there to a law.</p>
+    <h1>Counting to 218: the path to Medicare for All, 2027 to 2030</h1>
+    <p class="lede">Democrats won both chambers on November 3, 2026, and Medicare for All polls better than it ever has. A bill still needs 218 House votes, 50 or 60 senators, and a president who will sign it. This page lays out what would have to happen, in order, from January 2027 through 2030 for it to become law, with the count at each step, and shows where every member of the incoming 120th Congress stands, with a source for each.</p>
     <p class="byline">By Usnish Majumdar, MD &middot; November 2026 &middot; counts as of <span data-k="as_of_long"></span></p>
   </header>
 
-  <!-- 1. Guess -->
-  <section class="chart" id="guess">
-    <h2>Start with a guess</h2>
-    <p class="q">The incoming Congress will have about <span data-k="house.seated"></span> House Democrats and <span data-k="senate.seated"></span> Democratic senators (counting two independents). How many of them are on record for Medicare for All?</p>
-    <div class="guess-box">
-      <div class="slider-row">
-        <label for="gh">House Democrats on record: <output id="ghout"></output></label>
-        <input type="range" id="gh" min="0" step="1" aria-label="Your guess, House Democrats on record for Medicare for All">
-      </div>
-      <div class="slider-row">
-        <label for="gs">Senate Democrats on record: <output id="gsout"></output></label>
-        <input type="range" id="gs" min="0" step="1" aria-label="Your guess, Democratic senators on record for Medicare for All">
-      </div>
-      <div class="btnrow">
-        <button class="btn" id="gbtn" type="button">Show me</button>
-        <button class="btn ghost" id="gskip" type="button">Skip, just show me</button>
-      </div>
-      <p class="hint" id="ghint">Move both sliders, then press <b>Show me</b>. &ldquo;On record&rdquo; means a sponsor or cosponsor of the current bill, or a new member who has said they support it.</p>
-      <div id="gbars" hidden>
-        <div class="barwrap"><h4>House</h4><div id="bar-h"></div></div>
-        <div class="barwrap"><h4>Senate</h4><div id="bar-s"></div></div>
-        <div class="key" id="gkey"></div>
-      </div>
-      <p class="result" id="gresult" hidden></p>
-    </div>
+  <!-- 1. Where the count stands -->
+  <section class="chart" id="now">
+    <h2>Where the count stands</h2>
+    <p class="stand">House: <b data-k="house.supporters"></b> of <span data-k="house.seated"></span> Democrats are on record for Medicare for All, <b data-k="house.gap_218"></b> short of 218. Senate: <b data-k="senate.supporters"></b> of <span data-k="senate.seated"></span>, <span data-k="senate.gap_50"></span> short of 50.</p>
+    <p class="sub" id="now-detail"></p>
+    <div class="barwrap"><h4>House</h4><div id="bar-h"></div></div>
+    <div class="barwrap"><h4>Senate</h4><div id="bar-s"></div></div>
+    <div class="key" id="nkey"></div>
+    <p style="margin-top:12px">President Trump can veto any bill until noon on January 20, 2029. Overriding a veto takes two-thirds of each chamber, 290 House votes and 67 senators, more than the whole Democratic caucus in either, and the research found no Republican in Congress who supports single payer. So a Medicare for All bill cannot become law in 2027 or 2028. Those two years decide whether it can in 2029.</p>
   </section>
 
-  <!-- 2. Roster -->
-  <section class="chart" id="roster">
-    <h2>Every Democrat, one dot each</h2>
-    <p class="sub">Each dot is one member of the incoming Congress, sorted by what they have said. Tap or hover over a dot for the member's own words where there are any, the date, how sure the research is, and the source. An empty dot means the research found no position. That is unknown, not opposed.</p>
-    <div class="key" id="rkey"></div>
-    <div class="controls-row">
-      <label for="stpick">Your state</label>
-      <select class="pick" id="stpick"><option value="">All states</option></select>
-    </div>
-    <div class="grid-head"><h3>House</h3><span id="hcap"></span></div>
-    <div id="grid-h"></div>
-    <div class="grid-head"><h3>Senate</h3><span id="scap"></span></div>
-    <div id="grid-s"></div>
-    <p class="note" id="gridnote"></p>
-    <div class="card" id="card" aria-live="polite"><span class="empty">Tap or hover over a dot, or pick a state, to see a member's position and its source.</span></div>
-    <div id="dele"></div>
+  <!-- 2. The path forward -->
+  <section class="chart" id="path">
+    <h2>The path forward, 2027 to 2030</h2>
+    <p>What would have to happen, in order, for Medicare for All to be signed into law, and who would have to do it. The bars under each stage show where the House and Senate counts would stand if every member named in that stage moved. They are ceilings, not forecasts. The difficulty rating on each stage is the author's judgment.</p>
+    <ol class="path">
+      <li class="pre">
+        <span class="when">Nov 18 to Dec 12, 2026</span>
+        <h3>Before the new Congress</h3>
+        <p>Alaska's ranked-choice count on November 18 decides whether the Senate caucus is 55 or 56. Senate Democrats are expected to elect their leader on December 1 (<a href="https://www.ms.now/news/van-hollen-schumer-senate-majority-leader-democrats">MS NOW</a>); the majority leader decides what reaches the Senate floor. Louisiana's 5th and 6th districts hold runoffs on December 12, and several close House races are still being counted.</p>
+      </li>
+      <li>
+        <span class="when">Jan 3, 2027</span>
+        <h3>Reintroduce, and keep the base</h3>
+        <p>The 120th Congress is sworn in. Every bill from the 119th dies, so the House and Senate bills have to be reintroduced and the cosponsor lists start again from zero. The first test is whether all <span data-k="house.supporters"></span> House members and <span data-k="senate.supporters"></span> senators counted here as on record sign on again.</p>
+        <p class="who"><b>Who:</b> the sponsors, Pramila Jayapal in the House and Bernie Sanders in the Senate, and every member already on record.</p>
+        <div class="foot"><div class="run" data-run="s1"></div><span class="diff" data-d="1"><i></i><i></i><i></i><i></i><span>Within reach</span></span></div>
+      </li>
+      <li>
+        <span class="when">2027</span>
+        <h3>Hearings and a cost estimate</h3>
+        <p>H.R.3069 is sent to seven House committees (<a href="https://www.govinfo.gov/bulkdata/BILLSTATUS/119/hr/BILLSTATUS-119hr3069.xml">bill record</a>). The senior Democrats on six of them, and so their likely chairs in a Democratic House, are cosponsors: Frank Pallone (Energy and Commerce), Jim McGovern (Rules), Bobby Scott (Education and Workforce), Jamie Raskin (Judiciary), Adam Smith (Armed Services) and Robert Garcia (Oversight) (<a href="https://en.wikipedia.org/wiki/119th_United_States_Congress">committee leaders</a>). The seventh is Ways and Means, which writes the financing; its senior Democrat, Richard Neal, is coded here as ACA only. Brendan Boyle, a cosponsor, is the senior Democrat on the Budget Committee. In the Senate the bill goes to Finance, where Ron Wyden, the senior Democrat, cosponsored on September 24, 2026.</p>
+        <p>It has been done before. In 2019 the Rules (<a href="https://www.govinfo.gov/content/pkg/CHRG-116hhrg36400/html/CHRG-116hhrg36400.htm">April 30</a>), Budget (<a href="https://democrats-budget.house.gov/legislation/hearings/key-design-components-and-considerations-establishing-single-payer-health-care">May 22</a>) and Ways and Means (<a href="https://www.commondreams.org/news/2019/06/12/watch-live-house-ways-means-historic-medicare-all-hearing">June 12</a>) committees held hearings. No committee has ever marked up a Medicare for All bill. The research found no Congressional Budget Office estimate of either current bill; CBO's 2020 <a href="https://ideas.repec.org/p/cbo/wpaper/56811.html">working paper</a> describes how it would estimate one.</p>
+        <p class="read">Moves no votes. It produces a public record and a cost number that both sides will use.</p>
+        <div class="foot"><span class="diff" data-d="1"><i></i><i></i><i></i><i></i><span>Within reach for hearings; a markup is harder</span></span></div>
+      </li>
+      <li>
+        <span class="when">2027</span>
+        <h3>Grow the House list: the closest <span data-k="ph.near2"></span></h3>
+        <p>Two groups are closest. First, the <span data-k="ph.lapsed.n"></span> Democrats who cosponsored an earlier Medicare for All bill but are not on the current one. They include the party's leader, Hakeem Jeffries, who said in August 2026 that he does not cosponsor or support it (<a href="https://www.newsweek.com/hakeem-jeffries-rejects-medicare-for-all-dsa-agenda-12328842">Newsweek</a>), and Whip Katherine Clark, Jim Clyburn, Joyce Beatty, Terri Sewell and Gwen Moore. Second, <span data-k="ph.near.n"></span> members in safe seats who are on record for a public option or a Medicare buy-in, among them Suzan DelBene (Ways and Means), Kim Schrier (Energy and Commerce) and Luke Bronin, a new member who replaced a cosponsor.</p>
+        <p class="who"><b>Who:</b> each of these members would need to change position. The research found no stated reason for any former cosponsor leaving the list.</p>
+        <div class="foot"><div class="run" data-run="s3"></div><span class="diff" data-d="3"><i></i><i></i><i></i><i></i><span>Hard</span></span></div>
+      </li>
+      <li>
+        <span class="when">2027</span>
+        <h3>Grow the Senate list</h3>
+        <p>The Senate path research put seven senators first: Ruben Gallego, who cosponsored the House bill in three Congresses; Chris Murphy and Angela Alsobrooks, on record for a Medicare buy-in; Patty Murray, on record for a public option; Maria Cantwell, coded ACA only; and Andy Kim and Tammy Duckworth, with no position found. Each would need to change position.</p>
+        <p class="read">The Senate bill had 16 cosponsors in 2017 (<a href="https://www.govinfo.gov/bulkdata/BILLSTATUS/115/s/BILLSTATUS-115s1804.xml">S.1804</a>), 14 in 2019 (<a href="https://www.govinfo.gov/bulkdata/BILLSTATUS/116/s/BILLSTATUS-116s1129.xml">S.1129</a>), 14 in 2023 (<a href="https://www.govinfo.gov/bulkdata/BILLSTATUS/118/s/BILLSTATUS-118s1655.xml">S.1655</a>) and has 18 now. Seven more in one Congress would be a larger jump than any so far.</p>
+        <div class="foot"><div class="run" data-run="s4"></div><span class="diff" data-d="3"><i></i><i></i><i></i><i></i><span>Hard</span></span></div>
+      </li>
+      <li>
+        <span class="when">Aug 10 and Nov 2, 2027</span>
+        <h3>Minnesota's special election</h3>
+        <p>Amy Klobuchar was elected governor. Her Senate seat is filled by appointment, by Klobuchar or by Governor Walz depending on when she resigns, and then by a special primary on August 10 and election on November 2, 2027, if she resigns before May 25 (<a href="https://www.kttc.com/2026/11/04/amy-klobuchar-is-new-governor-elect-what-happens-her-us-senate-seat/">KTTC</a>). The winner serves through January 3, 2031. Minnesota elected Peggy Flanagan, a supporter, to its other seat in 2026.</p>
+        <p class="who"><b>Who:</b> the appointee, then Minnesota's primary and general election voters. Klobuchar's row on this page is coded public option and stands for whoever is appointed.</p>
+        <div class="foot"><div class="run" data-run="s5"></div><span class="diff" data-d="2"><i></i><i></i><i></i><i></i><span>Possible</span></span></div>
+      </li>
+      <li>
+        <span class="when">2027 to 2028</span>
+        <h3>A recorded vote</h3>
+        <p>A floor vote puts every member on record. The Speaker decides what reaches the House floor, and Jeffries, the Democratic leader, does not support the bill. The other route is a discharge petition: once a bill has sat in committee for 30 legislative days, 218 signatures can force a vote (<a href="https://www.everycrsreport.com/reports/97-552.html">CRS</a>). With <span data-k="house.supporters"></span> on record, a petition would mostly work as a public whip count. Anything that passed both chambers before January 20, 2029 would face a veto.</p>
+        <p class="read">Moves no votes by itself. It shows who is where.</p>
+        <div class="foot"><span class="diff" data-d="3"><i></i><i></i><i></i><i></i><span>Hard</span></span></div>
+      </li>
+      <li>
+        <span class="when">Jan to Sept 2028</span>
+        <h3>Primaries, and the rest of the safe seats</h3>
+        <p>Positions change in two ways: a member changes position, or a supporter wins the nomination. After the first two House groups, <span data-k="ph.rest.n"></span> Democrats in safe seats remain: <span data-k="ph.rest.aca"></span> who back strengthening the ACA only, <span data-k="ph.rest.unk"></span> with no position found and <span data-k="ph.rest.opp"></span> on record against. The House count needs all of them. They include Neal and Steven Horsford (Ways and Means); Raul Ruiz, Lizzie Fletcher, Scott Peters and Jennifer McClellan (Energy and Commerce); and La Shawn Ford and Oliver Gilbert, new members who replaced cosponsors.</p>
+        <p>In the Senate, the research named the 2028 primaries for Chuck Schumer's seat in New York and John Fetterman's in Pennsylvania. Schumer is on record for a public option. Fetterman supported single payer from 2018 to 2020; nothing recent was found. Pennsylvania is also a state Trump won, so a nominee would then have to win in November.</p>
+        <p class="read">Presidential primaries run from January to June on <a href="https://frontloadinghq.com/p/the-2028-presidential-primary-calendar.html">FHQ's tentative calendar</a>, with California and Texas on March 7. Congressional primaries run through September.</p>
+        <div class="foot"><div class="run" data-run="s7"></div><span class="diff" data-d="4"><i></i><i></i><i></i><i></i><span>Very hard: every one of the <span data-k="ph.rest.n"></span>, including <span data-k="ph.rest.unk"></span> whose position is unknown</span></span></div>
+      </li>
+      <li>
+        <span class="when">Aug 7 to 10, 2028</span>
+        <h3>The platform and the nominee</h3>
+        <p>The Democratic convention adopts a platform and nominates a president (<a href="https://en.wikipedia.org/wiki/2028_Democratic_National_Convention">dates</a>; host city not yet chosen). In 2020 the platform committee voted down a Medicare for All amendment (<a href="https://kffhealthnews.org/morning-breakout/democratic-platform-nixes-medicare-for-all/">KFF Health News</a>). At an October 2026 forum in Las Vegas, one of four possible candidates, Ro Khanna, said he wants to tax billionaires to help pay for Medicare for All; the other three did not directly answer (<a href="https://thenevadaindependent.com/article/heres-what-four-potential-2028-presidential-candidates-had-to-say-in-las-vegas">Nevada Independent</a>).</p>
+        <p class="read">Moves no votes on its own, but it is the stage that could move the most. Sixty Democrats voted for the ACA, and most had never cosponsored anything like it.</p>
+        <div class="foot"><span class="diff" data-d="3"><i></i><i></i><i></i><i></i><span>Hard</span></span></div>
+      </li>
+      <li>
+        <span class="when">Nov 7, 2028</span>
+        <h3>The general election</h3>
+        <p><b>House.</b> Hold the <span data-k="ph.holds_n"></span> supporters in close seats: <span data-k="ph.holds"></span>. Win seats where the 2026 Democratic nominee ran on Medicare for All: TN-9 and ME-2, which Republicans won in 2026, and CA-23 if the trailing Democrat loses this year's count. Keep the majority. On top of every earlier stage, that brings the House to exactly 218, with no room to lose a single seat. The <span data-k="ph.likely.n"></span> non-supporters in likely seats are the only cushion.</p>
+        <p><b>Senate.</b> <span data-k="ps.up28.n"></span> Democratic seats are up. <span data-k="ps.up28.sup"></span> are held by cosponsors who would need to be held: <span data-k="ps.up28.supnames"></span>. Democrats also defend five states Trump won in 2024: Arizona, Nevada, Pennsylvania, Georgia and Ohio (<a href="https://en.wikipedia.org/wiki/2028_United_States_Senate_elections">2028 map</a>). Republicans defend 18 seats. The research named two where a supporter could be the Democratic nominee: Florida, where Ashley Moody won the 2026 special election by a closer-than-expected margin, and Wisconsin, where Ron Johnson has indicated he will not run again.</p>
+        <p><b>President.</b> A nominee who would sign the bill has to win.</p>
+        <p class="read">Best realistic case, as judgment: the Senate path research put it at about 32 to 37 senators by January 2029; the named moves above add up to <span data-k="ps.pick.after"></span>. The research made no House forecast. The House figure here is a ceiling that needs every safe-seat Democrat.</p>
+        <div class="foot"><div class="run" data-run="s9"></div><span class="diff" data-d="3"><i></i><i></i><i></i><i></i><span>Hard</span></span></div>
+      </li>
+      <li class="gate">
+        <span class="when">Jan 3 and Jan 20, 2029</span>
+        <h3>The window opens</h3>
+        <p>The 121st Congress is sworn in and the new president is inaugurated, the earliest date a president who backs Medicare for All could sign it. From here a bill needs 218 House votes, and in the Senate either 60 votes or 50 plus a Democratic vice president. Sixty would take every Democrat plus <span data-k="ps.to60"></span> Republicans, and none was found who supports single payer.</p>
+        <p>Fifty works two ways. Budget reconciliation avoids the filibuster, but the Byrd rule strikes provisions whose budget effect is &ldquo;merely incidental&rdquo; and takes 60 votes to waive (<a href="https://www.everycrsreport.com/reports/RL30862.html">CRS RL30862</a>). The research team's inference, not a ruling, is that this would strike the core of the bill, such as the ban on duplicate private insurance and the rules for providers. The other way is changing the filibuster rule, which itself takes 50 votes. John Fetterman wrote in July 2026 that his earlier support for ending the filibuster was &ldquo;horribly wrong&rdquo; (<a href="https://en.wikipedia.org/wiki/John_Fetterman">Wikipedia</a>); James Talarico said in February 2026 that he supports eliminating the current filibuster (<a href="https://www.texastribune.org/2026/02/04/on-the-issues-a-qa-with-the-texas-democrats-running-for-u-s-senate/">Texas Tribune</a>). The research found no full count.</p>
+        <p>On the named moves the Senate stands at <span data-k="ps.pick.after"></span>, <span data-k="ps.gap50"></span> short of 50. Those <span data-k="ps.gap50"></span> would have to come from the <span data-k="ps.left"></span> remaining non-supporters, <span data-k="ps.left_swing"></span> of them in states Trump won in 2024 or seats Republicans held before 2026. For speed, the American Rescue Plan, passed through reconciliation, was signed about 7 weeks into a term.</p>
+        <div class="foot"><div class="run" data-run="s10"></div><span class="diff" data-d="4"><i></i><i></i><i></i><i></i><span>Very hard: not on current numbers</span></span></div>
+      </li>
+      <li>
+        <span class="when">2029</span>
+        <h3>The step the numbers support</h3>
+        <p>A smaller bill has more senators behind it. <span data-k="senate.medicare_option"></span> of the <span data-k="senate.seated"></span> are on record for Medicare for All, a public option or a Medicare buy-in, <span data-k="ps.option_gap"></span> short of 50. The rest would come from the other <span data-k="ps.optrest.n"></span>: <span data-k="ps.optrest.aca"></span> coded ACA only, <span data-k="ps.optrest.unk"></span> with no position found and <span data-k="ps.optrest.opp"></span> on record against. Bills for this are already filed: lowering the Medicare age to 50 (<a href="https://www.govinfo.gov/bulkdata/BILLSTATUS/119/hr/BILLSTATUS-119hr10875.xml">H.R.10875</a>, 46 cosponsors) and a Medicare buy-in at 50 to 64 (<a href="https://www.govinfo.gov/bulkdata/BILLSTATUS/119/s/BILLSTATUS-119s5700.xml">S.5700</a>, 9). As an inference, money pieces like these fit reconciliation better than the full bill.</p>
+        <p>This order has been proposed before. Elizabeth Warren's 2019 plan used reconciliation in the first 100 days for a Medicare for All option and a Medicare choice from age 50, then aimed to pass full Medicare for All no later than the third year (<a href="https://elizabethwarren.com/plans/m4a-transition">plan</a>). S.1506 itself lowers the Medicare age to 55, 45 and then 35 before full benefits start.</p>
+        <p class="read">Other bills could move alongside, but before 2029 only with the president's signature: Medicare dental, vision and hearing (<a href="https://www.govinfo.gov/bulkdata/BILLSTATUS/119/hr/BILLSTATUS-119hr2045.xml">H.R.2045</a>, 132 cosponsors), a $5,000 cap on out-of-pocket costs in traditional Medicare (<a href="https://www.govinfo.gov/content/pkg/BILLS-119s4886is/html/BILLS-119s4886is.htm">S.4886</a>, 16), and waivers for state single-payer plans (<a href="https://www.govinfo.gov/bulkdata/BILLSTATUS/119/hr/BILLSTATUS-119hr4406.xml">H.R.4406</a>, 35; <a href="https://www.govinfo.gov/bulkdata/BILLSTATUS/119/s/BILLSTATUS-119s2286.xml">S.2286</a>, 3).</p>
+        <div class="foot"><div class="run" data-run="s11"></div><span class="diff" data-d="3"><i></i><i></i><i></i><i></i><span>Hard, but the closest to the numbers</span></span></div>
+      </li>
+      <li>
+        <span class="when">2030 and after</span>
+        <h3>Phase-in, and the next Senate map</h3>
+        <p>If a bill is signed in 2029: under the House bill, H.R.3069, everyone is covered 2 years after enactment, so 2031, with people under 19 and 55 and older covered a year earlier. Under the Senate bill, S.1506, benefits start January 1 of the fourth year after enactment, January 1, 2033, with children covered from 2030 and the Medicare age dropping to 55, 45 and then 35 on the way.</p>
+        <p>In November 2030, <span data-k="ps.up30.n"></span> Democratic-caucus seats are up, <span data-k="ps.up30.sup"></span> of them held by supporters, including Bernie Sanders, who has said this term will likely be his last. Gallego, Murphy, Alsobrooks, Kim, Cantwell and the Minnesota seat are also up. Democrats defend four states Trump won in 2024 (Arizona, Michigan, Nevada and Wisconsin); Republicans defend Mississippi, Ohio and Texas, which elected Democratic senators in 2026, and Pennsylvania (<a href="https://en.wikipedia.org/wiki/2030_United_States_Senate_elections">2030 map</a>). It is also the new president's first midterm.</p>
+        <p class="read">The Senate path research's best case for January 2031 is about 38 to 44 supporters. That is its judgment, and still short of 50.</p>
+      </li>
+    </ol>
+
+    <p class="note" style="margin-top:4px">Outside Congress: Oregon's universal health plan board approved its draft report 9 to 0 on October 15, and its next steps, starting at its November 19 meeting, include a presentation to the legislature's health care committees (<a href="https://www.oregon.gov/uhpgb/Documents/board-meetings/2026/20261015/20261015-UHPGB-board-meeting-presentation.pdf">board presentation</a>). New York's single-payer bill has majorities of both chambers as sponsors, 78 of 150 in the Assembly and 34 of 63 in the Senate (<a href="https://www.nysenate.gov/legislation/bills/2025/S3425">S3425</a>), but has had no floor vote.</p>
+
+    <h3>What has to be true</h3>
+    <ol class="must">
+      <li><b>A president who would sign it</b>, in office from January 20, 2029. Before then a veto stands unless 290 House members and 67 senators override it.</li>
+      <li><b>218 House votes</b>, <span data-k="house.gap_218"></span> more than today. Counting every former cosponsor, every safe-seat Democrat and three pickups, the count reaches exactly 218.</li>
+      <li><b>50 senators and a Democratic vice president, with the filibuster changed, or 60 senators.</b> Today it is <span data-k="senate.supporters"></span>; the named moves through 2028 reach <span data-k="ps.pick.after"></span>.</li>
+      <li><b>Democratic majorities in both chambers</b> after November 2028.</li>
+      <li><b>Leaders who bring it to the floor</b>: the Speaker and the Senate majority leader.</li>
+    </ol>
+    <p class="bind" id="bind"><b>Which condition binds.</b> On these numbers, the Senate's 50th vote, and behind it the 2028 nominee. The House can reach 218 on paper by moving members in safe seats, where pressure and primaries can reach. The Senate has no such reserve. If every non-supporter outside states Trump won, or seats Republicans held before 2026, came over, the count would be <span data-k="senate.if_all_other_states"></span>. The rest would have to come from senators in those states, and the Senate list has stayed between 14 and 18 since 2017. Votes have moved like that before: 60 Democrats voted for the ACA, its president's signature bill, and most had never cosponsored anything like it. So in practice the condition that decides the others is a 2028 nominee who runs on Medicare for All and wins. As one health policy scholar put it after the election, &ldquo;just because Democrats have a majority doesn&rsquo;t mean it&rsquo;s a majority for Medicare for All&rdquo; (<a href="https://kffhealthnews.org/insurance/medicare-for-all-single-payer-insurance-el-sayed-midterms-democratic-congress-voter-appeal/">KFF Health News</a>). Without such a nominee, the <span data-k="senate.medicare_option"></span> senators behind a Medicare option make that the likelier 2029 law. This is judgment, not a model.</p>
   </section>
 
-  <!-- 3. Ladder -->
+  <!-- 3. The arithmetic -->
   <section class="chart" id="ladder">
-    <h2>The ladder to 218</h2>
-    <p class="q">Which gets the House closer to 218: winning more seats, as in 2026, or Democrats already in safe seats changing position?</p>
-    <div class="predict" id="predict" role="group" aria-label="Your prediction">
-      <button type="button" data-k="seats">Winning more seats</button>
-      <button type="button" data-k="safe">Safe-seat Democrats changing position</button>
-    </div>
-    <p class="readout" id="predict-out"></p>
+    <h2>The arithmetic behind the path</h2>
+    <p class="sub">The timeline's House and Senate counts come from these groups. Step through them, or move the slider.</p>
+    <h3>The ladder to 218</h3>
+    <p class="readout" id="ladder-lead"></p>
     <p class="sub" id="ladder-intro"></p>
     <div id="lbar"></div>
     <ul class="steps" id="lsteps"></ul>
@@ -237,47 +337,22 @@
     <p class="readout" id="sread"></p>
   </section>
 
-  <!-- 4. 2027-2030 -->
-  <section class="chart" id="window">
-    <h2>What 2027 to 2030 can and cannot do</h2>
-    <p>President Trump can veto any bill until noon on January 20, 2029. Overriding a veto takes two-thirds of each chamber, 290 House votes and 67 senators, more than the whole Democratic caucus in either, and the research found no Republican in Congress who supports single payer. So a Medicare for All bill cannot become law in 2027 or 2028. Those two years can produce hearings, a cost estimate from the Congressional Budget Office, recorded votes, new cosponsors, a Minnesota special election, the 2028 primaries, a party platform and a nominee.</p>
-    <ul class="timeline" id="timeline">
-      <li><span class="when">Nov 18 and Dec 12, 2026</span><span>Alaska's ranked-choice count decides whether the caucus is 55 or 56. Louisiana's 5th and 6th districts hold runoffs. Several close House races are still being counted.</span></li>
-      <li><span class="when">Jan 3, 2027</span><span>The 120th Congress is sworn in. Every bill from the 119th dies and has to be reintroduced, so the cosponsor count starts again from zero.</span></li>
-      <li><span class="when">2027</span><span>Hearings are possible under committee leaders who are cosponsors: the research names Pallone at Energy and Commerce, McGovern at Rules, Boyle at Budget and Wyden at Senate Finance. Six of the seven likely House chairs of committees the bill is sent to are cosponsors. The exception is Neal at Ways and Means.</span></li>
-      <li><span class="when">Aug 10 and Nov 2, 2027</span><span>Minnesota's special primary and election for Amy Klobuchar's Senate seat (she was elected governor). The seat is filled by appointment until then.</span></li>
-      <li><span class="when">Mar to Sept 2028</span><span>Congressional and presidential primaries. The Democratic convention, and its platform, is Aug 7 to 10, 2028 (host city not yet chosen). In 2020 the platform committee voted down a Medicare for All amendment (<a href="https://kffhealthnews.org/morning-breakout/democratic-platform-nixes-medicare-for-all/">KFF Health News</a>).</span></li>
-      <li><span class="when">Nov 7, 2028</span><span>General election for the president, the whole House and a third of the Senate.</span></li>
-      <li><span class="when">Jan 20, 2029</span><span>The earliest date a president who backs Medicare for All could sign it. The American Rescue Plan, passed through budget reconciliation, was signed about 7 weeks into a term.</span></li>
-      <li><span class="when">If signed in 2029</span><span>Under the House bill, H.R.3069, everyone is covered 2 years after enactment, so 2031, with people under 19 and 55 and older covered a year earlier. Under the Senate bill, S.1506, benefits start January 1 of the fourth year after enactment, January 1, 2033, with children covered from 2030 and the Medicare age dropping to 55, 45 and then 35 on the way.</span></li>
-    </ul>
-
-    <h3>Where the votes would have to come from</h3>
-    <p class="sub">These are the specific wins the research team's path analysis named. They are the members who would need to change position, the seats where the member could change, and the supporters who would need to win again. None of it is a forecast.</p>
-    <div class="twocol">
-      <div class="panel">
-        <h3>House</h3>
-        <ul>
-          <li><b>Members who would need to change position.</b> Leaders: Richard Neal (likely Ways and Means chair), Hakeem Jeffries, Katherine Clark. Past cosponsors not on the current bill: Joyce Beatty, Jim Clyburn, Gwen Moore, Vicente Gonzalez, Lou Correa, Sanford Bishop, Donald Norcross, Doris Matsui. Ways and Means members: Terri Sewell, Suzan DelBene, Steven Horsford. Energy and Commerce members: Raul Ruiz, Kim Schrier, Lizzie Fletcher, Scott Peters, Jennifer McClellan. New members who replaced cosponsors: La Shawn Ford, Luke Bronin, Oliver Gilbert.</li>
-          <li><b>Supporters in close seats who would need to win again in 2028:</b> <span data-k="house.holds"></span>.</li>
-          <li><b>Seats Republicans won or lead in 2026 where the Democrat ran on Medicare for All:</b> TN-9 (redrawn; lost by 1.1 points), ME-2 (open Democratic seat; lost by about 1.6) and CA-23 (trailing, uncalled).</li>
-        </ul>
-      </div>
-      <div class="panel">
-        <h3>Senate, in the order the research put them</h3>
-        <ol style="margin:0;padding-left:18px">
-          <li>Minnesota's Klobuchar seat, by appointment and then the Nov 2, 2027 special.</li>
-          <li>Senators who would need to change position: Ruben Gallego (cosponsored the House bill in three Congresses), Chris Murphy, Angela Alsobrooks, Andy Kim, Tammy Duckworth, Patty Murray and Maria Cantwell.</li>
-          <li>2028 primaries in New York (Schumer's seat) and Pennsylvania (Fetterman's seat).</li>
-          <li>Republican-held seats in 2028 where a supporter could be the nominee: Florida and Wisconsin.</li>
-          <li>Holding Ohio, Georgia, Arizona, Nevada and New Hampshire, and the six cosponsor seats up in 2028.</li>
-          <li>Holding Vermont in 2030 if Sanders retires.</li>
-        </ol>
-      </div>
+  <!-- 4. Roster -->
+  <section class="chart" id="roster">
+    <h2>Every Democrat, one dot each</h2>
+    <p class="sub">Each dot is one member of the incoming Congress, sorted by what they have said. Tap or hover over a dot for the member's own words where there are any, the date, how sure the research is, and the source. An empty dot means the research found no position. That is unknown, not opposed.</p>
+    <div class="key" id="rkey"></div>
+    <div class="controls-row">
+      <label for="stpick">Your state</label>
+      <select class="pick" id="stpick"><option value="">All states</option></select>
     </div>
-    <p id="window-senate"></p>
-    <p>Smaller bills could move first, but before 2029 only with the president's signature: Medicare dental, vision and hearing (<a href="https://www.govinfo.gov/bulkdata/BILLSTATUS/119/hr/BILLSTATUS-119hr2045.xml">H.R.2045</a>, 132 cosponsors), a $5,000 cap on out-of-pocket costs in traditional Medicare (<a href="https://www.govinfo.gov/content/pkg/BILLS-119s4886is/html/BILLS-119s4886is.htm">S.4886</a>, 16), lowering the Medicare age to 50 (<a href="https://www.govinfo.gov/bulkdata/BILLSTATUS/119/hr/BILLSTATUS-119hr10875.xml">H.R.10875</a>, 46), a Medicare buy-in at 50 to 64 (<a href="https://www.govinfo.gov/bulkdata/BILLSTATUS/119/s/BILLSTATUS-119s5700.xml">S.5700</a>, 9), and waivers for state single-payer plans (<a href="https://www.govinfo.gov/bulkdata/BILLSTATUS/119/hr/BILLSTATUS-119hr4406.xml">H.R.4406</a>, 35; <a href="https://www.govinfo.gov/bulkdata/BILLSTATUS/119/s/BILLSTATUS-119s2286.xml">S.2286</a>, 3). In the states, Oregon's universal health plan board approved its draft report 9 to 0 on October 15, and its next steps, starting at its November 19 meeting, include a presentation to the legislature's health care committees (<a href="https://www.oregon.gov/uhpgb/Documents/board-meetings/2026/20261015/20261015-UHPGB-board-meeting-presentation.pdf">board presentation</a>). New York's single-payer bill has majorities of both chambers as sponsors, 78 of 150 in the Assembly and 34 of 63 in the Senate (<a href="https://www.nysenate.gov/legislation/bills/2025/S3425">S3425</a>), but has had no floor vote.</p>
-    <p class="note">For who the bills would cover (S.1506 section 102 makes residence, not work history, the test), see <a href="/medicare-at-65/">Who Medicare Leaves Uninsured at 65</a>.</p>
+    <div class="grid-head"><h3>House</h3><span id="hcap"></span></div>
+    <div id="grid-h"></div>
+    <div class="grid-head"><h3>Senate</h3><span id="scap"></span></div>
+    <div id="grid-s"></div>
+    <p class="note" id="gridnote"></p>
+    <div class="card" id="card" aria-live="polite"><span class="empty">Tap or hover over a dot, or pick a state, to see a member's position and its source.</span></div>
+    <div id="dele"></div>
   </section>
 
   <!-- 5. Political will -->
@@ -292,7 +367,7 @@
           <li>64% (Gallup) and 66% (Pew) say the federal government should make sure everyone has coverage (<a href="https://news.gallup.com/poll/699770/cost-leads-americans-top-mind-healthcare-concerns.aspx">Gallup</a>, <a href="https://www.pewresearch.org/short-reads/2025/12/10/most-americans-say-government-has-a-responsibility-to-ensure-health-care-coverage/">Pew</a>).</li>
           <li>Individual-market enrollment fell 18%, from 25.2 million to 20.5 million, after the enhanced subsidies expired, and insurers proposed a median 15% premium rise for 2027 (<a href="https://www.kff.org/affordable-care-act/individual-market-enrollment-continues-to-fall-through-mid-2026/">KFF</a>).</li>
           <li>Health care was the second most-picked issue in the midterms, behind the economy, and voters trusted Democrats on it 50 to 30 (<a href="https://www.kff.org/public-opinion/health-care-in-the-2026-midterm-election/">KFF</a>).</li>
-          <li>Four incoming senators ran on it. S.1506 has 18 cosponsors, against 14 in each of the three Congresses before (<a href="https://www.govinfo.gov/bulkdata/BILLSTATUS/119/s/BILLSTATUS-119s1506.xml">GovInfo</a>).</li>
+          <li>Four incoming senators ran on it. S.1506 has 18 cosponsors, against 16 in 2017 and 14 in 2019 and 2023 (<a href="https://www.govinfo.gov/bulkdata/BILLSTATUS/119/s/BILLSTATUS-119s1506.xml">GovInfo</a>).</li>
           <li>Wyden, the senior Democrat on Senate Finance, cosponsored on September 24, 2026.</li>
         </ul>
       </div>
@@ -342,6 +417,7 @@
       <li><b>Old statements.</b> Many non-supporter labels rest on statements from 2009 to 2020, including for Schumer, Reed, Rosen, Brown, Neal, McAdams, McBath, Bennet, Hickenlooper and Slotkin. Neal is coded from his on-the-record remarks in 2019; reports that he privately called Medicare for All a political loser came from anonymous accounts, so he is not coded as opposed. John Fetterman, who supported single payer in 2018 to 2020, is counted as no position found because nothing recent was found. <span id="dates"></span></li>
       <li><b>One coder.</b> Each position was coded once by the research team and spot-checked for 32 rows, which found no invented quotes but four overstated labels; those were corrected. There is no second, independent coding.</li>
       <li><b>Seat ratings use unofficial 2026 margins</b>: competitive under 8 points, likely 8 to under 15, safe 15 or more. Several seats sit near 15 (CO-8, NY-19, CT-5, MI-3, NE-2). In California's Democrat-vs-Democrat races the margin is between two Democrats, so Doris Matsui's CA-7 reads as competitive though the seat is safe for the party; counting it as safe would put the all-safe-seats total at <span id="hdvd"></span>.</li>
+      <li><b>The path's counts are ceilings.</b> Each running count assumes every member named in a stage moves, and the groups and seats named come from the research team's path analysis. The difficulty ratings are the author's judgment. No stage is a forecast.</li>
       <li><b>Projections are judgment, not a model.</b> The 14% pickup rate is one election's: <span data-k="gains.supporters"></span> supporters among about <span data-k="gains.total"></span> House gains called by November 12 (NBC counts 43 flips, Fox 44). Counting the uncalled races Democrats lead, gains are closer to 47, and the rate about 13%. The Senate path research's best cases, about 32 to 37 supporters by January 2029 and 38 to 44 by 2031, are its judgment. That the Byrd rule would strike the core of the bill in reconciliation is the team's inference from the rule's text (<a href="https://www.everycrsreport.com/reports/RL30862.html">CRS RL30862</a>); no ruling or analysis specific to Medicare for All was found.</li>
       <li><b>Corrections after fact-checking.</b> A fact-check of the research on November 12 changed these before the page was built: Mississippi's Senate race moved from uncalled to won; Terri Sewell was added as a past cosponsor (2011); Richard Pan moved from opposed to ACA-only, Dan Koh from supporter to public option, and Fetterman to no position; El-Sayed and Katy Padilla Stout were lowered to medium confidence; CO-8 moved from safe to likely; several Senate margins were recomputed. A second check before publishing moved Richard Neal from opposed to ACA-only, because the only quote against Medicare for All was an anonymous account, and replaced two supporters' sources with their own words. The research's first counts, 118 House supporters and 213 with every safe seat, became <span data-k="house.supporters"></span> and <span data-k="house.all_safe"></span>.</li>
       <li><b>Sources.</b> congress.gov, CBO, Axios, Cook and AP pages were often blocked, so the team used GovInfo bill-status files, the congress.gov API, reposts and Wikipedia instead. Several sources are advocates on one side or the other (Third Way, Data for Progress, the American Prospect, Common Dreams, PNHP).</li>
@@ -361,7 +437,7 @@
   const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   const host = u => { try { return new URL(u).hostname.replace(/^www\./, ""); } catch (e) { return u; } };
   const listAnd = a => a.length < 2 ? a.join("") : a.slice(0, -1).join(", ") + " and " + a[a.length - 1];
-  const H = S.house, SE = S.senate;
+  const H = S.house, SE = S.senate, PH = S.path.house, PS = S.path.senate;
 
   const GROUPS = [
     { g: "cos", label: "Sponsor or cosponsor, current bill" },
@@ -401,6 +477,19 @@
     "gains.supporters": S.gains.supporters, "gains.total": S.gains.total,
     "house.holds": listAnd(H.holds),
     "house.soft_supporters": listAnd(H.soft_supporters),
+    "house.gap_218": H.gap_218, "senate.supporters": SE.supporters, "senate.gap_50": 50 - SE.supporters,
+    "senate.medicare_option": SE.medicare_option, "senate.if_all_other_states": SE.if_all_other_states,
+    // the path forward
+    "ph.lapsed.n": PH.lapsed.n, "ph.near.n": PH.near.n, "ph.near2": PH.lapsed.n + PH.near.n,
+    "ph.rest.n": PH.rest_safe.n, "ph.rest.aca": PH.rest_safe.by_pos.strengthen_aca_only || 0,
+    "ph.rest.unk": PH.rest_safe.by_pos.no_position_found || 0, "ph.rest.opp": PH.rest_safe.by_pos.opposes_m4a || 0,
+    "ph.holds_n": PH.holds_n, "ph.holds": listAnd(H.holds), "ph.likely.n": PH.likely.n,
+    "ps.pick.after": PS.pickups.after, "ps.gap50": PS.gap_50, "ps.left": PS.left, "ps.left_swing": PS.left_swing,
+    "ps.up28.n": PS.up_2028.n, "ps.up28.sup": PS.up_2028.supporters, "ps.up28.supnames": listAnd(PS.up_2028.supporter_names.map(n => n.split(" ").slice(1).join(" "))),
+    "ps.up30.n": PS.up_2030.n, "ps.up30.sup": PS.up_2030.supporters,
+    "ps.option_gap": PS.option_gap, "ps.optrest.n": PS.option_rest.n,
+    "ps.optrest.aca": PS.option_rest.by_pos.strengthen_aca_only || 0, "ps.optrest.unk": PS.option_rest.by_pos.no_position_found || 0,
+    "ps.optrest.opp": PS.option_rest.by_pos.opposes_m4a || 0, "ps.to60": PS.to_60,
   };
   document.querySelectorAll("[data-k]").forEach(el => { if (el.dataset.k in K) el.textContent = K[el.dataset.k]; });
   const excluded = S.excluded.filter(x => !/^Class|Delegate|Resident/.test(x));
@@ -411,18 +500,8 @@
   const datedNon = M.filter(m => m.counted && m.dt && m.g !== "cos").length, nonCos = M.filter(m => m.counted && m.g !== "cos").length;
   $("dates").textContent = `Cosponsor dates come from the bill records. For the other ${nonCos} members, a single date could be read from the research notes for ${datedNon}; the rest show the source without a date.`;
 
-  // 1. Guess ------------------------------------------------------------------------
-  const gh = $("gh"), gs = $("gs");
-  gh.max = H.seated; gs.max = SE.seated;
-  gh.value = Math.round(H.seated / 2); gs.value = Math.round(SE.seated / 2);
-  let movedH = false, movedS = false, guessed = false;
-  const syncG = () => { $("ghout").textContent = gh.value; $("gsout").textContent = gs.value; };
-  syncG();
-  gh.addEventListener("input", () => { movedH = true; syncG(); });
-  gs.addEventListener("input", () => { movedS = true; syncG(); });
-
   // A horizontal count bar: supporters, the rest of the caucus, and the thresholds beyond it
-  function countBar(el, { segs, caucus, max, rules, guess, h = 30 }) {
+  function countBar(el, { segs, caucus, max, rules, h = 30 }) {
     const W = el.clientWidth || 340;
     const m = { l: 2, r: 8, t: 34, b: 22 };
     const x = d3.scaleLinear([0, max], [m.l, W - m.r]);
@@ -445,37 +524,51 @@
     });
     svg.append("text").attr("x", x(caucus)).attr("y", m.t + h + 16).attr("text-anchor", "end").text(`all ${caucus} Democrats`);
     svg.append("text").attr("x", x(0)).attr("y", m.t + h + 16).text("0");
-    if (guess != null) {
-      svg.append("rect").attr("class", "gmark").attr("x", x(guess) - 1.5).attr("y", m.t - 3).attr("width", 3).attr("height", h + 6);
-      svg.append("text").attr("class", "gtext").attr("x", x(guess)).attr("y", m.t + h / 2 + 4).attr("dx", guess > max * .8 ? -6 : 6)
-        .attr("text-anchor", guess > max * .8 ? "end" : "start").text("you");
-    }
   }
   const supSegs = (cos, nw) => [{ g: "cos", n: cos }, { g: "new", n: nw }];
-  function drawGuessBars() {
-    if ($("gbars").hidden) return;
-    const gH = guessed ? +gh.value : null, gS = guessed ? +gs.value : null;
-    countBar($("bar-h"), { segs: supSegs(H.cosponsors, H.new_supporters), caucus: H.seated, max: 300, guess: gH,
+
+  // 1. Where the count stands -----------------------------------------------------------
+  $("now-detail").innerHTML = `&ldquo;On record&rdquo; means a sponsor or cosponsor of the current bill who returns in January, or a new member who has said they support it. ` +
+    `In the House that is ${H.cosponsors} returning sponsor and cosponsors of H.R.3069 plus ${H.new_supporters} new members, ${Math.round(100 * H.supporters / H.seated)}% of the caucus. ` +
+    `In the Senate it is ${SE.cosponsors} returning sponsor and cosponsors of S.1506 plus ${listAnd(SE.new_supporters)}. ` +
+    `Sixty, the number it takes to end a filibuster, is more senators than Democrats have.`;
+  function drawNowBars() {
+    countBar($("bar-h"), { segs: supSegs(H.cosponsors, H.new_supporters), caucus: H.seated, max: 300,
       rules: [{ v: 218, label: "218 to pass", strong: true }, { v: 290, label: "290 to override", short: "290" }] });
-    countBar($("bar-s"), { segs: supSegs(SE.cosponsors, SE.new_supporters.length), caucus: SE.seated, max: 70, guess: gS,
+    countBar($("bar-s"), { segs: supSegs(SE.cosponsors, SE.new_supporters.length), caucus: SE.seated, max: 70,
       rules: [{ v: 50, label: "50 + VP", strong: true }, { v: 60, label: "60 to end debate", short: "60" }, { v: 67, label: "67", soft: true }] });
   }
-  $("gkey").innerHTML = `<span><i class="sw g-cos"></i>Sponsor or cosponsor of the current bill</span><span><i class="sw g-new"></i>New member who supports it</span>`;
-  function reveal(skip) {
-    guessed = !skip;
-    $("gbars").hidden = false;
-    $("gbtn").hidden = true; $("gskip").hidden = true;
-    $("ghint").hidden = true;
-    gh.disabled = true; gs.disabled = true;
-    drawGuessBars();
-    const res = $("gresult"); res.hidden = false;
-    const you = skip ? "" : `You guessed <b>${gh.value}</b> and <b>${gs.value}</b>. `;
-    res.innerHTML = you +
-      `<b>${H.supporters}</b> of ${H.seated} House Democrats are on record: ${H.cosponsors} returning sponsor and cosponsors of H.R.3069 plus ${H.new_supporters} new members. That is ${Math.round(100 * H.supporters / H.seated)}% of the caucus and <b>${H.gap_218} short of 218</b>. ` +
-      `In the Senate it is <b>${SE.supporters}</b> of ${SE.seated}: ${SE.cosponsors} returning sponsor and cosponsors of S.1506 plus ${listAnd(SE.new_supporters)}. That is <b>${50 - SE.supporters} short of 50</b>, the most a bill can pass with when the vice president breaks ties, and ${60 - SE.supporters} short of the 60 it takes to end a filibuster. Sixty is more senators than Democrats have.`;
+  drawNowBars();
+  $("nkey").innerHTML = `<span><i class="sw g-cos"></i>Sponsor or cosponsor of the current bill</span><span><i class="sw g-new"></i>New member who supports it</span>`;
+
+  // 2. The path: running counts under each stage -------------------------------------------
+  // Each row: count before the stage, after it (if every named member moved), and the number needed.
+  const hRow = (was, now) => ({ lab: "House", was, now, need: 218 });
+  const sRow = (was, now) => ({ lab: "Senate", was, now, need: 50 });
+  const RUN = {
+    s1: [hRow(PH.start, PH.start), sRow(PS.start, PS.start)],
+    s3: [hRow(PH.start, PH.near.after), sRow(PS.start, PS.start)],
+    s4: [hRow(PH.near.after, PH.near.after), sRow(PS.start, PS.persuade.after)],
+    s5: [hRow(PH.near.after, PH.near.after), sRow(PS.persuade.after, PS.special.after)],
+    s7: [hRow(PH.near.after, PH.rest_safe.after), sRow(PS.special.after, PS.primary.after)],
+    s9: [hRow(PH.rest_safe.after, PH.pickups.after), sRow(PS.primary.after, PS.pickups.after)],
+    s10: [{ ...hRow(PH.pickups.after, PH.pickups.after), quiet: 1 }, { ...sRow(PS.pickups.after, PS.pickups.after), quiet: 1 }],
+    s11: [{ lab: "Senate, Medicare option", was: SE.medicare_option, now: SE.medicare_option, need: 50, quiet: 1 }],
+  };
+  function meter(r) {
+    const pct = v => Math.min(100, 100 * v / r.need);
+    const met = r.now >= r.need, d = r.now - r.was;
+    const bar = `<span class="trk" role="img" aria-label="${r.lab}: ${r.now} of ${r.need} needed">` +
+      (met ? `<i class="met" style="left:0;width:100%"></i>`
+           : `<i class="was" style="left:0;width:${pct(r.was)}%"></i>` + (d > 0 ? `<i class="add" style="left:${pct(r.was)}%;width:${pct(r.now) - pct(r.was)}%"></i>` : "")) +
+      `</span>`;
+    const tail = d > 0 ? ` <em>+${d}</em>` : (r.quiet ? "" : ` <em>no change</em>`);
+    return `<span class="lab">${r.lab}</span>${bar}<span class="num"><b>${r.now}</b> of ${r.need}${tail}</span>`;
   }
-  $("gbtn").addEventListener("click", () => reveal(false));
-  $("gskip").addEventListener("click", () => reveal(true));
+  document.querySelectorAll(".run[data-run]").forEach(el => {
+    const rows = RUN[el.dataset.run];
+    if (rows) el.innerHTML = rows.map(meter).join("");
+  });
 
   // 2. Roster -------------------------------------------------------------------------
   const sortKey = m => [GORDER[m.g], m.st, m.d.padStart(8, "0"), m.n];
@@ -594,16 +687,10 @@
   const L = S.ladder;
   const rate = S.gains.supporters / S.gains.total;
   const pickNeedFrom = base => Math.round((218 - base) / rate);
-  document.querySelectorAll("#predict button").forEach(b => b.addEventListener("click", () => {
-    document.querySelectorAll("#predict button").forEach(x => x.setAttribute("aria-pressed", x === b));
-    const right = b.dataset.k === "safe";
-    $("predict-out").innerHTML = (right ? "<b>That's the one.</b> " : "<b>Not on these numbers.</b> ") +
-      `In 2026, ${S.gains.supporters} of about ${S.gains.total} Democratic House gains went to supporters, about ${Math.round(rate * 100)}%. At that rate, getting from ${H.supporters} to 218 on new seats alone would take about ${int(Math.round(pickNeedFrom(H.supporters) / 10) * 10)} more seats, far more than the ${435 - H.seated} Democrats do not already hold. ` +
-      `Safe-seat Democrats changing position gets much closer, but not all the way. Step through it below.`;
-  }));
+  $("ladder-lead").innerHTML = `Democrats already in safe seats changing position gets the House much closer to 218 than winning more seats. In 2026, ${S.gains.supporters} of about ${S.gains.total} Democratic House gains went to supporters, about ${Math.round(rate * 100)}%. At that rate, getting from ${H.supporters} to 218 on new seats alone would take about ${int(Math.round(pickNeedFrom(H.supporters) / 10) * 10)} more seats, far more than the ${435 - H.seated} Democrats do not already hold.`;
   const LCOL = { cos: "cos", new: "new", lapsed: "mix", safe_opt: "opt", safe_aca: "aca", safe_unk: "unk", safe_opp: "opp", likely: "mix", comp: "mix" };
   const LHYP = k => !["cos", "new"].includes(k);
-  $("ladder-intro").innerHTML = `Start with the ${H.supporters} on record and add groups of Democrats in order, from those closest to supporting it to those furthest away. Seats are rated by the 2026 margin: safe means won by 15 points or more. Faded bars are members who are not on record and would need to change position.`;
+  $("ladder-intro").innerHTML = `Start with the ${H.supporters} on record and add groups of Democrats in order, from those closest to supporting it to those furthest away. Seats are rated by the 2026 margin: safe means won by 15 points or more. Faded bars are members who are not on record and would need to change position. The path above takes the same groups in a slightly different order: its first House group also counts the ${PH.lapsed.not_safe.length} former cosponsors in closer seats, ${listAnd(PH.lapsed.not_safe.map(s => s.replace(/ \(.*\)$/, "")))}, so its safe-seat stage ends at ${PH.rest_safe.after} where this ladder's ends at ${H.all_safe}.`;
   $("lsteps").innerHTML = `<li class="hdr"><span></span><span>Group</span><span class="n">Adds</span><span class="c">Total</span></li>` +
     L.map((b, i) => `<li data-i="${i}"><i class="sw g-${LCOL[b.key]} ${LHYP(b.key) ? "hyp" : ""}"></i><span>${b.label}</span><span class="n">+${b.n}</span><span class="c ${b.cum >= 218 ? "ok" : ""}">${b.cum}</span></li>`).join("");
   let lstep = 2;
@@ -644,7 +731,7 @@
   drawPick();
 
   // Senate
-  $("senate-intro").innerHTML = `Before January 20, 2029, any bill faces a veto that 67 senators would have to override. After that, a bill can pass with 50 senators and a Democratic vice president in two ways. Budget reconciliation avoids the filibuster but is limited by the Byrd rule, which strikes provisions whose budget effect is &ldquo;merely incidental&rdquo; and takes 60 votes to waive. The research team's inference, not a ruling, is that this would likely strike the core of the bill, such as the ban on duplicate private insurance and the rules for providers. The other way is changing the filibuster rule, which itself takes 50 votes. Under regular order the bill needs 60.`;
+  $("senate-intro").innerHTML = `Before January 20, 2029, any bill faces a veto that 67 senators would have to override. After that, 50 senators and a Democratic vice president can pass it through reconciliation, with the Byrd-rule limits described above, or after a filibuster change. Under regular order it needs 60.`;
   const sSwing = SM.filter(m => m.swing);
   const drawSenate = () => countBar($("sbar"), {
     segs: [...supSegs(SE.cosponsors, SE.new_supporters.length), { g: "mix", n: SE.other_states }, { g: "mix", n: SE.swing, hyp: true }],
@@ -657,14 +744,13 @@
   $("sread").innerHTML = `<b>${SE.supporters}</b> senators are on record. If all ${SE.other_states} non-supporters outside states Trump won, or seats Republicans held before 2026, came over, the count would be <b>${SE.if_all_other_states}</b>, still ${50 - SE.if_all_other_states} short of 50. ` +
     `The rest would have to come from senators such as ${listAnd(sSwing.filter(m => ["Roy Cooper", "Scott Colom", "Adam Hamilton", "Annie Andrews", "James Talarico", "Josh Turek"].includes(m.n)).map(m => `${m.n} (${m.st})`))}, who ran on fixing the ACA, a public option or an opt-in Medicare plan. ` +
     `Sixty would take every Democrat plus ${60 - SE.seated} Republicans.`;
-  $("window-senate").innerHTML = `A smaller step has more senators behind it. <b>${SE.medicare_option}</b> of the ${SE.seated} are on record for Medicare for All, a public option or a Medicare buy-in, which makes a Medicare option, or Medicare at 50, the more passable step for 2029. The Senate path research's best case is about 32 to 37 supporters by January 2029 and 38 to 44 by 2031, short of 50 unless a 2028 nominee makes it the party's signature bill, as the ACA was. That is the strongest counterargument to cosponsor counts: 60 Democrats voted for the ACA, and most had never cosponsored anything like it.`;
 
   let rt, lastW = window.innerWidth;
   window.addEventListener("resize", () => {
     if (window.innerWidth === lastW) return;
     lastW = window.innerWidth;
     clearTimeout(rt);
-    rt = setTimeout(() => { drawGuessBars(); renderGrids(); drawLadder(); drawPick(); drawSenate(); }, 150);
+    rt = setTimeout(() => { drawNowBars(); renderGrids(); drawLadder(); drawPick(); drawSenate(); }, 150);
   });
 })();
 </script>

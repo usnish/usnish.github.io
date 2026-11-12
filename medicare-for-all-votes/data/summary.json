@@ -519,6 +519,168 @@
    "cum": 260
   }
  ],
+ "path": {
+  "house": {
+   "start": 117,
+   "lapsed": {
+    "n": 16,
+    "after": 133,
+    "names": [
+     "Doris Matsui (CA-7)",
+     "Hilda Solis (CA-38)",
+     "Lou Correa (CA-46)",
+     "Hakeem Jeffries (NY-8)",
+     "Donald Norcross (NJ-1)",
+     "Katherine Clark (MA-5)",
+     "Stephen Lynch (MA-8)",
+     "Jim Clyburn (SC-6)",
+     "Sanford Bishop (GA-2)",
+     "Darren Soto (FL-9)",
+     "Kathy Castor (FL-14)",
+     "Terri Sewell (AL-7)",
+     "Vicente Gonzalez (TX-34)",
+     "Joyce Beatty (OH-3)",
+     "Marcy Kaptur (OH-9)",
+     "Gwen Moore (WI-4)"
+    ],
+    "not_safe": [
+     "Doris Matsui (CA-7)",
+     "Darren Soto (FL-9)",
+     "Kathy Castor (FL-14)",
+     "Marcy Kaptur (OH-9)"
+    ]
+   },
+   "near": {
+    "n": 19,
+    "after": 152,
+    "by_pos": {
+     "public_option": 17,
+     "lower_medicare_age_or_buy_in": 2
+    },
+    "names": [
+     "Marni von Wilpert (CA-48)",
+     "Pat Ryan (NY-18)",
+     "John Mannion (NY-22)",
+     "Mary Gay Scanlon (PA-5)",
+     "Chrissy Houlahan (PA-6)",
+     "Dan Koh (MA-6)",
+     "Luke Bronin (CT-1)",
+     "Sarah McBride (DE-AL)",
+     "Adrian Boafo (MD-5)",
+     "Jamie Ager (NC-11)",
+     "Leticia Gutierrez (TX-9)",
+     "Colin Allred (TX-33)",
+     "Jeremy Moss (MI-11)",
+     "Bill Foster (IL-11)",
+     "Nikki Budzinski (IL-13)",
+     "Eric Sorensen (IL-17)",
+     "Denise Powell (NE-2)",
+     "Suzan DelBene (WA-1)",
+     "Kim Schrier (WA-8)"
+    ]
+   },
+   "rest_safe": {
+    "n": 63,
+    "after": 215,
+    "by_pos": {
+     "no_position_found": 42,
+     "strengthen_aca_only": 20,
+     "opposes_m4a": 1
+    }
+   },
+   "pickups": {
+    "seats": [
+     "TN-9",
+     "ME-2",
+     "CA-23"
+    ],
+    "n": 3,
+    "after": 218
+   },
+   "holds_n": 9,
+   "likely": {
+    "n": 16,
+    "after": 234
+   },
+   "ceiling_gap": 0
+  },
+  "senate": {
+   "start": 22,
+   "persuade": {
+    "names": [
+     "Ruben Gallego",
+     "Chris Murphy",
+     "Angela Alsobrooks",
+     "Andy Kim",
+     "Tammy Duckworth",
+     "Patty Murray",
+     "Maria Cantwell"
+    ],
+    "n": 7,
+    "after": 29
+   },
+   "special": {
+    "after": 30
+   },
+   "primary": {
+    "names": [
+     "Chuck Schumer",
+     "John Fetterman"
+    ],
+    "n": 2,
+    "after": 32
+   },
+   "pickups": {
+    "states": [
+     "Florida",
+     "Wisconsin"
+    ],
+    "n": 2,
+    "after": 34
+   },
+   "gap_50": 16,
+   "left": 23,
+   "left_swing": 13,
+   "up_2028": {
+    "n": 16,
+    "supporters": 6,
+    "supporter_names": [
+     "Alex Padilla",
+     "Richard Blumenthal",
+     "Brian Schatz",
+     "Chris Van Hollen",
+     "Ron Wyden",
+     "Peter Welch"
+    ],
+    "others": [
+     "Mark Kelly (AZ)",
+     "Michael Bennet (CO)",
+     "Raphael Warnock (GA)",
+     "Tammy Duckworth (IL)",
+     "Catherine Cortez Masto (NV)",
+     "Maggie Hassan (NH)",
+     "Chuck Schumer (NY)",
+     "Sherrod Brown (OH)",
+     "John Fetterman (PA)",
+     "Patty Murray (WA)"
+    ]
+   },
+   "up_2030": {
+    "n": 19,
+    "supporters": 8
+   },
+   "option_gap": 14,
+   "option_rest": {
+    "n": 19,
+    "by_pos": {
+     "no_position_found": 10,
+     "opposes_m4a": 3,
+     "strengthen_aca_only": 6
+    }
+   },
+   "to_60": 5
+  }
+ },
  "gains": {
   "total": 43,
   "supporters": 6,
