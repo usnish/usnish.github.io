@@ -35,7 +35,7 @@
   <header>
     <h1>The dialysis time tax</h1>
     <p class="byline">By Usnish Majumdar, MD · Updated November 2026</p>
-    <p class="lede">Most people with kidney failure get hemodialysis at a center three times a week, every week, for years. This map estimates how much time that drive would take for the people living in every neighborhood in the country, based on the drive to the nearest dialysis center, and shows where households have no car to make that trip.</p>
+    <p class="lede">Most people with kidney failure get hemodialysis at a center three times a week, every week, for years. This map estimates how much time the drive to the nearest dialysis center would take for the people living in every neighborhood in the country, and shows where households have no car to make that trip.</p>
   </header>
   <p class="big" id="headline"></p>
   <div class="stats" id="stats"></div>
@@ -65,14 +65,14 @@
       </h2>
       <p id="ties" hidden></p>
       <ol class="rank" id="rank"></ol>
-      <p style="font-size:11px;color:var(--muted);margin:8px 0 0">Leaves out counties where most residents have no drive time to a center (mostly Alaska). In the "No car and far away" ranking, LaGrange and Daviess counties in Indiana are home to two of the largest <a href="https://groups.etown.edu/amishstudies/statistics/twelve-largest-settlements-2024/">Amish settlements</a>, where many households <a href="https://groups.etown.edu/amishstudies/cultural-practices/technology/">do not own cars</a> by choice and hire drivers.</p>
+      <p style="font-size:11px;color:var(--muted);margin:8px 0 0">The ranking leaves out counties where most residents have no drive time to a center (mostly Alaska). In the "No car and far away" ranking, LaGrange and Daviess counties in Indiana are home to two of the largest <a href="https://groups.etown.edu/amishstudies/statistics/twelve-largest-settlements-2024/">Amish settlements</a>, where many households <a href="https://groups.etown.edu/amishstudies/cultural-practices/technology/">do not own cars</a> by choice and hire drivers.</p>
     </aside>
   </div>
 
   <section class="about" id="pays">
     <h2>Who pays for the ride</h2>
     <p><b>Traditional Medicare</b> pays for dialysis but, in most cases, not for the trip. It covers only an ambulance between home and the nearest dialysis center, and only when any other way of traveling could endanger the patient's health. For scheduled trips like these, the ambulance company needs a doctor's written order saying the ambulance is medically necessary. For repeated trips (3 or more round trips in 10 days, or at least weekly for 3 weeks), the patient or ambulance company can ask Medicare for prior authorization; if that is denied and the trips go on, Medicare denies the claims. (<a href="https://www.medicare.gov/publications/10128-medicare-coverage-esrd.pdf">Medicare Coverage of Kidney Dialysis &amp; Kidney Transplant Services</a>, CMS, November 2025; <a href="https://www.medicare.gov/coverage/ambulance-services">Medicare.gov: ambulance services</a>.)</p>
-    <p><b>Medicaid</b> must make sure enrollees who have no other way to get to medical care have a ride, a benefit called non-emergency medical transportation. People with both Medicare and full Medicaid generally get these rides from Medicaid, even when Medicare pays for the dialysis itself. People whose Medicaid only helps with Medicare premiums and cost-sharing (partial-benefit dual eligibility) do not. In MACPAC's analysis of 2018 Medicaid data, enrollees with kidney failure used these rides more often than any other diagnosis group it studied. (<a href="https://www.macpac.gov/wp-content/uploads/2021/06/Chapter-5-Mandated-Report-on-Non-Emergency-Medical-Transportation.pdf">MACPAC, June 2021 report to Congress, chapter 5</a>.)</p>
+    <p><b>Medicaid</b> must make sure enrollees who have no other way to get to medical care have a ride (a benefit called non-emergency medical transportation). People with both Medicare and full Medicaid generally get these rides from Medicaid, even when Medicare pays for the dialysis itself. People whose Medicaid only helps with Medicare premiums and cost-sharing (partial-benefit dual eligibility) do not. In MACPAC's analysis of 2018 Medicaid data, enrollees with kidney failure used these rides more often than any other diagnosis group it studied. (<a href="https://www.macpac.gov/wp-content/uploads/2021/06/Chapter-5-Mandated-Report-on-Non-Emergency-Medical-Transportation.pdf">MACPAC, June 2021 report to Congress, chapter 5</a>.)</p>
     <p><b>Medicare Advantage</b> plans, which people with kidney failure can join, may cover some non-ambulance rides to dialysis as an extra benefit. It depends on the plan. (<a href="https://www.medicare.gov/publications/10128-medicare-coverage-esrd.pdf">CMS booklet</a>, section on transportation to dialysis facilities.)</p>
     <p>For other help with rides, Medicare's advice is to talk to the social worker at the dialysis center.</p>
   </section>
@@ -80,7 +80,7 @@
   <section class="about">
     <h2>How this was estimated</h2>
     <p><b>Dialysis centers.</b> Every Medicare-certified facility offering in-center hemodialysis in the CMS <a href="https://data.cms.gov/provider-data/dataset/23ew-n7w9">Dialysis Facility listing</a>, located with the Census Bureau geocoder. <span id="geocode"></span></p>
-    <p><b>Drive time.</b> <span id="routing"></span> Times are floored at 2 minutes and ignore traffic, so real trips, especially in cities, usually take longer. Annual hours = one-way time × 2 × 3 sessions a week × 52 weeks.</p>
+    <p><b>Drive time.</b> <span id="routing"></span> Times are floored at 2 minutes and ignore traffic, so real trips (especially in cities) usually take longer. Annual hours = one-way time × 2 × 3 sessions a week × 52 weeks.</p>
     <p><b>What routing changed.</b> <span id="changed"></span></p>
     <p><b>No road route.</b> <span id="noroad"></span></p>
     <p><b>Households without a vehicle</b> and the <b>Social Vulnerability Index</b> come from CDC/ATSDR SVI 2022 (American Community Survey 2018–2022). Without a car, the same trip by transit, paratransit or rides from others usually takes longer than the drive time shown, so those households' real time cost is understated here.</p>
@@ -112,8 +112,8 @@
 
   const workweeks = (sum.mean_annual_hours / 40).toFixed(1);
   document.getElementById("headline").innerHTML =
-    `If the average U.S. resident needed in-center dialysis, driving to the nearest center and back three times a week would take at least <b>${sum.mean_annual_hours} hours a year</b>, roughly ${workweeks} full-time work weeks, before traffic, parking or waiting. ` +
-    `For residents of rural counties the average is <b>${sum.nonmetro_mean_annual_hours} hours</b>, against ${sum.metro_mean_annual_hours} in metro areas. ` +
+    `If the average U.S. resident needed in-center dialysis, driving to the nearest center and back three times a week would take at least <b>${sum.mean_annual_hours} hours a year</b> (roughly ${workweeks} full-time work weeks) before traffic, parking or waiting. ` +
+    `In rural counties the average is <b>${sum.nonmetro_mean_annual_hours} hours</b>, compared with ${sum.metro_mean_annual_hours} in metro areas. ` +
     `These figures describe everyone living in each neighborhood, not current dialysis patients.`;
   const nv = sum.pct_no_vehicle_by_svi_quarter, nvx = sum.pct_no_vehicle_by_svi_quarter_without_vehicle_measure;
   const hq = sum.hours_by_svi_quarter, fq = sum.pct_far_by_svi_quarter;
@@ -123,8 +123,8 @@
   const drive = hq[MOST] <= hq[LEAST] ? "no longer" : hq[MOST] <= hq[LEAST] * 1.1 ? "about the same" : "longer";
   document.getElementById("equity").innerHTML =
     `In the most socially vulnerable quarter of neighborhoods, ${p1(fq[MOST])}% of residents live more than ${sum.far_minutes} minutes' drive from the nearest center, against ${p1(fq[LEAST])}% in the least vulnerable quarter. ` +
-    `Their drive is ${drive}: on free-flowing roads, residents there would average ${hq[MOST]} hours a year, against ${hq[LEAST]}. ` +
-    `What differs is the car. <b>${p1(nv[MOST])}%</b> of households in the most vulnerable quarter have no vehicle, against ${p1(nv[LEAST])}% in the least vulnerable: ${ratio.toFixed(1)} times as many. ` +
+    `Their drive is ${drive}: on free-flowing roads, residents there would average ${hq[MOST]} hours a year, compared with ${hq[LEAST]}. ` +
+    `The difference is the car. <b>${p1(nv[MOST])}%</b> of households in the most vulnerable quarter have no vehicle, against ${p1(nv[LEAST])}% in the least vulnerable (${ratio.toFixed(1)} times as many). ` +
     `Lack of a car is one of the 16 measures that make up the index, so part of this gap is built in; with that measure removed from the ranking, the figures are ${p1(nvx[MOST])}% against ${p1(nvx[LEAST])}% (${ratiox.toFixed(1)} times as many). ` +
     `Nationwide, ${VK.int(Math.round(sum.no_vehicle_far_hh / 1000) * 1000)} households with no car live more than ${sum.far_minutes} minutes' drive from the nearest center. ` +
     `Without a car, the same trip by transit, paratransit or borrowed rides usually takes longer than the drive shown here.`;
@@ -137,13 +137,13 @@
   const ro = sum.routing, dm = sum.drive_model;
   const bg = sum.block_group_routing;
   document.getElementById("routing").innerHTML =
-    `Every trip starts at the 2020 population center of one of ${VK.int(sum.tracts)} census tracts with residents and was routed on real roads with the OSRM routing engine, using <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> roads (© OpenStreetMap contributors), ` +
-    `to each of the nearest dialysis centers by straight line (${ro.candidates_long} for trips likely to be long, ${ro.candidates_short} otherwise), keeping the fastest drive. ` +
-    `Every chosen route was checked for a ferry; one that used a ferry was dropped and the next center tried. ` +
-    `For ${VK.int(bg.tracts)} tracts (${VK.int(bg.pop)} people) whose population center sits more than ${ro.snap_km} km from a mapped road or whose route was more than ${bg.ratio} times longer than distance alone would suggest, each of their ${VK.int(bg.block_groups)} block groups was routed instead. Routes were pulled on ${ro.date}.`;
+    `Every trip starts at the 2020 population center of one of ${VK.int(sum.tracts)} census tracts with residents. It was routed with the OSRM routing engine on real roads from <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> (© OpenStreetMap contributors) ` +
+    `to each of the nearest dialysis centers by straight line (${ro.candidates_long} for trips likely to be long, ${ro.candidates_short} otherwise), and the fastest drive was kept. ` +
+    `Every chosen route was checked for a ferry; if it used one, it was dropped and the next center tried. ` +
+    `For ${VK.int(bg.tracts)} tracts (${VK.int(bg.pop)} people), the population center sits more than ${ro.snap_km} km from a mapped road or the route was more than ${bg.ratio} times longer than distance alone would suggest, so their ${VK.int(bg.block_groups)} block groups were each routed instead. Routes were pulled on ${ro.date}.`;
   document.getElementById("geocode").textContent =
     `Addresses the batch geocoder missed were tried again with the Census single-address geocoder and OpenStreetMap's Nominatim (${VK.int(sum.regeocoded)} found). ` +
-    `The other ${VK.int(sum.zip_placed)} centers, whose address still did not match, were placed at their ZIP code's center, which can be several kilometers off.`;
+    `The other ${VK.int(sum.zip_placed)} centers still did not match and were placed at the center of their ZIP code, which can be several kilometers off.`;
   const lt = ro.long_trips, st = ro.short_trips;
   const ex = ro.examples.map(e => e.model_center === e.road_center
     ? `${e.place}, to ${e.road_center}: ${e.model_min} minutes estimated, ${e.road_min} by road`
@@ -151,7 +151,7 @@
   document.getElementById("changed").textContent =
     `An earlier version of this page estimated drive times from straight-line distance, using a model fitted to real routes (${dm.metro.a.toFixed(1)} + ${dm.metro.b.toFixed(2)} min per km in metro counties, ` +
     `${dm.nonmetro.a.toFixed(1)} + ${dm.nonmetro.b.toFixed(2)} elsewhere). For long rural trips it could be far off: ${ex}. ` +
-    `For trips it put over ${ro.long_min} minutes, routing changed the average only a little (${lt.mean_model_min} to ${lt.mean_road_min} minutes), but it overstated shorter trips (${st.mean_model_min} to ${st.mean_road_min} minutes). ` +
+    `For trips the model put over ${ro.long_min} minutes, routing changed the average only a little (${lt.mean_model_min} to ${lt.mean_road_min} minutes), but the model overstated shorter trips (${st.mean_model_min} to ${st.mean_road_min} minutes). ` +
     `With the same centers, the model would have put the national average at ${ro.old_model_mean_annual_hours} hours a year and ${(ro.old_model_people_far / 1e6).toFixed(1)} million people more than ${sum.far_minutes} minutes away.`;
 
   VK.bars(document.getElementById("bars"), [

@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AI Prescribing Ladder</title>
-<meta name="description" content="Where AI may legally prescribe or renew medications, and how independently, coded on a four-rung ladder: Utah's four sandbox pilots against the bans, human-must-decide rules and failed bills elsewhere, with a source for every entry.">
+<meta name="description" content="Where AI may legally prescribe or renew medications, and how independently, coded on a four-rung ladder. Utah has four sandbox pilots; elsewhere there are bans, human-must-decide rules and failed bills. Every entry has a source.">
 <link rel="canonical" href="https://usnish.xyz/ai-prescribing-ladder/">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://usnish.xyz/ai-prescribing-ladder/">
 <meta property="og:title" content="Can an AI write your prescription? One state, four pilots, and a wall of rules">
-<meta property="og:description" content="Of the places checked, only Utah lets AI go past drafting a prescription for a clinician to sign, through four sandbox pilots, and in the two that have started a physician still reviews every script. Elsewhere: bans, human-must-decide rules, and failed bills to make AI a prescriber.">
+<meta property="og:description" content="Of the places checked, only Utah lets AI go past drafting a prescription for a clinician to sign. It does so through four sandbox pilots, and in the two that have started a physician still reviews every script. Elsewhere there are bans, human-must-decide rules and failed bills to make AI a prescriber.">
 <meta property="og:site_name" content="Usnish Majumdar">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Can an AI write your prescription? One state, four pilots, and a wall of rules">
@@ -160,7 +160,7 @@
   <a class="back" href="/projects/">&larr; all projects</a>
   <header>
     <h1>Can an AI write your prescription? One state, four pilots, and a wall of rules</h1>
-    <p class="lede">Software already drafts prescriptions for clinicians to sign. The question now is how far past that the law lets it go. This page codes each law, rule, pilot and bill found on a four-rung ladder, from AI drafting a prescription for a clinician to sign, up to AI as the prescriber of record, and places each one on the rung it actually operates at today.</p>
+    <p class="lede">Software already drafts prescriptions for clinicians to sign. How much further does the law let it go? This page codes each law, rule, pilot and bill found on a four-rung ladder, from AI drafting a prescription for a clinician to sign up to AI as the prescriber of record, and places each one on the rung where it actually operates today.</p>
     <p class="byline">By Usnish Majumdar, MD &middot; November 2026 &middot; as of <span data-k="as_of_long"></span></p>
   </header>
 
@@ -173,7 +173,7 @@
   <!-- 2. The ladder -->
   <section class="chart" id="ladder-sec">
     <h2>The ladder</h2>
-    <p>Each rung gives AI more independence. Filled boxes are operating at that rung today. Dashed boxes are allowed on paper, or proposed, but not operating there. Tap any box for what it allows and its source.</p>
+    <p>Each rung gives AI more independence. Filled boxes are operating at that rung today; dashed boxes are allowed on paper (or proposed) but not operating there. Tap any box for what it allows and its source.</p>
     <div class="key">
       <span><i class="sw" style="background:var(--ut)"></i>operating at this rung today</span>
       <span><i class="sw" style="border:1.5px dashed var(--ut);background:transparent"></i>allowed on paper, not operating here</span>
@@ -235,7 +235,7 @@
   <section class="about">
     <h2>Coverage and limits</h2>
     <p><b>As of.</b> Everything here was checked on or before <span data-k="as_of_long"></span>. Utah's pilot register was last changed on <span data-k="utah.register_modified_long"></span>; bills are coded at their last recorded action.</p>
-    <p><b>One coder.</b> A single research pass by AI agents, with my review, coded every entry from a primary source where one could be opened. Nothing was coded twice independently. <span data-k="by_confidence.high"></span> entries are rated high confidence and <span data-k="by_confidence.medium"></span> medium, usually because the primary text could not be opened and a secondary source was used. Each entry's confidence shows in its details.</p>
+    <p><b>One coder.</b> A single research pass by AI agents, with my review, coded every entry from a primary source where one could be opened. Nothing was coded twice independently. <span data-k="by_confidence.high"></span> entries are rated high confidence and <span data-k="by_confidence.medium"></span> medium (usually because the primary text could not be opened and a secondary source was used). Each entry's confidence shows in its details.</p>
     <p><b>Two strengths of rule.</b> An explicit ban names AI and bars it from prescribing, from reviewing prescriptions, or from holding a prescriber's license. A human-must-decide rule says a clinician keeps the decision, without naming prescriptions; it would bar rungs 2 to 4 only if a regulator read it that way. The list labels each one, and also separates laws and binding codes from guidance and from bills. Title and personhood laws are the weakest kind and are labeled as such.</p>
     <p><b>The China renewal point is unsettled.</b> <span id="nmpa"></span></p>
     <p><b>Context, not on the wall.</b> <span data-k="context"></span> entries describe frameworks that neither permit nor ban AI prescribing, such as the EU AI Act, FDA's decision-support guidance, the DEA rule that keeps controlled substances out of every pilot, and the sandboxes in Texas, Arizona and Wyoming, none of which lists an AI prescribing participant. Fujian's internet care rules, which copied China's national ban on AI-generated prescriptions, are also here rather than on the wall: they were valid for two years from February 2024 and no renewal was found. All are in the data file with the rest.</p>
@@ -287,7 +287,7 @@
   $("stand").innerHTML =
     `As of ${esc(S.as_of_long)}, Utah is the only jurisdiction found that lets AI go past drafting a prescription for a clinician to sign. It does so through ${k("utah.pilots")} sandbox pilots: ${kp("utah.paper_rung_2")} allow AI to renew existing prescriptions and ${kp("utah.paper_rung_3")} allows it to start new ones. ` +
     `Of those, ${kp("utah.operating")} have started (${esc(listAnd(ops))}), and in both a physician still reviews every prescription before it goes out; the other ${kp("utah.not_started")} have not started. So AI is not operating above rung 1 anywhere found. ` +
-    `Against that stand ${k("wall.total")} rules and bills that hold AI back: ${kp("wall.adopted")} adopted laws and binding rules in ${kp("wall.world_adopted_countries_n")} countries and ${kp("wall.us_adopted_states_n")} U.S. states, ${kp("wall.drafts")} draft rule, ${kp("wall.guidance")} guidance documents, and ${kp("wall.bills")} state bills (${kp("wall.bills_failed")} failed, ${kp("wall.bills_pending")} pending). Among them are ${k("wall.explicit_bans")} explicit bans that name AI. ` +
+    `Meanwhile, ${k("wall.total")} rules and bills hold AI back: ${kp("wall.adopted")} adopted laws and binding rules in ${kp("wall.world_adopted_countries_n")} countries and ${kp("wall.us_adopted_states_n")} U.S. states, ${kp("wall.drafts")} draft rule, ${kp("wall.guidance")} guidance documents, and ${kp("wall.bills")} state bills (${kp("wall.bills_failed")} failed, ${kp("wall.bills_pending")} pending). Among them are ${k("wall.explicit_bans")} explicit bans that name AI. ` +
     `Of the ${kp("bills_to_permit.total")} bills that would make AI a prescriber in law, ${kp("bills_to_permit.failed")} failed and ${kp("bills_to_permit.pending")} has had no action since it was introduced.`;
 
   // 2. Ladder --------------------------------------------------------------------------------
@@ -363,7 +363,7 @@
   // 3. Wall ----------------------------------------------------------------------------------
   const wall = E.filter(e => ["restriction", "guidance", "bill_to_restrict"].includes(e.group));
   $("wall-intro").innerHTML =
-    `${k("wall.total")} entries restrict how far AI may go. Outside the United States, ${kp("wall.world_countries_n")} countries have at least one of these rules, in law, a binding professional code, or guidance: ${esc(listAnd(W.world_countries))}. ` +
+    `${k("wall.total")} entries restrict how far AI may go. Outside the United States, ${kp("wall.world_countries_n")} countries have at least one of these rules (in law, a binding professional code, or guidance): ${esc(listAnd(W.world_countries))}. ` +
     `In the United States, ${kp("wall.us_adopted_states_n")} states have adopted one (${esc(listAnd(W.us_adopted_states))}), mostly weaker title or general rules, and bills to restrict AI were filed in ${kp("wall.us_bill_states_n")} states. Tap a row for the text and source.`;
   const FILTERS = [
     ["all", "All", () => true],
@@ -421,7 +421,7 @@
   // 6. Prior art -----------------------------------------------------------------------------
   const P = S.prior_art.items, hapi = P[0];
   $("hapi").innerHTML = `The broadest public resource is the <a href="${esc(hapi.url)}">Health &amp; AI Policy Index</a>, a curated registry of <b>${esc(hapi.policies_tracked)}</b> laws, regulations and standards on AI in health care, last updated ${esc(longDate(hapi.last_updated))}. It covers U.S. state and federal policy plus selected international frameworks, and tags entries by ${esc(hapi.keyword_tags.length)} topics such as ${esc(listAnd(hapi.keyword_tags.slice(0, 3)))}. It also maps policies to common operational rules, one of which is that AI may not perform reserved clinical functions, prescribing among them, without licensed professional involvement. It has entries for ${esc(hapi.utah_agreements_listed.length)} of the Utah agreements (${esc(listAnd(hapi.utah_agreements_listed))}), each with a summary, status and link to the signed agreement; ${esc(listAnd(hapi.utah_agreements_not_listed))}, signed in late September 2026, was not yet listed when checked. ` +
-    `This page is narrower. It covers one question, what AI may do when it comes to prescriptions, and codes each rule by how much clinical independence it allows and how much physician review remains. For the wider field of health AI law, the index is the better resource.`;
+    `This page is narrower. It covers one question (what AI may do with prescriptions) and codes each rule by how much clinical independence it allows and how much physician review remains. For the wider field of health AI law, the index is the better resource.`;
   const PICK = ["Utah Office of AI Policy", "Manatt Health", "NCSL Artificial", "AI Laws by State", "Orrick", "Live Compliance", "Holland & Knight: The AI", "Snell & Wilmer", "Gerke", "OECD.AI"];
   $("prior").querySelector("tbody").innerHTML = PICK.map(p => P.find(x => x.name.startsWith(p))).filter(Boolean).map(x =>
     `<tr><td><a href="${esc(x.url)}">${esc(x.name)}</a></td><td>${esc(x.scope)}; ${esc(x.geography || "")}</td><td class="hide-sm">${esc(x.what_it_lacks)}</td></tr>`).join("");

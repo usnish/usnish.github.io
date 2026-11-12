@@ -13,31 +13,31 @@
       url: /ai-prescribing-ladder/
       repo: https://github.com/usnish/usnish.github.io/tree/master/ai-prescribing-ladder
       image: /ai-prescribing-ladder/thumb.png
-      description: Where AI may legally prescribe or renew medications, coded on a four-rung ladder from drafting a script for a clinician to sign up to being the prescriber of record, with a source for every entry. Of the places checked, only Utah allows more than drafting, through four sandbox pilots, and in the two that have started a physician still reviews every prescription.
+      description: Where AI may legally prescribe or renew medications, placed on a four-rung ladder that runs from drafting a script for a clinician to sign to being the prescriber of record, with a source for every entry. Of the places checked, only Utah allows more than drafting (through four sandbox pilots), and in the two that have started, a physician still reviews every prescription.
 
     - title: Counting to 218 on Medicare for All
       url: /medicare-for-all-votes/
       repo: https://github.com/usnish/usnish.github.io/tree/master/medicare-for-all-votes
       image: /medicare-for-all-votes/thumb.png
-      description: Where every Democrat in the incoming Congress stands on Medicare for All, with a source for each. 117 of 260 House Democrats and 22 of 55 senators are on record, and even every safe-seat Democrat would leave the House 7 votes short of 218.
+      description: Where every Democrat in the incoming Congress stands on Medicare for All, with a source for each. Of 260 House Democrats, 117 are on record, as are 22 of 55 senators; even with every safe-seat Democrat, the House would be 7 votes short of 218.
 
     - title: Old Enough to Count, Too Young to Interpret
       url: /bridge-children/
       repo: https://github.com/usnish/usnish.github.io/tree/master/bridge-children
       image: /img/thumb-bridge-children.png
-      description: About 2.6 million US children aged 5-17 are fluent in English while every adult at home has limited English. Health-care rules bar relying on them to interpret, yet more than half live in homes the Census limited-English household measure does not count as limited-English.
+      description: About 2.6 million US children aged 5-17 are fluent in English while every adult at home has limited English. Health-care rules bar relying on them to interpret, yet more than half live in homes the Census measure of limited-English households does not count.
 
     - title: Who Medicare Leaves Uninsured at 65
       url: /medicare-at-65/
       repo: https://github.com/usnish/usnish.github.io/tree/master/medicare-at-65
       image: /img/thumb-medicare-at-65.png
-      description: Who is still uninsured after 65. Most of the 491,000 uninsured seniors were born abroad, and for people who arrive at 60 or older the uninsured rate barely moves at 65. ACS microdata by age at arrival, years in the US and language.
+      description: Most of the 491,000 seniors still uninsured after 65 were born abroad, and for people who arrive at 60 or older the uninsured rate barely moves at 65. From ACS microdata, broken out by age at arrival, years in the US and language.
 
     - title: The Medicare Translation Line
       url: /medicare-translation-line/
       repo: https://github.com/usnish/usnish.github.io/tree/master/medicare-translation-line
       image: /img/thumb-medicare-translation-line.png
-      description: Medicare plans must translate materials only into languages spoken by 5% of their service area. In San Francisco, 18 of 35 plans must translate into Chinese; in Orange County, none of 72 must translate into Vietnamese, and no 2027 plan in the country must translate into Vietnamese, Korean, Tagalog or Arabic.
+      description: Medicare plans must translate materials only into languages spoken by 5% of their service area. In San Francisco, 18 of 35 plans have to translate into Chinese, but in Orange County none of 72 have to translate into Vietnamese. No 2027 plan anywhere in the country has to translate into Vietnamese, Korean, Tagalog or Arabic.
 
     - title: Dialysis After Five
       url: /dialysis-after-five/
@@ -49,10 +49,10 @@
       url: /dialysis-time-tax/
       repo: https://github.com/usnish/usnish.github.io/tree/master/dialysis-time-tax
       image: /img/og-dialysis-time-tax.png
-      description: Hours a year that driving to in-center dialysis would take for residents of every U.S. neighborhood, with every trip routed on real roads. Vulnerable neighborhoods aren't farther from a center, but are nearly five times as likely to have no car.
+      description: How many hours a year driving to in-center dialysis would take residents of every U.S. neighborhood, with every trip routed on real roads. Vulnerable neighborhoods are no farther from a center, but they are nearly five times as likely to have no car.
 
     - title: Medicare Advantage Network Rules
       url: /ma-network-standards/
       repo: https://github.com/usnish/usnish.github.io/tree/master/ma-network-standards
       image: /img/og-ma-network-standards.png
-      description: How far CMS lets a Medicare Advantage network's nearest doctor or hospital be, county by county, against how far older residents actually live from one. In a typical rural county a plan with telehealth can leave 1 in 4 beneficiaries beyond the 75-minute cardiology limit and still pass.
+      description: County by county, how far CMS lets a Medicare Advantage network's nearest doctor or hospital be, compared with how far older residents actually live from one. In a typical rural county a plan with telehealth can leave 1 in 4 beneficiaries beyond the 75-minute cardiology limit and still pass.

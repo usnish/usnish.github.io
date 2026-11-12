@@ -190,7 +190,7 @@
 
   <!-- 4. distance -->
   <section class="chart" id="s4">
-    <h2>A unit nearby is common. An evening unit nearby is not.</h2>
+    <h2>How far to an evening unit</h2>
     <p id="disttext"></p>
     <div class="stats" id="diststats"></div>
     <div class="key">
@@ -221,8 +221,8 @@
 
   <section class="about" id="change">
     <h2>What could change this</h2>
-    <p>One state already rewards the shift. Since 2007, Washington's certificate-of-need rules have given a point for a shift that begins after 5&nbsp;pm when choosing among companies competing to open a dialysis center (<a href="https://lawfilesext.leg.wa.gov/Law/WSR/2006/24/06-24-050.htm">WSR 06-24-050</a>; now <a href="https://app.leg.wa.gov/WAC/default.aspx?cite=246-310-827">WAC 246-310-827</a>), and Washington has the highest share of the states and DC on this page. North Carolina also decides by certificate of need where dialysis stations open; the dialysis chapter of its <a href="https://info.ncdhhs.gov/dhsr/ncsmfp/2026/02_2026%20SMFP_post.pdf">2026 State Medical Facilities Plan</a> does not mention evening shifts, and <span id="chg-nc">8.2%</span> of its patients go to a unit with one. This page cannot show that Washington's rule is the reason, and the rule accepts a center's promise to run the shift if there is a need.</p>
-    <p>Medicare pays a dialysis unit the same base rate, $297.52 a treatment in 2027, whatever the hour. It does pay more for what it wants to encourage: for 2027 it raised its add-on for home dialysis training from $95.60 to $138.00 a treatment (<a href="https://www.federalregister.gov/documents/2026/10/30/2026-22194/medicare-program-cy-2027-changes-to-the-end-stage-renal-disease-esrd-prospective-payment-system">91 FR 68736</a>; <a href="https://www.cms.gov/newsroom/fact-sheets/calendar-year-cy-2027-end-stage-renal-disease-esrd-prospective-payment-system-final-rule-cms-1846-f">CMS summary</a>). CMS could do the same, in the same yearly rule, for treatments that start after 5&nbsp;pm, beginning as a test in places far from any evening unit. Today <span id="chg-noeve">78.2%</span> of patients (about <span id="chg-noeve-n">387,000</span>) go to a unit with no evening shift, and <span id="chg-neither">36.8%</span> (about <span id="chg-neither-n">182,000</span>) go to a unit that offers neither an evening shift nor home dialysis, the two options linked to higher employment in the <a href="https://doi.org/10.2215/CJN.0000000819">study above</a> (6% and 10% higher, in relative terms). I found no published estimate of what an evening shift costs to run and no evidence that paying more would bring chairs back, and an add-on would also go to the <span id="chg-late">1,131</span> units that already run one. CMS would need better data too: its <i>Late Shift</i> field is a yes or no, with no count of evening chairs or of open ones (<a href="https://data.cms.gov/provider-data/sites/default/files/data_dictionaries/dialysis/DF_Data_Dictionary.pdf">data dictionary</a>).</p>
+    <p>One state already rewards the shift. Since 2007, Washington's certificate-of-need rules have given a point for a shift that begins after 5&nbsp;pm when the state chooses among companies competing to open a dialysis center (<a href="https://lawfilesext.leg.wa.gov/Law/WSR/2006/24/06-24-050.htm">WSR 06-24-050</a>; now <a href="https://app.leg.wa.gov/WAC/default.aspx?cite=246-310-827">WAC 246-310-827</a>), and Washington has the highest share of the states and DC on this page. North Carolina also decides by certificate of need where dialysis stations open; the dialysis chapter of its <a href="https://info.ncdhhs.gov/dhsr/ncsmfp/2026/02_2026%20SMFP_post.pdf">2026 State Medical Facilities Plan</a> does not mention evening shifts, and <span id="chg-nc">8.2%</span> of its patients go to a unit with one. This page cannot show that Washington's rule is the reason, and the rule accepts a center's promise to run the shift if there is a need.</p>
+    <p>Medicare pays a dialysis unit the same base rate, $297.52 a treatment in 2027, whatever the hour. It does pay more for what it wants to encourage: for 2027 it raised its add-on for home dialysis training from $95.60 to $138.00 a treatment (<a href="https://www.federalregister.gov/documents/2026/10/30/2026-22194/medicare-program-cy-2027-changes-to-the-end-stage-renal-disease-esrd-prospective-payment-system">91 FR 68736</a>; <a href="https://www.cms.gov/newsroom/fact-sheets/calendar-year-cy-2027-end-stage-renal-disease-esrd-prospective-payment-system-final-rule-cms-1846-f">CMS summary</a>). CMS could do the same, in the same yearly rule, for treatments that start after 5&nbsp;pm, beginning as a test in places far from any evening unit. Today <span id="chg-noeve">78.2%</span> of patients (about <span id="chg-noeve-n">387,000</span>) go to a unit with no evening shift, and <span id="chg-neither">36.8%</span> (about <span id="chg-neither-n">182,000</span>) go to a unit that offers neither an evening shift nor home dialysis, the two options linked to higher employment in the <a href="https://doi.org/10.2215/CJN.0000000819">study above</a> (6% and 10% higher, in relative terms). I found no published estimate of what an evening shift costs to run, and no evidence that paying more would bring chairs back. An add-on would also go to the <span id="chg-late">1,131</span> units that already run one. CMS would need better data too: its <i>Late Shift</i> field is a yes or no, with no count of evening chairs or of open ones (<a href="https://data.cms.gov/provider-data/sites/default/files/data_dictionaries/dialysis/DF_Data_Dictionary.pdf">data dictionary</a>).</p>
   </section>
 
   <section class="about">
@@ -326,13 +326,13 @@
     const how = Math.abs(diff) < 3 ? "Close." : diff > 0 ? `You guessed ${g1}; it is lower.` : `You guessed ${g1}; it is higher.`;
     $("g1result").hidden = false;
     $("g1result").innerHTML = `${how} <b>${p1(nat.pct_units)}</b> of the ${int(nat.units)} units that offer in-center hemodialysis run a shift starting at 5 pm or later: ${int(nat.late_units)} units, about ${oneIn(nat.pct_units)}. ` +
-      `Evening units tend to be bigger, so they treat <b>${p1(nat.pct_patients)}</b> of patients. The other ${p0(100 - nat.pct_units)} of units have no shift that starts at 5 pm or later.`;
+      `Evening units tend to be bigger, so they treat <b>${p1(nat.pct_patients)}</b> of patients. The other ${p0(100 - nat.pct_units)} of units have no evening shift.`;
   });
 
   // Why --------------------------------------------------------------------
   $("whytext").innerHTML =
     `Three sessions a week of about four hours each is 12 hours or more before counting the trip, and a daytime chair collides with a daytime job. Many people stop working when they start dialysis. ` +
-    `In a national study of dialysis units from 2016 to 2019, patients aged 18 to 54 at units that offered an evening shift were employed at a rate about 6% higher, in relative terms, than at units that did not (95% CI 4% to 8%), after adjusting for patient, unit and area differences. With a median unit employment rate near 20%, that is roughly 20 versus 21 in 100: a modest association, not proof that evening shifts cause employment (<a href="https://doi.org/10.2215/CJN.0000000819">Perez et al., CJASN 2025</a>). ` +
+    `In a national study of dialysis units from 2016 to 2019, patients aged 18 to 54 at units that offered an evening shift were employed at a rate about 6% higher, in relative terms, than at units that did not (95% CI 4% to 8%), after adjusting for patient, unit and area differences. With a median unit employment rate near 20%, that is roughly 20 versus 21 in 100. It is a modest association, and it does not show that evening shifts cause employment (<a href="https://doi.org/10.2215/CJN.0000000819">Perez et al., CJASN 2025</a>). ` +
     `The job can also carry the insurance. For people who have employer or union group coverage when they qualify for Medicare because of kidney failure, that plan pays first for a 30-month coordination period, and Medicare pays second (<a href="https://www.medicare.gov/basics/end-stage-renal-disease">Medicare.gov</a>). Keeping the job keeps that plan paying first.`;
 
   // 2. Your state -------------------------------------------------------------
@@ -371,7 +371,7 @@
   const pS = v => v < 0.1 ? "under 0.1%" : p1(v);
   function detailHtml(r) {
     const far = r.pct_beyond30_evening == null ? "" :
-      ` ${pS(r.pct_beyond30_evening)} of residents live more than 30 miles (straight line) from the nearest unit with one, against ${pS(r.pct_beyond30_any)} from any unit.`;
+      ` ${pS(r.pct_beyond30_evening)} of residents live more than 30 miles (straight line) from the nearest unit with an evening shift, against ${pS(r.pct_beyond30_any)} from any unit.`;
     return `<b>${r.name}:</b> ${r.late_units} of ${r.units} in-center units have a 5 pm+ shift (${p0(r.pct_units)}), serving ${int(r.late_patients)} of ${int(r.patients)} patients (${p1(r.pct_patients)}).` +
       (r.davita_units + r.fresenius_units ? ` <span>Of its units, DaVita runs ${r.davita_units} and Fresenius ${r.fresenius_units}.</span>` : "") + far;
   }
@@ -463,7 +463,7 @@
   // 4. Distance ----------------------------------------------------------------
   $("disttext").innerHTML =
     `Half of Americans live within ${dist.median_any_mi} miles of a dialysis unit, but the typical distance to one with an evening shift is ${dist.median_evening_mi} miles. ` +
-    `At 30 miles, ${p1(dist.pct_beyond30_any)} of people (${oneIn(dist.pct_beyond30_any)}) live farther than that from any in-center unit, but <b>${p1(dist.pct_beyond30_evening)}</b> (${oneIn(dist.pct_beyond30_evening)}) live farther than that from one with an evening shift.`;
+    `And while ${p1(dist.pct_beyond30_any)} of people (${oneIn(dist.pct_beyond30_any)}) live more than 30 miles from any in-center unit, <b>${p1(dist.pct_beyond30_evening)}</b> (${oneIn(dist.pct_beyond30_evening)}) live that far from one with an evening shift.`;
   VK.stats($("diststats"), [
     ["Typical distance, any unit", dist.median_any_mi + " mi", "population-weighted median"],
     ["Typical distance, evening unit", `<span style="color:var(--eve)">${dist.median_evening_mi} mi</span>`, "population-weighted median"],
@@ -565,7 +565,7 @@
       else svg.append("text").attr("x", x(pd(b.snapshot)) + 6).attr("y", y(b[k]) + 4).style("fill", col).text(`${p1(b[k])} ${lab}`);
     });
   }
-  $("trendnote").textContent = `Share of in-center units, and of their patients, at a unit with a 5 pm+ shift, in each CMS snapshot used (${trend.map(d => monthYear(d.snapshot)).join(", ")}). ` +
+  $("trendnote").textContent = `Share of in-center units with a 5 pm+ shift, and of patients at one, in each CMS snapshot used (${trend.map(d => monthYear(d.snapshot)).join(", ")}). ` +
     `The patient line uses each year's adequacy-reporting counts, whose reporting windows are not identical, so read its decline as approximate.`;
 
   // About-the-data fill-ins ------------------------------------------------------
@@ -577,7 +577,7 @@
   $("basedate").textContent = monthYear(c.from);
   const n6 = sum.esrd_networks["6"], n16 = sum.esrd_networks["16"];
   const stList = a => a.map(name).join(a.length > 2 ? ", " : " and ").replace(/, ([^,]*)$/, " and $1");
-  $("whydiffer").textContent = `Why states differ so much is not in this data; staffing, demand, local competition, state rules and regional differences in how units report the field ` +
+  $("whydiffer").textContent = `This data does not say why states differ so much. Staffing, demand, local competition, state rules and regional differences in how units report the field ` +
     `(states cluster by ESRD Network region: ${stList(n6.states)}, one network, are all near ${p0(n6.pct_units)}, while ${p0(n16.pct_units)} of units in Network 16, which includes Washington and Oregon, report an evening shift) are all possible, and none is tested here.`;
   $("varnote").textContent = `Treating the evening-shift flag as a 0/1 outcome, state accounts for ${(ve.omega2_state * 100).toFixed(1)}% of its variance across units (omega squared, which adjusts for the number of groups) ` +
     `and the ${Object.keys(sum.esrd_networks).length} ESRD Networks for ${(ve.omega2_network * 100).toFixed(1)}%. Company accounts for ${(ve.omega2_chain * 100).toFixed(1)}% with the ${ve.chain_groups} company groups used on this page, which fold small chains into “Other”, ` +
