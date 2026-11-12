@@ -221,8 +221,8 @@
 
   <section class="about" id="change">
     <h2>What could change this</h2>
-    <p>Medicare's public facility data record only whether a unit has a shift starting at 5&nbsp;pm or later. The <i>Late Shift</i> field is a yes or no, and nothing in the <a href="https://data.cms.gov/provider-data/sites/default/files/data_dictionaries/dialysis/DF_Data_Dictionary.pdf">CMS data dictionary</a> records how many chairs that shift has or whether it is taking new patients. CMS could also ask units for both. By the yes/no measure, <span id="capshare">21.8%</span> of patients go to a unit with an evening shift; the data cannot say how many of those evening chairs are free.</p>
-    <p>One state already counts evening shifts. Since 2007, Washington's certificate-of-need rules for kidney dialysis centers have given applicants a point for a shift that begins after 5&nbsp;pm (<a href="https://lawfilesext.leg.wa.gov/Law/WSR/2006/24/06-24-050.htm">WSR 06-24-050</a>; now <a href="https://app.leg.wa.gov/WAC/default.aspx?cite=246-310-827">WAC 246-310-827</a>), and the current rule takes the answer from Medicare's Dialysis Facility Compare data or from a center's attestation. Washington has the highest share of the states and DC on this page, but this page cannot show that the rule is the reason.</p>
+    <p>One state already rewards the shift. Since 2007, Washington's certificate-of-need rules have given a point for a shift that begins after 5&nbsp;pm when choosing among companies competing to open a dialysis center (<a href="https://lawfilesext.leg.wa.gov/Law/WSR/2006/24/06-24-050.htm">WSR 06-24-050</a>; now <a href="https://app.leg.wa.gov/WAC/default.aspx?cite=246-310-827">WAC 246-310-827</a>), and Washington has the highest share of the states and DC on this page. North Carolina also decides by certificate of need where dialysis stations open; the dialysis chapter of its <a href="https://info.ncdhhs.gov/dhsr/ncsmfp/2026/02_2026%20SMFP_post.pdf">2026 State Medical Facilities Plan</a> does not mention evening shifts, and <span id="chg-nc">8.2%</span> of its patients go to a unit with one. This page cannot show that Washington's rule is the reason, and the rule accepts a center's promise to run the shift if there is a need.</p>
+    <p>Medicare pays a dialysis unit the same base rate, $297.52 a treatment in 2027, whatever the hour. It does pay more for what it wants to encourage: for 2027 it raised its add-on for home dialysis training from $95.60 to $138.00 a treatment (<a href="https://www.federalregister.gov/documents/2026/10/30/2026-22194/medicare-program-cy-2027-changes-to-the-end-stage-renal-disease-esrd-prospective-payment-system">91 FR 68736</a>; <a href="https://www.cms.gov/newsroom/fact-sheets/calendar-year-cy-2027-end-stage-renal-disease-esrd-prospective-payment-system-final-rule-cms-1846-f">CMS summary</a>). CMS could do the same, in the same yearly rule, for treatments that start after 5&nbsp;pm, beginning as a test in places far from any evening unit. Today <span id="chg-noeve">78.2%</span> of patients (about <span id="chg-noeve-n">387,000</span>) go to a unit with no evening shift, and <span id="chg-neither">36.8%</span> (about <span id="chg-neither-n">182,000</span>) go to a unit that offers neither an evening shift nor home dialysis, the two options linked to higher employment in the <a href="https://doi.org/10.2215/CJN.0000000819">study above</a> (6% and 10% higher, in relative terms). I found no published estimate of what an evening shift costs to run and no evidence that paying more would bring chairs back, and an add-on would also go to the <span id="chg-late">1,131</span> units that already run one. CMS would need better data too: its <i>Late Shift</i> field is a yes or no, with no count of evening chairs or of open ones (<a href="https://data.cms.gov/provider-data/sites/default/files/data_dictionaries/dialysis/DF_Data_Dictionary.pdf">data dictionary</a>).</p>
   </section>
 
   <section class="about">
@@ -583,7 +583,14 @@
     `and the ${Object.keys(sum.esrd_networks).length} ESRD Networks for ${(ve.omega2_network * 100).toFixed(1)}%. Company accounts for ${(ve.omega2_chain * 100).toFixed(1)}% with the ${ve.chain_groups} company groups used on this page, which fold small chains into “Other”, ` +
     `and ${(ve.omega2_chain_raw * 100).toFixed(1)}% with all ${ve.chain_raw_groups} chain names in the file kept apart; several small regional nonprofits run evening shifts at most of their units. State, company and network overlap, so these figures are not compared as a ratio.`;
   $("chk2020").textContent = p1(sum.check_2020_all_facilities.pct_all_facilities);
-  $("capshare").textContent = p1(nat.pct_patients);
+  // What could change this (data/summary.json alternatives; states.csv)
+  const alt = sum.alternatives, k000 = n => int(Math.round(n / 1000) * 1000);
+  $("chg-noeve").textContent = p1(alt.no_evening.pct_patients);
+  $("chg-noeve-n").textContent = k000(alt.no_evening.patients);
+  $("chg-neither").textContent = p1(alt.no_evening_no_home.pct_patients);
+  $("chg-neither-n").textContent = k000(alt.no_evening_no_home.patients);
+  $("chg-late").textContent = int(nat.late_units);
+  $("chg-nc").textContent = p1(+states.find(r => r.state === "NC").pct_patients);
 
   function redraw() { drawDumbbell(); drawCdf(); drawTrend(); }
   redraw();

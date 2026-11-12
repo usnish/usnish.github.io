@@ -141,6 +141,7 @@ def normalize(rows):
             "pts": num(r.get(KTV, "")), "street": r.get("Address Line 1", ""), "city": r.get(city, ""),
             "zip": r.get(zipc, "").strip()[:5].zfill(5), "name": r.get("Facility Name", ""),
             "network": r.get("Network", "").strip(), "cert_year": cert_year(r.get("Certification Date", "")),
+            "home": yes(r.get("Offers peritoneal dialysis", "")) or yes(r.get("Offers home hemodialysis training", "")),
         })
     return out
 
@@ -205,6 +206,15 @@ def main():
           f"{sum(u['late'] for u in ic)} with a late shift")
     nat = shares(ic)
     states_only = [u for u in ic if u["state"] not in TERRITORIES]
+    # For "What could change this": patients whose unit has no evening shift, and those whose unit
+    # has neither an evening shift nor home dialysis (CMS columns "Offers peritoneal dialysis" and
+    # "Offers home hemodialysis training"). Same units and patient weight as `national`.
+    def part(us):
+        return {"units": len(us), "pct_units": pct(len(us), len(ic)), "patients": int(sum(u["pts"] for u in us)),
+                "pct_patients": pct(sum(u["pts"] for u in us), sum(u["pts"] for u in ic))}
+    alternatives = {"no_evening": part([u for u in ic if not u["late"]]),
+                    "home": part([u for u in ic if u["home"]]),
+                    "no_evening_no_home": part([u for u in ic if not u["late"] and not u["home"]])}
 
     # States -------------------------------------------------------------------
     by_state = defaultdict(list)
@@ -397,7 +407,7 @@ def main():
     (DATA / "churn.json").write_text(json.dumps(churn, indent=1))
     summary = {
         "source_modified": meta["modified"], "source_url": url, "built": str(np.datetime64("today")),
-        "national": nat, "national_states_only": shares(states_only),
+        "national": nat, "national_states_only": shares(states_only), "alternatives": alternatives,
         "states_50_dc": sum(1 for r in state_rows if not r["territory"]),
         "chain_spread": spread, "davita_fresenius_state_corr": round(corr, 2) if corr is not None else None,
         "davita_fresenius_state_rank_corr": round(rank_corr, 2) if rank_corr is not None else None,

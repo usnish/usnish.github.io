@@ -22,6 +22,26 @@
   "stations": 129303,
   "pct_stations": 18.8
  },
+ "alternatives": {
+  "no_evening": {
+   "units": 5828,
+   "pct_units": 83.7,
+   "patients": 387362,
+   "pct_patients": 78.2
+  },
+  "home": {
+   "units": 3713,
+   "pct_units": 53.4,
+   "patients": 274589,
+   "pct_patients": 55.4
+  },
+  "no_evening_no_home": {
+   "units": 2842,
+   "pct_units": 40.8,
+   "patients": 182222,
+   "pct_patients": 36.8
+  }
+ },
  "states_50_dc": 51,
  "chain_spread": {
   "DaVita": {

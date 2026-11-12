@@ -367,6 +367,12 @@
   "30": 3.0
  },
  "fb65_rate_pooled": 3.4,
+ "first_5_years": {
+  "years": "0-4",
+  "pop": 286404,
+  "uninsured": 71547,
+  "rate": 25.0
+ },
  "price": {
   "year": 2026,
   "part_a_under_30_quarters": 565.0,

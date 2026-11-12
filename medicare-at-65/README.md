@@ -4,7 +4,7 @@ Page: https://usnish.xyz/medicare-at-65/
 
 Who is uninsured at 65 and older in the US, by nativity, citizenship, age at arrival, years in the US and language, from American Community Survey microdata.
 
-"What could change this" (static text, after "Earned, or by residence"): residency test in Medicare for All bills, with the 5-year buy-in rule and HEAL Act as context; its numbers are typed in from `summary.json` (`years_rate`, `price`), so update them by hand if the data are rebuilt.
+"What could change this" (static text, after "Earned, or by residence"): leads with Congress ending the two five-year waits (Medicare buy-in and Medicaid, HEAL for Immigrant Families Act sec. 3 and 8), then states acting with their own money (Illinois, New York; [KFF, updated June 2026](https://www.kff.org/racial-equity-and-health-policy/state-health-coverage-for-immigrants-and-implications-for-health-coverage-and-care/)) and the residency test in Medicare for All bills. Its numbers are typed in from `summary.json` (`first_5_years`: 71,547 uninsured of 286,404, 25.0%; `years_rate`; `price`), so update them by hand if the data are rebuilt. `first_5_years` (people 65+ born abroad, years 0-4 since arrival, pooled 2022-24) was added to the build on 2026-11-12. Rewritten 2026-11-12; reasoning in `_viz/policy/medicare-at-65.md`.
 
 ## Build
 

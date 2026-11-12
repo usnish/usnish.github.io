@@ -4,7 +4,7 @@ How many US children aged 5-17 are fluent in English while every adult at home h
 
 **Live:** https://usnish.xyz/bridge-children/
 
-The "What could change this" section (before "About the data") describes one option, an adults-only companion to the Census limited-English household table; its share and count are filled from `data/summary.json` (`missed_share`, `missed_by_census`) and follow the definition toggle.
+The "What could change this" section (before "About the data") leads with states paying for interpreters through Medicaid: 45 CFR 92.201 requires a free qualified interpreter and bars relying on a child, but states are not required to pay providers for language services, the federal match is 75% for children on Medicaid or CHIP and their family members (50% otherwise; [Medicaid.gov](https://www.medicaid.gov/medicaid/financial-management/medicaid-administrative-claiming/translation-and-interpretation-services)), and NHeLP's [March 2024 review](https://healthlaw.org/resource/medicaid-and-chip-reimbursement-models-for-language-services-2024-update/) found 18 states (including DC) that pay providers or use managed-care contracts (the "18" is typed in; update it if NHeLP updates). The adults-only companion to the Census table is now the second, shorter paragraph. All four numbers are filled from `data/summary.json` (`medicaid_share`, `dependent_adults_medicaid`, `missed_share`, `missed_by_census`) and follow the definition toggle. Rewritten 2026-11-12; reasoning in `_viz/policy/bridge-children.md`.
 
 ## Findings (ACS 2020-2024 5-year PUMS)
 

@@ -296,6 +296,10 @@ def main():
     summary["years_rate"] = {y: pct(r["rate"][y], 1) for y in range(0, 31)}
     pooled_fb_old = s.one(old & s.fb)
     summary["fb65_rate_pooled"] = pct(pooled_fb_old["rate"], 1)
+    # People 65+ in their first five years here (years 0-4), for "What could change this":
+    # the group still inside the 5-year waits for the Medicare buy-in and for Medicaid.
+    p5, u5 = float(r["pop"][:5].sum()), float(r["unins"][:5].sum())
+    summary["first_5_years"] = {"years": "0-4", "pop": round(p5), "uninsured": round(u5), "rate": pct(u5 / p5, 1)}
 
     # 4. Who the recently arrived uninsured seniors are (pooled 2022-24) ------------
     rec = old & s.fb & s.unins & (s.yrs >= 0) & (s.yrs < 10)
