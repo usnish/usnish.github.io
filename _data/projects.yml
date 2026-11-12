@@ -20,3 +20,27 @@
       repo: https://github.com/usnish/usnish.github.io/tree/master/ma-network-standards
       image: /img/thumb-ma-network-standards.png
       description: How far CMS lets a Medicare Advantage network's nearest doctor or hospital be, county by county, against how far older residents actually live from one. In a typical rural county a plan with telehealth can leave 1 in 4 beneficiaries beyond the 75-minute cardiology limit and still pass.
+
+    - title: Old Enough to Count, Too Young to Interpret
+      url: /bridge-children/
+      repo: https://github.com/usnish/usnish.github.io/tree/master/bridge-children
+      image: /img/thumb-bridge-children.png
+      description: About 2.6 million US children aged 5-17 are fluent in English while every adult at home has limited English. Health-care rules bar relying on them to interpret, yet more than half live in homes the Census limited-English household measure does not count as limited-English.
+
+    - title: Who Medicare Leaves Uninsured at 65
+      url: /medicare-at-65/
+      repo: https://github.com/usnish/usnish.github.io/tree/master/medicare-at-65
+      image: /img/thumb-medicare-at-65.png
+      description: Who is still uninsured after 65. Most of the 491,000 uninsured seniors were born abroad, and for people who arrive at 60 or older the uninsured rate barely moves at 65. ACS microdata by age at arrival, years in the US and language.
+
+    - title: The Medicare Translation Line
+      url: /medicare-translation-line/
+      repo: https://github.com/usnish/usnish.github.io/tree/master/medicare-translation-line
+      image: /img/thumb-medicare-translation-line.png
+      description: Medicare plans must translate materials only into languages spoken by 5% of their service area. In San Francisco, 18 of 35 plans must translate into Chinese; in Orange County, none of 72 must translate into Vietnamese, and no 2027 plan in the country must translate into Vietnamese, Korean, Tagalog or Arabic.
+
+    - title: Dialysis After Five
+      url: /dialysis-after-five/
+      repo: https://github.com/usnish/usnish.github.io/tree/master/dialysis-after-five
+      image: /img/thumb-dialysis-after-five.png
+      description: Whether a dialysis patient can get a chair after 5 pm depends on the state, even within the same company. DaVita runs an evening shift at 31 of its 47 units in Washington but 2 of 95 in North Carolina, and 57 million Americans live more than 30 miles from a unit with one.
