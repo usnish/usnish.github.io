@@ -431,7 +431,7 @@
 <script src="../assets/viz/vizkit.js"></script>
 <script>
 (async function () {
-  const [M, S] = await Promise.all([d3.json("data/members.json"), d3.json("data/summary.json")]);
+  const [M, S] = await Promise.all([d3.json("data/members.json?v=20261112b"), d3.json("data/summary.json?v=20261112b")]);
   const $ = id => document.getElementById(id);
   const int = VK.int;
   const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
