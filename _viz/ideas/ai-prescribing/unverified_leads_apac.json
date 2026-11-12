@@ -1,0 +1,84 @@
+[
+  {
+    "jurisdiction": "China (national, NMPA)",
+    "lead": "Exact Chinese title, number and text of the May 2026 NMPA compliance guidelines for online retail of prescription drugs, and whether they name AI renewal (Sixth Tone) or only AI review and AI-generated prescriptions (Caixin).",
+    "why_unverified": "nmpa.gov.cn returns HTTP 412 to scripts and renders blank in Chrome; not in gov.cn policy library; web search capped.",
+    "urls_tried": [
+      "https://www.nmpa.gov.cn/yaopin/ypggtg/index.html",
+      "https://www.nmpa.gov.cn/xxgk/ggtg/index.html",
+      "https://english.nmpa.gov.cn/news.html",
+      "https://www.sixthtone.com/news/1018580",
+      "https://www.caixinglobal.com/2026-05-28/china-tightens-rules-on-online-prescription-drug-sales-102448412.html"
+    ]
+  },
+  {
+    "jurisdiction": "China (national)",
+    "lead": "NHC + NDRC + MIIT + NATCM + NDCPA, 关于促进和规范“人工智能+医疗卫生”应用发展的实施意见 (国卫办规划发〔2025〕30号, 2025-10-20). Verified text: promotes AI 处方审核 (prescription review) for primary-care doctors and 处方前置审核 in smart pharmacies. Contains no ban on AI prescribing and no physician-final-responsibility clause.",
+    "why_unverified": "Verified but excluded: assistive review only, below rung 1. Corrects the earlier lead's framing; do not cite it as a ban.",
+    "urls_tried": [
+      "https://www.gov.cn/zhengce/zhengceku/202511/content_7047018.htm"
+    ]
+  },
+  {
+    "jurisdiction": "Shanghai",
+    "lead": "Global Times/RFA say Shanghai banned AI-generated prescriptions (from 2022).",
+    "why_unverified": "wsjkw.sh.gov.cn blocked by browser site permissions; no rule text found. May just be the national 2022 rule applying in Shanghai.",
+    "urls_tried": [
+      "https://wsjkw.sh.gov.cn/"
+    ]
+  },
+  {
+    "jurisdiction": "Beijing",
+    "lead": "Whether the 2023 draft 北京市互联网诊疗监管实施办法（试行） was issued in final form.",
+    "why_unverified": "One search returned only the 2023 draft coverage (Beijing Daily, IT Home); Beijing Daily text re-read and art. 14/22 wording confirmed.",
+    "urls_tried": [
+      "https://news.bjd.com.cn/2023/08/21/10537257.shtml"
+    ]
+  },
+  {
+    "jurisdiction": "Fujian Province",
+    "lead": "闽卫规〔2024〕3号 had 2-year validity (to 2026-02-08); whether it was extended or replaced.",
+    "why_unverified": "Fujian health commission document lists are JS-rendered; could not enumerate.",
+    "urls_tried": [
+      "https://wjw.fj.gov.cn/xxgk/fgwj/zxwj/"
+    ]
+  },
+  {
+    "jurisdiction": "China",
+    "lead": "《药品零售企业执业药师药学服务指南》 reportedly says licensed pharmacists may use computer systems to assist prescription review but it 'cannot be completely replaced by an AI program' (quoted by a lawyer in Xiaoxiang Morning Herald, 2025-02-24).",
+    "why_unverified": "Newspaper quote only; issuer (likely China Licensed Pharmacist Association, an industry body) and text not opened.",
+    "urls_tried": [
+      "https://szb.xdplus.cn/xdkb/pc/attachment/202502/24/3b67b379-69a6-4e5e-bbd4-5af0f83c1a52.pdf"
+    ]
+  },
+  {
+    "jurisdiction": "China (other provinces)",
+    "lead": "Other provinces likely copied the national art. 13/21 AI clause into their own internet-care supervision rules (as Fujian did).",
+    "why_unverified": "Province sweep not done; web search capped after 3 searches.",
+    "urls_tried": []
+  },
+  {
+    "jurisdiction": "Australia",
+    "lead": "Safe and Responsible AI in Health Care legislation and regulation review (DoHAC final report) and TGA medical-device-software/AI review (2025) may address autonomous AI clinical or prescribing decisions.",
+    "why_unverified": "health.gov.au and tga.gov.au timed out from this machine.",
+    "urls_tried": [
+      "https://www.health.gov.au/resources/publications/safe-and-responsible-artificial-intelligence-in-health-care-legislation-and-regulation-review-final-report",
+      "https://www.tga.gov.au/resources/publication/publications/clarifying-and-strengthening-regulation-medical-device-software-including-artificial-intelligence-ai"
+    ]
+  },
+  {
+    "jurisdiction": "South Korea",
+    "lead": "Medical Service Act art. 17 (prescriptions only by the doctor who examined the patient) is an implicit barrier to rungs 2-4; AI Basic Act (in force 2026-01-22) treats healthcare AI as high-impact.",
+    "why_unverified": "law.go.kr not opened; not AI-specific. Earlier claim of AI prescription review from 2028 not supported by its cited sources.",
+    "urls_tried": [
+      "https://view.asiae.co.kr/en/article/2026080609271082424",
+      "https://www.dailypharm.com/eng/user/news/8411"
+    ]
+  },
+  {
+    "jurisdiction": "Not reached (APAC)",
+    "lead": "Taiwan, Indonesia, Philippines, Thailand, Vietnam (AI Law 2025, MOH prescribing circular), Pakistan, Bangladesh, Sri Lanka, Nepal; also Japan online-care guideline and India NMC 2023 RMP regulations for AI text.",
+    "why_unverified": "Session web-search budget exhausted after 3 searches; no known regulator URLs to open directly. Absence here is not evidence of absence.",
+    "urls_tried": []
+  }
+]

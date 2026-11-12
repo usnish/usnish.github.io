@@ -1,0 +1,131 @@
+[
+  {
+    "id": "us-ut-doctronic",
+    "corrects": "us-ut-doctronic",
+    "operating_rung_now": 1,
+    "status_detail": "Active on the state register; Phase 1 (a licensed practitioner authorizes every renewal). The listed term ended 2026-10-24 and no extension, suspension or end had been published as of 2026-11-12.",
+    "expiry": "Register term 'October 24, 2025 - October 24, 2026'. A participant may ask for a 12-month extension no later than 30 days before the period ends; the office may grant at most two (register, citing Utah Code 13-72-403). Doctronic's own agreement (s.13) allows it to request a single extension of up to 12 months. As of 2026-11-12 the register (last modified 2026-10-06) still says Active and the pilot page (last modified 2026-06-18) says the office may 'review and renew the contract for another year'; no extension document is posted (WordPress media library checked for uploads since 2026-09-01).",
+    "other_urls": [
+      "https://commerce.utah.gov/ai/regulatory-relief-4/authorized-pilots/doctronic/",
+      "https://commerce.utah.gov/wp-content/uploads/2026/04/doctronic-letter-from-medical-board.pdf",
+      "https://commerce.utah.gov/wp-content/uploads/2026/04/Medical-Board-Doctronic-Response.pdf",
+      "https://commerce.utah.gov/wp-content/uploads/2026/05/Policy-Memorandum-.pdf",
+      "https://commerce.utah.gov/wp-content/uploads/2026/05/Doctronic-Outcomes-May-2026.pdf",
+      "https://commerce.utah.gov/ai/regulatory-relief-4/authorized-pilots/"
+    ],
+    "notes": "Sched. A s.15(A): 'Participant may, using its artificial intelligence technology, authorize the renewal of a Utah resident's verified prescription to a pharmacist.' Medical board: letter dated 2026-04-20 from the Utah Medical Licensing Board: 'It is the strong recommendation of the Utah Medical Licensing Board that this program be immediately suspended pending further discussion'; it also said the board learned of the agreement only after the system was live and asked that professionals with medical backgrounds review proposals before implementation. DOPL and OAIP replied 2026-04-21 (letter signed by 11 of the board's 14 members, they wrote) that they would not suspend the pilot because Phase 1 has physician review of every refill; they also noted such board recommendations must come out of public meetings. The board's 2026-03-19 agenda lists 'AI Office - Doctronic' as a discussion item; no board minutes recording a vote were found. Contract amendment (2026): Phase 2 now gated per medication group (250 fills in that group) and still needs OAIP approval; butalbital and flecainide removed. First public report (2026-05-19, Jan-Apr data, Phase 1): AI recommended renewal in 72% of requests and escalated 28%; reviewing physician agreed with 91% of AI renewals (97% after a second physician opinion). Checked 2026-11-12."
+  },
+  {
+    "id": "us-ut-legion",
+    "corrects": "us-ut-legion",
+    "operating_rung_now": null,
+    "status_detail": "Approved, not started: the state register (last modified 2026-10-06) says 'The demonstration period has not started yet.' Press in April 2026 reported a launch; not reconciled with the register.",
+    "other_urls": [
+      "https://commerce.utah.gov/ai/regulatory-relief/authorized-ai-pilots/ai-legion-health/",
+      "https://commerce.utah.gov/ai/regulatory-relief-4/authorized-pilots/"
+    ],
+    "notes": "Agreement PDF is a scanned image; mitigation clause read from page 10 (Sched. A s.16). Register: a licensed clinician reviews the first 250 requests before any completes; the next 1,000 get intensive retrospective review; then monthly random sampling. Checked 2026-11-12."
+  },
+  {
+    "id": "us-ut-august",
+    "corrects": "us-ut-august",
+    "operating_rung_now": null,
+    "status_detail": "Approved, not started: the state register (last modified 2026-10-06) says 'The demonstration period has not started yet.'",
+    "other_urls": [
+      "https://commerce.utah.gov/ai/regulatory-relief-4/authorized-pilots/",
+      "https://commerce.utah.gov/2026/10/05/utah-enhances-pro-human-ai-initiative-with-new-healthcare-pillar-adds-new-pilots-to-its-regulatory-sandbox-and-partners-with-third-party-evaluators/"
+    ],
+    "notes": "Register: a Utah-licensed provider reviews the first 250 refills before they reach the patient and each of the next 1,000 afterward; then spot checks of at least 5% per medication class; no more than three AI refills in a row per medication at the start. Checked 2026-11-12."
+  },
+  {
+    "id": "us-ut-nolla",
+    "corrects": "us-ut-nolla",
+    "operating_rung_now": 1,
+    "status_detail": "Active (term 2026-10-05 to 2027-10-05 on the state register); Stage 1: two Utah-licensed physicians review every prescription before it is sent.",
+    "other_urls": [
+      "https://commerce.utah.gov/ai/regulatory-relief-4/authorized-pilots/"
+    ],
+    "notes": "First state-sanctioned pilot found anywhere that authorizes AI-initiated (first-time) prescriptions, i.e. rung 3 on paper. Register (2026-10-06) lists it Active, in the first stage, so two physicians still review each prescription before it goes out; later stages need written OAIP approval. Checked 2026-11-12."
+  },
+  {
+    "id": "cn-nmpa-online-rx-guidelines",
+    "corrects": "cn-nmpa-online-rx-guidelines",
+    "status": "guidance",
+    "status_detail": "compliance guide (合规指南), 4 chapters, 42 articles; guidance, not a binding regulation",
+    "start_date": "2026-05-25",
+    "legal_basis": "NMPA, 《处方药网络零售合规指南》 (Prescription Drug Online Retail Compliance Guide), issued 2026-05-25",
+    "what_is_allowed": "Nothing on the dispensing side. Online prescription-drug retailers must have prescription review done by licensed pharmacists, 'not by other staff or by artificial intelligence'. Sixth Tone also reports that platforms 'cannot use AI to review, approve, or renew prescriptions'; that renewal wording is not in the Chinese sources opened.",
+    "primary_source_url": "https://www.news.cn/legal/20260526/abd151ffae0c48b88d3d8b28fa94d6c8/c.html",
+    "secondary_source_url": "https://www.news.cn/health/20260525/38ffedf264c5449dafd6c2506c663f96/c.html",
+    "other_urls": [
+      "https://www.sixthtone.com/news/1018580",
+      "https://www.caixinglobal.com/2026-05-28/china-tightens-rules-on-online-prescription-drug-sales-102448412.html"
+    ],
+    "notes": "Xinhua (2026-05-26, Economic Information Daily): '药品网络零售企业要确保本企业的处方审核工作由执业药师开展，不得由其他岗位人员或者人工智能代为实施' (prescription review must be done by licensed pharmacists, not by other staff or AI). The NMPA policy interpretation reprinted by Xinhua (2026-05-25) gives the title and structure and does not mention renewal. The guide text itself is still not opened (nmpa.gov.cn returns HTTP 412 to scripts). So the AI-review ban is confirmed in Chinese state media; the rung-2 'renew' reading rests on Sixth Tone alone. Checked 2026-11-12.",
+    "confidence": "medium"
+  },
+  {
+    "id": "us-federal-hr238",
+    "corrects": "us-federal-hr238",
+    "expiry": "Dies when the 119th Congress ends (early January 2027) unless passed. GovInfo bill-status file: latest action 2025-01-07, referred to House Energy and Commerce; no cosponsors listed.",
+    "other_urls": [
+      "https://www.govinfo.gov/bulkdata/BILLSTATUS/119/hr/BILLSTATUS-119hr238.xml"
+    ],
+    "notes": "Sponsor Rep. David Schweikert (R-AZ). Status read from the GovInfo BILLSTATUS XML on 2026-11-12 (congress.gov returns 403)."
+  },
+  {
+    "id": "us-tx-traiga-sandbox",
+    "corrects": "us-tx-traiga-sandbox",
+    "notes": "Enabling framework only; no AI prescribing participant found. DIR pages return 403 to scripts. Secondary sources (Chambers practice guide, May 2026; a TRAIGA explainer citing a 2026-11-04 check) found no adopted DIR rule, application form or participant for the private-sector sandbox. DIR's separate public-sector AI sandbox works with state agencies only. Doctronic has said it is in talks with Texas (press). Checked 2026-11-12."
+  },
+  {
+    "id": "us-wy-medical-digital-sandbox",
+    "jurisdiction": "Wyoming",
+    "country": "United States",
+    "category": "enabling_framework",
+    "rung": null,
+    "operating_rung_now": null,
+    "status": "enacted",
+    "status_detail": "Medical Digital Innovation Sandbox Act (2019 SF 156); Department of Health rules effective 2020-02-06; application form updated Feb 2026; no participant list published",
+    "what_is_allowed": "The Wyoming Department of Health may grant waivers of statutes and rules so a person can offer an 'innovative medical digital assessment product or service' to consumers; the relevant licensing board must grant the waiver, then a review committee advises the Director. Sandbox period up to 24 months, extension up to 12. Applicants must be domestic entities with a physical presence in Wyoming and post a consumer protection bond.",
+    "drug_scope": "Not specified",
+    "liability_or_prescriber_of_record": "Not specified",
+    "company_or_system": "None found (press: Doctronic in talks with Wyoming officials)",
+    "start_date": "2019 (statute); rules 2020-02-06",
+    "expiry": null,
+    "legal_basis": "W.S. 40-28-101 to -108; Wyo. Dept. of Health rules ch. 1",
+    "primary_source_url": "https://health.wyo.gov/admin/dupre/medical-digital-innovation-sandbox-act/",
+    "secondary_source_url": "https://health.wyo.gov/wp-content/uploads/2021/10/Digital-Innovation-Sandbox-Act-rules.pdf",
+    "other_urls": [
+      "https://health.wyo.gov/wp-content/uploads/2026/02/Digital-Sandbox-Application-2.26.pdf"
+    ],
+    "source_date": "2026-03-04",
+    "confidence": "medium",
+    "notes": "Existing health sandbox that could in principle host an AI prescribing waiver, but only if a licensing board grants it. The Department's page (modified 2026-03-04) lists no participants and no AI prescribing waiver was found. AP and Snell & Wilmer reports of Wyoming 'waiving rules for AI in health care' and a sandbox 'in development' were not matched to any agreement. Checked 2026-11-12."
+  },
+  {
+    "id": "us-az-regulatory-sandbox",
+    "jurisdiction": "Arizona",
+    "country": "United States",
+    "category": "enabling_framework",
+    "rung": null,
+    "operating_rung_now": null,
+    "status": "enacted",
+    "status_detail": "Attorney General's regulatory sandbox, open to 'other innovations' since 2022 (HB 2731); participants page reads 'No Current Participants'",
+    "what_is_allowed": "Admitted participants may test innovative financial products or 'other innovations' with limited access to the Arizona market without first obtaining full state licensure, for up to two years, after the AG consults the relevant agencies. No AI prescribing participant is listed.",
+    "drug_scope": "Not specified",
+    "liability_or_prescriber_of_record": "Not specified",
+    "company_or_system": "None (press: Doctronic applied, per Bloomberg Law, June 2026)",
+    "start_date": "2018 (HB 2434); broadened 2022 (HB 2731)",
+    "expiry": null,
+    "legal_basis": "A.R.S. 41-5601 to 41-5612",
+    "primary_source_url": "https://www.azag.gov/sandbox/participants",
+    "secondary_source_url": "https://www.azag.gov/sandbox",
+    "other_urls": [
+      "https://apps.azleg.gov/api/Bill/?billNumber=SB1847&sessionId=130"
+    ],
+    "source_date": "2026-11-12",
+    "confidence": "high",
+    "notes": "Participants page fetched 2026-11-12: 'No Current Participants.' The claimed 'Arizona SB 1847' on prescription renewals does not match the legislature's record: 2026 SB 1847 is the general appropriations act for 2026-2027 (signed 2026-06-13, chapter 126); its text was not read for AI provisions. Arizona HB 4080 (2026, AI nursing-tasks pilot) was held in Rules."
+  }
+]

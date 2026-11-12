@@ -1,0 +1,1211 @@
+{
+ "as_of": "2026-11-12",
+ "rungs": [
+  {
+   "n": 1,
+   "name": "AI drafts, a clinician signs each prescription"
+  },
+  {
+   "n": 2,
+   "name": "AI renews stable medications under a protocol, no signature on each script"
+  },
+  {
+   "n": 3,
+   "name": "AI starts new prescriptions under a protocol"
+  },
+  {
+   "n": 4,
+   "name": "AI is the prescriber of record in law"
+  }
+ ],
+ "entries": 65,
+ "by_group": {
+  "permission": 4,
+  "bill_to_permit": 4,
+  "restriction": 14,
+  "guidance": 9,
+  "bill_to_restrict": 16,
+  "context": 18
+ },
+ "by_status": {
+  "sandbox": 5,
+  "bill_failed": 17,
+  "bill_pending": 6,
+  "enacted": 10,
+  "regulation": 10,
+  "draft": 2,
+  "guidance": 14,
+  "pilot": 1
+ },
+ "by_confidence": {
+  "high": 56,
+  "medium": 9
+ },
+ "context": 18,
+ "wall": {
+  "total": 39,
+  "adopted": 13,
+  "guidance": 9,
+  "bills": 16,
+  "bills_failed": 11,
+  "bills_pending": 5,
+  "drafts": 1,
+  "by_strength": {
+   "human": 26,
+   "title": 4,
+   "ban": 7,
+   "questionnaire": 2
+  },
+  "explicit_bans": 7,
+  "explicit_bans_adopted": 4,
+  "world_countries": [
+   "Australia",
+   "Brazil",
+   "China",
+   "Germany",
+   "India",
+   "Italy",
+   "Japan",
+   "New Zealand",
+   "Poland",
+   "Singapore",
+   "United Kingdom"
+  ],
+  "world_countries_n": 11,
+  "world_adopted_countries": [
+   "Brazil",
+   "China",
+   "India",
+   "Italy",
+   "Poland"
+  ],
+  "world_adopted_countries_n": 5,
+  "us_adopted_states": [
+   "California",
+   "Delaware",
+   "New Mexico",
+   "Oregon",
+   "Tennessee",
+   "Texas"
+  ],
+  "us_adopted_states_n": 6,
+  "us_bill_states": [
+   "Hawaii",
+   "Illinois",
+   "Indiana",
+   "Kansas",
+   "Louisiana",
+   "Minnesota",
+   "Mississippi",
+   "Missouri",
+   "New Hampshire",
+   "New Jersey",
+   "Oklahoma",
+   "Pennsylvania"
+  ],
+  "us_bill_states_n": 12,
+  "ceiling_1_adopted": 9
+ },
+ "utah": {
+  "pilots": 4,
+  "jurisdictions_permitting": 1,
+  "operating": 2,
+  "operating_ids": [
+   "us-ut-doctronic",
+   "us-ut-nolla"
+  ],
+  "not_started": 2,
+  "paper_rung_max": 3,
+  "paper_rung_2": 3,
+  "paper_rung_3": 1,
+  "operating_above_rung_1": 0,
+  "register_modified": "2026-10-06",
+  "term_months": 12,
+  "doctronic_term_end": "2026-10-24",
+  "board_letter_date": "2026-04-20",
+  "board_signers": 11,
+  "board_members": 14,
+  "state_reply_date": "2026-04-21"
+ },
+ "bills_to_permit": {
+  "total": 4,
+  "failed": 3,
+  "pending": 1,
+  "ids": [
+   "us-federal-hr206-118",
+   "us-federal-hr238",
+   "us-ia-hsb766",
+   "us-id-h945"
+  ],
+  "states_n": 2
+ },
+ "watch": [
+  {
+   "id": "us-pa-hb1925",
+   "title": "Pennsylvania HB 1925 in the Senate",
+   "status": "Passed House 144-59 on 2026-09-30 (PN 3963); referred to Senate Institutional Sustainability and Innovation 2026-10-14. Senate counterpart SB 1113 (PN 1376) in the same Senate committee since 2026-01-09",
+   "why": "The 2025-26 session ends November 30, 2026; the bill dies if the Senate does not act.",
+   "url": "https://www.palegis.us/legislation/bills/text/PDF/2025/0/HB1925/PN3963"
+  },
+  {
+   "id": "us-nj-s4754",
+   "title": "New Jersey S4754",
+   "status": "222nd Legislature; introduced 2026-10-05 (Sen. Owen Henry); referred to Senate Commerce Committee; no later action",
+   "why": "The 2026-27 session runs to January 2028, so it can still move.",
+   "url": "https://pub.njleg.gov/Bills/2026/S5000/4754_I1.HTM"
+  },
+  {
+   "id": "us-nd-27.0359.01000",
+   "title": "North Dakota's AI sandbox draft",
+   "status": "Not yet a bill: Legislative Council draft for the interim AI and Data Center Committee, Oct 2026, aimed at the 2027 session",
+   "why": "The Legislature meets in January 2027. As drafted it would let AI be tested without a license, health care included, with no carve-out for prescribing.",
+   "url": "https://ndlegis.gov/assembly/69-2025/interim/27-0359-01000.pdf"
+  },
+  {
+   "id": "us-federal-hr238",
+   "title": "H.R. 238 in Congress",
+   "status": "bill introduced",
+   "why": "It dies when the 119th Congress ends in early January 2027 unless it is reintroduced.",
+   "url": "https://www.govinfo.gov/content/pkg/BILLS-119hr238ih/html/BILLS-119hr238ih.htm"
+  },
+  {
+   "id": "us-ut-doctronic",
+   "title": "Utah: Doctronic's term and Phase 2",
+   "status": "Active on the state register; Phase 1 (a licensed practitioner authorizes every renewal). The listed term ended 2026-10-24 and no extension, suspension or end had been published as of 2026-11-12.",
+   "why": "Its listed term ended October 24, 2026 with no extension posted. The Utah AI office reports to the Legislature before November 30 each year.",
+   "url": "https://commerce.utah.gov/wp-content/uploads/2026/01/Doctronic-Final-Agreement.pdf"
+  },
+  {
+   "id": "us-ut-legion",
+   "title": "Utah: Legion Health and August AI start dates",
+   "status": "Approved, not started: the state register (last modified 2026-10-06) says 'The demonstration period has not started yet.' Press in April 2026 reported a launch; not reconciled with the register.",
+   "why": "Both are approved but not started; each starts with clinician review of every request.",
+   "url": "https://commerce.utah.gov/wp-content/uploads/2026/03/Legion-Agreement.pdf"
+  },
+  {
+   "id": "us-il-sb2993",
+   "title": "Illinois SB 2993",
+   "status": "pending; re-referred to Assignments 2026-05-22 (Rule 3-9(a)); alive until the 104th General Assembly ends in January 2027",
+   "why": "The 104th General Assembly ends in January 2027.",
+   "url": "https://ilga.gov/ftp/legislation/104/BillStatus/HTML/10400SB2993.html"
+  }
+ ],
+ "prior_art": {
+  "checked_on": "2026-11-12",
+  "verdict_detail": "We found no public tracker that maps rules on AI prescribing across countries and US states, or codes them by how much independence the AI has; more than 20 sources could not be checked (see coverage_limits). The closest, the Health & AI Policy Index, groups prescribing with other reserved clinical functions; Manatt's quarterly tracker describes the Utah pilots in prose. Other trackers cover general AI or health-AI law without a prescribing field, and Utah's own register covers one state. OECD.AI and WHO have no prescribing content.",
+  "coverage_limits": "The session's web-search budget ran out early, so several sources were checked only by guessed URL or not at all: Epstein Becker Green, Foley, Hogan Lovells, Covington, Husch Blackwell, FSMB (403), verticomply, startbusinessbystate, SSRN, Health Affairs, Brookings, R Street, Mercatus, Niskanen, Paragon, PPI, Abundance Institute, Institute for Progress, STAT, KFF, Axios, GitHub, Avalere. Rerun those before calling the verdict final.",
+  "items": [
+   {
+    "name": "Health & AI Policy Index (HAPI)",
+    "url": "https://www.healthaipolicy.org/",
+    "operator": "Health & AI Policy Index (led by Will Moss); featured in npj Digital Medicine",
+    "scope": "curated registry of laws, regulations and standards on AI in health care",
+    "geography": "US states and federal, plus selected international frameworks",
+    "last_updated": "2026-11-04",
+    "policies_tracked": 408,
+    "covers_prescribing": "partial",
+    "utah_agreements_listed": [
+     "Doctronic",
+     "Legion Health",
+     "August AI"
+    ],
+    "utah_agreements_not_listed": [
+     "Nolla Health"
+    ],
+    "keyword_tags": [
+     "Safety & Risk",
+     "Transparency & Governance",
+     "Clinical Quality & Efficacy",
+     "Privacy & Data",
+     "Equity & Bias"
+    ],
+    "paper_doi": "https://doi.org/10.1038/s41746-026-02734-y",
+    "what_it_lacks": "Broader than this page. Its five topic tags do not include prescribing, though its operational rules include one (H1) that bars AI from reserved clinical functions, prescribing among them, without licensed professional involvement. Doctronic, Legion Health and August AI each have their own entry with a summary, status and link to the signed agreement (Doctronic 'Active Pilot'; Legion Health and August AI 'Approved - demonstration not yet begun'). Nolla Health, signed 2026-09-22, was not yet listed when checked. No coding by autonomy rung, which is this page's narrower aim.",
+    "checked_on": "2026-11-12",
+    "notes": "Home page: 'Last updated November 4, 2026 · 408 policies tracked · Featured in npj Digital Medicine'. Describes itself as 'a curated, research-driven registry of laws, regulations, and standards shaping artificial intelligence in healthcare'. Keyword tags: five topics, none on prescribing. Rechecked 2026-11-12 in the fact-check pass.",
+    "operational_rule_h1": "AI may not perform reserved clinical functions (diagnosis, treatment decisions, prescribing, formal clinical assessment) without licensed professional involvement."
+   },
+   {
+    "name": "Manatt Health: Health AI Policy Tracker",
+    "url": "https://www.manatt.com/insights/white-papers/2026/q3-health-ai-tracker-federal-agencies-california-and-utah-s-sandbox-take-center-stage",
+    "operator": "Manatt, Phelps & Phillips (Manatt Health)",
+    "scope": "general AI health law",
+    "geography": "US states + federal",
+    "last_updated": "2026-10-27 (Q3 2026 edition)",
+    "covers_prescribing": "partial",
+    "what_it_lacks": "Quarterly narrative newsletter (latest Q3 2026, October 27), not a database or map; the full bill list is for subscribers. Describes all four Utah pilots in prose; no prescribing category, no state-by-state coding of AI prescribing, and no H.R. 238. US only.",
+    "opened": true,
+    "notes": "Closest law-firm product. Notes Idaho and Iowa bills would create licensed AI providers with tiered licensing by autonomy (Cicero model), not expected to advance. Counts 46 bills in 27 states on AI in care settings in 2026, 7 enacted in 6 states."
+   },
+   {
+    "name": "Utah Office of AI Policy: Authorized AI Pilots",
+    "url": "https://commerce.utah.gov/ai/regulatory-relief-4/authorized-pilots/",
+    "operator": "Utah Department of Commerce, Office of Artificial Intelligence Policy",
+    "scope": "register of sandbox agreements (prescribing-heavy in practice)",
+    "geography": "Utah only",
+    "last_updated": "no date shown; latest entry 2026-10-02",
+    "covers_prescribing": "yes",
+    "what_it_lacks": "One state; primary-source register, not a comparison; no rung classification (each entry describes its phased review model).",
+    "opened": true,
+    "notes": "Four prescribing pilots: Doctronic, Legion Health, August AI, Nolla Health."
+   },
+   {
+    "name": "NCSL Artificial Intelligence 2025 Legislation",
+    "url": "https://www.ncsl.org/technology-and-communication/artificial-intelligence-2025-legislation",
+    "operator": "National Conference of State Legislatures",
+    "scope": "general AI law (has a 'Health Use' tag)",
+    "geography": "US states, DC, territories",
+    "last_updated": "2025-07-10",
+    "covers_prescribing": "partial",
+    "what_it_lacks": "2025 bills only (updated July 10, 2025); health bills share a general 'Health Use' tag; no prescribing field; lists sandbox bills but not Utah's agreements; bills rather than the legal state of play.",
+    "opened": true,
+    "notes": "Dorsey cites a separate NCSL AI-in-health-care database (280+ bills in 44 states as of June 2026, 11 on autonomous clinical decision-making); its URL could not be found."
+   },
+   {
+    "name": "AI Laws by State: Healthcare AI Tracker",
+    "url": "https://ailawsbystate.com/tools/healthcare-ai-tracker",
+    "operator": "AI Laws by State LLC",
+    "scope": "general AI health law",
+    "geography": "US states plus some federal bills",
+    "last_updated": "rows checked 2026-10-08; table auto-updates",
+    "covers_prescribing": "no",
+    "what_it_lacks": "117 bills in 5 categories, mostly utilization review; no prescribing category (closest is 'Clinical Decision Making', 7 bills); Idaho H 945, Delaware HB 191, Oregon's title law and H.R. 238 not listed when checked; no sandboxes, rungs or international.",
+    "opened": true,
+    "notes": ""
+   },
+   {
+    "name": "Orrick U.S. State AI Law Tracker",
+    "url": "https://ai-law-center.orrick.com/us-ai-law-tracker-see-all-states/",
+    "operator": "Orrick",
+    "scope": "general AI law ('AI Healthcare' label)",
+    "geography": "US states",
+    "last_updated": "claims monthly; no date shown",
+    "covers_prescribing": "no",
+    "what_it_lacks": "Enacted laws only; no prescribing, sandboxes or rungs.",
+    "opened": true,
+    "notes": "Includes Delaware HB 191 and Texas SB 1188, useful as restriction entries."
+   },
+   {
+    "name": "IAPP US State AI Governance Legislation Tracker",
+    "url": "https://iapp.org/resources/article/us-state-ai-governance-legislation-tracker/",
+    "operator": "IAPP",
+    "scope": "general cross-sector AI law",
+    "geography": "US states",
+    "last_updated": "2026-04-28",
+    "covers_prescribing": "no",
+    "what_it_lacks": "Explicitly excludes sector-specific (health) laws.",
+    "opened": true,
+    "notes": ""
+   },
+   {
+    "name": "Live Compliance AI healthcare regulation map",
+    "url": "https://www.livecompliance.com/learn/ai-healthcare-regulations/",
+    "operator": "Live Compliance (HIPAA compliance vendor)",
+    "scope": "general AI health law",
+    "geography": "US federal + states",
+    "last_updated": "2026-10-29",
+    "covers_prescribing": "no",
+    "what_it_lacks": "63 rules, none on AI prescribing; lists Utah's AI Policy Act but not its sandbox prescribing agreements; no rungs or international.",
+    "opened": true,
+    "notes": "Vendor marketing content."
+   },
+   {
+    "name": "CCHP Policy Finder: Online Prescribing",
+    "url": "https://www.cchpca.org/topic/online-prescribing/",
+    "operator": "Center for Connected Health Policy",
+    "scope": "telehealth prescribing by humans",
+    "geography": "US states + federal",
+    "last_updated": "per state; e.g. federal 2026-08-12",
+    "covers_prescribing": "partial",
+    "what_it_lacks": "Nothing on AI. Useful as a format model and for human remote-prescribing rules.",
+    "opened": true,
+    "notes": ""
+   },
+   {
+    "name": "StateVitals monthly roundup (Dec 2025)",
+    "url": "https://www.statevitals.us/blog/state-healthcare-policy-legislation-updates-december-2025",
+    "operator": "MultiState",
+    "scope": "general state health policy",
+    "geography": "US states",
+    "last_updated": "2026-01-16",
+    "covers_prescribing": "partial",
+    "what_it_lacks": "News roundup, not a tracker; Utah only.",
+    "opened": true,
+    "notes": "Mentions AI sandboxes in Arizona and Texas, Wyoming developing one."
+   },
+   {
+    "name": "Holland & Knight: The AI Doctor Will See You Now",
+    "url": "https://www.hklaw.com/en/insights/publications/2026/10/the-ai-doctor-will-see-you-now-chatbot-risks-regulatory-oversight",
+    "operator": "Holland & Knight",
+    "scope": "prescribing-relevant analysis",
+    "geography": "Utah + federal",
+    "last_updated": "2026-10-19",
+    "covers_prescribing": "yes",
+    "what_it_lacks": "One-time alert; no table; Utah only for prescribing.",
+    "opened": true,
+    "notes": "Most current description of all four Utah prescribing pilots, incl. Nolla first-time topical acne prescriptions."
+   },
+   {
+    "name": "Holland & Knight (via JD Supra): States Continue Efforts to Regulate AI in Healthcare, 2026 legislation review",
+    "url": "https://www.jdsupra.com/legalnews/states-continue-efforts-to-regulate-ai-3082341/",
+    "operator": "Holland & Knight",
+    "scope": "general AI health law",
+    "geography": "US states",
+    "last_updated": "2026-05-26",
+    "covers_prescribing": "partial",
+    "what_it_lacks": "Snapshot of enacted 2026 laws; no prescribing category; sandboxes mentioned in passing.",
+    "opened": true,
+    "notes": "Lists Delaware HB 191 (no AI licensure as physician/nurse/PA), Maine, Tennessee mental-health AI limits."
+   },
+   {
+    "name": "Quarles: Utah Authorizes AI-Based Prescription Renewals",
+    "url": "https://www.quarles.com/newsroom/publications/utah-authorizes-ai-based-prescription-renewals",
+    "operator": "Quarles",
+    "scope": "prescribing-specific client alert",
+    "geography": "Utah, Oregon, federal",
+    "last_updated": "2026-01-12",
+    "covers_prescribing": "yes",
+    "what_it_lacks": "One-time article, not maintained.",
+    "opened": true,
+    "notes": "Mentions Oregon ORS 678.025 barring a nonhuman entity from nursing titles from 2026-01-01, and H.R. 238."
+   },
+   {
+    "name": "Snell & Wilmer: When AI Writes the Prescription",
+    "url": "https://www.swlaw.com/publication/when-ai-writes-the-prescription-licensure-liability-and-the-corporate-practice-of-medicine-in-utahs-autonomous-ai-pilot/",
+    "operator": "Snell & Wilmer",
+    "scope": "prescribing-specific analysis",
+    "geography": "Utah plus mentions of AZ/TX/WY/CO/AL/IA/WA and federal",
+    "last_updated": "2026-10-07",
+    "covers_prescribing": "yes",
+    "what_it_lacks": "One-time article; no table.",
+    "opened": true,
+    "notes": "Doctronic in talks with Arizona, Texas, Wyoming; covers Legion and H.R. 238."
+   },
+   {
+    "name": "Dorsey Health Law: Does Utah's AI Prescription Renewal Pilot Go Too Far?",
+    "url": "https://www.dorseyhealthlaw.com/the-use-of-ai-for-autonomous-medical-decision-making-does-utahs-ai-prescription-renewal-pilot-program-go-too-far/",
+    "operator": "Dorsey & Whitney",
+    "scope": "prescribing-specific analysis",
+    "geography": "Utah, plus TX/AZ/WY and federal",
+    "last_updated": "2026-06-29",
+    "covers_prescribing": "yes",
+    "what_it_lacks": "One-time article.",
+    "opened": true,
+    "notes": "Cites the NCSL health AI database."
+   },
+   {
+    "name": "ITIF: Utah Shows How States Should Regulate AI in Healthcare",
+    "url": "https://itif.org/publications/2026/03/20/utah-shows-how-states-should-regulate-ai-in-healthcare/",
+    "operator": "ITIF",
+    "scope": "opinion",
+    "geography": "Utah",
+    "last_updated": "2026-03-20",
+    "covers_prescribing": "partial",
+    "what_it_lacks": "No tracker; one state.",
+    "opened": true,
+    "notes": ""
+   },
+   {
+    "name": "The Next Web: Utah let an AI renew prescriptions without a doctor",
+    "url": "https://thenextweb.com/news/utah-ai-prescription-refills-doctronic",
+    "operator": "The Next Web",
+    "scope": "news",
+    "geography": "Utah",
+    "last_updated": "2026-07-06",
+    "covers_prescribing": "yes",
+    "what_it_lacks": "News article.",
+    "opened": true,
+    "notes": "Says state AI-licensing bill template comes from the Cicero Institute."
+   },
+   {
+    "name": "Gerke, Parikh, Cohen. Utah's Prescription-Renewal Pilot Program: Autonomous AI Managing Patient Care. NEJM 394(16):1561-1563",
+    "url": "https://doi.org/10.1056/NEJMp2601148",
+    "operator": "NEJM Perspective",
+    "scope": "academic commentary",
+    "geography": "Utah/US",
+    "last_updated": "2026-04-18",
+    "covers_prescribing": "yes",
+    "what_it_lacks": "Commentary, not a tracker.",
+    "opened": false,
+    "notes": "PubMed metadata only (PMID 42011994)."
+   },
+   {
+    "name": "Aaron, Robertson. The First AI Drug Prescriber. JAMA 335(18):1567",
+    "url": "https://doi.org/10.1001/jama.2026.3533",
+    "operator": "JAMA Viewpoint",
+    "scope": "academic commentary",
+    "geography": "Utah/US",
+    "last_updated": "2026-05-12",
+    "covers_prescribing": "yes",
+    "what_it_lacks": "Commentary, not a tracker.",
+    "opened": false,
+    "notes": "PubMed metadata only (PMID 41973443)."
+   },
+   {
+    "name": "Mello. Utah's Experiment With AI-Driven Prescription Renewals. JAMA Health Forum 7(3):e261001",
+    "url": "https://doi.org/10.1001/jamahealthforum.2026.1001",
+    "operator": "JAMA Health Forum",
+    "scope": "academic commentary",
+    "geography": "Utah/US",
+    "last_updated": "2026-03-06",
+    "covers_prescribing": "yes",
+    "what_it_lacks": "Commentary, not a tracker.",
+    "opened": false,
+    "notes": "PubMed metadata only (PMID 41854634)."
+   },
+   {
+    "name": "Etkin, Joralemon. Who bears liability when AI gives bad prescribing advice. npj Digit Med 9",
+    "url": "https://doi.org/10.1038/s41746-026-02854-5",
+    "operator": "npj Digital Medicine letter",
+    "scope": "prescribing liability",
+    "geography": "US",
+    "last_updated": "2026-06-11",
+    "covers_prescribing": "partial",
+    "what_it_lacks": "About liability, not legality by jurisdiction.",
+    "opened": false,
+    "notes": "PubMed metadata only (PMID 42277191)."
+   },
+   {
+    "name": "OECD.AI Policy Navigator",
+    "url": "https://oecd.ai/en/dashboards/overview",
+    "operator": "OECD",
+    "scope": "general AI policy",
+    "geography": "80+ jurisdictions",
+    "last_updated": "no date shown",
+    "covers_prescribing": "no",
+    "what_it_lacks": "General AI policy database; includes national health-AI strategies, but no prescribing category and no entries on AI prescribing authority found.",
+    "opened": true,
+    "notes": "Only international policy database checked."
+   },
+   {
+    "name": "WHO: Ethics and governance of AI for health, guidance on large multi-modal models",
+    "url": "https://www.who.int/publications/i/item/9789240084759",
+    "operator": "WHO",
+    "scope": "AI health ethics guidance",
+    "geography": "international",
+    "last_updated": "2025-03-25",
+    "covers_prescribing": "no",
+    "what_it_lacks": "Nothing on legal status of AI prescribing by country.",
+    "opened": true,
+    "notes": ""
+   },
+   {
+    "name": "AMA: Augmented intelligence in medicine",
+    "url": "https://www.ama-assn.org/practice-management/digital-health/augmented-intelligence-medicine",
+    "operator": "American Medical Association",
+    "scope": "AI policy hub",
+    "geography": "US",
+    "last_updated": "2026-07-09",
+    "covers_prescribing": "no",
+    "what_it_lacks": "No state tracker; state brief covers payers, transparency, liability.",
+    "opened": true,
+    "notes": ""
+   },
+   {
+    "name": "Doctronic",
+    "url": "https://www.doctronic.ai/",
+    "operator": "Doctronic",
+    "scope": "vendor",
+    "geography": "US",
+    "last_updated": "n/a",
+    "covers_prescribing": "no",
+    "what_it_lacks": "No regulatory-status page.",
+    "opened": true,
+    "notes": "Says available in all 50 states + DC via human doctors."
+   },
+   {
+    "name": "Washington Times / AP: Doctors sound alarm as AI starts renewing prescriptions",
+    "url": "https://www.washingtontimes.com/news/2026/jul/7/ai-chatbot-prescribe-medication-doctors-say-risks-real/",
+    "operator": "Washington Times (AP)",
+    "scope": "news",
+    "geography": "US states",
+    "last_updated": "2026-07-07",
+    "covers_prescribing": "yes",
+    "what_it_lacks": "News article.",
+    "opened": false,
+    "notes": "Snippet only (403). Same AP story opened at JEMS: Utah, Texas, Wyoming using waivers; Iowa, Idaho bills."
+   }
+  ]
+ },
+ "coverage": {
+  "searched_nothing_found": [
+   {
+    "place": "France",
+    "finding": "Nothing prescription-specific. CSP L.4001-3 (bioethics law 2021, art. 17) only requires informing patients and professionals when an algorithmic medical device trained on massive data is used, and explainability; no human-decision clause. HAS generative-AI guide (Oct 2025, updated 2026-04-15): 'Chaque usage d'un système d'IA générative doit être conscient, supervisé et raisonné'; no mention of prescription. HAS scoping note (validated 2025-04-02) plans good-practice recommendations covering 'la décision autonome, la vérification et contrôle humain des résultats des SIA'; final text not located (lead). CNOM and ANSM not reached.",
+    "checked": "2026-11-12"
+   },
+   {
+    "place": "Belgium",
+    "finding": "Telemedicine avis (2026-01-23) says e-prescriptions are created on Recip-e, a rigorous clinical exam after anamnesis is 'indispensable' for diagnosis and treatment, and telemedicine as a substitute for a classic consultation should be avoided for acute conditions in unknown patients; no mention of AI, algorithms or questionnaires. Only AI item on the Ordre site is a news post on a UAntwerpen master's thesis (2026-03-27). AFMPS/FAGG and Recip-e rules not checked.",
+    "checked": "2026-11-12"
+   },
+   {
+    "place": "Austria",
+    "finding": "ÖÄK e-health compendium covers e-Rezept (private prescriptions digital, e-Medikation mandatory from 2026-01-01) but nothing on AI issuing or renewing prescriptions; only a quoted remark that AI will not replace the doctor. Ärztegesetz and BASG not checked.",
+    "checked": "2026-11-12"
+   },
+   {
+    "place": "Ireland",
+    "finding": "2024 Medical Council guide has no AI text; s.34 prescribing and s.37.1 telemedicine ('must observe the same standards of conduct and practice as would be expected if treating the patient in-person'). PSI internet-supply registration covers non-prescription medicines only. HSE not checked (no search).",
+    "checked": "2026-11-12"
+   },
+   {
+    "place": "Sweden",
+    "finding": "Closest: Läkemedelsverket press release 2026-03-04 announcing spring-2026 inspections of ambient-scribe manufacturers (MDR may apply); no prescribing content. https://via.tt.se/pressmeddelande/4272364/lakemedelsverket-granskar-ai-assistenter-i-sjukvarden?lang=sv",
+    "checked": "2026-11-12"
+   },
+   {
+    "place": "Norway",
+    "finding": "Only general Helsedirektoratet AI material (Felles KI-plan 2024-2025; assessment of a public AI health-question service on Helsenorge). Tidsskriftet kronikk 'Bruk av KI-verktøy på fastlegekontoret' (Nov 2025) returned 403.",
+    "checked": "2026-11-12"
+   },
+   {
+    "place": "Denmark",
+    "finding": "Nothing on AI issuing/renewing prescriptions. DKMA AI use is internal/regulatory plus unnamed real-world-data prescribing-support pilots (decision support, below rung 1); see lead.",
+    "checked": "2026-11-12"
+   },
+   {
+    "place": "Estonia",
+    "finding": "Tervisekassa: repeat prescriptions can be renewed by phone/email by the physician; no AI. ERR: state plans AI for documentation (ambulance AI note-drafting concept, Eesti.ai); 'Esimesi katsetusi tehisaruga tervishoius juba tehakse' (first AI trials in healthcare already under way) but nothing on prescriptions. Separate ERR item: proposal to let specialist nurses renew repeat prescriptions (human, not AI).",
+    "checked": "2026-11-12"
+   },
+   {
+    "place": "Lithuania",
+    "finding": "esveikata.lt e-prescription subsystem does automatic drug-interaction checks at issue (decision support, below rung 1). LSMU survey of family doctors cites lack of legal regulation as a barrier to AI. Nothing on AI issuing/renewing. Only one search possible (budget).",
+    "checked": "2026-11-12"
+   },
+   {
+    "place": "Hong Kong",
+    "finding": "MCHK Code of Professional Conduct (rev. Oct 2022) has no AI, algorithm or telemedicine text; s.9.1 only requires a doctor to prescribe after proper consultation. No AI-prescribing rule found. Department of Health and Hospital Authority not checked.",
+    "checked": "2026-11-12"
+   },
+   {
+    "place": "Malaysia",
+    "finding": "MMC publications list has no telemedicine, AI or e-prescription guidance (latest ethics circular 2000). MOH telemedicine guidance and Telemedicine Act 1997 not opened.",
+    "checked": "2026-11-12"
+   },
+   {
+    "place": "South Korea",
+    "finding": "MOHW 'AI Primary Healthcare Strategy' (2026-08-06) mentions only an AI assistant that explains prescriptions to patients; Dailypharm says HIRA AI focus is claims review. Neither supports the earlier lead of AI prescription review from 2028. No regulator source on AI prescribing opened (law.go.kr / mohw.go.kr not reached).",
+    "checked": "2026-11-12"
+   },
+   {
+    "place": "China (other provinces)",
+    "finding": "No Beijing final version found (draft only). No additional province with the clause confirmed; the province sweep was cut short by the search cap.",
+    "checked": "2026-11-12"
+   }
+  ],
+  "searched_nothing_found_n": 13,
+  "not_reached": [
+   {
+    "region": "Europe",
+    "places": [
+     "Netherlands",
+     "Spain",
+     "Switzerland",
+     "Portugal",
+     "Finland",
+     "Iceland",
+     "Latvia",
+     "Ukraine",
+     "Scotland and Wales (UK devolved rules)"
+    ],
+    "note": "Netherlands, Spain, Switzerland and Portugal have open leads (professional codes, prescription statutes) that were not opened."
+   },
+   {
+    "region": "Americas",
+    "places": [
+     "Canadian provinces and their colleges of physicians",
+     "Mexico",
+     "Argentina",
+     "Chile",
+     "Colombia",
+     "the rest of Latin America"
+    ],
+    "note": "Health Canada's federal device guidance is coded; provinces set prescribing rules and were not checked."
+   },
+   {
+    "region": "Asia",
+    "places": [
+     "Taiwan",
+     "Indonesia",
+     "Philippines",
+     "Thailand",
+     "Vietnam",
+     "Pakistan",
+     "Bangladesh",
+     "Sri Lanka",
+     "Nepal",
+     "Kazakhstan",
+     "Uzbekistan",
+     "other Chinese provinces"
+    ],
+    "note": "South Korea was searched but its law database was not reached; India's 2023 NMC conduct regulations and Japan's online-care guideline were not read for AI text."
+   },
+   {
+    "region": "Middle East",
+    "places": [
+     "Gulf states other than Abu Dhabi and Saudi Arabia (including Dubai)",
+     "Israel",
+     "the rest of the region"
+    ],
+    "note": "Dubai and Israel have open leads only."
+   },
+   {
+    "region": "Africa",
+    "places": [
+     "Kenya",
+     "Nigeria",
+     "Rwanda",
+     "South Africa",
+     "Ghana",
+     "the rest of Africa"
+    ],
+    "note": "Ghana's 2024 ePharmacy policy is an open lead."
+   },
+   {
+    "region": "United States",
+    "places": [
+     "Georgia's legislature (site blocked)",
+     "most state medical, nursing and pharmacy boards"
+    ],
+    "note": "Every state's 2025-26 bills were swept through NCSL's database and most legislatures' own sites; board rules were spot-checked only."
+   }
+  ],
+  "open_leads": [
+   {
+    "jurisdiction": "Delaware",
+    "lead": "Holland & Knight says Delaware is 'implementing similar sandbox programs' (agentic AI sandbox).",
+    "why_unverified": "No primary source opened; no prescribing use found.",
+    "file": "unverified_leads.json"
+   },
+   {
+    "jurisdiction": "US states (various)",
+    "lead": "Dorsey cites an NCSL AI-in-health-care database counting 11 bills on autonomous clinical decision-making in 2026; only Iowa HSB 766, Idaho H 945 and Illinois SB 2993 were identified here. Others may include more Cicero-template bills.",
+    "why_unverified": "NCSL database URL not found; search budget exhausted.",
+    "file": "unverified_leads.json"
+   },
+   {
+    "jurisdiction": "China",
+    "lead": "2026 Expert Consensus on AI in medical institutions: physician has final authority; drug-regimen AI is high-risk",
+    "why_unverified": "Expert consensus, not a regulator; secondary only",
+    "file": "unverified_leads.json"
+   },
+   {
+    "jurisdiction": "China",
+    "lead": "Tsinghua 'Agent Hospital' and other AI hospital pilots",
+    "why_unverified": "Not searched",
+    "file": "unverified_leads.json"
+   },
+   {
+    "jurisdiction": "Brazil",
+    "lead": "PL 2338/2023 AI bill (passed Senate Dec 2024, in Câmara since Mar 2025) may class health AI as high-risk; PL 266/2024 on AI assisting doctors",
+    "why_unverified": "Senate text is a scanned PDF; not prescribing-specific",
+    "file": "unverified_leads.json"
+   },
+   {
+    "jurisdiction": "UAE (Abu Dhabi / Dubai)",
+    "lead": "DoH AI policy (2018), DoH Responsible AI Standard (2025), DHA AI Policy (2021)",
+    "why_unverified": "Per IBA summary no prescribing provisions; primary texts not opened",
+    "file": "unverified_leads.json"
+   },
+   {
+    "jurisdiction": "Israel",
+    "lead": "No MoH AI prescription-renewal rule found; Innovation Authority AI health sandbox exists",
+    "why_unverified": "Sandbox page 403",
+    "file": "unverified_leads.json"
+   },
+   {
+    "jurisdiction": "Australia (TGA)",
+    "lead": "TGA review 'Clarifying and strengthening the regulation of medical device software including AI' (outcomes report, 2025) may address prescribing/clinical decision software and digital scribes.",
+    "why_unverified": "Fetch timed out; search budget exhausted and agent stopped by coordinator.",
+    "file": "unverified_leads_world.json"
+   },
+   {
+    "jurisdiction": "Canada (provincial colleges)",
+    "lead": "CPSO, CPSBC (interim guidance on ethical principles for AI in medicine), CPSA and CMQ AI statements; Ontario/other pharmacist renewal authority; not checked.",
+    "why_unverified": "Session web-search budget exhausted before any search ran; agent stopped by coordinator.",
+    "file": "unverified_leads_world.json"
+   },
+   {
+    "jurisdiction": "Germany",
+    "lead": "Questionnaire-only telemedicine prescribing (no AI named): BGH I ZR 118/24 (2026-03-26) referred to the CJEU (C-265/26) whether §9 HWG's ban on advertising remote treatment that lacks a personal doctor contact is compatible with art. 56 TFEU; Wellster platform with Irish doctors prescribing from questionnaires. LG Köln reportedly barred DocMorris/Teleclinic ED-drug prescriptions by questionnaire. Health minister Warken reportedly plans to restrict online prescriptions. Relevant if a ruling or law addresses automated questionnaire assessment.",
+    "why_unverified": "Only trade press (Pharmazeutische Zeitung) opened; no AI angle; BGH/CJEU texts and BMG draft not opened; WebSearch budget exhausted.",
+    "file": "unverified_leads_world.json"
+   },
+   {
+    "jurisdiction": "Germany",
+    "lead": "AMVV §2(1) Nr. 1/10 and AMG §48 require a named human prescriber and handwritten signature or QES; MBO-Ä §7(4) on Fernbehandlung. Structural block on AI as prescriber of record, but not tied to AI by any regulator text found.",
+    "why_unverified": "General statute; rule says list as lead unless tied to AI.",
+    "file": "unverified_leads_world.json"
+   },
+   {
+    "jurisdiction": "France",
+    "lead": "HAS good-practice recommendations 'Accompagner le bon usage des systèmes d'IA en contexte de soins' (scoping validated 2025-04-02) will cover 'la décision autonome' and human control of AI outputs; may state that AI cannot decide autonomously. Also CNOM AI doctrine and CSP R.5132-3 ('rédigée, après examen du malade').",
+    "why_unverified": "Final recommendations not located without search; CNOM/Légifrance article pages not reachable by guessable URL.",
+    "file": "unverified_leads_world.json"
+   },
+   {
+    "jurisdiction": "Netherlands",
+    "lead": "KNMG 'Richtlijn online arts-patiëntcontact' and IGJ position that prescribing on a questionnaire alone is not allowed; automated online 'herhaalrecept' services. Geneesmiddelenwet art. 1 defines 'recept' as a document drawn up by a 'met naam en werkadres aangeduide beroepsbeoefenaar' (named professional), a structural block on AI as prescriber.",
+    "why_unverified": "KNMG and IGJ URLs guessed returned 404; only wetten.overheid.nl Geneesmiddelenwet opened (general statute, no AI tie).",
+    "file": "unverified_leads_world.json"
+   },
+   {
+    "jurisdiction": "Spain",
+    "lead": "CGCOM Código de Deontología Médica (2022) may contain an AI/telemedicine article reserving decisions to physicians; RD 1718/2010 on receta médica (prescriber signature); AEMPS/draft Ley de los Medicamentos 2025 not checked.",
+    "why_unverified": "CGCOM code is a FlippingBook with no extractable text/PDF; no search available.",
+    "file": "unverified_leads_world.json"
+   },
+   {
+    "jurisdiction": "Switzerland",
+    "lead": "HMG art. 26(2): a medicine may only be prescribed if the patient's state of health is known; FMH AI position paper. Possible structural block; no AI-specific Swissmedic or FMH text verified.",
+    "why_unverified": "Fedlex is JavaScript-only; FMH returned 403.",
+    "file": "unverified_leads_world.json"
+   },
+   {
+    "jurisdiction": "Portugal",
+    "lead": "Ordem dos Médicos (AI congress page, ethics documentation) and SNS chronic-prescription renewal rules; no AI prescribing text located.",
+    "why_unverified": "Only OM home page opened; no search available.",
+    "file": "unverified_leads_world.json"
+   },
+   {
+    "jurisdiction": "Poland",
+    "lead": "2025 legislation against 'receptomaty' (e-prescription-by-questionnaire sites), reportedly limiting e-prescriptions for certain drug classes without a consultation; check whether it mentions automated issuance.",
+    "why_unverified": "Act text (ISAP/Dziennik Ustaw) not located without search.",
+    "file": "unverified_leads_world.json"
+   },
+   {
+    "jurisdiction": "Italy",
+    "lead": "FNOMCeO Codice di deontologia medica revision with an AI article; AIFA statements.",
+    "why_unverified": "Not reached after search budget exhausted.",
+    "file": "unverified_leads_world.json"
+   },
+   {
+    "jurisdiction": "OECD",
+    "lead": "OECD work on AI in health (e.g. 2024 'AI in health: huge potential, huge risks') may discuss autonomous prescribing.",
+    "why_unverified": "Not reached; no known stable URL and no search.",
+    "file": "unverified_leads_world.json"
+   },
+   {
+    "jurisdiction": "Ghana (Pharmacy Council)",
+    "lead": "Pharmacy Council of Ghana ePharmacy Policy (2024) may set rules on online pharmacy and e-prescription handling; not checked for AI or automated prescribing.",
+    "why_unverified": "Not opened before the region was reassigned (web search budget also exhausted).",
+    "file": "unverified_leads_world.json"
+   },
+   {
+    "jurisdiction": "India (national)",
+    "lead": "ICMR Ethical Guidelines for Application of AI in Biomedical Research and Healthcare (2023) may contain human-oversight language relevant to AI clinical decisions/prescribing. Landing page opened; PDF content not reviewed.",
+    "why_unverified": "Run stopped (region reassigned) before the PDF was read; web search budget also exhausted.",
+    "file": "unverified_leads_world.json"
+   },
+   {
+    "jurisdiction": "India (national)",
+    "lead": "NMC Registered Medical Practitioner (Professional Conduct) Regulations 2023 (notified Aug 2023, reportedly held in abeyance) may restate or replace the 2020 Telemedicine Practice Guidelines incl. the AI/ML prescribing ban.",
+    "why_unverified": "NMC page returned a redirect; not followed before the stop. Status and AI/telemedicine text not checked.",
+    "file": "unverified_leads_world.json"
+   },
+   {
+    "jurisdiction": "United Kingdom",
+    "lead": "Human Medicines Regulations 2012 reg. 214(1): 'A person may not sell or supply a prescription only medicine except in accordance with a prescription given by an appropriate practitioner'; reg. 214(3)-(6) list only human registrants (doctors, dentists, supplementary and non-medical independent prescribers, approved country health professionals). Last amended 31/12/2020. Implicit bar to rungs 2-4, but no regulator has tied it to AI.",
+    "why_unverified": "General statute not tied to AI by MHRA/GMC/GPhC in any source opened",
+    "file": "unverified_leads_world.json"
+   },
+   {
+    "jurisdiction": "United Kingdom (GMC)",
+    "lead": "GMC 'Good practice in proposing, prescribing, providing and managing medicines and devices' (remote prescribing paragraphs) and GMC AI/innovative technologies learning page likely state the doctor remains responsible for prescribing decisions made with AI support",
+    "why_unverified": "gmc-uk.org returned 403 to both WebFetch and curl",
+    "file": "unverified_leads_world.json"
+   },
+   {
+    "jurisdiction": "United Kingdom (NHS England)",
+    "lead": "GP practices using AI chatbots / automation to process repeat prescription requests (vendor claims 55-65% handled automatically, routed to clinical team who still prescribe); RCGP says GP AI use is a 'postcode lottery'. 10 Year Health Plan (Jul 2025) promises 'decision support tools: to assist clinicians in diagnosis, test ordering, referrals and prescribing' and an NHS App 'My Medicines' tool to manage repeat prescriptions (rung 1 at most). No NHS England pilot of AI approving repeats found.",
+    "why_unverified": "Vendor blog and RCGP news only; no NHS England primary source on AI repeat-prescription handling; england.nhs.uk AVT guidance blocked by bot wall",
+    "file": "unverified_leads_world.json"
+   },
+   {
+    "jurisdiction": "United Kingdom (MHRA)",
+    "lead": "National Commission into the Regulation of AI in Healthcare: recommendations (10 Sep 2026) and Government Response (6 Oct 2026) set the future UK AI-in-health framework (lifecycle regulation, liability 'sinks', human oversight); AI Airlock phase 3 launched 6 Oct 2026 (post-market surveillance; no cohort yet). Neither mentions prescribing.",
+    "why_unverified": "Opened, but no prescribing content; would be an enabling_framework entry only if the tracker wants general UK AI-health regulation",
+    "file": "unverified_leads_world.json"
+   },
+   {
+    "jurisdiction": "Denmark",
+    "lead": "Danish Medicines Agency (DKMA) running unnamed pilots analysing real-world data to guide patient-tailored prescribing; Director Claus Møldrup at a HIRA symposium 2026-08-28: 'humans must make the final decision'",
+    "why_unverified": "Korean trade-press only (dailypharm); decision support below rung 1; no DKMA page found",
+    "file": "unverified_leads_world.json"
+   },
+   {
+    "jurisdiction": "Estonia",
+    "lead": "e-prescription allows physician-issued remote repeat prescriptions (phone/email); no AI renewal found",
+    "why_unverified": "No AI element in sources",
+    "file": "unverified_leads_world.json"
+   },
+   {
+    "jurisdiction": "Shanghai",
+    "lead": "Global Times/RFA say Shanghai banned AI-generated prescriptions (from 2022).",
+    "why_unverified": "wsjkw.sh.gov.cn blocked by browser site permissions; no rule text found. May just be the national 2022 rule applying in Shanghai.",
+    "file": "unverified_leads_apac.json"
+   },
+   {
+    "jurisdiction": "Beijing",
+    "lead": "Whether the 2023 draft 北京市互联网诊疗监管实施办法（试行） was issued in final form.",
+    "why_unverified": "One search returned only the 2023 draft coverage (Beijing Daily, IT Home); Beijing Daily text re-read and art. 14/22 wording confirmed.",
+    "file": "unverified_leads_apac.json"
+   },
+   {
+    "jurisdiction": "Fujian Province",
+    "lead": "闽卫规〔2024〕3号 had 2-year validity (to 2026-02-08); whether it was extended or replaced.",
+    "why_unverified": "Fujian health commission document lists are JS-rendered; could not enumerate.",
+    "file": "unverified_leads_apac.json"
+   },
+   {
+    "jurisdiction": "China",
+    "lead": "《药品零售企业执业药师药学服务指南》 reportedly says licensed pharmacists may use computer systems to assist prescription review but it 'cannot be completely replaced by an AI program' (quoted by a lawyer in Xiaoxiang Morning Herald, 2025-02-24).",
+    "why_unverified": "Newspaper quote only; issuer (likely China Licensed Pharmacist Association, an industry body) and text not opened.",
+    "file": "unverified_leads_apac.json"
+   },
+   {
+    "jurisdiction": "China (other provinces)",
+    "lead": "Other provinces likely copied the national art. 13/21 AI clause into their own internet-care supervision rules (as Fujian did).",
+    "why_unverified": "Province sweep not done; web search capped after 3 searches.",
+    "file": "unverified_leads_apac.json"
+   },
+   {
+    "jurisdiction": "Australia",
+    "lead": "Safe and Responsible AI in Health Care legislation and regulation review (DoHAC final report) and TGA medical-device-software/AI review (2025) may address autonomous AI clinical or prescribing decisions.",
+    "why_unverified": "health.gov.au and tga.gov.au timed out from this machine.",
+    "file": "unverified_leads_apac.json"
+   },
+   {
+    "jurisdiction": "South Korea",
+    "lead": "Medical Service Act art. 17 (prescriptions only by the doctor who examined the patient) is an implicit barrier to rungs 2-4; AI Basic Act (in force 2026-01-22) treats healthcare AI as high-impact.",
+    "why_unverified": "law.go.kr not opened; not AI-specific. Earlier claim of AI prescription review from 2028 not supported by its cited sources.",
+    "file": "unverified_leads_apac.json"
+   },
+   {
+    "jurisdiction": "Utah",
+    "lead": "Whether Doctronic's agreement was extended past its listed 2026-10-24 term, quietly continued, or ended; whether any medication group has moved to Phase 2.",
+    "why_unverified": "Register (modified 2026-10-06) still says Active and Phase 1 with the Oct 2025 - Oct 2026 term; no extension document or news found as of 2026-11-12. OAIP's annual report to the Legislature (due before Nov 30) may settle it.",
+    "file": "unverified_leads_step1.json"
+   },
+   {
+    "jurisdiction": "Utah",
+    "lead": "Legion Health: press reported an April 2026 launch, but the state register (2026-10-06) says the demonstration period has not started.",
+    "why_unverified": "No OAIP status update or Legion report published; page uses the register.",
+    "file": "unverified_leads_step1.json"
+   },
+   {
+    "jurisdiction": "Utah",
+    "lead": "Whether the Utah Medical Licensing Board took a formal vote on Doctronic in a public meeting after its 2026-04-20 letter.",
+    "why_unverified": "Only the 2026-03-19 agenda (item 'AI Office - Doctronic') was found; later minutes not located.",
+    "file": "unverified_leads_step1.json"
+   },
+   {
+    "jurisdiction": "Texas",
+    "lead": "Whether DIR's private-sector AI sandbox (TRAIGA, Bus. & Com. Code ch. 553) has adopted rules or admitted any participant, including any AI prescribing company.",
+    "why_unverified": "dir.texas.gov returns 403 to scripts; secondary sources through 2026-11-04 found no rule, form or participant.",
+    "file": "unverified_leads_step1.json"
+   },
+   {
+    "jurisdiction": "Arizona",
+    "lead": "Doctronic's reported application to the AG sandbox (Bloomberg Law, June 2026).",
+    "why_unverified": "Participants page says none; applications are not public.",
+    "file": "unverified_leads_step1.json"
+   },
+   {
+    "jurisdiction": "Wyoming",
+    "lead": "Reports that Wyoming is building or using a sandbox for AI in health care, and that Doctronic is in talks.",
+    "why_unverified": "Only the 2019 Medical Digital Innovation Sandbox Act found; no participant list or AI waiver published.",
+    "file": "unverified_leads_step1.json"
+   },
+   {
+    "jurisdiction": "China (national, NMPA)",
+    "lead": "Whether the 2026-05-25 Prescription Drug Online Retail Compliance Guide bars AI from renewing prescriptions (Sixth Tone) or only from pharmacist review (Xinhua, Caixin).",
+    "why_unverified": "Guide text not opened; nmpa.gov.cn returns HTTP 412.",
+    "file": "unverified_leads_step1.json"
+   }
+  ],
+  "open_leads_n": 42,
+  "resolved_leads": [
+   {
+    "jurisdiction": "Utah",
+    "lead": "A blog said Utah H.B. 249 (2026) lets AI approve renewals without physician review.",
+    "resolution": "False: 2026 H.B. 249 is 'Federal Funds Modifications' (le.utah.gov)."
+   },
+   {
+    "jurisdiction": "Arizona",
+    "lead": "A blog table listed 'Arizona SB 1847' (March 2026) on prescription renewals.",
+    "resolution": "No such bill on renewals: 2026 SB 1847 is the general appropriations act, signed 2026-06-13 (chapter 126). The Attorney General's sandbox lists no current participants."
+   },
+   {
+    "jurisdiction": "China (national)",
+    "lead": "NHC and four other bodies, opinions on 'AI + health care' (2025-10-20), first read as AI prescription authority.",
+    "resolution": "Text verified: it promotes AI-assisted prescription review for primary care; no AI prescribing authority and no ban. Excluded."
+   }
+  ],
+  "corrections_applied": [
+   {
+    "id": "eu-ai-act",
+    "file": "entries_world_additions.json",
+    "fields": [
+     "status_detail",
+     "start_date",
+     "legal_basis",
+     "secondary_source_url",
+     "other_urls",
+     "source_date",
+     "notes"
+    ]
+   },
+   {
+    "id": "cn-national-internet-dx-rules",
+    "file": "entries_apac_additions.json",
+    "fields": [
+     "start_date",
+     "legal_basis",
+     "other_urls",
+     "source_date",
+     "confidence",
+     "notes"
+    ]
+   },
+   {
+    "id": "cn-hunan-hsa-pharmacy-notice",
+    "file": "entries_apac_additions.json",
+    "fields": [
+     "start_date",
+     "legal_basis",
+     "primary_source_url",
+     "secondary_source_url",
+     "other_urls",
+     "source_date",
+     "confidence",
+     "notes"
+    ]
+   },
+   {
+    "id": "cn-nmpa-online-rx-guidelines",
+    "file": "entries_apac_additions.json",
+    "fields": [
+     "start_date",
+     "notes"
+    ]
+   },
+   {
+    "id": "us-ut-doctronic",
+    "file": "entries_step1_additions.json",
+    "fields": [
+     "status_detail",
+     "expiry",
+     "other_urls",
+     "notes"
+    ]
+   },
+   {
+    "id": "us-ut-legion",
+    "file": "entries_step1_additions.json",
+    "fields": [
+     "status_detail",
+     "other_urls",
+     "notes"
+    ]
+   },
+   {
+    "id": "us-ut-august",
+    "file": "entries_step1_additions.json",
+    "fields": [
+     "status_detail",
+     "other_urls",
+     "notes"
+    ]
+   },
+   {
+    "id": "us-ut-nolla",
+    "file": "entries_step1_additions.json",
+    "fields": [
+     "status_detail",
+     "notes"
+    ]
+   },
+   {
+    "id": "cn-nmpa-online-rx-guidelines",
+    "file": "entries_step1_additions.json",
+    "fields": [
+     "status",
+     "status_detail",
+     "start_date",
+     "legal_basis",
+     "what_is_allowed",
+     "primary_source_url",
+     "secondary_source_url",
+     "other_urls",
+     "notes"
+    ]
+   },
+   {
+    "id": "us-federal-hr238",
+    "file": "entries_step1_additions.json",
+    "fields": [
+     "expiry",
+     "other_urls",
+     "notes"
+    ]
+   },
+   {
+    "id": "us-tx-traiga-sandbox",
+    "file": "entries_step1_additions.json",
+    "fields": [
+     "notes"
+    ]
+   },
+   {
+    "id": "cn-national-internet-dx-rules",
+    "file": "entries_factcheck_corrections.json",
+    "fields": [
+     "primary_source_url",
+     "other_urls",
+     "notes"
+    ]
+   },
+   {
+    "id": "cn-fujian-internet-dx-rules",
+    "file": "entries_factcheck_corrections.json",
+    "fields": [
+     "status_detail",
+     "notes"
+    ]
+   },
+   {
+    "id": "cn-nmpa-online-rx-guidelines",
+    "file": "entries_factcheck_corrections.json",
+    "fields": [
+     "what_is_allowed"
+    ]
+   },
+   {
+    "id": "in-telemedicine-guidelines-2020",
+    "file": "entries_factcheck_corrections.json",
+    "fields": [
+     "primary_source_url",
+     "secondary_source_url",
+     "notes"
+    ]
+   },
+   {
+    "id": "br-cfm-2454-2026",
+    "file": "entries_factcheck_corrections.json",
+    "fields": [
+     "what_is_allowed",
+     "start_date"
+    ]
+   },
+   {
+    "id": "sg-aihgle-2",
+    "file": "entries_factcheck_corrections.json",
+    "fields": [
+     "legal_basis"
+    ]
+   },
+   {
+    "id": "au-mba-telehealth-async-rx",
+    "file": "entries_factcheck_corrections.json",
+    "fields": [
+     "status_detail"
+    ]
+   },
+   {
+    "id": "sa-almoosa-synyi-pilot",
+    "file": "entries_factcheck_corrections.json",
+    "fields": [
+     "what_is_allowed"
+    ]
+   },
+   {
+    "id": "ae-ad-doh-ai-clinician-framework",
+    "file": "entries_factcheck_corrections.json",
+    "fields": [
+     "primary_source_url",
+     "secondary_source_url",
+     "what_is_allowed",
+     "notes"
+    ]
+   },
+   {
+    "id": "us-tn-sb837",
+    "file": "entries_factcheck_corrections.json",
+    "fields": [
+     "status_detail",
+     "start_date"
+    ]
+   },
+   {
+    "id": "us-nd-27.0359.01000",
+    "file": "entries_factcheck_corrections.json",
+    "fields": [
+     "legal_basis"
+    ]
+   },
+   {
+    "id": "us-nm-16.12-nmac-ai",
+    "file": "entries_factcheck_corrections.json",
+    "fields": [
+     "legal_basis"
+    ]
+   },
+   {
+    "id": "us-tx-sb1188",
+    "file": "entries_factcheck_corrections.json",
+    "fields": [
+     "notes"
+    ]
+   },
+   {
+    "id": "us-federal-dea-1306",
+    "file": "entries_factcheck_corrections.json",
+    "fields": [
+     "what_is_allowed"
+    ]
+   },
+   {
+    "id": "us-ca-ab1979",
+    "file": "entries_factcheck_corrections.json",
+    "fields": [
+     "confidence",
+     "notes"
+    ]
+   },
+   {
+    "id": "us-or-ors678027",
+    "file": "entries_factcheck_corrections.json",
+    "fields": [
+     "start_date"
+    ]
+   },
+   {
+    "id": "us-federal-hr206-118",
+    "file": "entries_factcheck_corrections.json",
+    "fields": [
+     "notes"
+    ]
+   },
+   {
+    "id": "us-fsmb-ai-policy-2024",
+    "file": "entries_factcheck_corrections.json",
+    "fields": [
+     "start_date"
+    ]
+   }
+  ],
+  "duplicates_merged": [
+   {
+    "dropped": "au-mba-telehealth-async-prescribing",
+    "kept": "au-mba-telehealth-async-rx"
+   },
+   {
+    "dropped": "au-ahpra-ai-guidance-2024",
+    "kept": "au-ahpra-ai-obligations"
+   }
+  ]
+ }
+}

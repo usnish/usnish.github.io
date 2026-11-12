@@ -1,0 +1,184 @@
+[
+  {
+    "jurisdiction": "Australia (TGA)",
+    "lead": "TGA review 'Clarifying and strengthening the regulation of medical device software including AI' (outcomes report, 2025) may address prescribing/clinical decision software and digital scribes.",
+    "why_unverified": "Fetch timed out; search budget exhausted and agent stopped by coordinator.",
+    "urls_tried": [
+      "https://www.tga.gov.au/resources/publication/publications/clarifying-and-strengthening-regulation-medical-device-software-including-artificial-intelligence-ai"
+    ]
+  },
+  {
+    "jurisdiction": "Canada (provincial colleges)",
+    "lead": "CPSO, CPSBC (interim guidance on ethical principles for AI in medicine), CPSA and CMQ AI statements; Ontario/other pharmacist renewal authority; not checked.",
+    "why_unverified": "Session web-search budget exhausted before any search ran; agent stopped by coordinator.",
+    "urls_tried": []
+  },
+  {
+    "jurisdiction": "Germany",
+    "lead": "Questionnaire-only telemedicine prescribing (no AI named): BGH I ZR 118/24 (2026-03-26) referred to the CJEU (C-265/26) whether §9 HWG's ban on advertising remote treatment that lacks a personal doctor contact is compatible with art. 56 TFEU; Wellster platform with Irish doctors prescribing from questionnaires. LG Köln reportedly barred DocMorris/Teleclinic ED-drug prescriptions by questionnaire. Health minister Warken reportedly plans to restrict online prescriptions. Relevant if a ruling or law addresses automated questionnaire assessment.",
+    "why_unverified": "Only trade press (Pharmazeutische Zeitung) opened; no AI angle; BGH/CJEU texts and BMG draft not opened; WebSearch budget exhausted.",
+    "urls_tried": [
+      "https://www.pharmazeutische-zeitung.de/bgh-zieht-eugh-bei-fragebogen-rezepten-hinzu-163964/"
+    ]
+  },
+  {
+    "jurisdiction": "Germany",
+    "lead": "AMVV §2(1) Nr. 1/10 and AMG §48 require a named human prescriber and handwritten signature or QES; MBO-Ä §7(4) on Fernbehandlung. Structural block on AI as prescriber of record, but not tied to AI by any regulator text found.",
+    "why_unverified": "General statute; rule says list as lead unless tied to AI.",
+    "urls_tried": [
+      "https://www.gesetze-im-internet.de/amvv/__2.html"
+    ]
+  },
+  {
+    "jurisdiction": "France",
+    "lead": "HAS good-practice recommendations 'Accompagner le bon usage des systèmes d'IA en contexte de soins' (scoping validated 2025-04-02) will cover 'la décision autonome' and human control of AI outputs; may state that AI cannot decide autonomously. Also CNOM AI doctrine and CSP R.5132-3 ('rédigée, après examen du malade').",
+    "why_unverified": "Final recommendations not located without search; CNOM/Légifrance article pages not reachable by guessable URL.",
+    "urls_tried": [
+      "https://www.has-sante.fr/upload/docs/application/pdf/2025-04/note_de_cadrage_-_ia_en_contexte_de_soins_accompagner_les_usages.pdf",
+      "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043895798"
+    ]
+  },
+  {
+    "jurisdiction": "Netherlands",
+    "lead": "KNMG 'Richtlijn online arts-patiëntcontact' and IGJ position that prescribing on a questionnaire alone is not allowed; automated online 'herhaalrecept' services. Geneesmiddelenwet art. 1 defines 'recept' as a document drawn up by a 'met naam en werkadres aangeduide beroepsbeoefenaar' (named professional), a structural block on AI as prescriber.",
+    "why_unverified": "KNMG and IGJ URLs guessed returned 404; only wetten.overheid.nl Geneesmiddelenwet opened (general statute, no AI tie).",
+    "urls_tried": [
+      "https://www.knmg.nl/advies-richtlijnen/knmg-publicaties/publicaties/richtlijn-online-arts-patient-contact",
+      "https://www.igj.nl/onderwerpen/geneesmiddelen-via-internet",
+      "https://wetten.overheid.nl/BWBR0021505/"
+    ]
+  },
+  {
+    "jurisdiction": "Spain",
+    "lead": "CGCOM Código de Deontología Médica (2022) may contain an AI/telemedicine article reserving decisions to physicians; RD 1718/2010 on receta médica (prescriber signature); AEMPS/draft Ley de los Medicamentos 2025 not checked.",
+    "why_unverified": "CGCOM code is a FlippingBook with no extractable text/PDF; no search available.",
+    "urls_tried": [
+      "https://www.cgcom.es/sites/main/files/files/2022-03/codigo_deontologia_medica.pdf",
+      "https://www.cgcom.es/codigo-deontologico"
+    ]
+  },
+  {
+    "jurisdiction": "Switzerland",
+    "lead": "HMG art. 26(2): a medicine may only be prescribed if the patient's state of health is known; FMH AI position paper. Possible structural block; no AI-specific Swissmedic or FMH text verified.",
+    "why_unverified": "Fedlex is JavaScript-only; FMH returned 403.",
+    "urls_tried": [
+      "https://www.fedlex.admin.ch/eli/cc/2001/422/de",
+      "https://www.fmh.ch/themen/ehealth/kuenstliche-intelligenz.cfm"
+    ]
+  },
+  {
+    "jurisdiction": "Portugal",
+    "lead": "Ordem dos Médicos (AI congress page, ethics documentation) and SNS chronic-prescription renewal rules; no AI prescribing text located.",
+    "why_unverified": "Only OM home page opened; no search available.",
+    "urls_tried": [
+      "https://ordemdosmedicos.pt/"
+    ]
+  },
+  {
+    "jurisdiction": "Poland",
+    "lead": "2025 legislation against 'receptomaty' (e-prescription-by-questionnaire sites), reportedly limiting e-prescriptions for certain drug classes without a consultation; check whether it mentions automated issuance.",
+    "why_unverified": "Act text (ISAP/Dziennik Ustaw) not located without search.",
+    "urls_tried": []
+  },
+  {
+    "jurisdiction": "Italy",
+    "lead": "FNOMCeO Codice di deontologia medica revision with an AI article; AIFA statements.",
+    "why_unverified": "Not reached after search budget exhausted.",
+    "urls_tried": []
+  },
+  {
+    "jurisdiction": "OECD",
+    "lead": "OECD work on AI in health (e.g. 2024 'AI in health: huge potential, huge risks') may discuss autonomous prescribing.",
+    "why_unverified": "Not reached; no known stable URL and no search.",
+    "urls_tried": []
+  },
+  {
+    "jurisdiction": "Ghana (Pharmacy Council)",
+    "lead": "Pharmacy Council of Ghana ePharmacy Policy (2024) may set rules on online pharmacy and e-prescription handling; not checked for AI or automated prescribing.",
+    "why_unverified": "Not opened before the region was reassigned (web search budget also exhausted).",
+    "urls_tried": [
+      "https://pcghana.org/newwebsite/wp-content/uploads/2024/08/EPHARMACY-POLICY.pdf"
+    ]
+  },
+  {
+    "jurisdiction": "India (national)",
+    "lead": "ICMR Ethical Guidelines for Application of AI in Biomedical Research and Healthcare (2023) may contain human-oversight language relevant to AI clinical decisions/prescribing. Landing page opened; PDF content not reviewed.",
+    "why_unverified": "Run stopped (region reassigned) before the PDF was read; web search budget also exhausted.",
+    "urls_tried": [
+      "https://www.icmr.gov.in/ethical-guidelines-for-application-of-artificial-intelligence-in-biomedical-research-and-healthcare",
+      "https://www.icmr.gov.in/icmrobject/custom_data/pdf/Ethical-guidelines/Ethical_Guidelines_AI_Healthcare_2023.pdf"
+    ]
+  },
+  {
+    "jurisdiction": "India (national)",
+    "lead": "NMC Registered Medical Practitioner (Professional Conduct) Regulations 2023 (notified Aug 2023, reportedly held in abeyance) may restate or replace the 2020 Telemedicine Practice Guidelines incl. the AI/ML prescribing ban.",
+    "why_unverified": "NMC page returned a redirect; not followed before the stop. Status and AI/telemedicine text not checked.",
+    "urls_tried": [
+      "https://www.nmc.org.in/rules-regulations/national-medical-commission-registered-medical-practitioner-professional-conduct-regulations-2023/"
+    ]
+  },
+  {
+    "jurisdiction": "United Kingdom",
+    "lead": "Human Medicines Regulations 2012 reg. 214(1): 'A person may not sell or supply a prescription only medicine except in accordance with a prescription given by an appropriate practitioner'; reg. 214(3)-(6) list only human registrants (doctors, dentists, supplementary and non-medical independent prescribers, approved country health professionals). Last amended 31/12/2020. Implicit bar to rungs 2-4, but no regulator has tied it to AI.",
+    "why_unverified": "General statute not tied to AI by MHRA/GMC/GPhC in any source opened",
+    "urls_tried": [
+      "https://www.legislation.gov.uk/uksi/2012/1916/regulation/214"
+    ]
+  },
+  {
+    "jurisdiction": "United Kingdom (GMC)",
+    "lead": "GMC 'Good practice in proposing, prescribing, providing and managing medicines and devices' (remote prescribing paragraphs) and GMC AI/innovative technologies learning page likely state the doctor remains responsible for prescribing decisions made with AI support",
+    "why_unverified": "gmc-uk.org returned 403 to both WebFetch and curl",
+    "urls_tried": [
+      "https://www.gmc-uk.org/professional-standards/learning-materials/artificial-intelligence-and-innovative-technologies",
+      "https://www.gmc-uk.org/professional-standards/the-professional-standards/good-practice-in-proposing-prescribing-providing-and-managing-medicines-and-devices",
+      "https://www.gmc-uk.org/-/media/documents/prescribing-guidance-updated-english-20210405_pdf-85260533.pdf"
+    ]
+  },
+  {
+    "jurisdiction": "United Kingdom (NHS England)",
+    "lead": "GP practices using AI chatbots / automation to process repeat prescription requests (vendor claims 55-65% handled automatically, routed to clinical team who still prescribe); RCGP says GP AI use is a 'postcode lottery'. 10 Year Health Plan (Jul 2025) promises 'decision support tools: to assist clinicians in diagnosis, test ordering, referrals and prescribing' and an NHS App 'My Medicines' tool to manage repeat prescriptions (rung 1 at most). No NHS England pilot of AI approving repeats found.",
+    "why_unverified": "Vendor blog and RCGP news only; no NHS England primary source on AI repeat-prescription handling; england.nhs.uk AVT guidance blocked by bot wall",
+    "urls_tried": [
+      "https://www.softomatesolutions.com/blog/ai-chatbot-uk-gp-practices-2026/",
+      "https://www.rcgp.org.uk/News/Over-one-in-four-gps-use-ai",
+      "https://assets.publishing.service.gov.uk/media/6888a0b1a11f859994409147/fit-for-the-future-10-year-health-plan-for-england.pdf",
+      "https://www.england.nhs.uk/long-read/guidance-on-the-use-of-ai-enabled-ambient-scribing-products-in-health-and-care-settings/"
+    ]
+  },
+  {
+    "jurisdiction": "United Kingdom (MHRA)",
+    "lead": "National Commission into the Regulation of AI in Healthcare: recommendations (10 Sep 2026) and Government Response (6 Oct 2026) set the future UK AI-in-health framework (lifecycle regulation, liability 'sinks', human oversight); AI Airlock phase 3 launched 6 Oct 2026 (post-market surveillance; no cohort yet). Neither mentions prescribing.",
+    "why_unverified": "Opened, but no prescribing content; would be an enabling_framework entry only if the tracker wants general UK AI-health regulation",
+    "urls_tried": [
+      "https://assets.publishing.service.gov.uk/media/6aa2662962ec7fe7bedf52b9/Full_National_Commission_Report_-_Publication__1_.pdf",
+      "https://assets.publishing.service.gov.uk/media/6ac3b9e0c9bd185c481eca06/National_Commission_Government_Response_v1.0.pdf",
+      "https://www.gov.uk/government/publications/ai-airlock-phase-3-application",
+      "https://www.gov.uk/government/publications/ai-airlock-phase-2-cohort"
+    ]
+  },
+  {
+    "jurisdiction": "Denmark",
+    "lead": "Danish Medicines Agency (DKMA) running unnamed pilots analysing real-world data to guide patient-tailored prescribing; Director Claus Møldrup at a HIRA symposium 2026-08-28: 'humans must make the final decision'",
+    "why_unverified": "Korean trade-press only (dailypharm); decision support below rung 1; no DKMA page found",
+    "urls_tried": [
+      "https://www.dailypharm.com/eng/user/news/8411",
+      "https://laegemiddelstyrelsen.dk/da/soeg/?q=kunstig%20intelligens"
+    ]
+  },
+  {
+    "jurisdiction": "Estonia",
+    "lead": "e-prescription allows physician-issued remote repeat prescriptions (phone/email); no AI renewal found",
+    "why_unverified": "No AI element in sources",
+    "urls_tried": [
+      "https://tervisekassa.ee/en/kkk/digital-prescription-0",
+      "https://www.err.ee/1609996867/riik-plaanib-tehisintellekti-abil-tohustada-tervishoiu-valdkonna-tood"
+    ]
+  },
+  {
+    "jurisdiction": "Not reached (2026-11-12 pass)",
+    "lead": "Netherlands, Spain, Switzerland, Portugal, Finland, Iceland, Latvia, UK devolved (Scotland, Wales), OECD; and outside Europe: New Zealand, Mexico, Argentina, Chile, Colombia, Canadian provinces, South Korea, Taiwan, Hong Kong, Pakistan, Bangladesh, Indonesia, Philippines, Thailand, Vietnam, Malaysia, Israel, UAE federal, Dubai, Qatar, South Africa, Kenya, Rwanda, Nigeria, Ghana, Ethiopia",
+    "why_unverified": "Session web-search budget (200 calls, shared) exhausted early; regions outside Europe reassigned to other agents mid-run. Absence here is not evidence of absence.",
+    "urls_tried": []
+  }
+]

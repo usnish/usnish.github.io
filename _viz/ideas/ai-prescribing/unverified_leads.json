@@ -1,0 +1,167 @@
+[
+  {
+    "jurisdiction": "Arizona",
+    "lead": "Arizona regulatory sandbox reportedly open to AI; Doctronic said to be in talks with Arizona regulators; a blog table lists 'Arizona SB 1847' (March 2026) on prescription renewals.",
+    "why_unverified": "No official source found for SB 1847; web search budget exhausted. Arizona HB 4080 (AI nursing-tasks pilot) was found but died 2026-06-13 and excluded independent treatment.",
+    "urls_tried": [
+      "https://www.ailawsbystate.com/tools/healthcare-ai-tracker",
+      "https://www.statevitals.us/blog/state-healthcare-policy-legislation-updates-december-2025"
+    ]
+  },
+  {
+    "jurisdiction": "Wyoming",
+    "lead": "AP (July 2026) and Snell & Wilmer say Wyoming is waiving rules for AI in health care / Doctronic in talks; StateVitals says Wyoming is developing a sandbox.",
+    "why_unverified": "No statute, agency page or agreement found.",
+    "urls_tried": [
+      "https://www.jems.com/patient-care/is-ai-ready-to-prescribe-medications-doctors-wary-of-ut-automated-refill-program/"
+    ]
+  },
+  {
+    "jurisdiction": "Texas",
+    "lead": "AP says Texas is waiving rules for AI in health care; Doctronic in talks with Texas.",
+    "why_unverified": "TRAIGA sandbox law verified (entry us-tx-traiga-sandbox) but no prescribing participant or agreement found.",
+    "urls_tried": [
+      "https://capitol.texas.gov/tlodocs/89R/billtext/html/HB00149F.htm"
+    ]
+  },
+  {
+    "jurisdiction": "Delaware",
+    "lead": "Holland & Knight says Delaware is 'implementing similar sandbox programs' (agentic AI sandbox).",
+    "why_unverified": "No primary source opened; no prescribing use found.",
+    "urls_tried": [
+      "https://www.jdsupra.com/legalnews/states-continue-efforts-to-regulate-ai-3082341/"
+    ]
+  },
+  {
+    "jurisdiction": "US states (various)",
+    "lead": "Dorsey cites an NCSL AI-in-health-care database counting 11 bills on autonomous clinical decision-making in 2026; only Iowa HSB 766, Idaho H 945 and Illinois SB 2993 were identified here. Others may include more Cicero-template bills.",
+    "why_unverified": "NCSL database URL not found; search budget exhausted.",
+    "urls_tried": [
+      "https://www.dorseyhealthlaw.com/the-use-of-ai-for-autonomous-medical-decision-making-does-utahs-ai-prescription-renewal-pilot-program-go-too-far/"
+    ]
+  },
+  {
+    "jurisdiction": "Utah",
+    "lead": "A blog claimed Utah HB 249 (signed 2026-03-14) lets AI approve renewals without physician review.",
+    "why_unverified": "Checked le.utah.gov: 2026 H.B. 249 is 'Federal Funds Modifications', unrelated. Likely false.",
+    "urls_tried": [
+      "https://le.utah.gov/~2026/bills/static/HB0249.html"
+    ]
+  },
+  {
+    "jurisdiction": "Utah",
+    "lead": "Whether Doctronic's agreement was extended past ~2026-10-24, and whether any medication group reached Phase 2.",
+    "why_unverified": "State pages still say 'Active', 'Phase 1', 'Oct 2025 - Oct 2026'; no extension document published.",
+    "urls_tried": [
+      "https://commerce.utah.gov/ai/agreements/doctronic/",
+      "https://commerce.utah.gov/ai/regulatory-relief-4/authorized-pilots/"
+    ]
+  },
+  {
+    "jurisdiction": "Shanghai",
+    "lead": "Global Times/RFA say Shanghai issued a ban on AI-generated prescriptions (from 2022)",
+    "why_unverified": "No Shanghai rule text found",
+    "urls_tried": [
+      "https://globaltimes.cn/page/202503/1329304.shtml"
+    ]
+  },
+  {
+    "jurisdiction": "China (national)",
+    "lead": "NHC + 4 ministries, Opinions on promoting and regulating 'AI+health' (Nov 2025): AI prescription-review support for primary care; no AI prescribing authority",
+    "why_unverified": "Only a Xinhua summary opened; assistive review, not rung 2-4",
+    "urls_tried": [
+      "https://www.news.cn/politics/20251104/5e65992574e34b60aee34161b3573013/c.html"
+    ]
+  },
+  {
+    "jurisdiction": "China",
+    "lead": "2026 Expert Consensus on AI in medical institutions: physician has final authority; drug-regimen AI is high-risk",
+    "why_unverified": "Expert consensus, not a regulator; secondary only",
+    "urls_tried": [
+      "https://finance.sina.com.cn/jjxw/2026-04-03/doc-inhtfeqz3777662.shtml"
+    ]
+  },
+  {
+    "jurisdiction": "China",
+    "lead": "Tsinghua 'Agent Hospital' and other AI hospital pilots",
+    "why_unverified": "Not searched",
+    "urls_tried": []
+  },
+  {
+    "jurisdiction": "Brazil",
+    "lead": "PL 2338/2023 AI bill (passed Senate Dec 2024, in Câmara since Mar 2025) may class health AI as high-risk; PL 266/2024 on AI assisting doctors",
+    "why_unverified": "Senate text is a scanned PDF; not prescribing-specific",
+    "urls_tried": [
+      "https://www25.senado.leg.br/web/atividade/materias/-/materia/157233"
+    ]
+  },
+  {
+    "jurisdiction": "United Kingdom",
+    "lead": "No AI prescribing/renewal pilot found. Human Medicines Regulations 2012 reg. 214 limits POM prescriptions to listed human 'appropriate practitioners' (implicit barrier to rungs 2-4). MHRA ambient voice tech guidance (29 Jul 2026) says AVT that autonomously places orders without clinician review is a regulated device. AI Airlock phase-2 cohort (Oct 2025) has no prescribing product.",
+    "why_unverified": "Not explicit AI-prescribing rules; NHS England AVT guidance and GMC AI page could not be loaded",
+    "urls_tried": [
+      "https://www.legislation.gov.uk/uksi/2012/1916/regulation/214",
+      "https://www.gov.uk/government/publications/ai-airlock-phase-2-cohort",
+      "https://assets.publishing.service.gov.uk/media/6a68daaff23ff62c51c1a7a3/MHRA_Guidance_on_Ambient_Voice_Technology-Enabled_Products.pdf",
+      "https://www.england.nhs.uk/long-read/guidance-on-the-use-of-ai-enabled-ambient-scribing-products-in-health-and-care-settings/"
+    ]
+  },
+  {
+    "jurisdiction": "Australia",
+    "lead": "Ahpra AI guidance ('practitioner remains responsible'); Boards say prescribing via online questionnaire without real-time consult is not good practice",
+    "why_unverified": "Neither names AI-generated prescriptions",
+    "urls_tried": [
+      "https://www.ahpra.gov.au/Resources/Artificial-Intelligence-in-healthcare.aspx",
+      "https://www.ahpra.gov.au/Resources/Information-for-practitioners-who-provide-virtual-care.aspx"
+    ]
+  },
+  {
+    "jurisdiction": "UAE (Abu Dhabi / Dubai)",
+    "lead": "DoH AI policy (2018), DoH Responsible AI Standard (2025), DHA AI Policy (2021)",
+    "why_unverified": "Per IBA summary no prescribing provisions; primary texts not opened",
+    "urls_tried": [
+      "https://www.ibanet.org/ai-healthcare-regulation-uae",
+      "https://www.tamimi.com/news/new-policy-on-artificial-intelligence-in-healthcare-issued-by-the-department-of-health-abu-dhabi"
+    ]
+  },
+  {
+    "jurisdiction": "South Korea",
+    "lead": "MOHW AI Primary Healthcare Strategy (Aug 2026) with AI prescription review reportedly from 2028; AI Basic Act (in force 2026-01-22) treats healthcare AI as high-impact",
+    "why_unverified": "Secondary only; review, not prescribing",
+    "urls_tried": [
+      "https://view.asiae.co.kr/en/article/2026080609271082424",
+      "https://www.dailypharm.com/eng/user/news/8411"
+    ]
+  },
+  {
+    "jurisdiction": "Israel",
+    "lead": "No MoH AI prescription-renewal rule found; Innovation Authority AI health sandbox exists",
+    "why_unverified": "Sandbox page 403",
+    "urls_tried": [
+      "https://innovationisrael.org.il/en/?p=22188",
+      "https://www.jpost.com/health-and-wellness/article-847981"
+    ]
+  },
+  {
+    "jurisdiction": "Estonia",
+    "lead": "e-prescription allows doctor-issued remote repeat prescriptions; no AI renewal found",
+    "why_unverified": "No AI element in sources",
+    "urls_tried": [
+      "https://tervisekassa.ee/en/kkk/digital-prescription-0"
+    ]
+  },
+  {
+    "jurisdiction": "Denmark",
+    "lead": "Danish Medicines Agency piloting AI on real-world data to guide prescribing (decision support)",
+    "why_unverified": "Secondary only; below rung 1",
+    "urls_tried": [
+      "https://www.dailypharm.com/eng/user/news/8411"
+    ]
+  },
+  {
+    "jurisdiction": "Not searched",
+    "lead": "Germany, France, Netherlands, other Nordics, Switzerland, Canada, New Zealand, Hong Kong, Taiwan, Mexico, Rwanda, Kenya, Nigeria, South Africa, Philippines, Vietnam, Indonesia, Kazakhstan, Uzbekistan, Ukraine",
+    "why_unverified": "Session web-search budget exhausted; absence here is not evidence of absence",
+    "urls_tried": []
+  }
+]

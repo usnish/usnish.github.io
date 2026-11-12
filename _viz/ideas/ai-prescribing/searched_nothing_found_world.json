@@ -1,0 +1,83 @@
+[
+  {
+    "country": "France",
+    "queries": [
+      "WebSearch: 'Leitlinie Ordre des médecins intelligence artificielle prescription médicale décision médecin 2025' (refused: session search budget exhausted)",
+      "WebFetch Légifrance loi 2021-1017 art. 17 (CSP L.4001-3)",
+      "WebFetch HAS 'Premières clefs d'usage de l'IA générative en santé' (p_3703115, guide p_3703122)",
+      "HAS note de cadrage 'Accompagner le bon usage des SIA en contexte de soins' (PDF, grep prescri/décision)"
+    ],
+    "notes": "Nothing prescription-specific. CSP L.4001-3 (bioethics law 2021, art. 17) only requires informing patients and professionals when an algorithmic medical device trained on massive data is used, and explainability; no human-decision clause. HAS generative-AI guide (Oct 2025, updated 2026-04-15): 'Chaque usage d'un système d'IA générative doit être conscient, supervisé et raisonné'; no mention of prescription. HAS scoping note (validated 2025-04-02) plans good-practice recommendations covering 'la décision autonome, la vérification et contrôle humain des résultats des SIA'; final text not located (lead). CNOM and ANSM not reached."
+  },
+  {
+    "country": "Belgium",
+    "queries": [
+      "WebFetch ordomedic.be/fr (Ordre des médecins home: AI/telemedicine/e-prescription items)",
+      "WebFetch Ordre avis 'Les règles déontologiques applicables à la télémédecine' (2026-01-23, a173002)"
+    ],
+    "notes": "Telemedicine avis (2026-01-23) says e-prescriptions are created on Recip-e, a rigorous clinical exam after anamnesis is 'indispensable' for diagnosis and treatment, and telemedicine as a substitute for a classic consultation should be avoided for acute conditions in unknown patients; no mention of AI, algorithms or questionnaires. Only AI item on the Ordre site is a news post on a UAntwerpen master's thesis (2026-03-27). AFMPS/FAGG and Recip-e rules not checked."
+  },
+  {
+    "country": "Austria",
+    "queries": [
+      "WebFetch aerztekammer.at (ÖÄK home: KI/Telemedizin/e-Rezept links)",
+      "ÖÄZ Sammelband e-Health (April 2025-May 2026, PDF) grep KI/Rezept/verschreib/ersetz/autonom"
+    ],
+    "notes": "ÖÄK e-health compendium covers e-Rezept (private prescriptions digital, e-Medikation mandatory from 2026-01-01) but nothing on AI issuing or renewing prescriptions; only a quoted remark that AI will not replace the doctor. Ärztegesetz and BASG not checked."
+  },
+  {
+    "country": "Ireland",
+    "queries": [
+      "Medical Council Guide to Professional Conduct and Ethics 9th ed. 2024 (PDF opened; grepped artificial/AI/algorithm/automat/telemedicine/prescrib)",
+      "PSI sitemap scan for AI/online/internet/prescribing pages",
+      "medicalcouncil.ie sitemap/news scan for AI",
+      "WebSearch 'Ireland Medical Council artificial intelligence prescribing doctors guidance 2026' (refused: session search budget exhausted)"
+    ],
+    "notes": "2024 Medical Council guide has no AI text; s.34 prescribing and s.37.1 telemedicine ('must observe the same standards of conduct and practice as would be expected if treating the patient in-person'). PSI internet-supply registration covers non-prescription medicines only. HSE not checked (no search)."
+  },
+  {
+    "country": "Sweden",
+    "queries": [
+      "Sweden AI prescription renewal pilot region primary care",
+      "artificiell intelligens receptförskrivning förnyelse recept Sverige (refused: budget)",
+      "AI förnyar recept vårdcentral (refused: budget)"
+    ],
+    "notes": "Closest: Läkemedelsverket press release 2026-03-04 announcing spring-2026 inspections of ambient-scribe manufacturers (MDR may apply); no prescribing content. https://via.tt.se/pressmeddelande/4272364/lakemedelsverket-granskar-ai-assistenter-i-sjukvarden?lang=sv"
+  },
+  {
+    "country": "Norway",
+    "queries": [
+      "Norge kunstig intelligens resept fornyelse Helsedirektoratet",
+      "kunstig intelligens reseptfornyelse fastlege (refused: budget)",
+      "helsedirektoratet.no site search (JS-rendered, no results)"
+    ],
+    "notes": "Only general Helsedirektoratet AI material (Felles KI-plan 2024-2025; assessment of a public AI health-question service on Helsenorge). Tidsskriftet kronikk 'Bruk av KI-verktøy på fastlegekontoret' (Nov 2025) returned 403."
+  },
+  {
+    "country": "Denmark",
+    "queries": [
+      "kunstig intelligens receptfornyelse læge",
+      "Lægemiddelstyrelsen kunstig intelligens ordination recept 2026",
+      "laegemiddelstyrelsen.dk site search 'kunstig intelligens'",
+      "dailypharm.com/eng/user/news/8411 (opened)"
+    ],
+    "notes": "Nothing on AI issuing/renewing prescriptions. DKMA AI use is internal/regulatory plus unnamed real-world-data prescribing-support pilots (decision support, below rung 1); see lead."
+  },
+  {
+    "country": "Estonia",
+    "queries": [
+      "tehisintellekt retsepti pikendamine perearst",
+      "Tervisekassa tehisintellekt pilootprojekt retsept 2026 (refused: budget)",
+      "tervisekassa.ee digital prescription FAQ (opened)",
+      "ERR 1609996867 'Riik plaanib tehisintellekti abil tõhustada tervishoiu valdkonna tööd' (opened)"
+    ],
+    "notes": "Tervisekassa: repeat prescriptions can be renewed by phone/email by the physician; no AI. ERR: state plans AI for documentation (ambulance AI note-drafting concept, Eesti.ai); 'Esimesi katsetusi tehisaruga tervishoius juba tehakse' (first AI trials in healthcare already under way) but nothing on prescriptions. Separate ERR item: proposal to let specialist nurses renew repeat prescriptions (human, not AI)."
+  },
+  {
+    "country": "Lithuania",
+    "queries": [
+      "dirbtinis intelektas receptas išrašymas gydytojas e-receptas"
+    ],
+    "notes": "esveikata.lt e-prescription subsystem does automatic drug-interaction checks at issue (decision support, below rung 1). LSMU survey of family doctors cites lack of legal regulation as a barrier to AI. Nothing on AI issuing/renewing. Only one search possible (budget)."
+  }
+]

@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Health & AI Policy Index (HAPI)",
+    "url": "https://www.healthaipolicy.org/",
+    "operator": "Health & AI Policy Index (led by Will Moss); featured in npj Digital Medicine",
+    "scope": "curated registry of laws, regulations and standards on AI in health care",
+    "geography": "US states and federal, plus selected international frameworks",
+    "last_updated": "2026-11-04",
+    "policies_tracked": 408,
+    "covers_prescribing": "partial",
+    "utah_agreements_listed": [
+      "Doctronic",
+      "Legion Health",
+      "August AI"
+    ],
+    "utah_agreements_not_listed": [
+      "Nolla Health"
+    ],
+    "keyword_tags": [
+      "Safety & Risk",
+      "Transparency & Governance",
+      "Clinical Quality & Efficacy",
+      "Privacy & Data",
+      "Equity & Bias"
+    ],
+    "paper_doi": "https://doi.org/10.1038/s41746-026-02734-y",
+    "what_it_lacks": "Broader than this page. Its five topic tags do not include prescribing, though its operational rules include one (H1) that bars AI from reserved clinical functions, prescribing among them, without licensed professional involvement. Doctronic, Legion Health and August AI each have their own entry with a summary, status and link to the signed agreement (Doctronic 'Active Pilot'; Legion Health and August AI 'Approved - demonstration not yet begun'). Nolla Health, signed 2026-09-22, was not yet listed when checked. No coding by autonomy rung, which is this page's narrower aim.",
+    "checked_on": "2026-11-12",
+    "notes": "Home page: 'Last updated November 4, 2026 · 408 policies tracked · Featured in npj Digital Medicine'. Describes itself as 'a curated, research-driven registry of laws, regulations, and standards shaping artificial intelligence in healthcare'. Keyword tags: five topics, none on prescribing. Rechecked 2026-11-12 in the fact-check pass.",
+    "operational_rule_h1": "AI may not perform reserved clinical functions (diagnosis, treatment decisions, prescribing, formal clinical assessment) without licensed professional involvement."
+  }
+]

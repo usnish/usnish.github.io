@@ -1,0 +1,45 @@
+[
+  {
+    "country": "Hong Kong",
+    "queries": [],
+    "sources_checked": [
+      "https://www.mchk.org.hk/english/code/index.html",
+      "https://www.mchk.org.hk/english/code/files/Code_of_Professional_Conduct_(English_Version)_(Revised_in_October_2022).pdf"
+    ],
+    "result": "MCHK Code of Professional Conduct (rev. Oct 2022) has no AI, algorithm or telemedicine text; s.9.1 only requires a doctor to prescribe after proper consultation. No AI-prescribing rule found. Department of Health and Hospital Authority not checked.",
+    "date_checked": "2026-11-12"
+  },
+  {
+    "country": "Malaysia",
+    "queries": [],
+    "sources_checked": [
+      "https://mmc.gov.my/",
+      "https://mmc.gov.my/publications/"
+    ],
+    "result": "MMC publications list has no telemedicine, AI or e-prescription guidance (latest ethics circular 2000). MOH telemedicine guidance and Telemedicine Act 1997 not opened.",
+    "date_checked": "2026-11-12"
+  },
+  {
+    "country": "South Korea",
+    "queries": [],
+    "sources_checked": [
+      "https://view.asiae.co.kr/en/article/2026080609271082424",
+      "https://www.dailypharm.com/eng/user/news/8411"
+    ],
+    "result": "MOHW 'AI Primary Healthcare Strategy' (2026-08-06) mentions only an AI assistant that explains prescriptions to patients; Dailypharm says HIRA AI focus is claims review. Neither supports the earlier lead of AI prescription review from 2028. No regulator source on AI prescribing opened (law.go.kr / mohw.go.kr not reached).",
+    "date_checked": "2026-11-12"
+  },
+  {
+    "country": "China (other provinces)",
+    "queries": [
+      "北京市互联网诊疗监管实施办法（试行） 印发 正式 严禁使用人工智能 自动生成处方 wjw.beijing.gov.cn",
+      "湖南省医疗保障局 定点零售药店 通知 \"严禁使用人工智能等自动生成处方\" 2025 (refused: budget)"
+    ],
+    "sources_checked": [
+      "https://wjw.fj.gov.cn/xxgk/fgwj/zxwj/ (JS-rendered, could not list)",
+      "https://ybj.hunan.gov.cn/ybj/first113541/firstF/f2113606/index.html"
+    ],
+    "result": "No Beijing final version found (draft only). No additional province with the clause confirmed; the province sweep was cut short by the search cap.",
+    "date_checked": "2026-11-12"
+  }
+]

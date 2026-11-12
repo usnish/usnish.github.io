@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Prescribing Ladder</title>
+<meta name="description" content="Where AI may legally prescribe or renew medications, and how independently, coded on a four-rung ladder: Utah's four sandbox pilots against the bans, human-must-decide rules and failed bills elsewhere, with a source for every entry.">
+<link rel="canonical" href="https://usnish.xyz/ai-prescribing-ladder/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://usnish.xyz/ai-prescribing-ladder/">
+<meta property="og:title" content="Can an AI write your prescription? One state, four pilots, and a wall of rules">
+<meta property="og:description" content="Of the places checked, only Utah lets AI go past drafting a prescription for a clinician to sign, through four sandbox pilots, and in the two that have started a physician still reviews every script. Elsewhere: bans, human-must-decide rules, and failed bills to make AI a prescriber.">
+<meta property="og:site_name" content="Usnish Majumdar">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Can an AI write your prescription? One state, four pilots, and a wall of rules">
+<meta name="twitter:description" content="Of the places checked, only Utah lets AI go past drafting a prescription for a clinician to sign, and in its two running pilots a physician still reviews every script. A sourced map of the rules, bans and bills.">
+<meta name="author" content="Usnish Majumdar, MD">
+<link rel="stylesheet" href="../assets/viz/viz.css">
+<style>
+  main { max-width: 900px; }
+  /* Strength colours (dataviz validator: light and dark pass; light contrast relief = text labels on every row) */
+  :root {
+    color-scheme: light;
+    --s-ban: #eb6834; --s-human: #2a78d6; --s-title: #1baf7a; --s-quest: #eda100;
+    --ut: #1f4e79; --ut-soft: #e3ecf5; --on-accent: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --bg: #17191c; --fg: #e9e8e4; --muted: #a9a8a3; --faint: #7a7a78; --line: #30333a; --panel: #1f2227;
+      --accent: #7fb0e6; --accent-dark: #a9cbf0; --nodata: #2a2d33; --stroke: #17191c; --hover: #ffffff; --dot: #e9e8e4; --warn: #e07a55;
+      --s-ban: #d95926; --s-human: #3987e5; --s-title: #199e70; --s-quest: #c98500;
+      --ut: #7fb0e6; --ut-soft: #1d2a38; --on-accent: #10161e;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #17191c; --fg: #e9e8e4; --muted: #a9a8a3; --faint: #7a7a78; --line: #30333a; --panel: #1f2227;
+    --accent: #7fb0e6; --accent-dark: #a9cbf0; --nodata: #2a2d33; --stroke: #17191c; --hover: #ffffff; --dot: #e9e8e4; --warn: #e07a55;
+    --s-ban: #d95926; --s-human: #3987e5; --s-title: #199e70; --s-quest: #c98500;
+    --ut: #7fb0e6; --ut-soft: #1d2a38; --on-accent: #10161e;
+  }
+  body { background: var(--bg); color: var(--fg); }
+  .byline { font-size: 13px; color: var(--muted); margin: 10px 0 0; }
+  .note, section.chart > p.note { font-size: 12px; color: var(--muted); margin: 6px 0 0; max-width: 80ch; }
+  section.chart > p { color: var(--fg); }
+  section.chart > p.sub { color: var(--muted); }
+  section.chart h3 { font-size: 15px; margin: 22px 0 6px; }
+  .stand { font-size: 16px; line-height: 1.55; margin: 4px 0 6px; max-width: 72ch; }
+  .stand b { font-variant-numeric: tabular-nums; }
+  a { overflow-wrap: anywhere; }
+
+  /* keys and badges */
+  .key { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 12px; color: var(--fg); margin: 8px 0 0; }
+  .key span { display: inline-flex; align-items: center; gap: 6px; }
+  .sw { display: inline-block; width: 11px; height: 11px; border-radius: 3px; flex: 0 0 auto; }
+  .sw.ban { background: var(--s-ban); } .sw.human { background: var(--s-human); }
+  .sw.title { background: var(--s-title); } .sw.questionnaire { background: var(--s-quest); }
+  .badge { display: inline-block; font-size: 11px; line-height: 1.3; padding: 1px 7px; border-radius: 10px; border: 1px solid var(--line); color: var(--muted); white-space: nowrap; }
+  .badge.st-enacted, .badge.st-regulation { color: var(--fg); border-color: var(--faint); }
+  .badge.st-bill_failed { text-decoration: line-through; text-decoration-color: var(--faint); }
+  .badge.st-bill_pending { color: var(--fg); border-style: dashed; border-color: var(--fg); }
+
+  /* ladder */
+  .ladder { margin: 16px 0 0; border-left: 3px solid var(--line); }
+  .rung { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 0 12px; padding: 12px 0 14px; border-bottom: 1px solid var(--line); position: relative; }
+  .rung:first-child { border-top: 1px solid var(--line); }
+  .rung .num { font-size: 26px; font-weight: 700; color: var(--muted); text-align: center; line-height: 1.1; font-variant-numeric: tabular-nums; }
+  .rung h3 { margin: 0 0 8px !important; font-size: 15px !important; }
+  .lanes { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 10px 16px; }
+  @media (max-width: 640px) { .lanes { grid-template-columns: minmax(0, 1fr); } }
+  .lane-h { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; margin: 0 0 5px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip { font: inherit; font-size: 13px; text-align: left; line-height: 1.3; padding: 6px 10px; border-radius: 8px; cursor: pointer; max-width: 100%;
+    background: var(--bg); color: var(--fg); border: 1.5px solid var(--line); }
+  .chip small { display: block; font-size: 11px; color: var(--muted); }
+  .chip.op { background: var(--ut); border-color: var(--ut); color: var(--on-accent); }
+  .chip.op small { color: var(--on-accent); opacity: .85; }
+  .chip.paper { border-color: var(--ut); border-style: dashed; }
+  .chip.bill { border-style: dashed; }
+  .chip.bill.st-bill_failed b { text-decoration: line-through; text-decoration-color: var(--faint); }
+  .chip.on { outline: 2px solid var(--fg); outline-offset: 1px; }
+  .chip:focus-visible, .wrow:focus-visible, .filters button:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .none { font-size: 13px; color: var(--muted); font-style: italic; }
+  .rung-note { font-size: 12px; color: var(--muted); margin: 8px 0 0; max-width: 70ch; }
+
+  /* detail card */
+  .card { position: static; width: auto; box-shadow: none; z-index: auto; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; font-size: 13px; margin: 14px 0 0; }
+  .card[hidden] { display: none; }
+  .card h4 { margin: 0 0 4px; font-size: 15px; }
+  .card .meta { display: flex; flex-wrap: wrap; gap: 5px; margin: 0 0 8px; }
+  .card p { margin: 0 0 7px; max-width: 76ch; }
+  .card dl { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 3px 12px; margin: 6px 0 0; }
+  .card dt { color: var(--muted); }
+  .card dd { margin: 0; overflow-wrap: anywhere; }
+  @media (max-width: 520px) { .card dl { grid-template-columns: minmax(0, 1fr); } .card dt { margin-top: 4px; } }
+
+  /* Utah table */
+  table.ut { border-collapse: collapse; width: 100%; font-size: 13px; margin-top: 10px; }
+  table.ut th, table.ut td { text-align: left; padding: 6px 8px 6px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+  table.ut th { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; font-weight: 600; }
+  table.ut td.n { font-variant-numeric: tabular-nums; white-space: nowrap; }
+  @media (max-width: 640px) {
+    table.ut thead { display: none; }
+    table.ut, table.ut tbody, table.ut tr, table.ut td { display: block; width: 100%; }
+    table.ut tr { border-bottom: 1px solid var(--line); padding: 8px 0; }
+    table.ut td { border: 0; padding: 2px 0; white-space: normal; }
+    table.ut td[data-l]::before { content: attr(data-l) ": "; color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .05em; font-weight: 600; }
+  }
+
+  /* wall */
+  .filters { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0 0; }
+  .filters button { font: inherit; font-size: 13px; background: var(--bg); color: var(--muted); cursor: pointer; border: 1px solid var(--line); border-radius: 6px; padding: 6px 11px; }
+  .filters button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+  .wgrp { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; margin: 18px 0 4px; }
+  .wplace { font-size: 13px; font-weight: 650; margin: 10px 0 2px; }
+  .wrow { display: grid; grid-template-columns: 4px minmax(0, 1fr) auto; gap: 4px 10px; align-items: start; width: 100%; font: inherit; font-size: 13px;
+    text-align: left; background: none; border: 0; border-radius: 6px; padding: 6px 4px; cursor: pointer; color: var(--fg); }
+  .wrow:hover, .wrow.open { background: var(--panel); }
+  .wrow .bar { align-self: stretch; border-radius: 2px; }
+  .wrow .bar.ban { background: var(--s-ban); } .wrow .bar.human { background: var(--s-human); }
+  .wrow .bar.title { background: var(--s-title); } .wrow .bar.questionnaire { background: var(--s-quest); }
+  .wrow .what { line-height: 1.35; }
+  .wrow .what small { display: block; color: var(--muted); font-size: 12px; }
+  .wrow .tags { display: flex; flex-direction: column; align-items: flex-end; gap: 3px; }
+  @media (max-width: 560px) {
+    .wrow { grid-template-columns: 4px minmax(0, 1fr); }
+    .wrow .tags { grid-column: 2; flex-direction: row; flex-wrap: wrap; align-items: center; }
+  }
+  .wrow + .card { margin: 2px 0 8px 14px; }
+  .count { font-size: 13px; color: var(--muted); margin: 10px 0 0; }
+
+  /* bills */
+  .bills { list-style: none; padding: 0; margin: 12px 0 0; display: grid; gap: 10px; }
+  .bills li { border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; font-size: 13px; }
+  .bills li.st-bill_pending { border-style: dashed; border-color: var(--fg); }
+  .bills .hd { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: baseline; margin: 0 0 4px; }
+  .bills .hd b { font-size: 14px; }
+  .bills p { margin: 0 0 5px; max-width: 76ch; }
+  .bills .out { color: var(--muted); }
+
+  /* watch */
+  .watch { margin: 10px 0 0; padding-left: 20px; max-width: 78ch; font-size: 14px; }
+  .watch li { margin: 0 0 9px; }
+  .watch .st { display: block; font-size: 12px; color: var(--muted); }
+
+  table.prior { border-collapse: collapse; width: 100%; font-size: 13px; margin-top: 10px; }
+  table.prior th, table.prior td { text-align: left; padding: 6px 8px 6px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+  table.prior th { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; font-weight: 600; }
+  @media (max-width: 600px) { table.prior .hide-sm { display: none; } }
+  section.about ul { padding-left: 20px; }
+  details.more { margin: 6px 0 10px; }
+  details.more summary { cursor: pointer; color: var(--fg); }
+  details.more li { font-size: 13px; overflow-wrap: anywhere; }
+  section.about li, .card, .bills li { overflow-wrap: anywhere; }
+</style>
+</head>
+<body>
+<main>
+  <a class="back" href="/projects/">&larr; all projects</a>
+  <header>
+    <h1>Can an AI write your prescription? One state, four pilots, and a wall of rules</h1>
+    <p class="lede">Software already drafts prescriptions for clinicians to sign. The question now is how far past that the law lets it go. This page codes each law, rule, pilot and bill found on a four-rung ladder, from AI drafting a prescription for a clinician to sign, up to AI as the prescriber of record, and places each one on the rung it actually operates at today.</p>
+    <p class="byline">By Usnish Majumdar, MD &middot; November 2026 &middot; as of <span data-k="as_of_long"></span></p>
+  </header>
+
+  <!-- 1. Where things stand -->
+  <section class="chart" id="now">
+    <h2>Where things stand</h2>
+    <p class="stand" id="stand"></p>
+  </section>
+
+  <!-- 2. The ladder -->
+  <section class="chart" id="ladder-sec">
+    <h2>The ladder</h2>
+    <p>Each rung gives AI more independence. Filled boxes are operating at that rung today. Dashed boxes are allowed on paper, or proposed, but not operating there. Tap any box for what it allows and its source.</p>
+    <div class="key">
+      <span><i class="sw" style="background:var(--ut)"></i>operating at this rung today</span>
+      <span><i class="sw" style="border:1.5px dashed var(--ut);background:transparent"></i>allowed on paper, not operating here</span>
+      <span><i class="sw" style="border:1.5px dashed var(--faint);background:transparent"></i>bill or framework</span>
+    </div>
+    <div class="ladder" id="ladder"></div>
+    <div class="card" id="ladcard" hidden aria-live="polite"></div>
+
+    <h3>Utah's four pilots, one by one</h3>
+    <p class="sub" id="ut-intro" style="color:var(--muted);font-size:14px;margin:0 0 4px;max-width:85ch"></p>
+    <table class="ut" id="uttable">
+      <thead><tr><th>Pilot</th><th>On paper</th><th>Today</th><th>Physician review now</th><th>Next step</th></tr></thead>
+      <tbody></tbody>
+    </table>
+    <p class="note" id="ut-note"></p>
+  </section>
+
+  <!-- 3. The wall -->
+  <section class="chart" id="wall-sec">
+    <h2>The wall: bans and human-must-decide rules</h2>
+    <p id="wall-intro"></p>
+    <div class="key">
+      <span><i class="sw ban"></i>Explicit ban: names AI and bars it from prescribing, reviewing, or holding a prescriber's license</span>
+      <span><i class="sw human"></i>Human must decide: a clinician makes the decision; not prescription-specific</span>
+      <span><i class="sw title"></i>Title or personhood: AI may not use a clinician's title, or is not a legal person</span>
+      <span><i class="sw questionnaire"></i>No questionnaire-only prescribing; not AI-specific</span>
+    </div>
+    <div class="filters" id="filters" role="group" aria-label="Filter the list"></div>
+    <p class="count" id="wcount"></p>
+    <div id="wall"></div>
+  </section>
+
+  <!-- 4. Bills to make AI a prescriber -->
+  <section class="chart" id="bills-sec">
+    <h2>Bills that would make AI a prescriber</h2>
+    <p id="bills-intro"></p>
+    <ul class="bills" id="bills"></ul>
+    <p class="note" id="bills-note"></p>
+  </section>
+
+  <!-- 5. What to watch -->
+  <section class="chart" id="watch-sec">
+    <h2>What to watch</h2>
+    <ol class="watch" id="watch"></ol>
+  </section>
+
+  <!-- 6. Prior art -->
+  <section class="chart" id="prior-sec">
+    <h2>How this differs from existing trackers</h2>
+    <p id="hapi"></p>
+    <p>Other sources checked, and how they differ for this question:</p>
+    <table class="prior" id="prior">
+      <thead><tr><th>Source</th><th>What it covers</th><th class="hide-sm">For this question</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </section>
+
+  <!-- 7. Coverage and limits -->
+  <section class="about">
+    <h2>Coverage and limits</h2>
+    <p><b>As of.</b> Everything here was checked on or before <span data-k="as_of_long"></span>. Utah's pilot register was last changed on <span data-k="utah.register_modified_long"></span>; bills are coded at their last recorded action.</p>
+    <p><b>One coder.</b> A single research pass by AI agents, with my review, coded every entry from a primary source where one could be opened. Nothing was coded twice independently. <span data-k="by_confidence.high"></span> entries are rated high confidence and <span data-k="by_confidence.medium"></span> medium, usually because the primary text could not be opened and a secondary source was used. Each entry's confidence shows in its details.</p>
+    <p><b>Two strengths of rule.</b> An explicit ban names AI and bars it from prescribing, from reviewing prescriptions, or from holding a prescriber's license. A human-must-decide rule says a clinician keeps the decision, without naming prescriptions; it would bar rungs 2 to 4 only if a regulator read it that way. The list labels each one, and also separates laws and binding codes from guidance and from bills. Title and personhood laws are the weakest kind and are labeled as such.</p>
+    <p><b>The China renewal point is unsettled.</b> <span id="nmpa"></span></p>
+    <p><b>Context, not on the wall.</b> <span data-k="context"></span> entries describe frameworks that neither permit nor ban AI prescribing, such as the EU AI Act, FDA's decision-support guidance, the DEA rule that keeps controlled substances out of every pilot, and the sandboxes in Texas, Arizona and Wyoming, none of which lists an AI prescribing participant. Fujian's internet care rules, which copied China's national ban on AI-generated prescriptions, are also here rather than on the wall: they were valid for two years from February 2024 and no renewal was found. All are in the data file with the rest.</p>
+    <p><b>Searched, nothing found.</b> <span id="nf-intro"></span></p>
+    <details class="more"><summary>What was found in each</summary><ul id="nf"></ul></details>
+    <p><b>Not coded.</b> State laws that restrict AI in therapy and mental-health services, such as Illinois HB 1806 and Nevada AB 406, are left out because they do not address prescribing. The Health &amp; AI Policy Index lists them.</p>
+    <p><b>Not reached.</b> These were not searched at all. Absence from this page is not evidence that a place permits or bans anything:</p>
+    <ul id="nr"></ul>
+    <p><b>Open leads.</b> <span data-k="coverage.open_leads_n"></span> leads could not be settled with a primary source and are not coded as entries. <span id="leads-sum"></span></p>
+    <details class="more"><summary>All open leads</summary><ul id="leads"></ul></details>
+    <p><b>Corrections.</b> <span id="corr"></span></p>
+    <p><b>Not legal advice.</b> This is a physician's reading of public documents, written to show the shape of the rules, not to advise anyone on compliance.</p>
+    <p>Data and build script: <a href="https://github.com/usnish/usnish.github.io/tree/master/ai-prescribing-ladder">github.com/usnish/usnish.github.io</a>.</p>
+  </section>
+</main>
+
+<script src="../assets/viz/d3.min.js"></script>
+<script>
+(async function () {
+  const [E, S] = await Promise.all([d3.json("data/entries.json?v=20261112b"), d3.json("data/summary.json?v=20261112b")]);
+  const $ = id => document.getElementById(id);
+  const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const host = u => { try { return new URL(u).hostname.replace(/^www\./, ""); } catch (e) { return u; } };
+  const listAnd = a => a.length < 2 ? a.join("") : a.slice(0, -1).join(", ") + " and " + a[a.length - 1];
+  const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  const longDate = d => { const m = /^(\d{4})-(\d\d)-(\d\d)$/.exec(d || ""); return m ? `${MONTHS[+m[2] - 1]} ${+m[3]}, ${m[1]}` : (d || ""); };
+  const byId = new Map(E.map(e => [e.id, e]));
+  const W = S.wall, U = S.utah, B = S.bills_to_permit;
+
+  const STATUS = { enacted: "Enacted law", regulation: "Regulation or binding code", guidance: "Guidance", bill_failed: "Bill failed", bill_pending: "Bill pending", draft: "Draft", sandbox: "Sandbox pilot", pilot: "Private pilot" };
+  const STRENGTH = { ban: "Explicit ban", human: "Human must decide", title: "Title or personhood", questionnaire: "No questionnaire-only prescribing" };
+  const badge = s => `<span class="badge st-${s}">${STATUS[s]}</span>`;
+
+  // Numbers in the prose come from summary.json ---------------------------------------------
+  S.as_of_long = longDate(S.as_of);
+  S.utah.register_modified_long = longDate(U.register_modified);
+  const get = path => path.split(".").reduce((o, k) => o == null ? o : o[k], S);
+  document.querySelectorAll("[data-k]").forEach(el => {
+    const v = get(el.dataset.k);
+    console.assert(v !== undefined && v !== null, "missing summary key " + el.dataset.k);
+    el.textContent = v;
+  });
+  const k = path => { const v = get(path); console.assert(v !== undefined && v !== null, "missing " + path); return `<b>${esc(v)}</b>`; };
+  const kp = path => esc(get(path));
+
+  // 1. Where things stand -------------------------------------------------------------------
+  const ops = U.operating_ids.map(i => byId.get(i).company_or_system.replace(/\s*\(.*\)$/, ""));
+  console.assert(U.jurisdictions_permitting === 1 && U.operating_above_rung_1 === 0, "headline wording no longer matches the data");
+  $("stand").innerHTML =
+    `As of ${esc(S.as_of_long)}, Utah is the only jurisdiction found that lets AI go past drafting a prescription for a clinician to sign. It does so through ${k("utah.pilots")} sandbox pilots: ${kp("utah.paper_rung_2")} allow AI to renew existing prescriptions and ${kp("utah.paper_rung_3")} allows it to start new ones. ` +
+    `Of those, ${kp("utah.operating")} have started (${esc(listAnd(ops))}), and in both a physician still reviews every prescription before it goes out; the other ${kp("utah.not_started")} have not started. So AI is not operating above rung 1 anywhere found. ` +
+    `Against that stand ${k("wall.total")} rules and bills that hold AI back: ${kp("wall.adopted")} adopted laws and binding rules in ${kp("wall.world_adopted_countries_n")} countries and ${kp("wall.us_adopted_states_n")} U.S. states, ${kp("wall.drafts")} draft rule, ${kp("wall.guidance")} guidance documents, and ${kp("wall.bills")} state bills (${kp("wall.bills_failed")} failed, ${kp("wall.bills_pending")} pending). Among them are ${k("wall.explicit_bans")} explicit bans that name AI. ` +
+    `Of the ${kp("bills_to_permit.total")} bills that would make AI a prescriber in law, ${kp("bills_to_permit.failed")} failed and ${kp("bills_to_permit.pending")} has had no action since it was introduced.`;
+
+  // 2. Ladder --------------------------------------------------------------------------------
+  const perm = E.filter(e => e.group === "permission");
+  const permOrder = ["us-ut-doctronic", "us-ut-nolla", "us-ut-legion", "us-ut-august"].map(i => byId.get(i));
+  const coName = e => (e.company_or_system || "").replace(/\s*\(.*\)$/, "");
+  function chip(e, cls, label, sub) {
+    return `<button type="button" class="chip ${cls}" data-id="${esc(e.id)}"><b>${esc(label)}</b>${sub ? `<small>${esc(sub)}</small>` : ""}</button>`;
+  }
+  const rungRows = { 1: { op: [], paper: [] }, 2: { op: [], paper: [] }, 3: { op: [], paper: [] }, 4: { op: [], paper: [] } };
+  permOrder.forEach(e => {
+    rungRows[e.paper_rung].paper.push(chip(e, "paper", `${coName(e)}, Utah`, e.started ? `operating at rung 1 now (${e.phase_now})` : "approved, not started"));
+    if (e.operating_rung_now) rungRows[e.operating_rung_now].op.push(chip(e, "op", `${coName(e)}, Utah`, `${e.phase_now}: physician reviews every script`));
+  });
+  const sa = byId.get("sa-almoosa-synyi-pilot");
+  rungRows[1].op.push(chip(sa, "op", "AI clinic pilot, Saudi Arabia", "a doctor signs each plan"));
+  B.ids.forEach(i => { const e = byId.get(i); rungRows[4].paper.push(chip(e, `bill st-${e.status_label}`, `${e.place}: ${e.short.split(",")[0]}`, STATUS[e.status_label])); });
+  const ad = byId.get("ae-ad-doh-ai-clinician-framework");
+  rungRows[4].paper.push(chip(ad, "bill", "Abu Dhabi AI clinician framework", "research stage, nothing authorized"));
+  const rung4bans = E.filter(e => e.rung === "4" && ["restriction", "guidance", "bill_to_restrict"].includes(e.group));
+  const rungNote = {
+    4: `Addressed by name in ${listAnd(rung4bans.map(e => `${e.place} (${e.short}; ${STRENGTH[e.strength].toLowerCase()})`))}. Federal law also requires controlled-substance prescriptions to come from an individual practitioner, registered with the DEA or exempt, which no AI can be.`,
+    1: `Decision support with a clinician's signature is lawful almost everywhere. ${kp("wall.ceiling_1_adopted")} of the adopted laws and binding rules on the wall below hold AI at this rung or lower.`,
+  };
+  $("ladder").innerHTML = S.rungs.slice().reverse().map(r => {
+    const row = rungRows[r.n];
+    const lane = (h, items, empty) => `<div><p class="lane-h">${h}</p>${items.length ? `<div class="chips">${items.join("")}</div>` : `<p class="none">${empty}</p>`}</div>`;
+    return `<div class="rung"><div class="num">${r.n}</div><div><h3>${esc(r.name)}</h3><div class="lanes">` +
+      lane("Operating here today", row.op, "Nowhere found") +
+      lane(r.n === 4 ? "Proposed" : "Allowed on paper", row.paper, r.n === 1 ? "Allowed in most places as decision support" : "Nothing found") +
+      `</div>${rungNote[r.n] ? `<p class="rung-note">${rungNote[r.n]}</p>` : ""}</div></div>`;
+  }).join("");
+
+  function links(e) {
+    const all = [e.primary_source_url, e.secondary_source_url, ...(e.other_urls || [])].filter(Boolean);
+    return [...new Set(all)].map((u, i) => `<a href="${esc(u)}" target="_blank" rel="noopener">${i === 0 ? "Primary source" : esc(host(u))}</a>`).join(" &middot; ");
+  }
+  function detail(e) {
+    const rows = [];
+    if (e.review_now) rows.push(["Review now", e.review_now]);
+    if (e.next) rows.push(["Next step", e.next]);
+    if (e.status_detail) rows.push(["Status", e.status_detail]);
+    if (e.start_date) rows.push(["Dates", e.start_date + (e.expiry ? `; ${e.expiry}` : "")]);
+    else if (e.expiry) rows.push(["Dates", e.expiry]);
+    if (e.drug_scope && !/^(n\/a|All|Not specified)/.test(e.drug_scope)) rows.push(["Drugs", e.drug_scope]);
+    if (e.liability_or_prescriber_of_record && !/^(n\/a|Not )/.test(e.liability_or_prescriber_of_record)) rows.push(["Who answers for it", e.liability_or_prescriber_of_record]);
+    if (e.legal_basis) rows.push(["Legal basis", e.legal_basis]);
+    rows.push(["Confidence", e.confidence + (e.source_date ? ` (source dated ${e.source_date})` : "")]);
+    return `<h4>${esc(e.place)}: ${esc(e.short)}</h4><div class="meta">${badge(e.status_label)}${e.strength ? `<span class="badge">${STRENGTH[e.strength]}</span>` : ""}</div>` +
+      `<p>${esc(e.what_is_allowed)}</p><dl>${rows.map(([a, b]) => `<dt>${a}</dt><dd>${esc(b)}</dd>`).join("")}</dl><p style="margin-top:8px">${links(e)}</p>`;
+  }
+  $("ladder").addEventListener("click", ev => {
+    const b = ev.target.closest(".chip"); if (!b) return;
+    const card = $("ladcard"), was = b.classList.contains("on");
+    document.querySelectorAll("#ladder .chip").forEach(c => c.classList.remove("on"));
+    if (was) { card.hidden = true; return; }
+    b.classList.add("on");
+    card.innerHTML = detail(byId.get(b.dataset.id)); card.hidden = false;
+    const r = card.getBoundingClientRect();
+    if (r.top > window.innerHeight || r.bottom > window.innerHeight) card.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  });
+
+  // Utah table
+  $("ut-intro").innerHTML = `Each pilot runs under a regulatory mitigation agreement with Utah's Office of Artificial Intelligence Policy and the Division of Professional Licensing, which agree not to enforce specific licensing and telehealth rules for ${kp("utah.term_months")} months at a time. None covers controlled substances, and each starts with a physician or clinician reviewing every script; later phases cut review back to after-the-fact checks and then sampling, each only with the office's approval.`;
+  const rungName = n => `Rung ${n}: ${n === 2 ? "renew" : "start new"}`;
+  $("uttable").querySelector("tbody").innerHTML = permOrder.map(e =>
+    `<tr><td><b>${esc(coName(e))}</b><br><span style="color:var(--muted)">${esc(e.short.split(": ")[1])}</span></td>` +
+    `<td class="n" data-l="On paper">${rungName(e.paper_rung)}</td><td data-l="Today">${e.started ? `Rung 1 (${esc(e.phase_now)})` : "Not started"}</td>` +
+    `<td data-l="Review now">${esc(e.review_now)}</td><td data-l="Next">${esc(e.next)} <a href="${esc(e.primary_source_url)}" target="_blank" rel="noopener">Agreement</a></td></tr>`).join("");
+  const doc = byId.get("us-ut-doctronic");
+  $("ut-note").innerHTML = `Source: Utah's <a href="https://commerce.utah.gov/ai/regulatory-relief-4/authorized-pilots/">authorized pilots register</a>, last changed ${esc(S.utah.register_modified_long)}, and each signed agreement. Doctronic's listed term ran to ${esc(longDate(U.doctronic_term_end))}; as of ${esc(S.as_of_long)} the register still lists it as active and no extension, suspension or end has been posted. On ${esc(longDate(U.board_letter_date))}, the state medical licensing board recommended that the pilot "be immediately suspended pending further discussion", in a letter the state says ${kp("utah.board_signers")} of its ${kp("utah.board_members")} members signed (<a href="https://commerce.utah.gov/wp-content/uploads/2026/04/doctronic-letter-from-medical-board.pdf">board letter</a>). The state declined on ${esc(longDate(U.state_reply_date))} because a physician reviews every renewal in Phase 1 (<a href="https://commerce.utah.gov/wp-content/uploads/2026/04/Medical-Board-Doctronic-Response.pdf">reply</a>). Press reported Legion Health launching in the spring; the register says it has not started.`;
+
+  // 3. Wall ----------------------------------------------------------------------------------
+  const wall = E.filter(e => ["restriction", "guidance", "bill_to_restrict"].includes(e.group));
+  $("wall-intro").innerHTML =
+    `${k("wall.total")} entries restrict how far AI may go. Outside the United States, ${kp("wall.world_countries_n")} countries have at least one of these rules, in law, a binding professional code, or guidance: ${esc(listAnd(W.world_countries))}. ` +
+    `In the United States, ${kp("wall.us_adopted_states_n")} states have adopted one (${esc(listAnd(W.us_adopted_states))}), mostly weaker title or general rules, and bills to restrict AI were filed in ${kp("wall.us_bill_states_n")} states. Tap a row for the text and source.`;
+  const FILTERS = [
+    ["all", "All", () => true],
+    ["adopted", "Laws and binding rules", e => ["enacted", "regulation", "draft"].includes(e.status_label)],
+    ["guidance", "Guidance", e => e.status_label === "guidance"],
+    ["bills", "Bills", e => e.status_label.startsWith("bill")],
+    ["ban", "Explicit bans only", e => e.strength === "ban"],
+  ];
+  let filt = "all";
+  $("filters").innerHTML = FILTERS.map(([key, lab]) => `<button type="button" data-f="${key}" aria-pressed="${key === filt}">${lab}</button>`).join("");
+  $("filters").addEventListener("click", ev => {
+    const b = ev.target.closest("button"); if (!b) return;
+    filt = b.dataset.f;
+    $("filters").querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", x.dataset.f === filt));
+    drawWall();
+  });
+  const SORDER = { ban: 0, human: 1, questionnaire: 2, title: 3 };
+  const TORDER = { enacted: 0, regulation: 1, draft: 2, guidance: 3, bill_pending: 4, bill_failed: 5 };
+  const country = e => e.us ? (e.us_state ? e.place : "National") : e.place.split(" (")[0];
+  function drawWall() {
+    const f = FILTERS.find(x => x[0] === filt)[2];
+    const rows = wall.filter(f);
+    $("wcount").textContent = `${rows.length} of ${wall.length} shown`;
+    const groups = [["Outside the United States", rows.filter(e => !e.us)], ["United States", rows.filter(e => e.us)]];
+    $("wall").innerHTML = groups.filter(g => g[1].length).map(([g, rs]) => {
+      const places = d3.groups(rs, country).sort((a, b) => (a[0] === "National" ? -1 : b[0] === "National" ? 1 : d3.ascending(a[0], b[0])));
+      return `<div class="wgrp">${g}</div>` + places.map(([p, es]) => `<div class="wplace">${esc(p === "National" ? "National bodies" : p)}</div>` +
+        es.sort((a, b) => SORDER[a.strength] - SORDER[b.strength] || TORDER[a.status_label] - TORDER[b.status_label]).map(e =>
+          `<button type="button" class="wrow" data-id="${esc(e.id)}" aria-expanded="false" title="Tap for the text and source">` +
+          `<span class="bar ${e.strength}"></span><span class="what">${esc(e.short)}<small>${esc(e.place !== p ? e.place + " · " : "")}${esc(STRENGTH[e.strength])}${e.source_date ? " · " + esc(String(e.source_date).slice(0, 4)) : ""}</small></span>` +
+          `<span class="tags">${badge(e.status_label)}</span></button><div class="card" hidden></div>`).join("")).join("");
+    }).join("");
+  }
+  $("wall").addEventListener("click", ev => {
+    if (ev.target.closest("a")) return;
+    const b = ev.target.closest(".wrow"); if (!b) return;
+    const card = b.nextElementSibling, open = card.hidden;
+    if (open && !card.innerHTML) card.innerHTML = detail(byId.get(b.dataset.id));
+    card.hidden = !open; b.classList.toggle("open", open); b.setAttribute("aria-expanded", open);
+  });
+  drawWall();
+
+  // 4. Bills to permit -----------------------------------------------------------------------
+  $("bills-intro").innerHTML = `Rung 4 needs a law that makes the AI itself the prescriber. ${k("bills_to_permit.total")} bills have tried, in Congress and ${kp("bills_to_permit.states_n")} states: ${kp("bills_to_permit.failed")} failed and ${kp("bills_to_permit.pending")} has sat in committee since it was introduced. The two state bills follow one model, which would license "autonomous" AI providers in tiers by how independently they work.`;
+  $("bills").innerHTML = B.ids.map(i => byId.get(i)).map(e =>
+    `<li class="st-${e.status_label}"><div class="hd"><b>${esc(e.place)}: ${esc(e.short)}</b>${badge(e.status_label)}</div>` +
+    `<p>${esc(e.what_is_allowed)}</p><p class="out">${esc(e.start_date || "")}${e.expiry ? ". " + esc(e.expiry) : ""}</p>` +
+    `<p>${links(e)}</p></li>`).join("");
+  const va = byId.get("us-va-hb248");
+  $("bills-note").innerHTML = `Not counted: Virginia ${esc(va.short)} (${esc(va.status_detail)}), which would have let non-health licensing boards license software that works without real-time human input; medicine, nursing and pharmacy were outside it. <a href="${esc(va.primary_source_url)}">Bill</a>.`;
+
+  // 5. Watch ---------------------------------------------------------------------------------
+  $("watch").innerHTML = S.watch.map(w => `<li><b>${esc(w.title)}.</b> ${esc(w.why)} <span class="st">Status: ${esc(w.status)} <a href="${esc(w.url)}" target="_blank" rel="noopener">Source</a></span></li>`).join("");
+
+  // 6. Prior art -----------------------------------------------------------------------------
+  const P = S.prior_art.items, hapi = P[0];
+  $("hapi").innerHTML = `The broadest public resource is the <a href="${esc(hapi.url)}">Health &amp; AI Policy Index</a>, a curated registry of <b>${esc(hapi.policies_tracked)}</b> laws, regulations and standards on AI in health care, last updated ${esc(longDate(hapi.last_updated))}. It covers U.S. state and federal policy plus selected international frameworks, and tags entries by ${esc(hapi.keyword_tags.length)} topics such as ${esc(listAnd(hapi.keyword_tags.slice(0, 3)))}. It also maps policies to common operational rules, one of which is that AI may not perform reserved clinical functions, prescribing among them, without licensed professional involvement. It has entries for ${esc(hapi.utah_agreements_listed.length)} of the Utah agreements (${esc(listAnd(hapi.utah_agreements_listed))}), each with a summary, status and link to the signed agreement; ${esc(listAnd(hapi.utah_agreements_not_listed))}, signed in late September 2026, was not yet listed when checked. ` +
+    `This page is narrower. It covers one question, what AI may do when it comes to prescriptions, and codes each rule by how much clinical independence it allows and how much physician review remains. For the wider field of health AI law, the index is the better resource.`;
+  const PICK = ["Utah Office of AI Policy", "Manatt Health", "NCSL Artificial", "AI Laws by State", "Orrick", "Live Compliance", "Holland & Knight: The AI", "Snell & Wilmer", "Gerke", "OECD.AI"];
+  $("prior").querySelector("tbody").innerHTML = PICK.map(p => P.find(x => x.name.startsWith(p))).filter(Boolean).map(x =>
+    `<tr><td><a href="${esc(x.url)}">${esc(x.name)}</a></td><td>${esc(x.scope)}; ${esc(x.geography || "")}</td><td class="hide-sm">${esc(x.what_it_lacks)}</td></tr>`).join("");
+
+  // 7. Coverage ------------------------------------------------------------------------------
+  const nmpa = byId.get("cn-nmpa-online-rx-guidelines");
+  $("nmpa").innerHTML = `China's drug regulator issued a compliance guide for online prescription drug sales on ${esc(longDate(nmpa.start_date))}. Chinese state media report that it bars AI from doing the pharmacist's prescription review. One English-language outlet also reports that it bars AI from renewing prescriptions, which would make it the clearest rung-2 ban anywhere; that wording was not found in the Chinese reports, and the guide's own text could not be opened. It is coded as an explicit ban on AI review, at medium confidence (<a href="${esc(nmpa.primary_source_url)}">Xinhua</a>, <a href="https://www.sixthtone.com/news/1018580">Sixth Tone</a>).`;
+  const C = S.coverage;
+  $("nf-intro").textContent = `${C.searched_nothing_found_n} places were searched and no AI prescribing rule was found: ${listAnd(C.searched_nothing_found.map(x => x.place))}.`;
+  $("nf").innerHTML = C.searched_nothing_found.map(x => `<li><b>${esc(x.place)}.</b> ${esc(x.finding)}</li>`).join("");
+  $("nr").innerHTML = C.not_reached.map(x => `<li><b>${esc(x.region)}:</b> ${esc(listAnd(x.places))}. <span>${esc(x.note)}</span></li>`).join("");
+  const lj = d3.rollups(C.open_leads, v => v.length, l => l.jurisdiction.split(" (")[0]).sort((a, b) => b[1] - a[1]);
+  $("leads-sum").textContent = `Most are in ${listAnd(lj.slice(0, 4).map(d => `${d[0]} (${d[1]})`))}. They include whether Doctronic's agreement was extended, whether Legion Health has started, and whether Texas, Arizona or Wyoming has admitted any AI prescribing company to a sandbox.`;
+  $("leads").innerHTML = C.open_leads.map(l => `<li><b>${esc(l.jurisdiction)}.</b> ${esc(l.lead)} <span style="color:var(--muted)">Why open: ${esc(l.why_unverified)}</span></li>`).join("");
+  $("corr").textContent = `Later passes corrected ${C.corrections_applied.length} records in place (including the EU AI Act's high-risk dates, which a 2026 amendment pushed back, and the Utah pilots' current phases) and merged ${C.duplicates_merged.length} duplicate Australian records. ` +
+    C.resolved_leads.map(r => `${r.jurisdiction}: ${r.lead} ${r.resolution}`).join(" ");
+})();
+</script>
+</body>
+</html>

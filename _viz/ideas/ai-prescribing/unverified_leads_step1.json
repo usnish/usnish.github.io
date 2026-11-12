@@ -1,0 +1,62 @@
+[
+  {
+    "jurisdiction": "Utah",
+    "lead": "Whether Doctronic's agreement was extended past its listed 2026-10-24 term, quietly continued, or ended; whether any medication group has moved to Phase 2.",
+    "urls_tried": [
+      "https://commerce.utah.gov/ai/regulatory-relief-4/authorized-pilots/",
+      "https://commerce.utah.gov/ai/regulatory-relief-4/authorized-pilots/doctronic/",
+      "https://commerce.utah.gov/wp-json/wp/v2/media?after=2026-09-01T00:00:00"
+    ],
+    "why_unverified": "Register (modified 2026-10-06) still says Active and Phase 1 with the Oct 2025 - Oct 2026 term; no extension document or news found as of 2026-11-12. OAIP's annual report to the Legislature (due before Nov 30) may settle it."
+  },
+  {
+    "jurisdiction": "Utah",
+    "lead": "Legion Health: press reported an April 2026 launch, but the state register (2026-10-06) says the demonstration period has not started.",
+    "urls_tried": [
+      "https://commerce.utah.gov/ai/regulatory-relief-4/authorized-pilots/",
+      "https://commerce.utah.gov/ai/regulatory-relief/authorized-ai-pilots/ai-legion-health/"
+    ],
+    "why_unverified": "No OAIP status update or Legion report published; page uses the register."
+  },
+  {
+    "jurisdiction": "Utah",
+    "lead": "Whether the Utah Medical Licensing Board took a formal vote on Doctronic in a public meeting after its 2026-04-20 letter.",
+    "urls_tried": [
+      "https://www.utah.gov/pmn/files/1393915.pdf"
+    ],
+    "why_unverified": "Only the 2026-03-19 agenda (item 'AI Office - Doctronic') was found; later minutes not located."
+  },
+  {
+    "jurisdiction": "Texas",
+    "lead": "Whether DIR's private-sector AI sandbox (TRAIGA, Bus. & Com. Code ch. 553) has adopted rules or admitted any participant, including any AI prescribing company.",
+    "urls_tried": [
+      "https://dir.texas.gov/public-sector-ai-sandbox-program"
+    ],
+    "why_unverified": "dir.texas.gov returns 403 to scripts; secondary sources through 2026-11-04 found no rule, form or participant."
+  },
+  {
+    "jurisdiction": "Arizona",
+    "lead": "Doctronic's reported application to the AG sandbox (Bloomberg Law, June 2026).",
+    "urls_tried": [
+      "https://www.azag.gov/sandbox/participants"
+    ],
+    "why_unverified": "Participants page says none; applications are not public."
+  },
+  {
+    "jurisdiction": "Wyoming",
+    "lead": "Reports that Wyoming is building or using a sandbox for AI in health care, and that Doctronic is in talks.",
+    "urls_tried": [
+      "https://health.wyo.gov/admin/dupre/medical-digital-innovation-sandbox-act/"
+    ],
+    "why_unverified": "Only the 2019 Medical Digital Innovation Sandbox Act found; no participant list or AI waiver published."
+  },
+  {
+    "jurisdiction": "China (national, NMPA)",
+    "lead": "Whether the 2026-05-25 Prescription Drug Online Retail Compliance Guide bars AI from renewing prescriptions (Sixth Tone) or only from pharmacist review (Xinhua, Caixin).",
+    "urls_tried": [
+      "https://www.news.cn/legal/20260526/abd151ffae0c48b88d3d8b28fa94d6c8/c.html",
+      "https://www.news.cn/health/20260525/38ffedf264c5449dafd6c2506c663f96/c.html"
+    ],
+    "why_unverified": "Guide text not opened; nmpa.gov.cn returns HTTP 412."
+  }
+]

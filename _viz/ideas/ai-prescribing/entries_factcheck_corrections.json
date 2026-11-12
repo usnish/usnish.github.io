@@ -1,0 +1,87 @@
+[
+  {
+    "corrects": "cn-national-internet-dx-rules",
+    "primary_source_url": "https://www.nhc.gov.cn/bgt/c100244/202206/2eb5fa9b8869453e98c1183bf65938e8/files/1733795761985_78363.pdf",
+    "other_urls": [
+      "http://www.nhc.gov.cn/yzygj/s3594q/202203/fa87807fa6e1411e9afeb82a4211f287.shtml"
+    ],
+    "notes": "Fact-check 2026-11-12: primary source switched to the NHC Gazette PDF (2022 No.1, pp. 31-33), because the NHC notice page returns HTTP 412. Document 国卫办医发〔2022〕2号, dated 2022-02-08, a trial (试行) normative document. Art. 13: '其他人员、人工智能软件等不得冒用、替代医师本人提供诊疗服务' (other staff or AI software may not impersonate or replace the physician). Art. 21: '处方应由接诊医师本人开具，严禁使用人工智能等自动生成处方' (the treating physician must issue the prescription personally; using AI to auto-generate prescriptions is strictly prohibited). Arguably also restricts AI-drafted prescriptions (rung 1)."
+  },
+  {
+    "corrects": "cn-fujian-internet-dx-rules",
+    "status_detail": "Lapsed: art. 52 says the rules take effect on issue and are valid for 2 years (有效期 2 年), so they ran to 2026-02-08; no renewal found as of 2026-11-12. Kept as context, not counted on the wall.",
+    "notes": "Art. 14: '其他人员、人工智能软件等不得冒用、替代医师本人提供诊断、开方、随访等诊疗服务'. Art. 20: '严禁使用人工智能等自动生成处方'. Art. 52: '本办法自印发之日起施行，有效期 2 年。' Example of a province copying the national clause. Moved off the wall in the 2026-11-12 fact-check because it appears to have lapsed."
+  },
+  {
+    "corrects": "cn-nmpa-online-rx-guidelines",
+    "what_is_allowed": "No AI prescription review on the dispensing side. Online prescription-drug retailers must have prescription review done by licensed pharmacists, 'not by other staff or by artificial intelligence'. Sixth Tone also reports that platforms 'cannot use AI to review, approve, or renew prescriptions'; that renewal wording is not in the Chinese sources opened, and Caixin's English report does not mention renewal either. Caixin adds that platforms must use technology to identify and block AI-generated and fake prescriptions."
+  },
+  {
+    "corrects": "in-telemedicine-guidelines-2020",
+    "primary_source_url": "https://nrces.in/standards/telemedicine-practice-guidelines",
+    "secondary_source_url": "https://www.mohfw.gov.in/pdf/Telemedicine.pdf",
+    "notes": "'Technology platforms based on Artificial Intelligence/Machine Learning are not allowed to counsel the patients or prescribe any medicines to a patient. Only a RMP is entitled to counsel or prescribe.' Read on the NRCeS (MoHFW standards centre) page; the MoHFW PDF link no longer serves the PDF (checked 2026-11-12). Binding status rests on secondary sources: the IMC (Amendment) Regulations 2020 inserted reg. 3.8 making telemedicine permissible in accordance with Appendix 5 (these guidelines). The IMC Act has since been replaced by the NMC Act 2019; that the 2002 regulations still apply was not verified."
+  },
+  {
+    "corrects": "br-cfm-2454-2026",
+    "what_is_allowed": "AI is support only. The decision on diagnosis, prognosis, prescription or any medical act always rests with the physician (art. 18 s.2); AI may never restrict or replace the physician's final authority (art. 18 s.1); physicians may not delegate to AI the communication of diagnoses, prognoses or therapeutic decisions without human mediation (art. 5 s.2).",
+    "start_date": "2026-08-26 (signed 2026-02-11; in force 180 days after DOU publication 2026-02-27)"
+  },
+  {
+    "corrects": "sg-aihgle-2",
+    "legal_basis": "MOH/HSA AI in Healthcare Guidelines 2.0 (Version 2.0, March 2026) s.6.2.2-6.2.3"
+  },
+  {
+    "corrects": "au-mba-telehealth-async-rx",
+    "status_detail": "Board guidelines, not AI-specific; not binding in themselves, but admissible as evidence of professional standards in disciplinary proceedings (Health Practitioner Regulation National Law s.41)"
+  },
+  {
+    "corrects": "sa-almoosa-synyi-pilot",
+    "what_is_allowed": "AI 'Dr. Hua' interviews the patient and generates a diagnosis and treatment plan (including prescriptions); a licensed doctor reviews and approves each plan, without an in-person visit. Data collected toward Saudi regulatory approval."
+  },
+  {
+    "corrects": "ae-ad-doh-ai-clinician-framework",
+    "primary_source_url": "https://tradearabia.com/News/488291/DoH-publishes-AI-Clinician-Framework",
+    "secondary_source_url": "https://www.wam.ae/en/article/17hh7ki-doh-publishes-clinician-framework-guide",
+    "what_is_allowed": "Framework for researching 'AI clinician systems' that 'may ultimately be authorised to perform clinical activities that would otherwise require a licensed clinician', with physician oversight and accountability and referral to a physician when needed; future DoH policies to define permitted activities. Research stage only; prescribing not mentioned.",
+    "notes": "Only non-US regulator announcement found that envisions AI holding clinician-equivalent authorisation (a rung-4 pathway). Primary source switched to TradeArabia (2026-10-21) because the WAM page loads without body text; framework document itself not found."
+  },
+  {
+    "corrects": "us-tn-sb837",
+    "status_detail": "Signed and effective 2026-04-23 (SB 837 as passed / HB 849); Pub. Ch. 781 assigned 2026-04-28",
+    "start_date": "2026-04-23"
+  },
+  {
+    "corrects": "us-nd-27.0359.01000",
+    "legal_basis": "Proposed new sections in NDCC ch. 54-59 (sandbox); ch. 51-40 (AI disclosures)"
+  },
+  {
+    "corrects": "us-nm-16.12-nmac-ai",
+    "legal_basis": "16.12.1.7 NMAC (no 'nurse' label for AI); 16.12.16.13 (RN) and 16.12.17.12 (APRN) NMAC ('AI shall be considered a decision-support tool. It may augment, but must not replace...'); NMSA 61-3-10(Y) (HB 178, Chapter 101, signed April 8)"
+  },
+  {
+    "corrects": "us-tx-sb1188",
+    "notes": "Fact-check 2026-11-12: enrolled text s.183.005(a)(3) requires the practitioner to review all records created with AI; it does not separately require review of each recommendation. Effective 2025-09-01."
+  },
+  {
+    "corrects": "us-federal-dea-1306",
+    "what_is_allowed": "'A prescription for a controlled substance may be issued only by an individual practitioner' who is state-authorized and either DEA-registered or exempted from registration (21 CFR 1306.03(a)); an individual practitioner is a physician, dentist, veterinarian or other licensed individual (21 CFR 1300.01). Ryan Haight Act requires an in-person evaluation for internet prescribing, with exceptions. AI cannot be an individual practitioner, which is why the Utah pilots and the Iowa and Idaho bills exclude controlled substances; H.R. 238 is silent on them, but this rule would still apply."
+  },
+  {
+    "corrects": "us-ca-ab1979",
+    "confidence": "high",
+    "notes": "Verified 2026-11-12 from the chaptered text (legislature bulk data, version 20250AB197989CHP): B&P s.22758.5(b)(1)(B), facilities, clinics, physician offices and group practices 'shall not use or deploy a tool, system, or device that includes artificial intelligence to ... (B) Independently perform any clinical function that is required by law to be performed by a person with a professional license.' Chapter 854, Statutes of 2026, approved 2026-09-30; no urgency clause, so effective 2027-01-01. Prescribing is not named, hence 'human must decide'. Whether it reaches direct-to-consumer AI companies that are not facilities or physician offices is unclear."
+  },
+  {
+    "corrects": "us-or-ors678027",
+    "start_date": "2026-01-01 (Oregon Laws 2025 c.378, HB 2748, approved 2025-06-24)"
+  },
+  {
+    "corrects": "us-federal-hr206-118",
+    "notes": "GovInfo BILLSTATUS (118th): introduced 2023-01-09, referred to Energy and Commerce, then to its Subcommittee on Health 2023-01-20 (last action); no cosponsors. Died at the end of the 118th Congress; Schweikert reintroduced it in 2025 as H.R. 238."
+  },
+  {
+    "corrects": "us-fsmb-ai-policy-2024",
+    "start_date": "2024-04"
+  }
+]

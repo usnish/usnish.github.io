@@ -9,6 +9,12 @@
 
 - title: Data Visualizations
   items:
+    - title: Can an AI Write Your Prescription?
+      url: /ai-prescribing-ladder/
+      repo: https://github.com/usnish/usnish.github.io/tree/master/ai-prescribing-ladder
+      image: /ai-prescribing-ladder/thumb.png
+      description: Where AI may legally prescribe or renew medications, coded on a four-rung ladder from drafting a script for a clinician to sign up to being the prescriber of record, with a source for every entry. Of the places checked, only Utah allows more than drafting, through four sandbox pilots, and in the two that have started a physician still reviews every prescription.
+
     - title: Counting to 218 on Medicare for All
       url: /medicare-for-all-votes/
       repo: https://github.com/usnish/usnish.github.io/tree/master/medicare-for-all-votes
