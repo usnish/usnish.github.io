@@ -9,18 +9,6 @@
 
 - title: Data Visualizations
   items:
-    - title: The Dialysis Time Tax
-      url: /dialysis-time-tax/
-      repo: https://github.com/usnish/usnish.github.io/tree/master/dialysis-time-tax
-      image: /img/thumb-dialysis-time-tax.png
-      description: Hours a year that driving to in-center dialysis would take for residents of every U.S. neighborhood, with every trip routed on real roads. Vulnerable neighborhoods aren't farther from a center, but are nearly five times as likely to have no car.
-
-    - title: Medicare Advantage Network Rules
-      url: /ma-network-standards/
-      repo: https://github.com/usnish/usnish.github.io/tree/master/ma-network-standards
-      image: /img/thumb-ma-network-standards.png
-      description: How far CMS lets a Medicare Advantage network's nearest doctor or hospital be, county by county, against how far older residents actually live from one. In a typical rural county a plan with telehealth can leave 1 in 4 beneficiaries beyond the 75-minute cardiology limit and still pass.
-
     - title: Old Enough to Count, Too Young to Interpret
       url: /bridge-children/
       repo: https://github.com/usnish/usnish.github.io/tree/master/bridge-children
@@ -44,3 +32,15 @@
       repo: https://github.com/usnish/usnish.github.io/tree/master/dialysis-after-five
       image: /img/thumb-dialysis-after-five.png
       description: Whether a dialysis patient can get a chair after 5 pm depends on the state, even within the same company. DaVita runs an evening shift at 31 of its 47 units in Washington but 2 of 95 in North Carolina, and 57 million Americans live more than 30 miles from a unit with one.
+
+    - title: The Dialysis Time Tax
+      url: /dialysis-time-tax/
+      repo: https://github.com/usnish/usnish.github.io/tree/master/dialysis-time-tax
+      image: /img/og-dialysis-time-tax.png
+      description: Hours a year that driving to in-center dialysis would take for residents of every U.S. neighborhood, with every trip routed on real roads. Vulnerable neighborhoods aren't farther from a center, but are nearly five times as likely to have no car.
+
+    - title: Medicare Advantage Network Rules
+      url: /ma-network-standards/
+      repo: https://github.com/usnish/usnish.github.io/tree/master/ma-network-standards
+      image: /img/og-ma-network-standards.png
+      description: How far CMS lets a Medicare Advantage network's nearest doctor or hospital be, county by county, against how far older residents actually live from one. In a typical rural county a plan with telehealth can leave 1 in 4 beneficiaries beyond the 75-minute cardiology limit and still pass.

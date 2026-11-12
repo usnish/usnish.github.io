@@ -214,9 +214,9 @@ ul.nav a:hover, .nav-dropdown summary:hover { color: #143556; text-decoration: n
 .recent-link:hover { text-decoration: none; color: inherit; }
 .recent-link:hover .recent-name { text-decoration: underline; }
 .recent-thumb {
-  flex: 0 0 160px;
-  width: 160px;
-  height: 84px;
+  flex: 0 0 240px;
+  width: 240px;
+  height: 126px;
   object-fit: cover;
   border: 1px solid #eee;
 }
