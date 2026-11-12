@@ -1,0 +1,672 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Medicare for All Votes</title>
+<meta name="description" content="Where every Democrat in the incoming 120th Congress stands on Medicare for All, member by member with sources, and the arithmetic of 218 House votes and 50 or 60 senators from 2027 through 2030.">
+<link rel="canonical" href="https://usnish.xyz/medicare-for-all-votes/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Counting to 218: where every Democrat stands on Medicare for All">
+<meta property="og:description" content="117 of 260 House Democrats and 22 of 55 Senate Democrats in the incoming Congress are on record for Medicare for All. Every member's position with its source, and the arithmetic of 218, 50 and 60.">
+<meta property="og:url" content="https://usnish.xyz/medicare-for-all-votes/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Counting to 218: where every Democrat stands on Medicare for All">
+<meta name="twitter:description" content="117 of 260 House Democrats and 22 of 55 Senate Democrats in the incoming Congress are on record for Medicare for All. Every member's position with its source, and the arithmetic of 218, 50 and 60.">
+<meta name="author" content="Usnish Majumdar, MD">
+<link rel="stylesheet" href="../assets/viz/viz.css">
+<style>
+  main { max-width: 900px; }
+  /* Position colours (validated for colour-blind separation in light and dark) */
+  :root {
+    color-scheme: light;
+    --p-cos: #1d5ba6; --p-new: #62a8ee; --p-opt: #2a9d8f; --p-aca: #e3a008; --p-opp: #cc3f4f;
+    --on-accent: #ffffff; --guess: #1c1c1c;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --bg: #17191c; --fg: #e9e8e4; --muted: #a9a8a3; --faint: #7a7a78; --line: #30333a; --panel: #1f2227;
+      --accent: #7fb0e6; --accent-dark: #a9cbf0; --nodata: #2a2d33; --stroke: #17191c; --hover: #ffffff; --dot: #e9e8e4; --warn: #e07a55;
+      --p-cos: #2e5dab; --p-new: #4f97e8; --p-opt: #14a07e; --p-aca: #c48600; --p-opp: #de4f63;
+      --on-accent: #10161e; --guess: #f0efec;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #17191c; --fg: #e9e8e4; --muted: #a9a8a3; --faint: #7a7a78; --line: #30333a; --panel: #1f2227;
+    --accent: #7fb0e6; --accent-dark: #a9cbf0; --nodata: #2a2d33; --stroke: #17191c; --hover: #ffffff; --dot: #e9e8e4; --warn: #e07a55;
+    --p-cos: #2e5dab; --p-new: #4f97e8; --p-opt: #14a07e; --p-aca: #c48600; --p-opp: #de4f63;
+    --on-accent: #10161e; --guess: #f0efec;
+  }
+  body { background: var(--bg); color: var(--fg); }
+  .byline { font-size: 13px; color: var(--muted); margin: 10px 0 0; }
+  .q { font-size: 17px; font-weight: 600; margin: 4px 0 10px; max-width: 62ch; line-height: 1.4; }
+  .note, section.chart > p.note { font-size: 12px; color: var(--muted); margin: 6px 0 0; max-width: 80ch; }
+  section.chart > p { color: var(--fg); }
+  section.chart > p.sub { color: var(--muted); }
+  section.chart h3 { font-size: 15px; margin: 22px 0 6px; }
+
+  /* guess */
+  .guess-box { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 16px; }
+  .slider-row { display: flex; align-items: center; gap: 10px 14px; flex-wrap: wrap; margin: 0 0 10px; }
+  .slider-row label { font-size: 14px; color: var(--muted); flex: 0 0 15em; }
+  .slider-row output { font-size: 22px; font-weight: 700; color: var(--fg); font-variant-numeric: tabular-nums; min-width: 3ch; display: inline-block; }
+  input[type=range] { flex: 1 1 220px; min-width: 0; height: 36px; accent-color: var(--accent); touch-action: pan-y; }
+  .btnrow { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin: 6px 0 0; }
+  .btn { font: inherit; font-size: 15px; font-weight: 600; padding: 9px 16px; border-radius: 8px; border: 0; background: var(--accent); color: var(--on-accent); cursor: pointer; }
+  .btn[disabled] { opacity: .35; cursor: default; }
+  .btn.ghost { background: var(--bg); color: var(--muted); border: 1px solid var(--line); font-weight: 500; }
+  .hint { font-size: 12px; color: var(--muted); margin: 8px 0 0; }
+  .result { font-size: 15px; margin: 14px 0 0; max-width: 72ch; }
+  .result b { color: var(--fg); }
+  .barwrap { margin: 14px 0 0; }
+  .barwrap h4 { font-size: 13px; margin: 0 0 2px; font-weight: 600; }
+  svg.track { display: block; width: 100%; overflow: visible; }
+  svg text { font-size: 11px; fill: var(--muted); }
+  svg .lbl { fill: var(--fg); font-size: 12px; font-weight: 600; }
+  svg .rule { stroke: var(--fg); stroke-width: 1.2; stroke-dasharray: 4 3; }
+  svg .rule.soft { opacity: .55; }
+  svg .base { fill: var(--nodata); }
+  svg .beyond { fill: none; stroke: var(--faint); stroke-dasharray: 2 3; }
+  svg .gmark { fill: none; stroke: var(--guess); stroke-width: 2.5; }
+  svg .gtext { fill: var(--fg); font-weight: 600; }
+
+  /* position fills, shared by dots, swatches and bars */
+  .g-cos { fill: var(--p-cos); background: var(--p-cos); }
+  .g-new { fill: var(--p-new); background: var(--p-new); }
+  .g-opt { fill: var(--p-opt); background: var(--p-opt); }
+  .g-aca { fill: var(--p-aca); background: var(--p-aca); }
+  .g-opp { fill: var(--p-opp); background: var(--p-opp); }
+  .g-mix { fill: var(--faint); background: var(--faint); }
+  .g-unk { fill: var(--bg); stroke: var(--faint); stroke-width: 1.4; background: var(--bg); box-shadow: inset 0 0 0 1.5px var(--faint); }
+  .key { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 12px; color: var(--fg); margin: 8px 0 0; }
+  .key span { display: inline-flex; align-items: center; gap: 6px; }
+  .key b { font-variant-numeric: tabular-nums; }
+  .sw { display: inline-block; width: 11px; height: 11px; border-radius: 50%; flex: 0 0 auto; }
+
+  /* roster */
+  .grid-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; margin: 18px 0 4px; }
+  .grid-head h3 { margin: 0; font-size: 15px; }
+  .grid-head span { font-size: 12px; color: var(--muted); }
+  svg.dots { display: block; width: 100%; height: auto; touch-action: manipulation; }
+  svg.dots .dot { cursor: pointer; transition: opacity .15s; }
+  svg.dots .dot.dim { opacity: .14; }
+  svg.dots .dot.sel { stroke: var(--fg); stroke-width: 2.4; }
+  svg.dots .hit { fill: transparent; cursor: pointer; }
+  svg.dots .stair { fill: none; stroke: var(--fg); stroke-width: 2; }
+  svg.dots .stairlbl { fill: var(--fg); font-size: 11px; font-weight: 600; paint-order: stroke; stroke: var(--bg); stroke-width: 4px; stroke-linejoin: round; }
+  .controls-row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin: 14px 0 0; font-size: 14px; }
+  select.pick { font: inherit; font-size: 15px; padding: 8px 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--bg); color: var(--fg); max-width: 100%; }
+  .card { position: static; width: auto; margin: 14px 0 0; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; font-size: 13px; box-shadow: none; min-height: 4em; }
+  .card h4 { margin: 0 0 2px; font-size: 16px; }
+  .card .meta { color: var(--muted); font-size: 12px; margin: 0 0 8px; }
+  .card .pos { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; }
+  .card blockquote { margin: 8px 0; padding: 6px 0 6px 12px; border-left: 3px solid var(--line); font-size: 14px; color: var(--fg); }
+  .card dl { display: grid; grid-template-columns: max-content 1fr; gap: 3px 12px; margin: 8px 0 0; }
+  .card dt { color: var(--muted); }
+  .card dd { margin: 0; overflow-wrap: anywhere; }
+  .card .empty { color: var(--muted); }
+  .dele { margin: 10px 0 0; border-collapse: collapse; width: 100%; font-size: 13px; }
+  .dele th { text-align: left; font-weight: 600; color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .05em; padding: 4px 6px 4px 0; border-bottom: 1px solid var(--line); }
+  .dele td { padding: 5px 6px 5px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .dele tr.row { cursor: pointer; }
+  .dele tr.row:hover, .dele tr.row.on { background: var(--panel); }
+  .dele tr.out td { color: var(--muted); }
+  .dele .nm { font-weight: 600; }
+  @media (max-width: 600px) { .dele .hide-sm { display: none; } .slider-row label { flex-basis: 100%; } }
+
+  /* ladder */
+  .predict { display: flex; gap: 8px; flex-wrap: wrap; margin: 8px 0 0; }
+  .predict button { font: inherit; font-size: 14px; background: var(--bg); color: var(--fg); border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; cursor: pointer; text-align: left; }
+  .predict button[aria-pressed="true"] { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+  .steps { list-style: none; padding: 0; margin: 12px 0 0; max-width: 760px; }
+  .steps li { display: grid; grid-template-columns: 14px minmax(0, 1fr) 52px 60px; gap: 10px; align-items: baseline; padding: 6px 0; border-bottom: 1px solid var(--line); font-size: 13px; }
+  .steps li.off { display: none; }
+  .steps li .sw { border-radius: 3px; align-self: center; }
+  .steps .n { text-align: right; font-variant-numeric: tabular-nums; color: var(--muted); }
+  .steps .c { text-align: right; font-variant-numeric: tabular-nums; font-weight: 650; }
+  .steps .c.ok { color: var(--accent); }
+  .steps li.hdr { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+  .hyp { opacity: .55; }
+  .readout { font-size: 14px; margin: 10px 0 0; max-width: 72ch; min-height: 2.6em; }
+  .readout b { color: var(--fg); }
+  .twocol { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 10px; }
+  @media (max-width: 700px) { .twocol { grid-template-columns: 1fr; } }
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; font-size: 14px; }
+  .panel h3 { margin: 0 0 6px !important; font-size: 14px !important; }
+  .panel ul { margin: 0; padding-left: 18px; }
+  .panel li { margin: 0 0 6px; }
+  .timeline { list-style: none; margin: 10px 0 0; padding: 0; max-width: 78ch; }
+  .timeline li { display: grid; grid-template-columns: 9.5em 1fr; gap: 12px; padding: 7px 0; border-bottom: 1px solid var(--line); font-size: 14px; }
+  .timeline .when { color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; }
+  @media (max-width: 560px) { .timeline li { grid-template-columns: 1fr; gap: 2px; } }
+  .wins { margin: 8px 0 0; padding-left: 20px; max-width: 78ch; font-size: 14px; }
+  .wins li { margin: 0 0 8px; }
+  table.prior { border-collapse: collapse; width: 100%; font-size: 13px; margin-top: 10px; }
+  table.prior th, table.prior td { text-align: left; padding: 6px 8px 6px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+  table.prior th { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; font-weight: 600; }
+  @media (max-width: 600px) { table.prior .hide-sm { display: none; } }
+</style>
+</head>
+<body>
+<main>
+  <a class="back" href="/projects/">&larr; all projects</a>
+  <header>
+    <h1>Counting to 218: where every Democrat stands on Medicare for All</h1>
+    <p class="lede">Democrats won both chambers on November 3, 2026, and Medicare for All polls better than it ever has. A bill still needs 218 House votes, 50 or 60 senators, and a president who will sign it. This page counts, member by member and with a source for each, who in the incoming 120th Congress is on record for it, and what it would take to get from there to a law.</p>
+    <p class="byline">By Usnish Majumdar, MD &middot; November 2026 &middot; counts as of <span data-k="as_of_long"></span></p>
+  </header>
+
+  <!-- 1. Guess -->
+  <section class="chart" id="guess">
+    <h2>Start with a guess</h2>
+    <p class="q">The incoming Congress will have about <span data-k="house.seated"></span> House Democrats and <span data-k="senate.seated"></span> Democratic senators (counting two independents). How many of them are on record for Medicare for All?</p>
+    <div class="guess-box">
+      <div class="slider-row">
+        <label for="gh">House Democrats on record: <output id="ghout"></output></label>
+        <input type="range" id="gh" min="0" step="1" aria-label="Your guess, House Democrats on record for Medicare for All">
+      </div>
+      <div class="slider-row">
+        <label for="gs">Senate Democrats on record: <output id="gsout"></output></label>
+        <input type="range" id="gs" min="0" step="1" aria-label="Your guess, Democratic senators on record for Medicare for All">
+      </div>
+      <div class="btnrow">
+        <button class="btn" id="gbtn" type="button">Show me</button>
+        <button class="btn ghost" id="gskip" type="button">Skip, just show me</button>
+      </div>
+      <p class="hint" id="ghint">Move both sliders, then press <b>Show me</b>. &ldquo;On record&rdquo; means a sponsor or cosponsor of the current bill, or a new member who has said they support it.</p>
+      <div id="gbars" hidden>
+        <div class="barwrap"><h4>House</h4><div id="bar-h"></div></div>
+        <div class="barwrap"><h4>Senate</h4><div id="bar-s"></div></div>
+        <div class="key" id="gkey"></div>
+      </div>
+      <p class="result" id="gresult" hidden></p>
+    </div>
+  </section>
+
+  <!-- 2. Roster -->
+  <section class="chart" id="roster">
+    <h2>Every Democrat, one dot each</h2>
+    <p class="sub">Each dot is one member of the incoming Congress, sorted by what they have said. Tap or hover over a dot for the member's own words where there are any, the date, how sure the research is, and the source. An empty dot means the research found no position. That is unknown, not opposed.</p>
+    <div class="key" id="rkey"></div>
+    <div class="controls-row">
+      <label for="stpick">Your state</label>
+      <select class="pick" id="stpick"><option value="">All states</option></select>
+    </div>
+    <div class="grid-head"><h3>House</h3><span id="hcap"></span></div>
+    <div id="grid-h"></div>
+    <div class="grid-head"><h3>Senate</h3><span id="scap"></span></div>
+    <div id="grid-s"></div>
+    <p class="note" id="gridnote"></p>
+    <div class="card" id="card" aria-live="polite"><span class="empty">Tap or hover over a dot, or pick a state, to see a member's position and its source.</span></div>
+    <div id="dele"></div>
+  </section>
+
+  <!-- 3. Ladder -->
+  <section class="chart" id="ladder">
+    <h2>The ladder to 218</h2>
+    <p class="q">Which gets the House closer to 218: winning more seats, as in 2026, or Democrats already in safe seats changing position?</p>
+    <div class="predict" id="predict" role="group" aria-label="Your prediction">
+      <button type="button" data-k="seats">Winning more seats</button>
+      <button type="button" data-k="safe">Safe-seat Democrats changing position</button>
+    </div>
+    <p class="readout" id="predict-out"></p>
+    <p class="sub" id="ladder-intro"></p>
+    <div id="lbar"></div>
+    <ul class="steps" id="lsteps"></ul>
+    <div class="btnrow">
+      <button class="btn" id="lnext" type="button">Add the next group</button>
+      <button class="btn ghost" id="lall" type="button">Show all</button>
+      <button class="btn ghost" id="lreset" type="button">Start over</button>
+    </div>
+    <p class="readout" id="lread"></p>
+
+    <h3>Or win more seats</h3>
+    <div class="slider-row">
+      <label for="pk">More Democratic seats won: <output id="pkout">0</output></label>
+      <input type="range" id="pk" min="0" max="175" step="1" value="0" aria-label="More Democratic House seats won">
+    </div>
+    <div id="pbar"></div>
+    <p class="readout" id="pread"></p>
+
+    <h3>The Senate: 22, 40, 50, 60</h3>
+    <p class="sub" id="senate-intro"></p>
+    <div id="sbar"></div>
+    <div class="key" id="skey"></div>
+    <p class="readout" id="sread"></p>
+  </section>
+
+  <!-- 4. 2027-2030 -->
+  <section class="chart" id="window">
+    <h2>What 2027 to 2030 can and cannot do</h2>
+    <p>President Trump can veto any bill until noon on January 20, 2029. Overriding a veto takes two-thirds of each chamber, 290 House votes and 67 senators, more than the whole Democratic caucus in either, and the research found no Republican in Congress who supports single payer. So a Medicare for All bill cannot become law in 2027 or 2028. Those two years can produce hearings, a cost estimate from the Congressional Budget Office, recorded votes, new cosponsors, a Minnesota special election, the 2028 primaries, a party platform and a nominee.</p>
+    <ul class="timeline" id="timeline">
+      <li><span class="when">Nov 18 and Dec 12, 2026</span><span>Alaska's ranked-choice count decides whether the caucus is 55 or 56. Louisiana's 5th and 6th districts hold runoffs. Several close House races are still being counted.</span></li>
+      <li><span class="when">Jan 3, 2027</span><span>The 120th Congress is sworn in. Every bill from the 119th dies and has to be reintroduced, so the cosponsor count starts again from zero.</span></li>
+      <li><span class="when">2027</span><span>Hearings are possible under committee leaders who are cosponsors: the research names Pallone at Energy and Commerce, McGovern at Rules, Boyle at Budget and Wyden at Senate Finance. Six of the seven likely House chairs of committees the bill is sent to are cosponsors. The exception is Neal at Ways and Means.</span></li>
+      <li><span class="when">Aug 10 and Nov 2, 2027</span><span>Minnesota's special primary and election for Amy Klobuchar's Senate seat (she was elected governor). The seat is filled by appointment until then.</span></li>
+      <li><span class="when">Mar to Sept 2028</span><span>Congressional and presidential primaries. The Democratic convention, and its platform, is Aug 7 to 10, 2028 (host city not yet chosen). In 2020 the platform committee voted down a Medicare for All amendment (<a href="https://kffhealthnews.org/morning-breakout/democratic-platform-nixes-medicare-for-all/">KFF Health News</a>).</span></li>
+      <li><span class="when">Nov 7, 2028</span><span>General election for the president, the whole House and a third of the Senate.</span></li>
+      <li><span class="when">Jan 20, 2029</span><span>The earliest date a president who backs Medicare for All could sign it. The American Rescue Plan, passed through budget reconciliation, was signed about 7 weeks into a term.</span></li>
+      <li><span class="when">If signed in 2029</span><span>Under the House bill, H.R.3069, everyone is covered 2 years after enactment, so 2031, with people under 19 and 55 and older covered a year earlier. Under the Senate bill, S.1506, benefits start January 1 of the fourth year after enactment, January 1, 2033, with children covered from 2030 and the Medicare age dropping to 55, 45 and then 35 on the way.</span></li>
+    </ul>
+
+    <h3>Where the votes would have to come from</h3>
+    <p class="sub">These are the specific wins the research team's path analysis named. They are the members who would need to change position, the seats where the member could change, and the supporters who would need to win again. None of it is a forecast.</p>
+    <div class="twocol">
+      <div class="panel">
+        <h3>House</h3>
+        <ul>
+          <li><b>Members who would need to change position.</b> Leaders: Richard Neal (likely Ways and Means chair), Hakeem Jeffries, Katherine Clark. Past cosponsors not on the current bill: Joyce Beatty, Jim Clyburn, Gwen Moore, Vicente Gonzalez, Lou Correa, Sanford Bishop, Donald Norcross, Doris Matsui. Ways and Means members: Terri Sewell, Suzan DelBene, Steven Horsford. Energy and Commerce members: Raul Ruiz, Kim Schrier, Lizzie Fletcher, Scott Peters, Jennifer McClellan. New members who replaced cosponsors: La Shawn Ford, Luke Bronin, Oliver Gilbert.</li>
+          <li><b>Supporters in close seats who would need to win again in 2028:</b> <span data-k="house.holds"></span>.</li>
+          <li><b>Seats Republicans won or lead in 2026 where the Democrat ran on Medicare for All:</b> TN-9 (redrawn; lost by 1.1 points), ME-2 (open Democratic seat; lost by about 1.6) and CA-23 (trailing, uncalled).</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h3>Senate, in the order the research put them</h3>
+        <ol style="margin:0;padding-left:18px">
+          <li>Minnesota's Klobuchar seat, by appointment and then the Nov 2, 2027 special.</li>
+          <li>Senators who would need to change position: Ruben Gallego (cosponsored the House bill in three Congresses), Chris Murphy, Angela Alsobrooks, Andy Kim, Tammy Duckworth, Patty Murray and Maria Cantwell.</li>
+          <li>2028 primaries in New York (Schumer's seat) and Pennsylvania (Fetterman's seat).</li>
+          <li>Republican-held seats in 2028 where a supporter could be the nominee: Florida and Wisconsin.</li>
+          <li>Holding Ohio, Georgia, Arizona, Nevada and New Hampshire, and the six cosponsor seats up in 2028.</li>
+          <li>Holding Vermont in 2030 if Sanders retires.</li>
+        </ol>
+      </div>
+    </div>
+    <p id="window-senate"></p>
+    <p>Smaller bills could move first, but before 2029 only with the president's signature: Medicare dental, vision and hearing (<a href="https://www.govinfo.gov/bulkdata/BILLSTATUS/119/hr/BILLSTATUS-119hr2045.xml">H.R.2045</a>, 132 cosponsors), a $5,000 cap on out-of-pocket costs in traditional Medicare (<a href="https://www.govinfo.gov/content/pkg/BILLS-119s4886is/html/BILLS-119s4886is.htm">S.4886</a>, 16), lowering the Medicare age to 50 (<a href="https://www.govinfo.gov/bulkdata/BILLSTATUS/119/hr/BILLSTATUS-119hr10875.xml">H.R.10875</a>, 46), a Medicare buy-in at 50 to 64 (<a href="https://www.govinfo.gov/bulkdata/BILLSTATUS/119/s/BILLSTATUS-119s5700.xml">S.5700</a>, 9), and waivers for state single-payer plans (<a href="https://www.govinfo.gov/bulkdata/BILLSTATUS/119/hr/BILLSTATUS-119hr4406.xml">H.R.4406</a>, 35; <a href="https://www.govinfo.gov/bulkdata/BILLSTATUS/119/s/BILLSTATUS-119s2286.xml">S.2286</a>, 3). In the states, Oregon's universal health plan board approved its draft report 9 to 0 on October 15, and its next steps, starting at its November 19 meeting, include a presentation to the legislature's health care committees (<a href="https://www.oregon.gov/uhpgb/Documents/board-meetings/2026/20261015/20261015-UHPGB-board-meeting-presentation.pdf">board presentation</a>). New York's single-payer bill has majorities of both chambers as sponsors, 78 of 150 in the Assembly and 34 of 63 in the Senate (<a href="https://www.nysenate.gov/legislation/bills/2025/S3425">S3425</a>), but has had no floor vote.</p>
+    <p class="note">For who the bills would cover (S.1506 section 102 makes residence, not work history, the test), see <a href="/medicare-at-65/">Who Medicare Leaves Uninsured at 65</a>.</p>
+  </section>
+
+  <!-- 5. Political will -->
+  <section class="chart" id="will">
+    <h2>Is there political will?</h2>
+    <p>For the goal, yes. For the mechanism, it is split. Among the people who would vote on it, not yet.</p>
+    <div class="twocol">
+      <div class="panel">
+        <h3>For</h3>
+        <ul>
+          <li>KFF, September 2026: 66% favor and 34% oppose a national health plan, which the question says is sometimes called Medicare for All. That is the highest KFF has recorded. It was 53% in 2020 (<a href="https://www.kff.org/public-opinion/current-and-historical-public-opinion-on-medicare-for-all-and-other-national-health-plan-proposals/">KFF</a>).</li>
+          <li>64% (Gallup) and 66% (Pew) say the federal government should make sure everyone has coverage (<a href="https://news.gallup.com/poll/699770/cost-leads-americans-top-mind-healthcare-concerns.aspx">Gallup</a>, <a href="https://www.pewresearch.org/short-reads/2025/12/10/most-americans-say-government-has-a-responsibility-to-ensure-health-care-coverage/">Pew</a>).</li>
+          <li>Individual-market enrollment fell 18%, from 25.2 million to 20.5 million, after the enhanced subsidies expired, and insurers proposed a median 15% premium rise for 2027 (<a href="https://www.kff.org/affordable-care-act/individual-market-enrollment-continues-to-fall-through-mid-2026/">KFF</a>).</li>
+          <li>Health care was the second most-picked issue in the midterms, behind the economy, and voters trusted Democrats on it 50 to 30 (<a href="https://www.kff.org/public-opinion/health-care-in-the-2026-midterm-election/">KFF</a>).</li>
+          <li>Four incoming senators ran on it. S.1506 has 18 cosponsors, against 14 in each of the three Congresses before (<a href="https://www.govinfo.gov/bulkdata/BILLSTATUS/119/s/BILLSTATUS-119s1506.xml">GovInfo</a>).</li>
+          <li>Wyden, the senior Democrat on Senate Finance, cosponsored on September 24, 2026.</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h3>Against</h3>
+        <ul>
+          <li>Support drops with specifics. Told it would eliminate private insurers: 52% favor, 47% oppose. Told it could raise taxes: 64% oppose. Told it could delay care: 76% oppose (<a href="https://www.kff.org/public-opinion/kff-health-tracking-poll-health-care-issues-in-the-lead-up-to-the-2026-midterm-election/">KFF</a>).</li>
+          <li>Asked about a plan &ldquo;largely replacing private insurance&rdquo;: 43% support, 24% oppose, 32% unsure (Axios-Ipsos, via <a href="https://portside.org/node/40784">Portside</a>). Only 35% pick a single national government program (<a href="https://www.pewresearch.org/short-reads/2025/12/10/most-americans-say-government-has-a-responsibility-to-ensure-health-care-coverage/">Pew</a>).</li>
+          <li>Hakeem Jeffries, the Democratic leader, said in August 2026 that he does not cosponsor or support it (<a href="https://www.newsweek.com/hakeem-jeffries-rejects-medicare-for-all-dsa-agenda-12328842">Newsweek</a>). The leadership's health working group lists it only as an option to examine in the first year (<a href="https://www.marlerblog.com/files/2026/10/house-democrats-health-care-working-group-agenda-2026.pdf">memo</a>).</li>
+          <li>Of the 2026 gains, 1 of 8 Senate seats and <span data-k="gains.supporters"></span> of about <span data-k="gains.total"></span> House seats went to supporters.</li>
+          <li>No committee has ever marked up a Medicare for All bill. The AMA and industry groups remain opposed.</li>
+          <li>The movement's own letter, signed by more than 300 organizations, names 2029 as the window (<a href="https://medicare4all.org/wp-content/uploads/Final_2026_M4A_organizational_sign-on_letter.pdf">letter</a>).</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Prior art -->
+  <section class="chart" id="prior">
+    <h2>Has anyone published this?</h2>
+    <p>Not that we found, as of November 12, 2026. Advocates publish polls, pledges and lists of champions. The searches below found no current member-by-member roster of the incoming Congress with sources, and no seat-by-seat path to 218, 50 and 60.</p>
+    <table class="prior">
+      <thead><tr><th>Who</th><th>What it has</th><th class="hide-sm">What it lacks</th></tr></thead>
+      <tbody>
+        <tr><td><a href="https://www.healthcare-now.org/2021-medicare-for-all-bill-details/">Healthcare-NOW</a>, 2021</td><td>The closest framing: 218 House and 51 Senate votes &ldquo;at minimum&rdquo;, &ldquo;114 districts&rdquo; won over and &ldquo;the next 118&rdquo;.</td><td class="hide-sm">Names no districts; written for the 117th Congress.</td></tr>
+        <tr><td><a href="https://www.chaoticera.news/p/a-record-number-of-democrats-are-running-on-medicare-for-all">Chaotic Era</a>, Sept 2026</td><td>163 Democratic House nominees who explicitly support Medicare for All, partly crossed with Cook ratings.</td><td class="hide-sm">Full list for subscribers only, candidates not members, no update after the election, no vote math.</td></tr>
+        <tr><td><a href="https://passmedicareforall.org/polling">Medicare for All PAC</a></td><td>A champions list and a battleground poll.</td><td class="hide-sm">No district list; the battleground chart shows placeholders.</td></tr>
+        <tr><td><a href="https://jayapal.house.gov/cosponsors-m4a/">Rep. Jayapal</a></td><td>A list of cosponsors.</td><td class="hide-sm">For the 2021 bill; names only.</td></tr>
+        <tr><td><a href="https://legisletter.org/bill/hr3069-medicare-act">Legisletter</a></td><td>A cosponsor &ldquo;coverage map&rdquo; for H.R.3069.</td><td class="hide-sm">Stamped May 2026, gives both 112 and 118 cosponsors, no vote math.</td></tr>
+        <tr><td><a href="https://www.kff.org/interactive/tracking-public-opinion-on-national-health-plan/">KFF</a></td><td>National polling since 1998.</td><td class="hide-sm">No members, states or districts.</td></tr>
+        <tr><td><a href="https://www.nyhcampaign.org/voterguide">Campaign for New York Health</a></td><td>A district-by-district guide for the state bill.</td><td class="hide-sm">New York's legislature only.</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:10px">What this page adds: every Democrat in the incoming Congress with a position and the source for it, a date where one was found, how sure the research is, the 2026 margin, and the arithmetic of 218, 50 and 60. Not checked in depth: Our Revolution, Justice Democrats, DSA's House Pressure Campaign (its page was blocked), and the California and Minnesota single-payer groups. A list from one of them would not show up in the searches behind this page.</p>
+  </section>
+
+  <!-- 7. About -->
+  <section class="about">
+    <h2>About the data, and its limits</h2>
+    <p><b>Who is counted.</b> Every Democrat and independent who caucuses with Democrats in the 120th Congress, as of <span data-k="as_of_long"></span>, nine days after the election. In the House that is <span data-k="house.seated"></span> voting members, counting the Democrat leading each uncalled race; <span id="excl"></span>. In the Senate it is <span data-k="senate.seated"></span>, 53 Democrats and 2 independents; Mary Peltola's Alaska race is uncalled and she is not counted (she backed a public option in 2022). Amy Klobuchar's row stands for whoever is appointed to her seat.</p>
+    <p><b>Positions.</b> &ldquo;On record&rdquo; means a sponsor or cosponsor of the 119th Congress bills (<a href="https://www.govinfo.gov/bulkdata/BILLSTATUS/119/hr/BILLSTATUS-119hr3069.xml">H.R.3069</a> had 118 cosponsors plus Jayapal; <a href="https://www.govinfo.gov/bulkdata/BILLSTATUS/119/s/BILLSTATUS-119s1506.xml">S.1506</a> had 18 plus Sanders; none withdrew) who returns in January, or a new member with a public statement of support. Everyone else was coded from their campaign or official site, interviews and news coverage into one of: public option, Medicare buy-in or a lower Medicare age, strengthen the ACA only, on record against Medicare for All, or no position found. Every row links to its source.</p>
+    <p><b>Limits.</b></p>
+    <ul>
+      <li><b>Unknowns are unknown.</b> <span data-k="house.positions.no_position_found"></span> House members and <span data-k="senate.positions.no_position_found"></span> senators have no position found, mostly because the search budget ran out. Some of them may support Medicare for All.</li>
+      <li><b>Results are not final.</b> <span id="uncalled"></span> Mississippi's Senate race was called on November 11 by about half a point.</li>
+      <li><b>Soft supporters.</b> <span data-k="house.soft_supporters"></span> count as supporters at medium or low confidence: a reporter's paraphrase, an automated interview transcript, a plan that never uses the name, or a race not yet called. Some supporters, such as Abdul El-Sayed in the Senate, back their own version, which he says would not have to ban extra coverage through unions or employers. Jasmine Clark (GA-13) is named as a supporter by <a href="https://prospect.org/2026/11/04/midterm-election-about-health-care-annie-andrews-medicare-for-all/">The American Prospect</a> but has no statement of her own here; counting her would make the House <span id="hplus"></span>.</li>
+      <li><b>Old statements.</b> Many non-supporter labels rest on statements from 2009 to 2020, including for Schumer, Reed, Rosen, Brown, Neal, McAdams, McBath, Bennet, Hickenlooper and Slotkin. Neal is coded from his on-the-record remarks in 2019; reports that he privately called Medicare for All a political loser came from anonymous accounts, so he is not coded as opposed. John Fetterman, who supported single payer in 2018 to 2020, is counted as no position found because nothing recent was found. <span id="dates"></span></li>
+      <li><b>One coder.</b> Each position was coded once by the research team and spot-checked for 32 rows, which found no invented quotes but four overstated labels; those were corrected. There is no second, independent coding.</li>
+      <li><b>Seat ratings use unofficial 2026 margins</b>: competitive under 8 points, likely 8 to under 15, safe 15 or more. Several seats sit near 15 (CO-8, NY-19, CT-5, MI-3, NE-2). In California's Democrat-vs-Democrat races the margin is between two Democrats, so Doris Matsui's CA-7 reads as competitive though the seat is safe for the party; counting it as safe would put the all-safe-seats total at <span id="hdvd"></span>.</li>
+      <li><b>Projections are judgment, not a model.</b> The 14% pickup rate is one election's: <span data-k="gains.supporters"></span> supporters among about <span data-k="gains.total"></span> House gains called by November 12 (NBC counts 43 flips, Fox 44). Counting the uncalled races Democrats lead, gains are closer to 47, and the rate about 13%. The Senate path research's best cases, about 32 to 37 supporters by January 2029 and 38 to 44 by 2031, are its judgment. That the Byrd rule would strike the core of the bill in reconciliation is the team's inference from the rule's text (<a href="https://www.everycrsreport.com/reports/RL30862.html">CRS RL30862</a>); no ruling or analysis specific to Medicare for All was found.</li>
+      <li><b>Corrections after fact-checking.</b> A fact-check of the research on November 12 changed these before the page was built: Mississippi's Senate race moved from uncalled to won; Terri Sewell was added as a past cosponsor (2011); Richard Pan moved from opposed to ACA-only, Dan Koh from supporter to public option, and Fetterman to no position; El-Sayed and Katy Padilla Stout were lowered to medium confidence; CO-8 moved from safe to likely; several Senate margins were recomputed. A second check before publishing moved Richard Neal from opposed to ACA-only, because the only quote against Medicare for All was an anonymous account, and replaced two supporters' sources with their own words. The research's first counts, 118 House supporters and 213 with every safe seat, became <span data-k="house.supporters"></span> and <span data-k="house.all_safe"></span>.</li>
+      <li><b>Sources.</b> congress.gov, CBO, Axios, Cook and AP pages were often blocked, so the team used GovInfo bill-status files, the congress.gov API, reposts and Wikipedia instead. Several sources are advocates on one side or the other (Third Way, Data for Progress, the American Prospect, Common Dreams, PNHP).</li>
+    </ul>
+    <p><b>Method.</b> A research team of agents built the roster on November 12, 2026: who won each seat, each member's position and source, and the path analysis. Counts on this page are computed from that roster by the build script and checked against its tallies. The Senate split into states Trump won in 2024 or seats Republicans held before 2026 comes from the Senate path research. Poll figures are as published by each pollster.</p>
+    <p>Data and build script: <a href="https://github.com/usnish/usnish.github.io/tree/master/medicare-for-all-votes">github.com/usnish/usnish.github.io</a>.</p>
+  </section>
+</main>
+
+<script src="../assets/viz/d3.min.js"></script>
+<script src="../assets/viz/vizkit.js"></script>
+<script>
+(async function () {
+  const [M, S] = await Promise.all([d3.json("data/members.json"), d3.json("data/summary.json")]);
+  const $ = id => document.getElementById(id);
+  const int = VK.int;
+  const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const host = u => { try { return new URL(u).hostname.replace(/^www\./, ""); } catch (e) { return u; } };
+  const listAnd = a => a.length < 2 ? a.join("") : a.slice(0, -1).join(", ") + " and " + a[a.length - 1];
+  const H = S.house, SE = S.senate;
+
+  const GROUPS = [
+    { g: "cos", label: "Sponsor or cosponsor, current bill" },
+    { g: "new", label: "New member, supports" },
+    { g: "opt", label: "Public option or Medicare buy-in" },
+    { g: "aca", label: "Strengthen the ACA only" },
+    { g: "unk", label: "No position found (unknown)" },
+    { g: "opp", label: "On record against" },
+  ];
+  const GORDER = Object.fromEntries(GROUPS.map((d, i) => [d.g, i]));
+  const POSLABEL = {
+    cosponsor_119: "Sponsor or cosponsor of the current bill",
+    supports_m4a: "Supports Medicare for All (new member)",
+    supports_single_payer_in_principle: "Supports single payer in principle",
+    public_option: "Supports a public option",
+    lower_medicare_age_or_buy_in: "Supports a Medicare buy-in or a lower Medicare age",
+    strengthen_aca_only: "Strengthen the ACA only",
+    opposes_m4a: "On record against Medicare for All",
+    no_position_found: "No position found (unknown, not opposed)",
+  };
+  const STATES = { AL: "Alabama", AK: "Alaska", AZ: "Arizona", AR: "Arkansas", CA: "California", CO: "Colorado", CT: "Connecticut", DE: "Delaware", DC: "District of Columbia", FL: "Florida", GA: "Georgia", GU: "Guam", HI: "Hawaii", ID: "Idaho", IL: "Illinois", IN: "Indiana", IA: "Iowa", KS: "Kansas", KY: "Kentucky", LA: "Louisiana", ME: "Maine", MD: "Maryland", MA: "Massachusetts", MI: "Michigan", MN: "Minnesota", MS: "Mississippi", MO: "Missouri", MT: "Montana", NE: "Nebraska", NV: "Nevada", NH: "New Hampshire", NJ: "New Jersey", NM: "New Mexico", NY: "New York", NC: "North Carolina", ND: "North Dakota", OH: "Ohio", OK: "Oklahoma", OR: "Oregon", PA: "Pennsylvania", PR: "Puerto Rico", RI: "Rhode Island", SC: "South Carolina", SD: "South Dakota", TN: "Tennessee", TX: "Texas", UT: "Utah", VT: "Vermont", VA: "Virginia", VI: "U.S. Virgin Islands", WA: "Washington", WV: "West Virginia", WI: "Wisconsin", WY: "Wyoming" };
+  const MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const fmtDate = d => { const m = /^(\d{4})-(\d\d)-(\d\d)$/.exec(d || ""); return m ? `${MON[+m[2] - 1]} ${+m[3]}, ${m[1]}` : (d || ""); };
+  const asOfLong = (() => { const [y, m, d] = S.as_of.split("-"); return `${["January","February","March","April","May","June","July","August","September","October","November","December"][+m - 1]} ${+d}, ${y}`; })();
+
+  const counted = M.filter(m => m.counted);
+  const HM = counted.filter(m => m.ch === "H"), SM = counted.filter(m => m.ch === "S");
+  const supp = m => m.g === "cos" || m.g === "new";
+  console.assert(HM.filter(supp).length === H.supporters && SM.filter(supp).length === SE.supporters, "data mismatch");
+
+  // Numbers written into the prose come from summary.json -----------------------------
+  const K = {
+    as_of_long: asOfLong,
+    "house.seated": H.seated, "senate.seated": SE.seated, "house.supporters": H.supporters, "house.all_safe": H.all_safe,
+    "house.positions.no_position_found": H.positions.no_position_found,
+    "senate.positions.no_position_found": SE.positions.no_position_found,
+    "gains.supporters": S.gains.supporters, "gains.total": S.gains.total,
+    "house.holds": listAnd(H.holds),
+    "house.soft_supporters": listAnd(H.soft_supporters),
+  };
+  document.querySelectorAll("[data-k]").forEach(el => { if (el.dataset.k in K) el.textContent = K[el.dataset.k]; });
+  const excluded = S.excluded.filter(x => !/^Class|Delegate|Resident/.test(x));
+  $("excl").textContent = `not counted are the four nonvoting delegates and ${excluded.length} candidates who are trailing or in runoffs (${excluded.map(x => x.split(":")[0]).join(", ")})`;
+  $("uncalled").textContent = `${H.uncalled_leaders.length} House races were uncalled when the roster was built, and each is counted for the Democrat leading: ${listAnd(H.uncalled_leaders)}.`;
+  $("hplus").textContent = H.supporters + 1;
+  $("hdvd").textContent = H.all_safe + H.dvd_nonsafe_nonsupporters.length;
+  const datedNon = M.filter(m => m.counted && m.dt && m.g !== "cos").length, nonCos = M.filter(m => m.counted && m.g !== "cos").length;
+  $("dates").textContent = `Cosponsor dates come from the bill records. For the other ${nonCos} members, a single date could be read from the research notes for ${datedNon}; the rest show the source without a date.`;
+
+  // 1. Guess ------------------------------------------------------------------------
+  const gh = $("gh"), gs = $("gs");
+  gh.max = H.seated; gs.max = SE.seated;
+  gh.value = Math.round(H.seated / 2); gs.value = Math.round(SE.seated / 2);
+  let movedH = false, movedS = false, guessed = false;
+  const syncG = () => { $("ghout").textContent = gh.value; $("gsout").textContent = gs.value; };
+  syncG();
+  gh.addEventListener("input", () => { movedH = true; syncG(); });
+  gs.addEventListener("input", () => { movedS = true; syncG(); });
+
+  // A horizontal count bar: supporters, the rest of the caucus, and the thresholds beyond it
+  function countBar(el, { segs, caucus, max, rules, guess, h = 30 }) {
+    const W = el.clientWidth || 340;
+    const m = { l: 2, r: 8, t: 34, b: 22 };
+    const x = d3.scaleLinear([0, max], [m.l, W - m.r]);
+    el.innerHTML = "";
+    const svg = d3.select(el).append("svg").attr("class", "track").attr("viewBox", `0 0 ${W} ${m.t + h + m.b}`).attr("height", m.t + h + m.b);
+    svg.append("rect").attr("class", "base").attr("x", x(0)).attr("y", m.t).attr("width", x(caucus) - x(0)).attr("height", h).attr("rx", 4);
+    svg.append("rect").attr("class", "beyond").attr("x", x(caucus) + 1).attr("y", m.t + .5).attr("width", Math.max(0, x(max) - x(caucus) - 1)).attr("height", h - 1).attr("rx", 4);
+    let at = 0;
+    segs.forEach(s => {
+      if (!s.n) return;
+      svg.append("rect").attr("class", `g-${s.g} ${s.hyp ? "hyp" : ""}`).attr("x", x(at) + (at ? 1 : 0)).attr("y", m.t)
+        .attr("width", Math.max(0, x(at + s.n) - x(at) - (at ? 1 : 0))).attr("height", h).attr("rx", at ? 0 : 4);
+      at += s.n;
+    });
+    const narrow = W < 480;
+    rules.forEach((r, i) => {
+      svg.append("line").attr("class", "rule" + (r.soft ? " soft" : "")).attr("x1", x(r.v)).attr("x2", x(r.v)).attr("y1", m.t - (i % 2 ? 6 : 18)).attr("y2", m.t + h + 4);
+      svg.append("text").attr("x", x(r.v)).attr("y", m.t - (i % 2 ? 9 : 21)).attr("text-anchor", x(r.v) > W - 60 ? "end" : "middle")
+        .attr("class", r.strong ? "lbl" : null).text(narrow && r.short ? r.short : r.label);
+    });
+    svg.append("text").attr("x", x(caucus)).attr("y", m.t + h + 16).attr("text-anchor", "end").text(`all ${caucus} Democrats`);
+    svg.append("text").attr("x", x(0)).attr("y", m.t + h + 16).text("0");
+    if (guess != null) {
+      svg.append("rect").attr("class", "gmark").attr("x", x(guess) - 1.5).attr("y", m.t - 3).attr("width", 3).attr("height", h + 6);
+      svg.append("text").attr("class", "gtext").attr("x", x(guess)).attr("y", m.t + h / 2 + 4).attr("dx", guess > max * .8 ? -6 : 6)
+        .attr("text-anchor", guess > max * .8 ? "end" : "start").text("you");
+    }
+  }
+  const supSegs = (cos, nw) => [{ g: "cos", n: cos }, { g: "new", n: nw }];
+  function drawGuessBars() {
+    if ($("gbars").hidden) return;
+    const gH = guessed ? +gh.value : null, gS = guessed ? +gs.value : null;
+    countBar($("bar-h"), { segs: supSegs(H.cosponsors, H.new_supporters), caucus: H.seated, max: 300, guess: gH,
+      rules: [{ v: 218, label: "218 to pass", strong: true }, { v: 290, label: "290 to override", short: "290" }] });
+    countBar($("bar-s"), { segs: supSegs(SE.cosponsors, SE.new_supporters.length), caucus: SE.seated, max: 70, guess: gS,
+      rules: [{ v: 50, label: "50 + VP", strong: true }, { v: 60, label: "60 to end debate", short: "60" }, { v: 67, label: "67", soft: true }] });
+  }
+  $("gkey").innerHTML = `<span><i class="sw g-cos"></i>Sponsor or cosponsor of the current bill</span><span><i class="sw g-new"></i>New member who supports it</span>`;
+  function reveal(skip) {
+    guessed = !skip;
+    $("gbars").hidden = false;
+    $("gbtn").hidden = true; $("gskip").hidden = true;
+    $("ghint").hidden = true;
+    gh.disabled = true; gs.disabled = true;
+    drawGuessBars();
+    const res = $("gresult"); res.hidden = false;
+    const you = skip ? "" : `You guessed <b>${gh.value}</b> and <b>${gs.value}</b>. `;
+    res.innerHTML = you +
+      `<b>${H.supporters}</b> of ${H.seated} House Democrats are on record: ${H.cosponsors} returning sponsor and cosponsors of H.R.3069 plus ${H.new_supporters} new members. That is ${Math.round(100 * H.supporters / H.seated)}% of the caucus and <b>${H.gap_218} short of 218</b>. ` +
+      `In the Senate it is <b>${SE.supporters}</b> of ${SE.seated}: ${SE.cosponsors} returning sponsor and cosponsors of S.1506 plus ${listAnd(SE.new_supporters)}. That is <b>${50 - SE.supporters} short of 50</b>, the most a bill can pass with when the vice president breaks ties, and ${60 - SE.supporters} short of the 60 it takes to end a filibuster. Sixty is more senators than Democrats have.`;
+  }
+  $("gbtn").addEventListener("click", () => reveal(false));
+  $("gskip").addEventListener("click", () => reveal(true));
+
+  // 2. Roster -------------------------------------------------------------------------
+  const sortKey = m => [GORDER[m.g], m.st, m.d.padStart(8, "0"), m.n];
+  const cmp = (a, b) => { const ka = sortKey(a), kb = sortKey(b); for (let i = 0; i < ka.length; i++) { if (ka[i] < kb[i]) return -1; if (ka[i] > kb[i]) return 1; } return 0; };
+  HM.sort(cmp); SM.sort(cmp);
+  const cnt = arr => d3.rollup(arr, v => v.length, d => d.g);
+  const ch = cnt(HM), cs = cnt(SM);
+  $("rkey").innerHTML = `<span style="color:var(--muted)">House + Senate:</span>` + GROUPS.map(d => `<span><i class="sw g-${d.g}"></i>${d.label} <b>${ch.get(d.g) || 0}</b> + <b>${cs.get(d.g) || 0}</b></span>`).join("");
+  $("hcap").textContent = `${H.seated} members; the line marks where the 218th vote falls in this order`;
+  $("scap").textContent = `${SE.seated} senators; the line marks the 50th`;
+  $("gridnote").textContent = "Within each colour, dots are sorted by state. The line is a place in this sort order, not a particular member.";
+
+  let selected = null, stateSel = "";
+  function seatLabel(m) {
+    if (m.ch === "S") return `Senator, ${STATES[m.st] || m.st}`;
+    return /Delegate|Commissioner/.test(m.d) ? m.d : `House, ${m.d}`;
+  }
+  function cardHTML(m) {
+    const statusTxt = { new: "New member", returning: "Returning", uncalled: "Race uncalled" }[m.status] || m.status;
+    const party = /^D$/.test(m.party) ? "" : ` &middot; ${esc(m.party)}`;
+    let words;
+    if (m.g === "cos") words = `<p>${esc(m.how)}${m.dt ? `, since ${fmtDate(m.dt)}` : ""}.</p>`;
+    else if (m.q) words = `<blockquote>&ldquo;${esc(m.q)}&rdquo;</blockquote>`;
+    else words = `<p class="empty">No statement quoted.</p>`;
+    const rows = [];
+    if (m.g !== "cos") rows.push(["Date", m.dt ? fmtDate(m.dt) : `<span class="empty">not recorded</span>`]);
+    rows.push(["Confidence", esc(m.conf)]);
+    rows.push(["Source", `<a href="${esc(m.src)}" rel="noopener">${esc(host(m.src))}</a>`]);
+    if (m.pn) rows.push(["Research note", esc(m.pn)]);
+    if (m.past) rows.push(["Past cosponsor", esc(m.past)]);
+    if (m.margin) rows.push(["2026 result", esc(m.margin) + (m.rating && m.rating !== "unknown" ? ` (${m.rating})` : "")]);
+    if (m.sn) rows.push(["Seat note", esc(m.sn)]);
+    if (!m.counted) rows.push(["Not counted", esc(m.why)]);
+    return `<h4>${esc(m.n)}</h4><p class="meta">${seatLabel(m)} &middot; ${statusTxt}${party}</p>` +
+      `<span class="pos"><i class="sw g-${m.g}"></i>${POSLABEL[m.pos]}</span>${words}` +
+      `<dl>${rows.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("")}</dl>`;
+  }
+  function showCard(m, pin) {
+    if (pin) selected = m;
+    $("card").innerHTML = m ? cardHTML(m) : `<span class="empty">Tap or hover over a dot, or pick a state, to see a member's position and its source.</span>`;
+    d3.selectAll("svg.dots .dot").classed("sel", d => d === selected);
+    d3.selectAll(".dele tr.row").classed("on", d => d === selected);
+  }
+
+  function dotGrid(el, arr, colsWide, colsNarrow, mark, markLabel) {
+    const W = el.clientWidth || 340;
+    const cols = W < 560 ? colsNarrow : colsWide;
+    const cell = Math.min(24, W / cols);
+    const rowsN = Math.ceil(arr.length / cols);
+    const top = 16;
+    el.innerHTML = "";
+    const svg = d3.select(el).append("svg").attr("class", "dots").attr("viewBox", `0 0 ${cols * cell} ${rowsN * cell + top + 2}`)
+      .attr("role", "img").attr("aria-label", `${arr.length} members as dots, coloured by position`);
+    const g = svg.append("g").attr("transform", `translate(0,${top})`);
+    const pos = i => [(i % cols + .5) * cell, (Math.floor(i / cols) + .5) * cell];
+    g.selectAll("circle.dot").data(arr).join("circle")
+      .attr("class", d => `dot g-${d.g}`).attr("r", cell * .36)
+      .attr("cx", (d, i) => pos(i)[0]).attr("cy", (d, i) => pos(i)[1]);
+    g.selectAll("rect.hit").data(arr).join("rect").attr("class", "hit")
+      .attr("x", (d, i) => pos(i)[0] - cell / 2).attr("y", (d, i) => pos(i)[1] - cell / 2).attr("width", cell).attr("height", cell)
+      .on("pointerenter", (e, d) => { if (e.pointerType === "mouse") showCard(d, false); })
+      .on("pointerleave", e => { if (e.pointerType === "mouse") showCard(selected, false); })
+      .on("click", (e, d) => {
+        showCard(d, true);
+        const c = $("card");
+        if (c.getBoundingClientRect().bottom > window.innerHeight) c.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      });
+    // staircase boundary before the mark-th dot
+    if (mark && mark <= arr.length) {
+      const k = mark - 1, c = k % cols, r = Math.floor(k / cols);
+      const p = c === 0
+        ? `M0,${r * cell} H${cols * cell}`
+        : `M0,${(r + 1) * cell} H${c * cell} V${r * cell} H${cols * cell}`;
+      g.append("path").attr("class", "stair").attr("d", p);
+      svg.append("text").attr("class", "stairlbl").attr("x", Math.min(c * cell + 2, cols * cell - 4)).attr("y", top + r * cell - 3)
+        .attr("text-anchor", c * cell > cols * cell * .7 ? "end" : "start").text(markLabel);
+    }
+    paintState();
+  }
+  function paintState() {
+    d3.selectAll("svg.dots .dot").classed("dim", d => stateSel && d.st !== stateSel);
+  }
+  function renderGrids() {
+    dotGrid($("grid-h"), HM, 26, 20, 218, "218th vote");
+    dotGrid($("grid-s"), SM, 14, 11, 50, "50th vote");
+    d3.selectAll("svg.dots .dot").classed("sel", d => d === selected);
+  }
+  renderGrids();
+
+  // State picker
+  const states = [...new Set(M.map(m => m.st))].sort((a, b) => (STATES[a] || a).localeCompare(STATES[b] || b));
+  $("stpick").insertAdjacentHTML("beforeend", states.map(s => `<option value="${s}">${STATES[s] || s}</option>`).join(""));
+  $("stpick").addEventListener("change", e => {
+    stateSel = e.target.value;
+    paintState();
+    renderDele();
+  });
+  function renderDele() {
+    const el = $("dele");
+    if (!stateSel) { el.innerHTML = ""; return; }
+    const rows = M.filter(m => m.st === stateSel).sort((a, b) => (a.ch === b.ch ? 0 : a.ch === "S" ? -1 : 1) || a.d.localeCompare(b.d, undefined, { numeric: true }));
+    const nS = rows.filter(m => m.ch === "S" && m.counted), nH = rows.filter(m => m.ch === "H" && m.counted);
+    const sup = r => r.filter(supp).length;
+    el.innerHTML = `<p class="readout"><b>${STATES[stateSel] || stateSel}</b>: ${nH.length ? `${sup(nH)} of ${nH.length} House Democrats` : "no House Democrats counted"}` +
+      `${nS.length ? `, ${sup(nS)} of ${nS.length} Democratic senators` : ""} on record for Medicare for All. Tap a row for the details and source.</p>` +
+      `<table class="dele"><thead><tr><th>Member</th><th>Position</th><th class="hide-sm">Confidence</th><th>Source</th></tr></thead><tbody></tbody></table>`;
+    d3.select(el).select("tbody").selectAll("tr").data(rows).join("tr")
+      .attr("class", d => "row" + (d.counted ? "" : " out"))
+      .html(d => `<td><span class="nm">${esc(d.n)}</span><br><span style="color:var(--muted);font-size:12px">${d.ch === "S" ? "Senate" : esc(d.d)}${d.counted ? "" : " &middot; not counted: " + esc(d.why.toLowerCase())}</span></td>` +
+        `<td><span class="pos" style="display:inline-flex;gap:6px;align-items:center"><i class="sw g-${d.g}"></i>${POSLABEL[d.pos]}</span></td>` +
+        `<td class="hide-sm">${esc(d.conf)}</td><td><a href="${esc(d.src)}" rel="noopener">link</a></td>`)
+      .on("click", (e, d) => { if (e.target.closest("a")) return; showCard(d, true); $("card").scrollIntoView({ behavior: "smooth", block: "nearest" }); });
+  }
+
+  // 3. Ladder -------------------------------------------------------------------------
+  const L = S.ladder;
+  const rate = S.gains.supporters / S.gains.total;
+  const pickNeedFrom = base => Math.round((218 - base) / rate);
+  document.querySelectorAll("#predict button").forEach(b => b.addEventListener("click", () => {
+    document.querySelectorAll("#predict button").forEach(x => x.setAttribute("aria-pressed", x === b));
+    const right = b.dataset.k === "safe";
+    $("predict-out").innerHTML = (right ? "<b>That's the one.</b> " : "<b>Not on these numbers.</b> ") +
+      `In 2026, ${S.gains.supporters} of about ${S.gains.total} Democratic House gains went to supporters, about ${Math.round(rate * 100)}%. At that rate, getting from ${H.supporters} to 218 on new seats alone would take about ${int(Math.round(pickNeedFrom(H.supporters) / 10) * 10)} more seats, far more than the ${435 - H.seated} Democrats do not already hold. ` +
+      `Safe-seat Democrats changing position gets much closer, but not all the way. Step through it below.`;
+  }));
+  const LCOL = { cos: "cos", new: "new", lapsed: "mix", safe_opt: "opt", safe_aca: "aca", safe_unk: "unk", safe_opp: "opp", likely: "mix", comp: "mix" };
+  const LHYP = k => !["cos", "new"].includes(k);
+  $("ladder-intro").innerHTML = `Start with the ${H.supporters} on record and add groups of Democrats in order, from those closest to supporting it to those furthest away. Seats are rated by the 2026 margin: safe means won by 15 points or more. Faded bars are members who are not on record and would need to change position.`;
+  $("lsteps").innerHTML = `<li class="hdr"><span></span><span>Group</span><span class="n">Adds</span><span class="c">Total</span></li>` +
+    L.map((b, i) => `<li data-i="${i}"><i class="sw g-${LCOL[b.key]} ${LHYP(b.key) ? "hyp" : ""}"></i><span>${b.label}</span><span class="n">+${b.n}</span><span class="c ${b.cum >= 218 ? "ok" : ""}">${b.cum}</span></li>`).join("");
+  let lstep = 2;
+  function drawLadder() {
+    countBar($("lbar"), {
+      segs: L.slice(0, lstep).map(b => ({ g: LCOL[b.key], n: b.n, hyp: LHYP(b.key) })), caucus: H.seated, max: 260,
+      rules: [{ v: 218, label: "218", strong: true }],
+    });
+    document.querySelectorAll("#lsteps li[data-i]").forEach(li => li.classList.toggle("off", +li.dataset.i >= lstep));
+    const cur = L[lstep - 1];
+    const safeIdx = L.findIndex(b => b.key === "safe_opp");
+    let t = `<b>${cur.cum}</b> of ${H.seated}. `;
+    if (lstep <= 2) t += `These are the members on record today, ${218 - cur.cum} short of 218.`;
+    else if (lstep - 1 < safeIdx) t += `Still ${218 - cur.cum} short.`;
+    else if (lstep - 1 === safeIdx) t += `This is every Democrat in a safe seat on board, including ${L.slice(0, safeIdx + 1).reduce((s, b) => s + (b.by_pos.opposes_m4a || 0), 0)} who are on record against it, and the House is still <b>${218 - cur.cum} short</b>. The rest has to come from close seats: at least ${218 - cur.cum} of the ${L[safeIdx + 1].n} non-supporters in likely seats, or about ${pickNeedFrom(cur.cum)} more seats won at 2026's rate.`;
+    else if (cur.key === "likely") t += `Adding every likely-seat Democrat passes 218 with ${cur.cum - 218} to spare.`;
+    else t += `Every Democrat. A floor majority without any Republican votes needs 218 of these ${H.seated}.`;
+    $("lread").innerHTML = t;
+    $("lnext").disabled = lstep >= L.length;
+  }
+  $("lnext").addEventListener("click", () => { lstep = Math.min(L.length, lstep + 1); drawLadder(); });
+  $("lall").addEventListener("click", () => { lstep = L.length; drawLadder(); });
+  $("lreset").addEventListener("click", () => { lstep = 2; drawLadder(); });
+  drawLadder();
+
+  const pk = $("pk");
+  function drawPick() {
+    const n = +pk.value, add = Math.round(n * rate);
+    $("pkout").textContent = n;
+    countBar($("pbar"), {
+      segs: [...supSegs(H.cosponsors, H.new_supporters), { g: "new", n: add, hyp: true }], caucus: H.seated + n, max: Math.max(300, H.seated + 175),
+      rules: [{ v: 218, label: "218", strong: true }],
+    });
+    $("pread").innerHTML = `${n} more seats won, at 2026's rate of ${S.gains.supporters} supporters in about ${S.gains.total} gains, would add about <b>${add}</b> supporters: ${H.supporters + add} in all, ${218 - H.supporters - add} short of 218. ` +
+      `For scale, Democrats would hold ${H.seated + n} of 435 seats. Starting instead from every safe-seat Democrat (${H.all_safe}), it would take about ${pickNeedFrom(H.all_safe)} more seats.`;
+  }
+  pk.addEventListener("input", drawPick);
+  drawPick();
+
+  // Senate
+  $("senate-intro").innerHTML = `Before January 20, 2029, any bill faces a veto that 67 senators would have to override. After that, a bill can pass with 50 senators and a Democratic vice president in two ways. Budget reconciliation avoids the filibuster but is limited by the Byrd rule, which strikes provisions whose budget effect is &ldquo;merely incidental&rdquo; and takes 60 votes to waive. The research team's inference, not a ruling, is that this would likely strike the core of the bill, such as the ban on duplicate private insurance and the rules for providers. The other way is changing the filibuster rule, which itself takes 50 votes. Under regular order the bill needs 60.`;
+  const sSwing = SM.filter(m => m.swing);
+  const drawSenate = () => countBar($("sbar"), {
+    segs: [...supSegs(SE.cosponsors, SE.new_supporters.length), { g: "mix", n: SE.other_states }, { g: "mix", n: SE.swing, hyp: true }],
+    caucus: SE.seated, max: 70,
+    rules: [{ v: SE.if_all_other_states, label: String(SE.if_all_other_states), soft: true }, { v: 50, label: "50 + VP", strong: true }, { v: 60, label: "60", strong: true }, { v: 67, label: "67", soft: true }],
+  });
+  drawSenate();
+  $("skey").innerHTML = `<span><i class="sw g-cos"></i>Cosponsors</span><span><i class="sw g-new"></i>New supporters</span>` +
+    `<span><i class="sw g-mix"></i>Non-supporters in other states (${SE.other_states})</span><span><i class="sw g-mix hyp"></i>Non-supporters in states Trump won or seats Republicans held before 2026 (${SE.swing})</span>`;
+  $("sread").innerHTML = `<b>${SE.supporters}</b> senators are on record. If all ${SE.other_states} non-supporters outside states Trump won, or seats Republicans held before 2026, came over, the count would be <b>${SE.if_all_other_states}</b>, still ${50 - SE.if_all_other_states} short of 50. ` +
+    `The rest would have to come from senators such as ${listAnd(sSwing.filter(m => ["Roy Cooper", "Scott Colom", "Adam Hamilton", "Annie Andrews", "James Talarico", "Josh Turek"].includes(m.n)).map(m => `${m.n} (${m.st})`))}, who ran on fixing the ACA, a public option or an opt-in Medicare plan. ` +
+    `Sixty would take every Democrat plus ${60 - SE.seated} Republicans.`;
+  $("window-senate").innerHTML = `A smaller step has more senators behind it. <b>${SE.medicare_option}</b> of the ${SE.seated} are on record for Medicare for All, a public option or a Medicare buy-in, which makes a Medicare option, or Medicare at 50, the more passable step for 2029. The Senate path research's best case is about 32 to 37 supporters by January 2029 and 38 to 44 by 2031, short of 50 unless a 2028 nominee makes it the party's signature bill, as the ACA was. That is the strongest counterargument to cosponsor counts: 60 Democrats voted for the ACA, and most had never cosponsored anything like it.`;
+
+  let rt, lastW = window.innerWidth;
+  window.addEventListener("resize", () => {
+    if (window.innerWidth === lastW) return;
+    lastW = window.innerWidth;
+    clearTimeout(rt);
+    rt = setTimeout(() => { drawGuessBars(); renderGrids(); drawLadder(); drawPick(); drawSenate(); }, 150);
+  });
+})();
+</script>
+</body>
+</html>

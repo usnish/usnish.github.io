@@ -1,0 +1,182 @@
+{
+  "rows_total": 326,
+  "rows_by_chamber": {
+    "House": 270,
+    "Senate": 56
+  },
+  "rows_by_status": {
+    "House": {
+      "new": 76,
+      "returning": 182,
+      "uncalled": 12
+    },
+    "Senate": {
+      "returning": 43,
+      "new": 12,
+      "uncalled": 1
+    }
+  },
+  "house_voting_seated_likely": 260,
+  "house_excluded_rows": [
+    "AK-AL Bill Hill",
+    "CA-23 Tessa Lynn Hodge",
+    "CA-4 Mike Thompson",
+    "LA-5 Patricia (Pat) Moore",
+    "LA-6 Chauna Banks",
+    "NC-7 Kimberly Hardy"
+  ],
+  "house_nonvoting_rows": [
+    "DC-Delegate Robert White",
+    "PR-Resident Commissioner Pablo José Hernández Rivera",
+    "VI-Delegate Janelle Sarauw",
+    "GU-Delegate Alicia Limtiaco"
+  ],
+  "house_position": {
+    "supports_m4a": 22,
+    "cosponsor_119": 95,
+    "no_position_found": 64,
+    "strengthen_aca_only": 38,
+    "public_option": 30,
+    "opposes_m4a": 4,
+    "lower_medicare_age_or_buy_in": 7
+  },
+  "house_supporters": 117,
+  "house_cosponsor_119_returning": 95,
+  "house_supports_m4a_new": 22,
+  "house_supports_single_payer_in_principle": 0,
+  "house_rating": {
+    "safe": 199,
+    "competitive": 39,
+    "likely": 22
+  },
+  "house_nonsupporter_by_rating": {
+    "safe": 94,
+    "competitive": 33,
+    "likely": 16
+  },
+  "house_nonsupporter_safe_by_position": {
+    "no_position_found": 47,
+    "strengthen_aca_only": 25,
+    "public_option": 18,
+    "opposes_m4a": 2,
+    "lower_medicare_age_or_buy_in": 2
+  },
+  "house_supporter_by_rating": {
+    "safe": 105,
+    "competitive": 6,
+    "likely": 6
+  },
+  "house_uncalled_leaders_counted": [
+    "CA-4 Eric Jones (supports_m4a)",
+    "CO-4 Eileen Laubacher (opposes_m4a)",
+    "MN-1 Jake Johnson (strengthen_aca_only)",
+    "NC-3 Raymond Smith Jr. (no_position_found)",
+    "NC-5 Chuck Hubbard (public_option)",
+    "TN-4 Victoria Broderick (no_position_found)"
+  ],
+  "house_status": {
+    "new": 73,
+    "returning": 181,
+    "uncalled": 6
+  },
+  "house_confidence_nonsupporters": {
+    "medium": 82,
+    "low": 34,
+    "high": 27
+  },
+  "house_dropped_off_past_cosponsor": [
+    "AL-7 Terri Sewell",
+    "CA-38 Hilda Solis",
+    "CA-46 Lou Correa",
+    "CA-7 Doris Matsui",
+    "FL-14 Kathy Castor",
+    "FL-9 Darren Soto",
+    "GA-2 Sanford Bishop",
+    "MA-5 Katherine Clark",
+    "MA-8 Stephen Lynch",
+    "NJ-1 Donald Norcross",
+    "NY-8 Hakeem Jeffries",
+    "OH-3 Joyce Beatty",
+    "OH-9 Marcy Kaptur",
+    "SC-6 Jim Clyburn",
+    "TX-34 Vicente Gonzalez",
+    "WI-4 Gwen Moore"
+  ],
+  "senate_rows": 56,
+  "senate_position": {
+    "no_position_found": 10,
+    "public_option": 10,
+    "cosponsor_119": 18,
+    "opposes_m4a": 3,
+    "lower_medicare_age_or_buy_in": 5,
+    "supports_m4a": 4,
+    "strengthen_aca_only": 6
+  },
+  "senate_supporters_incl_peltola_row": 22,
+  "senate_supporters": 22,
+  "senate_cosponsor_119": 18,
+  "senate_supports_m4a_new": [
+    "Abdul El-Sayed",
+    "Juliana Stratton",
+    "Peggy Flanagan",
+    "Troy Jackson"
+  ],
+  "senate_po_or_buyin": [
+    "Amy Klobuchar",
+    "Angela Alsobrooks",
+    "Annie Andrews",
+    "Chris Murphy",
+    "Chuck Schumer",
+    "Jack Reed",
+    "Jacky Rosen",
+    "James Talarico",
+    "Jon Ossoff",
+    "Josh Turek",
+    "Mark Kelly",
+    "Mary Peltola",
+    "Patty Murray",
+    "Sherrod Brown",
+    "Tim Kaine"
+  ],
+  "senate_opposes": [
+    "Elissa Slotkin",
+    "John Hickenlooper",
+    "Michael Bennet"
+  ],
+  "senate_by_next_election": {
+    "2030": 19,
+    "2028": 16,
+    "2032": 20
+  },
+  "senate_seated_caucus": 55,
+  "senate_pending_rows": [
+    "Mary Peltola"
+  ],
+  "count_note": "senate_cosponsor_119 and house_cosponsor_119_returning count sponsor OR cosponsor: Senate = 17 returning S.1506 cosponsors + Sanders (Tina Smith retires); House = 94 returning H.R.3069 cosponsors + Jayapal in seated seats (CA-4 Mike Thompson, trailing, excluded).",
+  "house_sponsor_or_cosponsor_rows_incl_excluded": 96,
+  "senate_nonsupporters_up_2028": [
+    "AZ Mark Kelly (public_option)",
+    "CO Michael Bennet (opposes_m4a)",
+    "GA Raphael Warnock (no_position_found)",
+    "IL Tammy Duckworth (no_position_found)",
+    "NH Maggie Hassan (no_position_found)",
+    "NV Catherine Cortez Masto (strengthen_aca_only)",
+    "NY Chuck Schumer (public_option)",
+    "OH Sherrod Brown (lower_medicare_age_or_buy_in)",
+    "PA John Fetterman (no_position_found)",
+    "WA Patty Murray (public_option)"
+  ],
+  "senate_nonsupporters_up_2030": [
+    "AZ Ruben Gallego (no_position_found)",
+    "CT Chris Murphy (lower_medicare_age_or_buy_in)",
+    "DE Lisa Blunt Rochester (no_position_found)",
+    "MD Angela Alsobrooks (lower_medicare_age_or_buy_in)",
+    "ME Angus King (no_position_found)",
+    "MI Elissa Slotkin (opposes_m4a)",
+    "MN Amy Klobuchar (public_option)",
+    "NJ Andy Kim (no_position_found)",
+    "NV Jacky Rosen (public_option)",
+    "VA Tim Kaine (public_option)",
+    "WA Maria Cantwell (strengthen_aca_only)"
+  ]
+}

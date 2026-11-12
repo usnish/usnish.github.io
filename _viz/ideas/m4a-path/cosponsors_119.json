@@ -1,0 +1,1116 @@
+{
+ "_about": "Sponsor and cosponsors of H.R.3069 and S.1506 (119th Congress) with cosponsorship dates, from the research team's cosponsor scout (congress.gov API v3 cross-checked against GovInfo BILLSTATUS XML), pulled 2026-11-12. H.R.3069 record last updated 2026-10-23; S.1506 record 2026-09-26. Extracted from the workflow journal on 2026-11-12.",
+ "sources": [
+  "https://www.govinfo.gov/bulkdata/BILLSTATUS/119/hr/BILLSTATUS-119hr3069.xml",
+  "https://www.govinfo.gov/bulkdata/BILLSTATUS/119/s/BILLSTATUS-119s1506.xml"
+ ],
+ "introduced": "2025-04-29",
+ "house": [
+  {
+   "name": "Pramila Jayapal",
+   "state": "WA",
+   "district": "7",
+   "role": "sponsor",
+   "date": "2025-04-29",
+   "raw": "Pramila Jayapal (lead sponsor)"
+  },
+  {
+   "name": "Debbie Dingell",
+   "state": "MI",
+   "district": "6",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Debbie Dingell (lead original cosponsor, D, 2025-04-29)"
+  },
+  {
+   "name": "Alma S. Adams",
+   "state": "NC",
+   "district": "12",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Alma S. Adams (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Yassamin Ansari",
+   "state": "AZ",
+   "district": "3",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Yassamin Ansari (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Becca Balint",
+   "state": "VT",
+   "district": "At-large",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Becca Balint (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Nanette Diaz Barragán",
+   "state": "CA",
+   "district": "44",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Nanette Diaz Barragán (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Wesley Bell",
+   "state": "MO",
+   "district": "1",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Wesley Bell (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Donald S. Beyer",
+   "state": "VA",
+   "district": "8",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Donald S. Beyer (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Suzanne Bonamici",
+   "state": "OR",
+   "district": "1",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Suzanne Bonamici (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Brendan F. Boyle",
+   "state": "PA",
+   "district": "2",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Brendan F. Boyle (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Shontel M. Brown",
+   "state": "OH",
+   "district": "11",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Shontel M. Brown (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Salud O. Carbajal",
+   "state": "CA",
+   "district": "24",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Salud O. Carbajal (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "André Carson",
+   "state": "IN",
+   "district": "7",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "André Carson (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Troy A. Carter",
+   "state": "LA",
+   "district": "2",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Troy A. Carter (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Greg Casar",
+   "state": "TX",
+   "district": "35",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Greg Casar (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Sheila Cherfilus-McCormick",
+   "state": "FL",
+   "district": "20",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Sheila Cherfilus-McCormick (D, cosponsored 2025-04-29; FL-20 listed as vacant by Ballotpedia as of 2026-09-02)"
+  },
+  {
+   "name": "Judy Chu",
+   "state": "CA",
+   "district": "28",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Judy Chu (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Yvette D. Clarke",
+   "state": "NY",
+   "district": "9",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Yvette D. Clarke (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Emanuel Cleaver",
+   "state": "MO",
+   "district": "5",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Emanuel Cleaver (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Steve Cohen",
+   "state": "TN",
+   "district": "9",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Steve Cohen (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Jasmine Crockett",
+   "state": "TX",
+   "district": "30",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Jasmine Crockett (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Danny K. Davis",
+   "state": "IL",
+   "district": "7",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Danny K. Davis (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Diana DeGette",
+   "state": "CO",
+   "district": "1",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Diana DeGette (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Christopher R. Deluzio",
+   "state": "PA",
+   "district": "17",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Christopher R. Deluzio (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Mark DeSaulnier",
+   "state": "CA",
+   "district": "10",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Mark DeSaulnier (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Maxine Dexter",
+   "state": "OR",
+   "district": "3",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Maxine Dexter (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Lloyd Doggett",
+   "state": "TX",
+   "district": "37",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Lloyd Doggett (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Veronica Escobar",
+   "state": "TX",
+   "district": "16",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Veronica Escobar (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Adriano Espaillat",
+   "state": "NY",
+   "district": "13",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Adriano Espaillat (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Valerie P. Foushee",
+   "state": "NC",
+   "district": "4",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Valerie P. Foushee (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Lois Frankel",
+   "state": "FL",
+   "district": "22",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Lois Frankel (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Laura Friedman",
+   "state": "CA",
+   "district": "30",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Laura Friedman (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Maxwell Frost",
+   "state": "FL",
+   "district": "10",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Maxwell Frost (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "John Garamendi",
+   "state": "CA",
+   "district": "8",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "John Garamendi (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Robert Garcia",
+   "state": "CA",
+   "district": "42",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Robert Garcia (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Jesús G. \"Chuy\" García",
+   "state": "IL",
+   "district": "4",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Jesús G. \"Chuy\" García (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Daniel S. Goldman",
+   "state": "NY",
+   "district": "10",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Daniel S. Goldman (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Jimmy Gomez",
+   "state": "CA",
+   "district": "34",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Jimmy Gomez (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Al Green",
+   "state": "TX",
+   "district": "9",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Al Green (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Jahana Hayes",
+   "state": "CT",
+   "district": "5",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Jahana Hayes (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Val T. Hoyle",
+   "state": "OR",
+   "district": "4",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Val T. Hoyle (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Jared Huffman",
+   "state": "CA",
+   "district": "2",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Jared Huffman (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Jonathan L. Jackson",
+   "state": "IL",
+   "district": "1",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Jonathan L. Jackson (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Sara Jacobs",
+   "state": "CA",
+   "district": "51",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Sara Jacobs (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Henry C. \"Hank\" Johnson",
+   "state": "GA",
+   "district": "4",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Henry C. \"Hank\" Johnson (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Sydney Kamlager-Dove",
+   "state": "CA",
+   "district": "37",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Sydney Kamlager-Dove (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "William R. Keating",
+   "state": "MA",
+   "district": "9",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "William R. Keating (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Robin L. Kelly",
+   "state": "IL",
+   "district": "2",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Robin L. Kelly (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Timothy M. Kennedy",
+   "state": "NY",
+   "district": "26",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Timothy M. Kennedy (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Ro Khanna",
+   "state": "CA",
+   "district": "17",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Ro Khanna (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Summer L. Lee",
+   "state": "PA",
+   "district": "12",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Summer L. Lee (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Teresa Leger Fernandez",
+   "state": "NM",
+   "district": "3",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Teresa Leger Fernandez (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Mike Levin",
+   "state": "CA",
+   "district": "49",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Mike Levin (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Ted Lieu",
+   "state": "CA",
+   "district": "36",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Ted Lieu (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Zoe Lofgren",
+   "state": "CA",
+   "district": "18",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Zoe Lofgren (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Betty McCollum",
+   "state": "MN",
+   "district": "4",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Betty McCollum (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Morgan McGarvey",
+   "state": "KY",
+   "district": "3",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Morgan McGarvey (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "James P. McGovern",
+   "state": "MA",
+   "district": "2",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "James P. McGovern (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "LaMonica McIver",
+   "state": "NJ",
+   "district": "10",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "LaMonica McIver (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Gregory W. Meeks",
+   "state": "NY",
+   "district": "5",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Gregory W. Meeks (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Grace Meng",
+   "state": "NY",
+   "district": "6",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Grace Meng (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Kweisi Mfume",
+   "state": "MD",
+   "district": "7",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Kweisi Mfume (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Dave Min",
+   "state": "CA",
+   "district": "47",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Dave Min (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Kevin Mullin",
+   "state": "CA",
+   "district": "15",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Kevin Mullin (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Jerrold Nadler",
+   "state": "NY",
+   "district": "12",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Jerrold Nadler (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Joe Neguse",
+   "state": "CO",
+   "district": "2",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Joe Neguse (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Eleanor Holmes Norton",
+   "state": "DC",
+   "district": "Delegate",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Eleanor Holmes Norton (D, non-voting delegate, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Alexandria Ocasio-Cortez",
+   "state": "NY",
+   "district": "14",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Alexandria Ocasio-Cortez (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Ilhan Omar",
+   "state": "MN",
+   "district": "5",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Ilhan Omar (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Frank Pallone",
+   "state": "NJ",
+   "district": "6",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Frank Pallone (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Jimmy Panetta",
+   "state": "CA",
+   "district": "19",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Jimmy Panetta (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Chellie Pingree",
+   "state": "ME",
+   "district": "1",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Chellie Pingree (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Mark Pocan",
+   "state": "WI",
+   "district": "2",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Mark Pocan (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Ayanna Pressley",
+   "state": "MA",
+   "district": "7",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Ayanna Pressley (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Mike Quigley",
+   "state": "IL",
+   "district": "5",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Mike Quigley (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Delia C. Ramirez",
+   "state": "IL",
+   "district": "3",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Delia C. Ramirez (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Emily Randall",
+   "state": "WA",
+   "district": "6",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Emily Randall (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Jamie Raskin",
+   "state": "MD",
+   "district": "8",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Jamie Raskin (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Luz M. Rivas",
+   "state": "CA",
+   "district": "29",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Luz M. Rivas (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Andrea Salinas",
+   "state": "OR",
+   "district": "6",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Andrea Salinas (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Linda T. Sánchez",
+   "state": "CA",
+   "district": "38",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Linda T. Sánchez (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Janice D. Schakowsky",
+   "state": "IL",
+   "district": "9",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Janice D. Schakowsky (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Robert C. \"Bobby\" Scott",
+   "state": "VA",
+   "district": "3",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Robert C. \"Bobby\" Scott (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Brad Sherman",
+   "state": "CA",
+   "district": "32",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Brad Sherman (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Lateefah Simon",
+   "state": "CA",
+   "district": "12",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Lateefah Simon (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Adam Smith",
+   "state": "WA",
+   "district": "9",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Adam Smith (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Melanie A. Stansbury",
+   "state": "NM",
+   "district": "1",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Melanie A. Stansbury (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Eric Swalwell",
+   "state": "CA",
+   "district": "14",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Eric Swalwell (D, cosponsored 2025-04-29; resigned, CA-14 vacancy began 2026-04-14)"
+  },
+  {
+   "name": "Mark Takano",
+   "state": "CA",
+   "district": "39",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Mark Takano (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Shri Thanedar",
+   "state": "MI",
+   "district": "13",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Shri Thanedar (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Bennie G. Thompson",
+   "state": "MS",
+   "district": "2",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Bennie G. Thompson (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Mike Thompson",
+   "state": "CA",
+   "district": "4",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Mike Thompson (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Dina Titus",
+   "state": "NV",
+   "district": "1",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Dina Titus (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Rashida Tlaib",
+   "state": "MI",
+   "district": "12",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Rashida Tlaib (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Jill N. Tokuda",
+   "state": "HI",
+   "district": "2",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Jill N. Tokuda (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Paul Tonko",
+   "state": "NY",
+   "district": "20",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Paul Tonko (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Lori Trahan",
+   "state": "MA",
+   "district": "3",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Lori Trahan (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Juan Vargas",
+   "state": "CA",
+   "district": "52",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Juan Vargas (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Nydia M. Velázquez",
+   "state": "NY",
+   "district": "7",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Nydia M. Velázquez (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Maxine Waters",
+   "state": "CA",
+   "district": "43",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Maxine Waters (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Bonnie Watson Coleman",
+   "state": "NJ",
+   "district": "12",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Bonnie Watson Coleman (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Nikema Williams",
+   "state": "GA",
+   "district": "5",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Nikema Williams (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Frederica S. Wilson",
+   "state": "FL",
+   "district": "24",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Frederica S. Wilson (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Josh Harder",
+   "state": "CA",
+   "district": "9",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Josh Harder (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Glenn Ivey",
+   "state": "MD",
+   "district": "4",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Glenn Ivey (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Ritchie Torres",
+   "state": "NY",
+   "district": "15",
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Ritchie Torres (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Shomari Figures",
+   "state": "AL",
+   "district": "2",
+   "role": "cosponsor",
+   "date": "2025-09-03",
+   "raw": "Shomari Figures (D, cosponsored 2025-09-03)"
+  },
+  {
+   "name": "Adelita S. Grijalva",
+   "state": "AZ",
+   "district": "7",
+   "role": "cosponsor",
+   "date": "2025-11-20",
+   "raw": "Adelita S. Grijalva (D, cosponsored 2025-11-20)"
+  },
+  {
+   "name": "April McClain Delaney",
+   "state": "MD",
+   "district": "6",
+   "role": "cosponsor",
+   "date": "2025-12-02",
+   "raw": "April McClain Delaney (D, cosponsored 2025-12-02)"
+  },
+  {
+   "name": "Julie Johnson",
+   "state": "TX",
+   "district": "32",
+   "role": "cosponsor",
+   "date": "2025-12-10",
+   "raw": "Julie Johnson (D, cosponsored 2025-12-10)"
+  },
+  {
+   "name": "Jared Moskowitz",
+   "state": "FL",
+   "district": "23",
+   "role": "cosponsor",
+   "date": "2025-12-10",
+   "raw": "Jared Moskowitz (D, cosponsored 2025-12-10)"
+  },
+  {
+   "name": "Sarah Elfreth",
+   "state": "MD",
+   "district": "3",
+   "role": "cosponsor",
+   "date": "2025-12-18",
+   "raw": "Sarah Elfreth (D, cosponsored 2025-12-18)"
+  },
+  {
+   "name": "John B. Larson",
+   "state": "CT",
+   "district": "1",
+   "role": "cosponsor",
+   "date": "2026-03-02",
+   "raw": "John B. Larson (D, cosponsored 2026-03-02)"
+  },
+  {
+   "name": "Christian D. Menefee",
+   "state": "TX",
+   "district": "18",
+   "role": "cosponsor",
+   "date": "2026-04-21",
+   "raw": "Christian D. Menefee (D, cosponsored 2026-04-21)"
+  },
+  {
+   "name": "Analilia Mejia",
+   "state": "NJ",
+   "district": "11",
+   "role": "cosponsor",
+   "date": "2026-04-27",
+   "raw": "Analilia Mejia (D, cosponsored 2026-04-27)"
+  },
+  {
+   "name": "Everton Blair",
+   "state": "GA",
+   "district": "13",
+   "role": "cosponsor",
+   "date": "2026-09-14",
+   "raw": "Everton Blair (D, cosponsored 2026-09-14; serving remainder of David Scott's term, not on Nov 2026 ballot per AJC/Ballotpedia)"
+  },
+  {
+   "name": "Janelle S. Bynum",
+   "state": "OR",
+   "district": "5",
+   "role": "cosponsor",
+   "date": "2026-09-16",
+   "raw": "Janelle S. Bynum (D, cosponsored 2026-09-16)"
+  },
+  {
+   "name": "Aisha Wahab",
+   "state": "CA",
+   "district": "14",
+   "role": "cosponsor",
+   "date": "2026-09-24",
+   "raw": "Aisha Wahab (D, cosponsored 2026-09-24; sworn in 2026-09-02 to fill Swalwell vacancy)"
+  },
+  {
+   "name": "Jason Crow",
+   "state": "CO",
+   "district": "6",
+   "role": "cosponsor",
+   "date": "2026-10-22",
+   "raw": "Jason Crow (D, cosponsored 2026-10-22)"
+  }
+ ],
+ "senate": [
+  {
+   "name": "Bernard (Bernie) Sanders",
+   "state": "VT",
+   "district": null,
+   "role": "sponsor",
+   "date": "2025-04-29",
+   "raw": "Bernard (Bernie) Sanders (lead sponsor, I)"
+  },
+  {
+   "name": "Tammy Baldwin",
+   "state": "WI",
+   "district": null,
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Tammy Baldwin (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Richard Blumenthal",
+   "state": "CT",
+   "district": null,
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Richard Blumenthal (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Cory Booker",
+   "state": "NJ",
+   "district": null,
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Cory Booker (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Kirsten E. Gillibrand",
+   "state": "NY",
+   "district": null,
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Kirsten E. Gillibrand (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Martin Heinrich",
+   "state": "NM",
+   "district": null,
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Martin Heinrich (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Mazie K. Hirono",
+   "state": "HI",
+   "district": null,
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Mazie K. Hirono (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Ben Ray Luján",
+   "state": "NM",
+   "district": null,
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Ben Ray Luján (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Edward J. Markey",
+   "state": "MA",
+   "district": null,
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Edward J. Markey (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Jeff Merkley",
+   "state": "OR",
+   "district": null,
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Jeff Merkley (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Alex Padilla",
+   "state": "CA",
+   "district": null,
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Alex Padilla (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Brian Schatz",
+   "state": "HI",
+   "district": null,
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Brian Schatz (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Adam B. Schiff",
+   "state": "CA",
+   "district": null,
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Adam B. Schiff (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Elizabeth Warren",
+   "state": "MA",
+   "district": null,
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Elizabeth Warren (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Peter Welch",
+   "state": "VT",
+   "district": null,
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Peter Welch (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Sheldon Whitehouse",
+   "state": "RI",
+   "district": null,
+   "role": "cosponsor",
+   "date": "2025-04-29",
+   "raw": "Sheldon Whitehouse (D, cosponsored 2025-04-29)"
+  },
+  {
+   "name": "Chris Van Hollen",
+   "state": "MD",
+   "district": null,
+   "role": "cosponsor",
+   "date": "2025-11-18",
+   "raw": "Chris Van Hollen (D, cosponsored 2025-11-18)"
+  },
+  {
+   "name": "Tina Smith",
+   "state": "MN",
+   "district": null,
+   "role": "cosponsor",
+   "date": "2025-12-02",
+   "raw": "Tina Smith (D, cosponsored 2025-12-02)"
+  },
+  {
+   "name": "Ron Wyden",
+   "state": "OR",
+   "district": null,
+   "role": "cosponsor",
+   "date": "2026-09-24",
+   "raw": "Ron Wyden (D, cosponsored 2026-09-24)"
+  }
+ ]
+}
