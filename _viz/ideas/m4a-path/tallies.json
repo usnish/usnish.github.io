@@ -6,9 +6,9 @@
   },
   "rows_by_status": {
     "House": {
-      "new": 76,
+      "new": 77,
       "returning": 182,
-      "uncalled": 12
+      "uncalled": 11
     },
     "Senate": {
       "returning": 43,
@@ -70,14 +70,13 @@
     "CA-4 Eric Jones (supports_m4a)",
     "CO-4 Eileen Laubacher (opposes_m4a)",
     "MN-1 Jake Johnson (strengthen_aca_only)",
-    "NC-3 Raymond Smith Jr. (no_position_found)",
     "NC-5 Chuck Hubbard (public_option)",
     "TN-4 Victoria Broderick (no_position_found)"
   ],
   "house_status": {
-    "new": 73,
+    "new": 74,
     "returning": 181,
-    "uncalled": 6
+    "uncalled": 5
   },
   "house_confidence_nonsupporters": {
     "medium": 82,

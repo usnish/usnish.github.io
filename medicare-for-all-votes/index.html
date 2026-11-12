@@ -412,7 +412,7 @@
     <p><b>Limits.</b></p>
     <ul>
       <li><b>Unknowns are unknown.</b> <span data-k="house.positions.no_position_found"></span> House members and <span data-k="senate.positions.no_position_found"></span> senators have no position found, mostly because the search budget ran out. Some of them may support Medicare for All.</li>
-      <li><b>Results are not final.</b> <span id="uncalled"></span> Mississippi's Senate race was called on November 11 by about half a point.</li>
+      <li><b>Results are not final.</b> <span id="uncalled"></span> Mississippi's Senate race was called on November 11 by about half a point. In NC-3, Greg Murphy conceded to Raymond Smith Jr. on November 11 with Smith ahead by 293 votes (<a href="https://www.publicradioeast.org/2026-11-12/murphy-concedes-north-carolinas-3rd-congressional-district-race-as-smith-thanks-voters-volunteers">Public Radio East</a>); the count is unofficial until counties certify on November 13.</li>
       <li><b>Soft supporters.</b> <span data-k="house.soft_supporters"></span> count as supporters at medium or low confidence: a reporter's paraphrase, an automated interview transcript, a plan that never uses the name, or a race not yet called. Some supporters, such as Abdul El-Sayed in the Senate, back their own version, which he says would not have to ban extra coverage through unions or employers. Jasmine Clark (GA-13) is named as a supporter by <a href="https://prospect.org/2026/11/04/midterm-election-about-health-care-annie-andrews-medicare-for-all/">The American Prospect</a> but has no statement of her own here; counting her would make the House <span id="hplus"></span>.</li>
       <li><b>Old statements.</b> Many non-supporter labels rest on statements from 2009 to 2020, including for Schumer, Reed, Rosen, Brown, Neal, McAdams, McBath, Bennet, Hickenlooper and Slotkin. Neal is coded from his on-the-record remarks in 2019; reports that he privately called Medicare for All a political loser came from anonymous accounts, so he is not coded as opposed. John Fetterman, who supported single payer in 2018 to 2020, is counted as no position found because nothing recent was found. <span id="dates"></span></li>
       <li><b>One coder.</b> Each position was coded once by the research team and spot-checked for 32 rows, which found no invented quotes but four overstated labels; those were corrected. There is no second, independent coding.</li>
@@ -431,7 +431,7 @@
 <script src="../assets/viz/vizkit.js"></script>
 <script>
 (async function () {
-  const [M, S] = await Promise.all([d3.json("data/members.json?v=20261112b"), d3.json("data/summary.json?v=20261112b")]);
+  const [M, S] = await Promise.all([d3.json("data/members.json?v=20261112c"), d3.json("data/summary.json?v=20261112c")]);
   const $ = id => document.getElementById(id);
   const int = VK.int;
   const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
