@@ -9,11 +9,6 @@
 
 - title: Data Visualizations
   items:
-    - title: Cardiac Rehab Eligibility by County
-      url: /cr-eligibility-map/
-      repo: https://github.com/usnish/usnish.github.io/tree/master/cr-eligibility-map
-      description: County map of who qualifies for cardiac rehab (heart attack, coronary heart disease, heart failure) and how many eligible Medicare patients take part, plus national participation trends since 1997.
-
     - title: The Dialysis Time Tax
       url: /dialysis-time-tax/
       repo: https://github.com/usnish/usnish.github.io/tree/master/dialysis-time-tax
@@ -28,7 +23,3 @@
       url: /ma-network-standards/
       repo: https://github.com/usnish/usnish.github.io/tree/master/ma-network-standards
       description: How far CMS lets a Medicare Advantage plan's nearest in-network doctor or hospital be, compared with how far older residents actually live from the nearest one, by county and specialty.
-
-    - title: Cardiac Rehab Costs in Medicare Advantage
-      url: /ma-cardiac-rehab/
-      description: What Medicare Advantage members pay for cardiac rehab and intensive cardiac rehab, by county, for 2026 and 2027, compared with traditional Medicare's 20% coinsurance. Password-protected.
