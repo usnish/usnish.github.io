@@ -173,7 +173,7 @@ ul.nav a:hover, .nav-dropdown summary:hover { color: #143556; text-decoration: n
   padding-bottom: 6px;
   margin-bottom: 4px;
 }
-.project h2 {
+.project h2, .project h3, .project-title {
   font-size: 19px;
   line-height: 1.3;
   font-weight: 600;
@@ -188,6 +188,50 @@ ul.nav a:hover, .nav-dropdown summary:hover { color: #143556; text-decoration: n
   margin-top: 0;
 }
 
+.projects-intro { color: #4a4a4a; margin-bottom: 24px; }
+
+/* recent work (homepage) ################################ */
+.recent-work { margin: 28px 0 0; }
+.recent-work-title {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #6b6b6b;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+}
+.recent-list { list-style: none; margin: 0; padding: 0; }
+.recent-item { border-bottom: 1px solid #eee; }
+.recent-link {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 14px 0;
+  color: inherit;
+}
+.recent-link:hover { text-decoration: none; color: inherit; }
+.recent-link:hover .recent-name { text-decoration: underline; }
+.recent-thumb {
+  flex: 0 0 160px;
+  width: 160px;
+  height: 84px;
+  object-fit: cover;
+  border: 1px solid #eee;
+}
+.recent-text { display: block; min-width: 0; }
+.recent-name {
+  display: block;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: #1f4e79;
+  margin-bottom: 4px;
+}
+.recent-desc { display: block; font-size: 15px; line-height: 1.5; color: #4a4a4a; max-width: 65ch; }
+.recent-more { font-size: 14px; margin: 10px 0 0; }
+
 /* small screens ######################################## */
 @media (max-width: 760px) {
   .page {
@@ -200,5 +244,7 @@ ul.nav a:hover, .nav-dropdown summary:hover { color: #143556; text-decoration: n
   ul.nav li { margin: 0; }
   ul.nav a, .nav-dropdown summary { display: inline-block; padding: 4px 0; }
   .cover { margin-top: 24px; }
+  .recent-link { flex-direction: column; gap: 10px; }
+  .recent-thumb { flex: none; width: 100%; height: auto; aspect-ratio: 1200 / 630; }
 }
 

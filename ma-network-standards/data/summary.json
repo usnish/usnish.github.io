@@ -1,16 +1,68 @@
 {
+ "plan_year": 2026,
+ "hsd_file": "2026-hsd-reference-file-updated-12-17-2025.xlsx",
  "cap_minutes": 240,
+ "clinicians_downloaded": "November 2026",
+ "clinicians_release": "October 30, 2026",
+ "ceac_counties": 571,
+ "ceac_top_states": [
+  [
+   "TX",
+   85
+  ],
+  [
+   "KS",
+   55
+  ],
+  [
+   "NE",
+   50
+  ],
+  [
+   "MT",
+   46
+  ],
+  [
+   "SD",
+   46
+  ],
+  [
+   "ND",
+   44
+  ],
+  [
+   "CO",
+   30
+  ],
+  [
+   "ID",
+   22
+  ]
+ ],
+ "alaska_ceac": [
+  20,
+  23
+ ],
+ "visit_km": 100,
+ "telehealth_credit": 10,
+ "must_within": {
+  "Large Metro": 90,
+  "Metro": 90,
+  "Micro": 85,
+  "Rural": 85,
+  "CEAC": 85
+ },
  "specialties": [
   {
    "id": "primary",
    "label": "Primary care",
    "hsd": "Primary Care",
-   "providers": 337399,
-   "points": 14497,
-   "near_mean": 12.6,
+   "telehealth_credit": 10,
+   "show_beyond": false,
+   "near_mean": 12.7,
    "limit_mean": 18.1,
-   "pct_beyond": 19.91,
-   "old_beyond": 10898482,
+   "pct_beyond": null,
+   "old_beyond": null,
    "base": {
     "Metro": 15,
     "Rural": 40,
@@ -24,49 +76,79 @@
      "designation": "Large Metro",
      "limit_mean": 10.0,
      "limit_base": 10,
+     "base_share": 100.0,
+     "must_within": 90,
+     "may_beyond": 20,
      "near_mean": 10.2,
-     "pct_beyond": 45.5
+     "slack_mean": -0.2,
+     "near_mean_with_visiting": 10.2,
+     "pct_beyond": null
     },
     {
      "designation": "Metro",
      "limit_mean": 15.5,
      "limit_base": 15,
-     "near_mean": 12.2,
-     "pct_beyond": 12.1
+     "base_share": 94.7,
+     "must_within": 90,
+     "may_beyond": 20,
+     "near_mean": 12.3,
+     "slack_mean": 3.3,
+     "near_mean_with_visiting": 12.2,
+     "pct_beyond": null
     },
     {
      "designation": "Micro",
      "limit_mean": 30.4,
      "limit_base": 30,
-     "near_mean": 15.8,
-     "pct_beyond": 2.1
+     "base_share": 96.8,
+     "must_within": 85,
+     "may_beyond": 25,
+     "near_mean": 15.9,
+     "slack_mean": 14.5,
+     "near_mean_with_visiting": 15.7,
+     "pct_beyond": null
     },
     {
      "designation": "Rural",
      "limit_mean": 40.1,
      "limit_base": 40,
-     "near_mean": 17.5,
-     "pct_beyond": 0.9
+     "base_share": 98.8,
+     "must_within": 85,
+     "may_beyond": 25,
+     "near_mean": 17.8,
+     "slack_mean": 22.3,
+     "near_mean_with_visiting": 17.4,
+     "pct_beyond": null
     },
     {
      "designation": "CEAC",
      "limit_mean": 70.9,
      "limit_base": 70,
-     "near_mean": 27.0,
-     "pct_beyond": 1.7
+     "base_share": 95.2,
+     "must_within": 85,
+     "may_beyond": 25,
+     "near_mean": 28.4,
+     "slack_mean": 42.5,
+     "near_mean_with_visiting": 26.8,
+     "pct_beyond": null
     }
-   ]
+   ],
+   "kind": "clinicians",
+   "clinicians": 211086,
+   "listings": 358802,
+   "sites": 14080,
+   "visiting_sites": 559
   },
   {
    "id": "cardiology",
    "label": "Cardiology",
    "hsd": "Cardiology",
-   "providers": 71435,
-   "points": 6711,
-   "near_mean": 15.8,
+   "telehealth_credit": 10,
+   "show_beyond": true,
+   "near_mean": 17.1,
    "limit_mean": 33.7,
-   "pct_beyond": 1.53,
-   "old_beyond": 836092,
+   "pct_beyond": 2.49,
+   "old_beyond": 1363634,
    "base": {
     "Metro": 30,
     "Rural": 75,
@@ -80,49 +162,79 @@
      "designation": "Large Metro",
      "limit_mean": 20.1,
      "limit_base": 20,
-     "near_mean": 11.0,
-     "pct_beyond": 0.7
+     "base_share": 99.4,
+     "must_within": 90,
+     "may_beyond": 20,
+     "near_mean": 11.1,
+     "slack_mean": 9.0,
+     "near_mean_with_visiting": 11.0,
+     "pct_beyond": 0.8
     },
     {
      "designation": "Metro",
      "limit_mean": 30.3,
      "limit_base": 30,
-     "near_mean": 14.4,
-     "pct_beyond": 1.7
+     "base_share": 98.0,
+     "must_within": 90,
+     "may_beyond": 20,
+     "near_mean": 14.7,
+     "slack_mean": 15.6,
+     "near_mean_with_visiting": 14.3,
+     "pct_beyond": 2.0
     },
     {
      "designation": "Micro",
      "limit_mean": 51.3,
      "limit_base": 50,
-     "near_mean": 21.4,
-     "pct_beyond": 1.4
+     "base_share": 94.9,
+     "must_within": 85,
+     "may_beyond": 25,
+     "near_mean": 23.3,
+     "slack_mean": 28.0,
+     "near_mean_with_visiting": 21.2,
+     "pct_beyond": 2.9
     },
     {
      "designation": "Rural",
      "limit_mean": 75.5,
      "limit_base": 75,
-     "near_mean": 28.5,
-     "pct_beyond": 1.4
+     "base_share": 99.4,
+     "must_within": 85,
+     "may_beyond": 25,
+     "near_mean": 36.0,
+     "slack_mean": 39.5,
+     "near_mean_with_visiting": 27.7,
+     "pct_beyond": 5.1
     },
     {
      "designation": "CEAC",
      "limit_mean": 98.6,
      "limit_base": 95,
-     "near_mean": 53.1,
-     "pct_beyond": 10.9
+     "base_share": 89.8,
+     "must_within": 85,
+     "may_beyond": 25,
+     "near_mean": 83.9,
+     "slack_mean": 14.7,
+     "near_mean_with_visiting": 52.8,
+     "pct_beyond": 34.2
     }
-   ]
+   ],
+   "kind": "clinicians",
+   "clinicians": 29764,
+   "listings": 76140,
+   "sites": 5989,
+   "visiting_sites": 891
   },
   {
    "id": "oncology",
    "label": "Oncology",
    "hsd": "Oncology - Medical, Surgical",
-   "providers": 26347,
-   "points": 3797,
-   "near_mean": 19.1,
+   "telehealth_credit": 0,
+   "show_beyond": true,
+   "near_mean": 20.1,
    "limit_mean": 43.8,
-   "pct_beyond": 1.68,
-   "old_beyond": 919066,
+   "pct_beyond": 2.63,
+   "old_beyond": 1438870,
    "base": {
     "Metro": 45,
     "Rural": 75,
@@ -136,49 +248,79 @@
      "designation": "Large Metro",
      "limit_mean": 20.6,
      "limit_base": 20,
+     "base_share": 95.2,
+     "must_within": 90,
+     "may_beyond": 10,
      "near_mean": 12.0,
-     "pct_beyond": 1.8
+     "slack_mean": 8.5,
+     "near_mean_with_visiting": 12.0,
+     "pct_beyond": 1.9
     },
     {
      "designation": "Metro",
      "limit_mean": 45.9,
      "limit_base": 45,
-     "near_mean": 16.4,
-     "pct_beyond": 0.5
+     "base_share": 96.4,
+     "must_within": 90,
+     "may_beyond": 10,
+     "near_mean": 16.5,
+     "slack_mean": 29.4,
+     "near_mean_with_visiting": 16.2,
+     "pct_beyond": 0.7
     },
     {
      "designation": "Micro",
      "limit_mean": 64.3,
      "limit_base": 60,
-     "near_mean": 28.6,
-     "pct_beyond": 2.9
+     "base_share": 87.7,
+     "must_within": 85,
+     "may_beyond": 15,
+     "near_mean": 30.9,
+     "slack_mean": 33.4,
+     "near_mean_with_visiting": 27.7,
+     "pct_beyond": 4.9
     },
     {
      "designation": "Rural",
      "limit_mean": 77.2,
      "limit_base": 75,
-     "near_mean": 41.2,
-     "pct_beyond": 5.4
+     "base_share": 93.0,
+     "must_within": 85,
+     "may_beyond": 15,
+     "near_mean": 47.9,
+     "slack_mean": 29.3,
+     "near_mean_with_visiting": 41.1,
+     "pct_beyond": 11.0
     },
     {
      "designation": "CEAC",
      "limit_mean": 122.0,
      "limit_base": 110,
-     "near_mean": 76.3,
-     "pct_beyond": 13.9
+     "base_share": 75.1,
+     "must_within": 85,
+     "may_beyond": 15,
+     "near_mean": 94.9,
+     "slack_mean": 27.1,
+     "near_mean_with_visiting": 77.5,
+     "pct_beyond": 27.7
     }
-   ]
+   ],
+   "kind": "clinicians",
+   "clinicians": 15784,
+   "listings": 28421,
+   "sites": 3583,
+   "visiting_sites": 306
   },
   {
    "id": "nephrology",
    "label": "Nephrology",
    "hsd": "Nephrology",
-   "providers": 18188,
-   "points": 4078,
-   "near_mean": 19.4,
+   "telehealth_credit": 10,
+   "show_beyond": true,
+   "near_mean": 20.9,
    "limit_mean": 49.1,
-   "pct_beyond": 1.12,
-   "old_beyond": 613738,
+   "pct_beyond": 2.09,
+   "old_beyond": 1143731,
    "base": {
     "Metro": 45,
     "Rural": 90,
@@ -192,49 +334,79 @@
      "designation": "Large Metro",
      "limit_mean": 30.0,
      "limit_base": 30,
+     "base_share": 100.0,
+     "must_within": 90,
+     "may_beyond": 20,
      "near_mean": 11.8,
+     "slack_mean": 18.2,
+     "near_mean_with_visiting": 11.7,
      "pct_beyond": 0.1
     },
     {
      "designation": "Metro",
      "limit_mean": 45.3,
      "limit_base": 45,
-     "near_mean": 16.8,
-     "pct_beyond": 0.9
+     "base_share": 98.5,
+     "must_within": 90,
+     "may_beyond": 20,
+     "near_mean": 17.0,
+     "slack_mean": 28.3,
+     "near_mean_with_visiting": 16.3,
+     "pct_beyond": 1.2
     },
     {
      "designation": "Micro",
      "limit_mean": 81.0,
      "limit_base": 80,
-     "near_mean": 30.4,
-     "pct_beyond": 1.7
+     "base_share": 96.6,
+     "must_within": 85,
+     "may_beyond": 25,
+     "near_mean": 33.3,
+     "slack_mean": 47.6,
+     "near_mean_with_visiting": 29.3,
+     "pct_beyond": 3.3
     },
     {
      "designation": "Rural",
      "limit_mean": 90.5,
      "limit_base": 90,
-     "near_mean": 42.2,
-     "pct_beyond": 3.3
+     "base_share": 97.8,
+     "must_within": 85,
+     "may_beyond": 25,
+     "near_mean": 51.5,
+     "slack_mean": 39.0,
+     "near_mean_with_visiting": 40.5,
+     "pct_beyond": 9.4
     },
     {
      "designation": "CEAC",
      "limit_mean": 128.3,
      "limit_base": 125,
-     "near_mean": 76.2,
-     "pct_beyond": 11.8
+     "base_share": 91.2,
+     "must_within": 85,
+     "may_beyond": 25,
+     "near_mean": 105.5,
+     "slack_mean": 22.8,
+     "near_mean_with_visiting": 77.6,
+     "pct_beyond": 29.0
     }
-   ]
+   ],
+   "kind": "clinicians",
+   "clinicians": 10040,
+   "listings": 19698,
+   "sites": 3793,
+   "visiting_sites": 449
   },
   {
    "id": "neurology",
    "label": "Neurology",
    "hsd": "Neurology",
-   "providers": 41291,
-   "points": 4916,
-   "near_mean": 18.6,
+   "telehealth_credit": 10,
+   "show_beyond": true,
+   "near_mean": 20.5,
    "limit_mean": 43.4,
-   "pct_beyond": 1.6,
-   "old_beyond": 874007,
+   "pct_beyond": 3.05,
+   "old_beyond": 1671253,
    "base": {
     "Metro": 45,
     "Rural": 75,
@@ -248,49 +420,79 @@
      "designation": "Large Metro",
      "limit_mean": 20.4,
      "limit_base": 20,
-     "near_mean": 11.4,
-     "pct_beyond": 1.0
+     "base_share": 95.8,
+     "must_within": 90,
+     "may_beyond": 20,
+     "near_mean": 11.5,
+     "slack_mean": 8.9,
+     "near_mean_with_visiting": 11.3,
+     "pct_beyond": 1.2
     },
     {
      "designation": "Metro",
      "limit_mean": 45.3,
      "limit_base": 45,
-     "near_mean": 15.5,
-     "pct_beyond": 0.5
+     "base_share": 98.0,
+     "must_within": 90,
+     "may_beyond": 20,
+     "near_mean": 16.3,
+     "slack_mean": 29.0,
+     "near_mean_with_visiting": 15.4,
+     "pct_beyond": 0.9
     },
     {
      "designation": "Micro",
      "limit_mean": 63.9,
      "limit_base": 60,
-     "near_mean": 28.8,
-     "pct_beyond": 3.0
+     "base_share": 89.7,
+     "must_within": 85,
+     "may_beyond": 25,
+     "near_mean": 34.0,
+     "slack_mean": 29.9,
+     "near_mean_with_visiting": 27.4,
+     "pct_beyond": 7.0
     },
     {
      "designation": "Rural",
      "limit_mean": 78.3,
      "limit_base": 75,
-     "near_mean": 42.6,
-     "pct_beyond": 6.6
+     "base_share": 89.0,
+     "must_within": 85,
+     "may_beyond": 25,
+     "near_mean": 52.5,
+     "slack_mean": 25.8,
+     "near_mean_with_visiting": 42.5,
+     "pct_beyond": 15.2
     },
     {
      "designation": "CEAC",
      "limit_mean": 118.4,
      "limit_base": 110,
-     "near_mean": 79.5,
-     "pct_beyond": 16.3
+     "base_share": 76.6,
+     "must_within": 85,
+     "may_beyond": 25,
+     "near_mean": 97.9,
+     "slack_mean": 20.5,
+     "near_mean_with_visiting": 80.5,
+     "pct_beyond": 28.9
     }
-   ]
+   ],
+   "kind": "clinicians",
+   "clinicians": 18600,
+   "listings": 44095,
+   "sites": 4235,
+   "visiting_sites": 784
   },
   {
    "id": "psychiatry",
    "label": "Psychiatry",
    "hsd": "Psychiatry",
-   "providers": 43859,
-   "points": 6898,
-   "near_mean": 16.6,
+   "telehealth_credit": 10,
+   "show_beyond": true,
+   "near_mean": 17.7,
    "limit_mean": 42.8,
-   "pct_beyond": 0.74,
-   "old_beyond": 407216,
+   "pct_beyond": 1.45,
+   "old_beyond": 794782,
    "base": {
     "Metro": 45,
     "Rural": 75,
@@ -304,49 +506,79 @@
      "designation": "Large Metro",
      "limit_mean": 20.0,
      "limit_base": 20,
-     "near_mean": 10.8,
-     "pct_beyond": 0.7
+     "base_share": 100.0,
+     "must_within": 90,
+     "may_beyond": 20,
+     "near_mean": 10.9,
+     "slack_mean": 9.1,
+     "near_mean_with_visiting": 10.7,
+     "pct_beyond": 0.8
     },
     {
      "designation": "Metro",
      "limit_mean": 45.2,
      "limit_base": 45,
-     "near_mean": 14.6,
-     "pct_beyond": 0.3
+     "base_share": 98.8,
+     "must_within": 90,
+     "may_beyond": 20,
+     "near_mean": 14.9,
+     "slack_mean": 30.3,
+     "near_mean_with_visiting": 14.5,
+     "pct_beyond": 0.5
     },
     {
      "designation": "Micro",
      "limit_mean": 61.5,
      "limit_base": 60,
-     "near_mean": 24.0,
-     "pct_beyond": 1.1
+     "base_share": 94.7,
+     "must_within": 85,
+     "may_beyond": 25,
+     "near_mean": 26.4,
+     "slack_mean": 35.1,
+     "near_mean_with_visiting": 23.4,
+     "pct_beyond": 2.4
     },
     {
      "designation": "Rural",
      "limit_mean": 76.2,
      "limit_base": 75,
-     "near_mean": 34.0,
-     "pct_beyond": 2.0
+     "base_share": 95.2,
+     "must_within": 85,
+     "may_beyond": 25,
+     "near_mean": 39.8,
+     "slack_mean": 36.4,
+     "near_mean_with_visiting": 33.5,
+     "pct_beyond": 5.9
     },
     {
      "designation": "CEAC",
      "limit_mean": 115.1,
      "limit_base": 110,
-     "near_mean": 63.4,
-     "pct_beyond": 8.6
+     "base_share": 85.4,
+     "must_within": 85,
+     "may_beyond": 25,
+     "near_mean": 79.6,
+     "slack_mean": 35.5,
+     "near_mean_with_visiting": 62.3,
+     "pct_beyond": 19.5
     }
-   ]
+   ],
+   "kind": "clinicians",
+   "clinicians": 28978,
+   "listings": 47638,
+   "sites": 6310,
+   "visiting_sites": 775
   },
   {
    "id": "endocrinology",
    "label": "Endocrinology",
    "hsd": "Endocrinology",
-   "providers": 11529,
-   "points": 3297,
-   "near_mean": 23.6,
+   "telehealth_credit": 10,
+   "show_beyond": true,
+   "near_mean": 24.5,
    "limit_mean": 61.4,
-   "pct_beyond": 1.57,
-   "old_beyond": 860791,
+   "pct_beyond": 2.03,
+   "old_beyond": 1112094,
    "base": {
     "Metro": 60,
     "Rural": 110,
@@ -360,49 +592,79 @@
      "designation": "Large Metro",
      "limit_mean": 30.0,
      "limit_base": 30,
+     "base_share": 100.0,
+     "must_within": 90,
+     "may_beyond": 20,
      "near_mean": 12.0,
+     "slack_mean": 18.0,
+     "near_mean_with_visiting": 11.9,
      "pct_beyond": 0.3
     },
     {
      "designation": "Metro",
      "limit_mean": 61.0,
      "limit_base": 60,
-     "near_mean": 18.5,
-     "pct_beyond": 0.9
+     "base_share": 97.4,
+     "must_within": 90,
+     "may_beyond": 20,
+     "near_mean": 18.6,
+     "slack_mean": 42.3,
+     "near_mean_with_visiting": 18.1,
+     "pct_beyond": 1.0
     },
     {
      "designation": "Micro",
      "limit_mean": 103.1,
      "limit_base": 100,
-     "near_mean": 43.1,
-     "pct_beyond": 2.2
+     "base_share": 94.5,
+     "must_within": 85,
+     "may_beyond": 25,
+     "near_mean": 45.8,
+     "slack_mean": 57.3,
+     "near_mean_with_visiting": 42.0,
+     "pct_beyond": 3.2
     },
     {
      "designation": "Rural",
      "limit_mean": 112.5,
      "limit_base": 110,
-     "near_mean": 61.9,
-     "pct_beyond": 7.3
+     "base_share": 93.9,
+     "must_within": 85,
+     "may_beyond": 25,
+     "near_mean": 66.2,
+     "slack_mean": 46.3,
+     "near_mean_with_visiting": 60.4,
+     "pct_beyond": 9.5
     },
     {
      "designation": "CEAC",
      "limit_mean": 154.5,
      "limit_base": 145,
-     "near_mean": 103.7,
-     "pct_beyond": 18.2
+     "base_share": 81.1,
+     "must_within": 85,
+     "may_beyond": 25,
+     "near_mean": 121.5,
+     "slack_mean": 33.0,
+     "near_mean_with_visiting": 104.2,
+     "pct_beyond": 28.9
     }
-   ]
+   ],
+   "kind": "clinicians",
+   "clinicians": 7173,
+   "listings": 12160,
+   "sites": 3228,
+   "visiting_sites": 204
   },
   {
    "id": "pulmonology",
    "label": "Pulmonology",
    "hsd": "Pulmonology",
-   "providers": 20311,
-   "points": 4060,
-   "near_mean": 19.3,
+   "telehealth_credit": 0,
+   "show_beyond": true,
+   "near_mean": 20.8,
    "limit_mean": 43.7,
-   "pct_beyond": 1.94,
-   "old_beyond": 1063782,
+   "pct_beyond": 3.23,
+   "old_beyond": 1769782,
    "base": {
     "Metro": 45,
     "Rural": 75,
@@ -416,49 +678,79 @@
      "designation": "Large Metro",
      "limit_mean": 20.4,
      "limit_base": 20,
+     "base_share": 95.6,
+     "must_within": 90,
+     "may_beyond": 10,
      "near_mean": 11.8,
-     "pct_beyond": 1.5
+     "slack_mean": 8.6,
+     "near_mean_with_visiting": 11.7,
+     "pct_beyond": 1.6
     },
     {
      "designation": "Metro",
      "limit_mean": 46.0,
      "limit_base": 45,
-     "near_mean": 16.3,
-     "pct_beyond": 0.6
+     "base_share": 96.9,
+     "must_within": 90,
+     "may_beyond": 10,
+     "near_mean": 16.6,
+     "slack_mean": 29.3,
+     "near_mean_with_visiting": 16.2,
+     "pct_beyond": 0.8
     },
     {
      "designation": "Micro",
      "limit_mean": 63.7,
      "limit_base": 60,
-     "near_mean": 28.7,
-     "pct_beyond": 2.7
+     "base_share": 89.7,
+     "must_within": 85,
+     "may_beyond": 15,
+     "near_mean": 32.6,
+     "slack_mean": 31.1,
+     "near_mean_with_visiting": 28.2,
+     "pct_beyond": 6.4
     },
     {
      "designation": "Rural",
      "limit_mean": 77.6,
      "limit_base": 75,
-     "near_mean": 44.4,
-     "pct_beyond": 8.2
+     "base_share": 89.8,
+     "must_within": 85,
+     "may_beyond": 15,
+     "near_mean": 52.8,
+     "slack_mean": 24.7,
+     "near_mean_with_visiting": 43.4,
+     "pct_beyond": 15.9
     },
     {
      "designation": "CEAC",
      "limit_mean": 122.1,
      "limit_base": 110,
-     "near_mean": 85.5,
-     "pct_beyond": 20.4
+     "base_share": 74.8,
+     "must_within": 85,
+     "may_beyond": 15,
+     "near_mean": 107.0,
+     "slack_mean": 15.1,
+     "near_mean_with_visiting": 85.2,
+     "pct_beyond": 35.7
     }
-   ]
+   ],
+   "kind": "clinicians",
+   "clinicians": 11625,
+   "listings": 21864,
+   "sites": 3766,
+   "visiting_sites": 421
   },
   {
    "id": "hospital",
    "label": "Hospital",
    "hsd": "Acute Inpatient Hospitals",
-   "providers": 4462,
-   "points": 4462,
+   "telehealth_credit": 0,
+   "show_beyond": true,
    "near_mean": 16.4,
    "limit_mean": 45.0,
-   "pct_beyond": 0.78,
-   "old_beyond": 424889,
+   "pct_beyond": 0.82,
+   "old_beyond": 451238,
    "base": {
     "Metro": 45,
     "Rural": 75,
@@ -472,49 +764,76 @@
      "designation": "Large Metro",
      "limit_mean": 21.5,
      "limit_base": 20,
+     "base_share": 85.5,
+     "must_within": 90,
+     "may_beyond": 10,
      "near_mean": 12.9,
-     "pct_beyond": 2.2
+     "slack_mean": 8.5,
+     "near_mean_with_visiting": 12.9,
+     "pct_beyond": 2.3
     },
     {
      "designation": "Metro",
      "limit_mean": 45.0,
      "limit_base": 45,
-     "near_mean": 16.3,
+     "base_share": 100.0,
+     "must_within": 90,
+     "may_beyond": 10,
+     "near_mean": 16.2,
+     "slack_mean": 28.8,
+     "near_mean_with_visiting": 16.2,
      "pct_beyond": 0.2
     },
     {
      "designation": "Micro",
      "limit_mean": 80.0,
      "limit_base": 80,
+     "base_share": 100.0,
+     "must_within": 85,
+     "may_beyond": 15,
      "near_mean": 20.5,
+     "slack_mean": 59.5,
+     "near_mean_with_visiting": 20.5,
      "pct_beyond": 0.0
     },
     {
      "designation": "Rural",
      "limit_mean": 75.0,
      "limit_base": 75,
+     "base_share": 100.0,
+     "must_within": 85,
+     "may_beyond": 15,
      "near_mean": 23.6,
+     "slack_mean": 51.4,
+     "near_mean_with_visiting": 23.6,
      "pct_beyond": 0.2
     },
     {
      "designation": "CEAC",
      "limit_mean": 110.4,
      "limit_base": 110,
+     "base_share": 99.7,
+     "must_within": 85,
+     "may_beyond": 15,
      "near_mean": 28.4,
+     "slack_mean": 82.0,
+     "near_mean_with_visiting": 28.4,
      "pct_beyond": 0.8
     }
-   ]
+   ],
+   "kind": "facilities",
+   "facilities": 4466
   },
   {
    "id": "snf",
    "label": "Skilled nursing",
    "hsd": "Skilled Nursing Facilities",
-   "providers": 14690,
-   "points": 14690,
-   "near_mean": 13.3,
+   "telehealth_credit": 0,
+   "show_beyond": true,
+   "near_mean": 13.4,
    "limit_mean": 44.3,
-   "pct_beyond": 0.38,
-   "old_beyond": 205688,
+   "pct_beyond": 0.39,
+   "old_beyond": 215683,
    "base": {
     "Metro": 45,
     "Rural": 75,
@@ -528,38 +847,65 @@
      "designation": "Large Metro",
      "limit_mean": 20.0,
      "limit_base": 20,
+     "base_share": 100.0,
+     "must_within": 90,
+     "may_beyond": 10,
      "near_mean": 10.7,
+     "slack_mean": 9.3,
+     "near_mean_with_visiting": 10.7,
      "pct_beyond": 0.7
     },
     {
      "designation": "Metro",
      "limit_mean": 45.0,
      "limit_base": 45,
+     "base_share": 99.8,
+     "must_within": 90,
+     "may_beyond": 10,
      "near_mean": 13.0,
+     "slack_mean": 32.0,
+     "near_mean_with_visiting": 13.0,
      "pct_beyond": 0.2
     },
     {
      "designation": "Micro",
      "limit_mean": 80.0,
      "limit_base": 80,
+     "base_share": 99.6,
+     "must_within": 85,
+     "may_beyond": 15,
      "near_mean": 16.4,
+     "slack_mean": 63.6,
+     "near_mean_with_visiting": 16.4,
      "pct_beyond": 0.2
     },
     {
      "designation": "Rural",
      "limit_mean": 75.0,
      "limit_base": 75,
-     "near_mean": 17.4,
-     "pct_beyond": 0.1
+     "base_share": 100.0,
+     "must_within": 85,
+     "may_beyond": 15,
+     "near_mean": 17.6,
+     "slack_mean": 57.4,
+     "near_mean_with_visiting": 17.6,
+     "pct_beyond": 0.2
     },
     {
      "designation": "CEAC",
      "limit_mean": 96.9,
      "limit_base": 95,
-     "near_mean": 31.3,
-     "pct_beyond": 2.7
+     "base_share": 94.3,
+     "must_within": 85,
+     "may_beyond": 15,
+     "near_mean": 34.1,
+     "slack_mean": 62.8,
+     "near_mean_with_visiting": 34.1,
+     "pct_beyond": 3.9
     }
-   ]
+   ],
+   "kind": "facilities",
+   "facilities": 14441
   }
  ],
  "designations": [

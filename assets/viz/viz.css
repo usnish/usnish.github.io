@@ -88,6 +88,52 @@ section.chart > p { margin: 0 0 10px; color: var(--muted); font-size: 14px; max-
 .card td { padding: 3px 0; border-bottom: 1px solid var(--line); }
 .card td:last-child { text-align: right; font-variant-numeric: tabular-nums; }
 
+/* Byline under the title */
+header .byline { margin: 0 0 10px; font-size: 13px; color: var(--muted); }
+
+/* Map legend, drawn as HTML above the map so it stays readable at phone width */
+.vk-legend { margin: 6px 0 8px; font-size: 12px; color: var(--muted); max-width: 440px; }
+.vk-legend:empty { display: none; }
+.vk-legend-title { margin-bottom: 4px; line-height: 1.35; }
+.vk-legend-scale { display: flex; height: 10px; border-radius: 2px; overflow: hidden; }
+.vk-legend-scale span { flex: 1; }
+.vk-legend-ticks { position: relative; height: 18px; font-variant-numeric: tabular-nums; }
+.vk-legend-ticks span { position: absolute; top: 2px; transform: translateX(-50%); white-space: nowrap; }
+
+/* Tapped or picked county: a card below the map (phones), or a pinned tooltip (mouse) */
+.vk-card { position: relative; margin-top: 10px; background: var(--bg); border: 1px solid var(--line); border-radius: 8px;
+  padding: 10px 14px 12px; font-size: 13px; box-shadow: 0 4px 14px rgba(0,0,0,.08); }
+.vk-card[hidden] { display: none; }
+.vk-card b { display: block; font-size: 15px; margin: 0 32px 4px 0; }
+.vk-card table { border-collapse: collapse; width: 100%; }
+.vk-card td { padding: 3px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+.vk-card td:last-child { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; padding-left: 10px; }
+.vk-card tr.cur td { color: var(--accent); font-weight: 650; }
+.vk-card .note { margin-top: 6px; color: var(--muted); }
+.vk-card .close, .tooltip .close { position: absolute; right: 2px; top: 0; border: 0; background: none; font: inherit; font-size: 22px;
+  line-height: 1; padding: 8px 10px; color: var(--muted); cursor: pointer; }
+.tooltip.pinned { pointer-events: auto; }
+.tooltip.pinned b { margin-right: 26px; }
+
+.rank li[role="button"] { cursor: pointer; }
+.rank li:focus-visible, .controls button:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.bars { align-content: start; }
+
+@media (max-width: 600px) {
+  /* Bar charts: label on its own line, then a full-width bar with the value at right */
+  .bars, .twocol div.bars { grid-template-columns: minmax(0, 1fr) auto; gap: 2px 10px; }
+  .bars .lbl { grid-column: 1 / -1; margin-top: 6px; line-height: 1.3; }
+  .bars .grp { margin-top: 12px; }
+  /* Bigger tap targets in ranked lists */
+  .rank li { padding: 8px 4px; }
+  .rank { max-height: 420px; }
+  /* Detail cards sit below the chart instead of covering it */
+  /* A card that would land far below what was tapped becomes a sheet at the bottom of the screen */
+  .vk-card.vk-sheet { position: fixed; left: 10px; right: 10px; bottom: 10px; margin: 0; z-index: 20; max-height: 55vh; overflow-y: auto;
+    box-shadow: 0 8px 30px rgba(0,0,0,.25); }
+  .map-wrap > .card { position: relative; inset: auto; width: auto; margin-top: 10px; box-shadow: 0 4px 14px rgba(0,0,0,.08); }
+}
+
 section.about { margin-top: 36px; border-top: 1px solid var(--line); padding-top: 16px; color: var(--muted); font-size: 14px; max-width: 85ch; }
 section.about h2 { font-size: 15px; color: var(--fg); margin: 0 0 6px; }
 section.about p, section.about li { margin: 0 0 8px; }

@@ -1,53 +1,485 @@
 {
-  "year": 2023,
+  "year": 2024,
+  "prev_year": 2023,
+  "fy_begin_range": [
+    "2023-10-01",
+    "2024-09-01"
+  ],
+  "prev_fy_begin_range": [
+    "2022-10-01",
+    "2023-09-08"
+  ],
+  "fy_end_range": [
+    "2023-12-19",
+    "2025-10-31"
+  ],
+  "kff_as_of": "November 2026",
+  "unwinding_start": "2023-04-01",
   "fed_rate": 0.21,
-  "hospitals": 2686,
-  "dropped_missing": 2,
-  "excluded_outliers": 47,
+  "hospitals": 2705,
+  "hospitals_prev": 2712,
+  "dropped_missing": 3,
+  "excluded_outliers": 53,
   "max_margin": 0.5,
-  "geocoded_at_zip": 394,
-  "with_positive_income": 1824,
-  "fed_tax_est_total": 15860546304,
-  "charity_total": 16568066138,
-  "charity_total_profitable": 12534187194,
-  "pct_profitable_charity_below_tax": 59.6,
-  "median_charity_pct_costs": 1.48,
-  "by_county_uninsured": {
-    "Lowest uninsured quarter": {
-      "hospitals": 718,
-      "median_charity_pct_costs": 0.96,
-      "pct_charity_below_tax": 72.5,
-      "uninsured_range": [
+  "not_geocoded": 0,
+  "geocoded_at_zip": 352,
+  "county_by_name": 7,
+  "with_positive_income": 1917,
+  "no_positive_income": 735,
+  "charity_not_reported": 87,
+  "charity_not_reported_s10_blank": 42,
+  "charity_not_reported_positive_income": 53,
+  "fed_tax_est_total": 19564525789,
+  "charity_total": 20697067722,
+  "fed_tax_est_total_reported": 18955809417,
+  "charity_total_profitable": 16766312689,
+  "pct_profitable_tax_above_charity": 58.0,
+  "n_profitable_tax_above_charity": 1111,
+  "median_charity_pct_costs": 1.82,
+  "per_100_dollars": 1.82,
+  "by_expansion": {
+    "non": {
+      "label": "Did not expand Medicaid",
+      "states": [
+        "AL",
+        "FL",
+        "GA",
+        "KS",
+        "MS",
+        "SC",
+        "TN",
+        "TX",
+        "WI",
+        "WY"
+      ],
+      "n_states": 10,
+      "hospitals": 566,
+      "charity_reported": 551,
+      "charity_not_reported": 15,
+      "pct_hospitals": 20.9,
+      "charity_total": 7576800216,
+      "pct_charity_dollars": 36.6,
+      "pct_costs": 18.9,
+      "median_charity_pct_costs": 4.37,
+      "aggregate_charity_pct_costs": 5.12,
+      "median_county_uninsured": 10.85,
+      "median_county_poverty150": 21.6,
+      "n_south": 398,
+      "states_south": [
+        "AL",
+        "FL",
+        "GA",
+        "MS",
+        "SC",
+        "TN",
+        "TX"
+      ],
+      "median_charity_pct_costs_south": 5.7,
+      "median_charity_pct_costs_not_south": 1.3,
+      "n_not_south_reported": 165,
+      "with_positive_income": 414,
+      "pct_profitable_tax_above_charity": 38.6
+    },
+    "exp": {
+      "label": "Expanded Medicaid",
+      "states": [
+        "AK",
+        "AR",
+        "AZ",
+        "CA",
+        "CO",
+        "CT",
+        "DC",
+        "DE",
+        "HI",
+        "IA",
+        "ID",
+        "IL",
+        "IN",
+        "KY",
+        "LA",
+        "MA",
+        "MD",
+        "ME",
+        "MI",
+        "MN",
+        "MO",
+        "MT",
+        "ND",
+        "NE",
+        "NH",
+        "NJ",
+        "NM",
+        "NV",
+        "NY",
+        "OH",
+        "OK",
+        "OR",
+        "PA",
+        "RI",
+        "SD",
+        "UT",
+        "VA",
+        "VT",
+        "WA",
+        "WV"
+      ],
+      "n_states": 40,
+      "hospitals": 2092,
+      "charity_reported": 2021,
+      "charity_not_reported": 71,
+      "pct_hospitals": 77.3,
+      "charity_total": 12564760928,
+      "pct_charity_dollars": 60.7,
+      "pct_costs": 78.8,
+      "median_charity_pct_costs": 1.58,
+      "aggregate_charity_pct_costs": 2.01,
+      "median_county_uninsured": 6.2,
+      "median_county_poverty150": 20.2,
+      "n_south": 344,
+      "states_south": [
+        "AR",
+        "DC",
+        "DE",
+        "KY",
+        "LA",
+        "MD",
+        "OK",
+        "VA",
+        "WV"
+      ],
+      "median_charity_pct_costs_south": 1.82,
+      "median_charity_pct_costs_not_south": 1.55,
+      "n_not_south_reported": 1699,
+      "with_positive_income": 1462,
+      "pct_profitable_tax_above_charity": 63.3
+    },
+    "late": {
+      "label": "Expanded during these years",
+      "states": [
+        "NC"
+      ],
+      "n_states": 1,
+      "hospitals": 47,
+      "charity_reported": 46,
+      "charity_not_reported": 1,
+      "pct_hospitals": 1.7,
+      "charity_total": 555506578,
+      "pct_charity_dollars": 2.7,
+      "pct_costs": 2.4,
+      "median_charity_pct_costs": 2.92,
+      "aggregate_charity_pct_costs": 2.89,
+      "median_county_uninsured": 10.6,
+      "median_county_poverty150": 24.2,
+      "n_south": 47,
+      "states_south": [
+        "NC"
+      ],
+      "median_charity_pct_costs_south": 2.92,
+      "median_charity_pct_costs_not_south": null,
+      "n_not_south_reported": 0,
+      "with_positive_income": 41,
+      "pct_profitable_tax_above_charity": 63.4
+    }
+  },
+  "late_states": [
+    "NC"
+  ],
+  "ratio_median_non_to_exp": 2.8,
+  "mann_whitney_p": 1.4e-68,
+  "state_medians": {
+    "non_min": 1.22,
+    "non_max": 8.64,
+    "exp_min": 0.55,
+    "exp_max": 3.83,
+    "non_median": 3.69,
+    "exp_median": 1.58,
+    "non_states_above_exp_median": [
+      "AL",
+      "FL",
+      "GA",
+      "KS",
+      "MS",
+      "SC",
+      "TN",
+      "TX",
+      "WY"
+    ],
+    "non_states_below_exp_median": [
+      "WI"
+    ],
+    "non_states_above_all_exp": [
+      "FL",
+      "GA",
+      "TN",
+      "TX"
+    ]
+  },
+  "non_expansion_adult_limits": {
+    "AL": {
+      "pct_poverty_line": 0,
+      "note": ""
+    },
+    "FL": {
+      "pct_poverty_line": 0,
+      "note": "Florida did not respond to the 2026 survey; eligibility levels reported are from prior year and confirmed through publicly available information."
+    },
+    "GA": {
+      "pct_poverty_line": 100,
+      "note": "Georgia has not expanded Medicaid but provides coverage through an 1115 waiver to parents and adults without dependent children with income up to 100% FPL if they meet a work requirement."
+    },
+    "KS": {
+      "pct_poverty_line": 0,
+      "note": ""
+    },
+    "MS": {
+      "pct_poverty_line": 0,
+      "note": ""
+    },
+    "SC": {
+      "pct_poverty_line": 0,
+      "note": ""
+    },
+    "TN": {
+      "pct_poverty_line": 0,
+      "note": ""
+    },
+    "TX": {
+      "pct_poverty_line": 0,
+      "note": "In Texas, the income limit for Section 1931 parents is based on monthly dollar amounts which differ depending on family size and whether there is one or two parents in the family. The eligibility level shown is for a single parent household and a family size of three."
+    },
+    "WI": {
+      "pct_poverty_line": 100,
+      "note": "Wisconsin covers adults up to 100% FPL in Medicaid but did not adopt the ACA Medicaid expansion."
+    },
+    "WY": {
+      "pct_poverty_line": 0,
+      "note": ""
+    }
+  },
+  "kff_eligibility_as_of": "As of January 2026",
+  "two_group_hospitals": 2658,
+  "by_county_uninsured": [
+    {
+      "quarter": 1,
+      "range": [
         1.6,
         5.1
-      ]
+      ],
+      "hospitals": 682,
+      "median_all": 1.27,
+      "exp": {
+        "hospitals": 630,
+        "median": 1.3
+      },
+      "non": {
+        "hospitals": 52,
+        "median": 1.11
+      }
     },
-    "2nd": {
-      "hospitals": 643,
-      "median_charity_pct_costs": 1.32,
-      "pct_charity_below_tax": 70.5,
-      "uninsured_range": [
-        5.1,
+    {
+      "quarter": 2,
+      "range": [
+        5.2,
         6.8
-      ]
+      ],
+      "hospitals": 627,
+      "median_all": 1.71,
+      "exp": {
+        "hospitals": 575,
+        "median": 1.72
+      },
+      "non": {
+        "hospitals": 51,
+        "median": 1.52
+      }
     },
-    "3rd": {
-      "hospitals": 660,
-      "median_charity_pct_costs": 1.59,
-      "pct_charity_below_tax": 59.2,
-      "uninsured_range": [
-        6.8,
-        9.7
-      ]
+    {
+      "quarter": 3,
+      "range": [
+        6.9,
+        9.8
+      ],
+      "hospitals": 667,
+      "median_all": 2.02,
+      "exp": {
+        "hospitals": 550,
+        "median": 1.85
+      },
+      "non": {
+        "hospitals": 107,
+        "median": 2.92
+      }
     },
-    "Highest uninsured quarter": {
-      "hospitals": 665,
-      "median_charity_pct_costs": 3.68,
-      "pct_charity_below_tax": 36.9,
-      "uninsured_range": [
-        9.7,
+    {
+      "quarter": 4,
+      "range": [
+        9.9,
         44.9
-      ]
+      ],
+      "hospitals": 642,
+      "median_all": 4.13,
+      "exp": {
+        "hospitals": 266,
+        "median": 2.31
+      },
+      "non": {
+        "hospitals": 341,
+        "median": 5.72
+      }
     }
-  }
+  ],
+  "spearman_uninsured": {
+    "exp": {
+      "rho": 0.22,
+      "p": 2.1e-23,
+      "hospitals": 2021
+    },
+    "non": {
+      "rho": 0.6,
+      "p": 4.5e-56,
+      "hospitals": 551
+    }
+  },
+  "by_county_poverty": [
+    {
+      "quarter": 1,
+      "range": [
+        5.1,
+        16.2
+      ],
+      "hospitals": 660,
+      "median_all": 1.63,
+      "exp": {
+        "hospitals": 556,
+        "median": 1.63
+      },
+      "non": {
+        "hospitals": 98,
+        "median": 1.68
+      }
+    },
+    {
+      "quarter": 2,
+      "range": [
+        16.3,
+        20.7
+      ],
+      "hospitals": 667,
+      "median_all": 1.69,
+      "exp": {
+        "hospitals": 501,
+        "median": 1.48
+      },
+      "non": {
+        "hospitals": 157,
+        "median": 4.1
+      }
+    },
+    {
+      "quarter": 3,
+      "range": [
+        20.8,
+        24.7
+      ],
+      "hospitals": 640,
+      "median_all": 1.85,
+      "exp": {
+        "hospitals": 511,
+        "median": 1.64
+      },
+      "non": {
+        "hospitals": 117,
+        "median": 4.59
+      }
+    },
+    {
+      "quarter": 4,
+      "range": [
+        24.8,
+        60.0
+      ],
+      "hospitals": 651,
+      "median_all": 2.25,
+      "exp": {
+        "hospitals": 453,
+        "median": 1.61
+      },
+      "non": {
+        "hospitals": 179,
+        "median": 5.18
+      }
+    }
+  ],
+  "spearman_poverty": {
+    "exp": {
+      "rho": 0.0,
+      "p": 0.9,
+      "hospitals": 2021
+    },
+    "non": {
+      "rho": 0.25,
+      "p": 2.2e-09,
+      "hospitals": 551
+    }
+  },
+  "change": {
+    "all": {
+      "hospitals": 2457,
+      "charity_prev": 16441399139,
+      "charity": 20123900906,
+      "charity_change_pct": 22.4,
+      "costs_change_pct": 7.0,
+      "share_prev": 2.28,
+      "share": 2.61,
+      "median_pct_prev": 1.56,
+      "median_pct": 1.82,
+      "pct_hospitals_up": 75.3
+    },
+    "exp": {
+      "hospitals": 1856,
+      "charity_prev": 9304442973,
+      "charity": 12179314808,
+      "charity_change_pct": 30.9,
+      "costs_change_pct": 6.8,
+      "share_prev": 1.64,
+      "share": 2.01,
+      "median_pct_prev": 1.32,
+      "median_pct": 1.61,
+      "pct_hospitals_up": 79.9
+    },
+    "non": {
+      "hospitals": 511,
+      "charity_prev": 6366600104,
+      "charity": 7332083828,
+      "charity_change_pct": 15.2,
+      "costs_change_pct": 7.7,
+      "share_prev": 4.82,
+      "share": 5.15,
+      "median_pct_prev": 4.53,
+      "median_pct": 4.41,
+      "pct_hospitals_up": 67.3
+    },
+    "pairs_not_reported": 98,
+    "prev_in_unwinding": {
+      "hospitals": 960,
+      "charity_prev": 6759631884,
+      "charity": 8407720349,
+      "charity_change_pct": 24.4,
+      "costs_change_pct": 7.1,
+      "share_prev": 2.53,
+      "share": 2.93,
+      "median_pct_prev": 1.65,
+      "median_pct": 1.99,
+      "pct_hospitals_up": 77.4
+    },
+    "excluded_states": [
+      "NC",
+      "SD"
+    ]
+  },
+  "full_year_days": [
+    350,
+    380
+  ]
 }

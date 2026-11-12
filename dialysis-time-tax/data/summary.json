@@ -1,27 +1,30 @@
 {
-  "facilities": 6906,
-  "beyond_range_km": 150,
-  "beyond_range_pop": 170112,
-  "beyond_range_states": [
-    "02",
-    "16",
-    "32",
-    "41",
-    "48"
-  ],
-  "median_one_way_min": 11.8,
-  "median_annual_hours": 61,
-  "metro_mean_annual_hours": 69,
-  "nonmetro_mean_annual_hours": 143,
-  "people_far": 21953429,
-  "pct_people_far": 6.6,
-  "no_vehicle_hh": 10462152,
-  "no_vehicle_far_hh": 447770,
+  "facilities": 6889,
+  "tracts": 83848,
+  "zip_placed": 234,
+  "regeocoded": 470,
+  "block_group_routing": {
+    "tracts": 75,
+    "block_groups": 180,
+    "pop": 212425,
+    "tracts_far_from_road": 24,
+    "pop_far_from_road_before": 51396,
+    "pop_far_from_road_after": 44531,
+    "ratio": 3
+  },
+  "mean_one_way_min": 11.2,
+  "mean_annual_hours": 58,
+  "metro_mean_annual_hours": 47,
+  "nonmetro_mean_annual_hours": 128,
+  "people_far": 21040735,
+  "pct_people_far": 6.4,
+  "no_vehicle_hh": 10461577,
+  "no_vehicle_far_hh": 396549,
   "hours_by_svi_quarter": {
-    "Least vulnerable quarter": 79,
-    "2nd": 85,
-    "3rd": 85,
-    "Most vulnerable quarter": 69
+    "Least vulnerable quarter": 62,
+    "2nd": 66,
+    "3rd": 63,
+    "Most vulnerable quarter": 41
   },
   "pct_no_vehicle_by_svi_quarter": {
     "Least vulnerable quarter": 3.4,
@@ -29,8 +32,125 @@
     "3rd": 8.5,
     "Most vulnerable quarter": 16.1
   },
+  "pct_no_vehicle_by_svi_quarter_without_vehicle_measure": {
+    "Least vulnerable quarter": 4.4,
+    "2nd": 6.2,
+    "3rd": 8.4,
+    "Most vulnerable quarter": 15.0
+  },
+  "pct_far_by_svi_quarter": {
+    "Least vulnerable quarter": 4.2,
+    "2nd": 8.2,
+    "3rd": 9.0,
+    "Most vulnerable quarter": 4.1
+  },
+  "pct_metro_by_svi_quarter": {
+    "Least vulnerable quarter": 93.4,
+    "2nd": 84.1,
+    "3rd": 80.0,
+    "Most vulnerable quarter": 87.1
+  },
   "far_minutes": 30,
   "sessions_per_year": 156,
+  "routing": {
+    "long_min": 20,
+    "candidates_long": 10,
+    "candidates_short": 5,
+    "ferry_retry_candidates": 40,
+    "long_trips": {
+      "tracts": 15214,
+      "pop": 51896693,
+      "mean_model_min": 33.6,
+      "mean_road_min": 32.0
+    },
+    "short_trips": {
+      "tracts": 68642,
+      "pop": 279378719,
+      "mean_model_min": 11.9,
+      "mean_road_min": 7.3
+    },
+    "old_model_mean_annual_hours": 79,
+    "old_model_people_far": 21878056,
+    "examples": [
+      {
+        "place": "Grand Marais, Minnesota",
+        "tract": "27031480200",
+        "model_min": 163,
+        "model_center": "Ashland, WI",
+        "road_min": 154,
+        "road_center": "Duluth, MN"
+      },
+      {
+        "place": "Lewistown, Montana",
+        "tract": "30027030201",
+        "model_min": 172,
+        "model_center": "Great Falls, MT",
+        "road_min": 115,
+        "road_center": "Great Falls, MT"
+      }
+    ],
+    "snap_km": 10,
+    "max_drive_min": 360,
+    "source": "OSRM demo server (router.project-osrm.org), OpenStreetMap roads, no traffic",
+    "date": "2026-11-12"
+  },
+  "no_road_tracts": 73,
+  "no_road_pop": 173869,
+  "no_road_pop_by_reason": {
+    "only by ferry": 91390,
+    "no road route": 37144,
+    "over 6 hours": 6121,
+    "far from a road": 39214
+  },
+  "no_road_states": [
+    "02",
+    "04",
+    "06",
+    "12",
+    "15",
+    "23",
+    "26",
+    "36",
+    "39",
+    "44",
+    "45",
+    "49",
+    "53"
+  ],
+  "no_road_top_counties": [
+    [
+      "02050",
+      18666
+    ],
+    [
+      "02130",
+      13948
+    ],
+    [
+      "02150",
+      13101
+    ],
+    [
+      "53055",
+      11788
+    ],
+    [
+      "53033",
+      11055
+    ],
+    [
+      "02185",
+      11031
+    ],
+    [
+      "02180",
+      10046
+    ],
+    [
+      "02220",
+      8458
+    ]
+  ],
   "drive_model": {
     "metro": {
       "a": 8.301,

@@ -1,0 +1,20 @@
+{%- comment -%}
+"Recent work" strip on the homepage: every item in the "Data Visualizations"
+group of _data/projects.yml, with its thumbnail when the item has an `image`.
+{%- endcomment -%}
+{%- for group in site.data.projects -%}{%- if group.title == "Data Visualizations" and group.items -%}
+<section class="recent-work" aria-labelledby="recent-work-title">
+<h2 id="recent-work-title" class="recent-work-title">Recent work</h2>
+<ul class="recent-list">
+{%- for item in group.items %}
+<li class="recent-item{% unless item.image %} no-thumb{% endunless %}">
+<a class="recent-link" href="{{ item.url }}">
+{%- if item.image %}<img class="recent-thumb" src="{{ item.image }}" alt="" loading="lazy">{% endif -%}
+<span class="recent-text"><span class="recent-name">{{ item.title }}</span><span class="recent-desc">{{ item.description }}</span></span>
+</a>
+</li>
+{%- endfor %}
+</ul>
+<p class="recent-more"><a href="/projects/">All projects &rarr;</a></p>
+</section>
+{%- endif -%}{%- endfor -%}

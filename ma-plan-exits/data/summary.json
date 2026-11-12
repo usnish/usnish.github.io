@@ -3,48 +3,67 @@
   "year": 2026,
   "enrollment_month": "September 2025",
   "members": 28381138,
-  "stays": 23893258,
-  "moved": 1568480,
-  "leaving": 812806,
+  "stays": 24005434,
+  "moved": 1482553,
+  "leaving": 786557,
   "ended": 2106594,
-  "pct_must_choose": 10.3,
-  "pct_moved": 5.5,
+  "pct_must_choose": 10.2,
+  "pct_moved": 5.2,
   "members_no_crosswalk": 0,
-  "counties_lost_plans": 1832,
-  "counties_gained_plans": 819,
-  "counties_insurer_left": 1540,
-  "counties_one_or_no_insurer": 204,
-  "counties_one_or_no_insurer_prev": 166,
+  "members_split": 664893,
+  "members_split_by_kind": {
+   "Dual-eligible special needs plans": 664893
+  },
+  "moved_by_status": {
+   "Consolidated Renewal Plan": 875499,
+   "Renewal Plan": 471428,
+   "Renewal Plan with SAR": 135626
+  },
+  "territories_left_out": {
+   "ended": 19143,
+   "stays": 384118,
+   "leaving": 74,
+   "moved": 168868
+  },
+  "counties_total": 3142,
+  "counties_no_insurer": 115,
+  "counties_late_add": {},
+  "insurer_table_big_exit": 100000,
+  "counties_lost_plans": 1871,
+  "counties_gained_plans": 798,
+  "counties_insurer_left": 1390,
+  "counties_one_or_no_insurer": 287,
+  "counties_one_or_no_insurer_prev": 214,
   "plans_prev": 3719,
   "plans_next": 3373,
   "by_kind": [
    {
     "name": "Plans open to anyone",
-    "stays": 17826398,
-    "moved": 780102,
-    "leaving": 735013,
-    "ended": 2002551
+    "stays": 17695574,
+    "moved": 704410,
+    "leaving": 715406,
+    "ended": 1992450
    },
    {
     "name": "Dual-eligible special needs plans",
-    "stays": 5042745,
-    "moved": 946433,
-    "leaving": 50867,
-    "ended": 88494
+    "stays": 4935821,
+    "moved": 760688,
+    "leaving": 50793,
+    "ended": 79452
    },
    {
     "name": "Other special needs plans",
-    "stays": 1408233,
-    "moved": 10813,
-    "leaving": 27000,
+    "stays": 1374039,
+    "moved": 17455,
+    "leaving": 20358,
     "ended": 34692
    }
   ],
   "by_insurer": [
    {
     "name": "UnitedHealthcare",
-    "stays": 7363612,
-    "moved": 344560,
+    "stays": 7440465,
+    "moved": 267707,
     "leaving": 105485,
     "ended": 495596
    },
@@ -53,7 +72,7 @@
     "stays": 4703097,
     "moved": 376850,
     "leaving": 56316,
-    "ended": 42905
+    "ended": 23762
    },
    {
     "name": "Aetna (CVS)",
@@ -64,9 +83,9 @@
    },
    {
     "name": "Elevance (Anthem)",
-    "stays": 1365016,
-    "moved": 301501,
-    "leaving": 74081,
+    "stays": 1269860,
+    "moved": 221169,
+    "leaving": 74007,
     "ended": 110953
    },
    {
@@ -78,8 +97,8 @@
    },
    {
     "name": "Wellcare (Centene)",
-    "stays": 724091,
-    "moved": 132975,
+    "stays": 730311,
+    "moved": 126755,
     "leaving": 29810,
     "ended": 57859
    },
@@ -98,25 +117,18 @@
     "ended": 116991
    },
    {
-    "name": "Healthfirst, Inc.",
+    "name": "Healthfirst",
     "stays": 353057,
     "moved": 0,
     "leaving": 109,
     "ended": 6964
    },
    {
-    "name": "Blue Cross Blue Shield of Michigan Mutual Ins. Co.",
+    "name": "Blue Cross Blue Shield of Michigan",
     "stays": 203992,
     "moved": 0,
     "leaving": 49495,
     "ended": 61463
-   },
-   {
-    "name": "MHH Healthcare, L.P.",
-    "stays": 246983,
-    "moved": 66004,
-    "leaving": 0,
-    "ended": 0
    },
    {
     "name": "SCAN",
@@ -124,52 +136,91 @@
     "moved": 1850,
     "leaving": 1913,
     "ended": 0
+   },
+   {
+    "name": "Lifetime Healthcare, Inc.",
+    "stays": 100405,
+    "moved": 0,
+    "leaving": 24594,
+    "ended": 118196
+   },
+   {
+    "name": "UCare Minnesota",
+    "stays": 23208,
+    "moved": 0,
+    "leaving": 4542,
+    "ended": 152430
    }
   ],
   "statuses": {
-   "Renewal Plan": 5064,
    "Terminated/Non-renewed Contract": 1013,
-   "Consolidated Renewal Plan": 746,
+   "Renewal Plan": 5064,
    "Renewal Plan with SAE": 515,
-   "Renewal Plan with SAR": 733
+   "Renewal Plan with SAR": 733,
+   "Consolidated Renewal Plan": 746
   }
  },
  "2027": {
   "year": 2027,
   "enrollment_month": "September 2026",
   "members": 29304217,
-  "stays": 23823013,
-  "moved": 2312909,
+  "stays": 24043166,
+  "moved": 2092756,
   "leaving": 813385,
   "ended": 2354910,
   "pct_must_choose": 10.8,
-  "pct_moved": 7.9,
+  "pct_moved": 7.1,
   "members_no_crosswalk": 0,
-  "counties_lost_plans": 2205,
-  "counties_gained_plans": 512,
-  "counties_insurer_left": 1673,
-  "counties_one_or_no_insurer": 322,
-  "counties_one_or_no_insurer_prev": 214,
+  "members_split": 1077067,
+  "members_split_by_kind": {
+   "Dual-eligible special needs plans": 1077067
+  },
+  "moved_by_status": {
+   "Consolidated Renewal Plan": 1239511,
+   "Renewal Plan": 627922,
+   "Renewal Plan with SAR": 225323
+  },
+  "territories_left_out": {
+   "stays": 547327,
+   "moved": 24865,
+   "leaving": 165
+  },
+  "counties_total": 3142,
+  "counties_no_insurer": 180,
+  "counties_late_add": {
+   "33003": [
+    "Devoted Health"
+   ],
+   "33007": [
+    "Devoted Health"
+   ]
+  },
+  "insurer_table_big_exit": 100000,
+  "counties_lost_plans": 2236,
+  "counties_gained_plans": 469,
+  "counties_insurer_left": 1630,
+  "counties_one_or_no_insurer": 419,
+  "counties_one_or_no_insurer_prev": 287,
   "plans_prev": 3373,
   "plans_next": 3194,
   "by_kind": [
    {
     "name": "Plans open to anyone",
-    "stays": 17726001,
-    "moved": 926797,
-    "leaving": 770672,
+    "stays": 17485238,
+    "moved": 926260,
+    "leaving": 770631,
     "ended": 2079935
    },
    {
     "name": "Dual-eligible special needs plans",
-    "stays": 4779465,
-    "moved": 1388781,
-    "leaving": 29160,
+    "stays": 4717621,
+    "moved": 1144300,
+    "leaving": 29036,
     "ended": 229605
    },
    {
     "name": "Other special needs plans",
-    "stays": 1864874,
+    "stays": 1840307,
     "moved": 22196,
     "leaving": 13718,
     "ended": 45370
@@ -178,15 +229,15 @@
   "by_insurer": [
    {
     "name": "UnitedHealthcare",
-    "stays": 6178740,
-    "moved": 936414,
+    "stays": 6252838,
+    "moved": 862316,
     "leaving": 133627,
     "ended": 377504
    },
    {
     "name": "Humana",
-    "stays": 5325828,
-    "moved": 472377,
+    "stays": 5356060,
+    "moved": 442145,
     "leaving": 196505,
     "ended": 405494
    },
@@ -198,13 +249,6 @@
     "ended": 215066
    },
    {
-    "name": "Elevance (Anthem)",
-    "stays": 1246317,
-    "moved": 191901,
-    "leaving": 12364,
-    "ended": 49596
-   },
-   {
     "name": "Kaiser Permanente",
     "stays": 1391605,
     "moved": 56721,
@@ -212,16 +256,23 @@
     "ended": 30925
    },
    {
+    "name": "Elevance (Anthem)",
+    "stays": 1170920,
+    "moved": 105454,
+    "leaving": 12240,
+    "ended": 49596
+   },
+   {
     "name": "Wellcare (Centene)",
-    "stays": 519242,
-    "moved": 201976,
+    "stays": 519804,
+    "moved": 201414,
     "leaving": 45932,
     "ended": 122356
    },
    {
     "name": "HCSC (Blue Cross)",
-    "stays": 618067,
-    "moved": 36288,
+    "stays": 618346,
+    "moved": 36009,
     "leaving": 12231,
     "ended": 110149
    },
@@ -240,17 +291,10 @@
     "ended": 5334
    },
    {
-    "name": "Healthfirst, Inc.",
+    "name": "Healthfirst",
     "stays": 371798,
     "moved": 0,
     "leaving": 74,
-    "ended": 0
-   },
-   {
-    "name": "MHH Healthcare, L.P.",
-    "stays": 321143,
-    "moved": 23734,
-    "leaving": 41,
     "ended": 0
    },
    {
@@ -259,14 +303,28 @@
     "moved": 11069,
     "leaving": 4480,
     "ended": 13934
+   },
+   {
+    "name": "Alignment Health",
+    "stays": 270443,
+    "moved": 12040,
+    "leaving": 10186,
+    "ended": 3546
+   },
+   {
+    "name": "Blue Cross MN (Aware Integrated)",
+    "stays": 28514,
+    "moved": 0,
+    "leaving": 7739,
+    "ended": 250589
    }
   ],
   "statuses": {
-   "Renewal Plan": 4899,
    "Terminated/Non-renewed Contract": 1006,
-   "Consolidated Renewal Plan": 808,
+   "Renewal Plan": 4899,
    "Renewal Plan with SAE": 546,
-   "Renewal Plan with SAR": 789
+   "Renewal Plan with SAR": 789,
+   "Consolidated Renewal Plan": 808
   }
  }
 }

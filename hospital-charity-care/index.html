@@ -4,11 +4,29 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Hospital Charity Care</title>
-<meta name="description" content="Charity care reported by 2,700 U.S. nonprofit hospitals in 2023, plotted against a rough estimate of each hospital's federal income tax exemption.">
+<meta name="description" content="Charity care reported by about 2,700 U.S. nonprofit hospitals for fiscal years beginning October 2023 to September 2024, by state Medicaid expansion status, with a rough comparison to each hospital's federal tax break.">
+<meta name="author" content="Usnish Majumdar, MD">
+<link rel="canonical" href="https://usnish.xyz/hospital-charity-care/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Usnish Majumdar">
+<meta property="og:title" content="Nonprofit hospitals give far more charity care in states that didn't expand Medicaid">
+<meta property="og:description" content="Nonprofit hospitals don't pay income tax and, in most states, property or sales tax. In return they are expected to benefit their communities, and free or discounted care for patients who can't pay is the most direct way. How much they give differs sharply between states that expanded Medicaid and states that didn't.">
+<meta property="og:url" content="https://usnish.xyz/hospital-charity-care/">
+<meta property="og:image" content="https://usnish.xyz/img/og-hospital-charity-care.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Strip chart of each state's typical nonprofit hospital charity care as a share of costs: higher in states that did not expand Medicaid">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Nonprofit hospitals give far more charity care in states that didn't expand Medicaid">
+<meta name="twitter:description" content="Nonprofit hospitals don't pay income tax and, in most states, property or sales tax. In return they are expected to benefit their communities, and free or discounted care for patients who can't pay is the most direct way. How much they give differs sharply between states that expanded Medicaid and states that didn't.">
+<meta name="twitter:image" content="https://usnish.xyz/img/og-hospital-charity-care.png">
 <link rel="stylesheet" href="../assets/viz/viz.css">
 <style>
+  :root { --exp: var(--accent); --non: var(--warn); --late: var(--faint); }
   svg.plot { width: 100%; height: auto; display: block; overflow: visible; }
-  .dot { fill: var(--accent); fill-opacity: .5; stroke: var(--bg); stroke-width: 1; cursor: pointer; }
+  .dot { fill: var(--exp); fill-opacity: .5; stroke: var(--bg); stroke-width: 1; cursor: pointer; }
+  .dot.g-non { fill: var(--non); }
+  .dot.g-late { fill: var(--late); }
   .dot.dim { opacity: .08; }
   .dot.hi { fill-opacity: .85; }
   .dot.sel { fill-opacity: 1; stroke: var(--hover); stroke-width: 2; }
@@ -20,12 +38,32 @@
   .region { fill: var(--faint); font-size: 12px; }
   .rail-bg { fill: var(--panel); }
   .rail-label { fill: var(--muted); font-size: 11px; }
+  /* State strip chart */
+  .st-circle { stroke: var(--bg); stroke-width: 1.5; cursor: default; }
+  .st-circle.sel { stroke: var(--hover); stroke-width: 2.5; }
+  .st-circle.g-exp { fill: var(--exp); } .st-circle.g-non { fill: var(--non); } .st-circle.g-late { fill: var(--late); }
+  .st-code { fill: #fff; font-size: 10px; font-weight: 650; pointer-events: none; }
+  .row-label { fill: var(--fg); font-size: 14px; font-weight: 600; }
+  .row-sub { fill: var(--muted); font-size: 12px; font-weight: 400; }
+  .med-line { stroke-width: 2; stroke-dasharray: 4 3; }
+  .med-label { font-size: 12px; font-weight: 600; }
+  .key { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; color: var(--muted); margin: 6px 0 4px; }
+  .key span::before { content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: -1px; background: var(--c); }
+  .twocol { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 32px; max-width: 1000px; }
+  .twocol h3 { font-size: 14px; margin: 0 0 2px; }
+  .twocol .bars { grid-template-columns: minmax(120px, 170px) 1fr 52px; }
+  @media (max-width: 900px) { .twocol { grid-template-columns: 1fr; } }
+  section.chart > p.after { margin-top: 12px; }
+  #card .close { min-width: 44px; min-height: 44px; right: 0; top: 0; font-size: 22px; }
+  /* Desktop: the card sits in the nearly empty upper left of the plot, not over the dense upper right */
+  @media (min-width: 601px) { #wrap > .card { left: 20%; right: auto; top: 4%; } }
   /* The plot scales down with the screen, so its text has to scale up to stay readable */
   @media (max-width: 600px) {
-    .axis text, .rail-label { font-size: 19px; }
-    .axis-title { font-size: 21px; }
-    .region { display: none; }
-    .axis .tick:first-of-type text { display: none; } /* $10K would collide with the $0 band label */
+    #plot .axis text, #plot .rail-label { font-size: 28px; }
+    #plot .axis-title { font-size: 28px; }
+    #plot .axis-title:not([transform]) { transform: translateY(30px); } /* x-axis title below the enlarged tick labels */
+    #plot .region { display: none; }
+    #plot .axis .tick:first-of-type text { display: none; } /* $10K would collide with the $0 band label */
   }
 </style>
 </head>
@@ -33,45 +71,82 @@
 <main>
   <a class="back" href="/projects/">&larr; all projects</a>
   <header>
-    <h1>Charity care at nonprofit hospitals</h1>
-    <p class="lede">Nonprofit hospitals provide free and discounted care to patients who can't afford to pay, and in turn are exempt from most taxes. Each dot below is a U.S. nonprofit acute care or critical access hospital, placed by the charity care it reported to Medicare for 2023 and a rough estimate of the federal income tax it didn't owe that year.</p>
+    <h1>Nonprofit hospitals give far more charity care in states that didn't expand Medicaid</h1>
+    <p class="byline">By Usnish Majumdar, MD · Updated November 2026</p>
+    <p class="lede" id="lede"></p>
   </header>
 
   <div class="stats" id="stats"></div>
 
-  <div class="layout">
-    <div class="map-wrap" id="wrap">
-      <svg class="plot" id="plot" viewBox="0 0 975 680" role="img" aria-label="Scatter plot of nonprofit hospitals' charity care against their estimated federal income tax exemption"></svg>
-      <div class="tooltip" id="tooltip"></div>
-      <div class="card" id="card" hidden></div>
+  <section class="chart" style="border-top:0;margin-top:20px;padding-top:0">
+    <h2>State by state</h2>
+    <p id="strip-intro"></p>
+    <div class="key">
+      <span style="--c:var(--non)">Did not expand Medicaid</span>
+      <span style="--c:var(--exp)">Expanded Medicaid</span>
+      <span style="--c:var(--late)">Expanded during these years</span>
     </div>
-    <aside class="panel">
-      <h2>
-        <select id="state" aria-label="Filter by state"><option value="">All states</option></select>
-        <select id="sort" aria-label="Sort hospitals">
-          <option value="dollars">Charity care ($)</option>
-          <option value="tax">Est. federal exemption</option>
-          <option value="pct">Charity care (% of costs)</option>
-          <option value="beds">Beds</option>
-        </select>
-      </h2>
-      <ol class="rank" id="rank"></ol>
-    </aside>
-  </div>
-  <p class="mtitle">Both axes are logarithmic: each gridline is ten times the one before. On the dashed line, charity care equals the estimated federal exemption. The shaded band along the bottom holds the <span id="n-noinc"></span> hospitals with no positive net income in 2023, so no federal income tax to estimate (they still hold other exemptions); the band at left holds the <span id="n-nocare"></span> that reported no charity care.</p>
+    <div class="map-wrap" id="strip-wrap">
+      <svg class="plot" id="strip" role="img"></svg>
+      <div class="tooltip" id="strip-tip"></div>
+    </div>
+    <p class="after" id="differs"></p>
+  </section>
 
   <section class="chart">
-    <h2>Charity care is highest where more people are uninsured</h2>
-    <p>Median charity care as a share of total costs, for hospitals grouped by their county's uninsured rate.</p>
-    <div class="bars" id="bars-pct"></div>
+    <h2>In expansion states, charity care barely changes with county poverty</h2>
+    <p id="quart-intro"></p>
+    <div class="twocol">
+      <div><h3>By county uninsured rate</h3><div class="bars" id="bars-unins"></div></div>
+      <div><h3>By county poverty (share below 150% of the poverty line)</h3><div class="bars" id="bars-pov"></div></div>
+    </div>
+    <p class="after" id="quart-after"></p>
+  </section>
+
+  <section class="chart">
+    <h2 id="chg-title"></h2>
+    <p id="chg-intro"></p>
+    <div class="bars" id="bars-chg"></div>
+    <p class="after" id="chg-after"></p>
+  </section>
+
+  <section class="chart">
+    <h2 id="tax-title"></h2>
+    <p id="tax-intro"></p>
+    <div class="key">
+      <span style="--c:var(--non)">Did not expand Medicaid</span>
+      <span style="--c:var(--exp)">Expanded Medicaid</span>
+      <span style="--c:var(--late)" id="late-key2">Expanded during these years</span>
+    </div>
+    <div class="layout">
+      <div class="map-wrap" id="wrap">
+        <svg class="plot" id="plot" viewBox="0 0 975 680" role="img" aria-label="Scatter plot of nonprofit hospitals' charity care against their estimated federal income tax exemption"></svg>
+        <div class="tooltip" id="tooltip"></div>
+        <div class="card" id="card" hidden></div>
+      </div>
+      <aside class="panel">
+        <h2>
+          <select id="state" aria-label="Filter by state"><option value="">All states</option></select>
+          <select id="sort" aria-label="Sort hospitals">
+            <option value="dollars">Charity care ($)</option>
+            <option value="tax">Est. federal exemption</option>
+            <option value="pct">Charity care (% of costs)</option>
+            <option value="beds">Beds</option>
+          </select>
+        </h2>
+        <ol class="rank" id="rank"></ol>
+      </aside>
+    </div>
+    <p class="mtitle">Both axes are logarithmic: each gridline is ten times the one before. On the dashed line, charity care equals the estimated federal exemption. The shaded band along the bottom holds the <span id="n-noinc"></span> hospitals with no positive net income, so no federal income tax to estimate (they still hold other exemptions); the band at left holds the <span id="n-nocare"></span> hospitals that left the charity care line blank.</p>
   </section>
 
   <section class="about">
     <h2>About the data</h2>
-    <p><b>Hospitals and finances.</b> CMS <a href="https://data.cms.gov/provider-compliance/cost-report/hospital-provider-cost-report">Hospital Provider Cost Report</a> (HCRIS), 2023 release: nonprofit (church or other voluntary) short-term acute care and critical access hospitals in the 50 states and DC, using each hospital's latest 2023 report. Charity care is the cost (not charges) of free and discounted care reported on Worksheet S-10. Bed counts are as reported on the cost report. <span id="outnote"></span></p>
-    <p><b>Tax exemption estimate.</b> The vertical axis is a rough estimate of each hospital's federal income tax exemption: 21% (the federal corporate rate) of positive net income. It is a floor, not the full value of nonprofit status. It leaves out state and local property and sales tax exemptions (often the larger share), tax-exempt bond financing and deductible donations, so the full tax benefit sits higher than shown for most hospitals, including those in the bottom band. Cost-report net income also includes investment gains that swing from year to year. The <a href="https://lownhospitalsindex.org/">Lown Institute</a> publishes a fuller analysis built on IRS filings.</p>
-    <p><b>Charity care is one part of community benefit.</b> Nonprofit hospitals also report other community benefit on IRS Form 990 Schedule H, including unreimbursed Medicaid costs, health professions education, research, subsidized services and community health programs. None of that is counted here, so charity care alone understates what many hospitals contribute.</p>
-    <p><b>Caveats.</b> Charity care policies and reporting practices differ between hospitals and states, and states with broader Medicaid coverage tend to need less charity care. Hospitals in a larger system report separately here. Values below $10K are drawn at the edge of the axis. County uninsured rates are CDC/ATSDR Social Vulnerability Index 2022 estimates (American Community Survey 2018–2022), matched to each hospital's county from its Census-geocoded address.</p>
+    <p><b>Hospitals and finances.</b> CMS <a href="https://data.cms.gov/provider-compliance/cost-report/hospital-provider-cost-report">Hospital Provider Cost Report</a> (HCRIS). CMS's 2024 file holds cost reports for hospital fiscal years that began between <span class="fy"></span>; the 2023 file, used only for the year-over-year comparison, holds years that began between <span class="fy-prev"></span>. Included: nonprofit (church or other voluntary) short-term acute care and critical access hospitals in the 50 states and DC, using each hospital's latest report in the file. Government-owned and for-profit hospitals are not included. Charity care is the cost (not charges) of free and discounted care reported on Worksheet S-10. <span id="blanknote"></span> <span id="outnote"></span></p>
+    <p><b>Medicaid expansion.</b> Expansion status and implementation dates are from KFF's <a href="https://www.kff.org/health-reform/state-indicator/state-activity-around-expanding-medicaid-under-the-affordable-care-act/">Status of State Action on the Medicaid Expansion Decision</a> (<span id="kff-asof"></span>). A state counts as having expanded only if expansion took effect before every one of its hospitals' report years began. <span id="late-note"></span> Adult eligibility limits in non-expansion states are from KFF's <a href="https://www.kff.org/health-reform/state-indicator/medicaid-income-eligibility-limits-for-adults-as-a-percent-of-the-federal-poverty-level/">Medicaid income eligibility limits for adults</a> (<span id="elig-asof"></span>).</p>
+    <p><b>Counties.</b> Uninsured and poverty rates (share of residents below 150% of the poverty line) are CDC/ATSDR Social Vulnerability Index 2022 estimates (American Community Survey 2018–2022), so they predate the Medicaid unwinding and the North Carolina and South Dakota expansions. Each hospital is placed in a county from its Census-geocoded address (ZIP-area center when the address doesn't match; <span id="byname"></span> hospitals with post-office-box addresses were placed by the county in CMS's hospital file).</p>
+    <p><b>Tax exemption estimate.</b> <span id="fed-rate"></span>% (the federal corporate rate) of positive net income. It is a floor, not the full value of nonprofit status: it leaves out state and local property and sales tax exemptions (often the larger share), tax-exempt bond financing and deductible donations. Cost-report net income also includes investment gains that swing from year to year. The <a href="https://lownhospitalsindex.org/">Lown Institute</a> publishes a fuller analysis built on IRS filings.</p>
+    <p><b>Charity care is one part of community benefit.</b> Nonprofit hospitals also report other community benefit on IRS Form 990 Schedule H, including unreimbursed Medicaid costs, health professions education, research, subsidized services and community health programs. None of that is counted here. Charity care policies and reporting practices also differ between hospitals and states, and hospitals in a larger system report separately here.</p>
     <p>Data and build script: <a href="https://github.com/usnish/usnish.github.io/tree/master/hospital-charity-care">github.com/usnish/usnish.github.io</a>.</p>
   </section>
 </main>
@@ -80,35 +155,199 @@
 <script src="../assets/viz/vizkit.js"></script>
 <script>
 (async function () {
-  const [hosp, sum] = await Promise.all([
-    d3.csv("data/hospitals.csv", d3.autoType),
+  // The small files draw the opening, stat cards and the first charts right away; the hospital list follows
+  const hospP = d3.csv("data/hospitals.csv", d3.autoType);
+  const [states, sum] = await Promise.all([
+    d3.csv("data/states.csv", d3.autoType),
     d3.json("data/summary.json")
   ]);
-  const pct = v => v == null || isNaN(v) ? "–" : v.toFixed(1) + "%";
+  let touch = false; // last press was a finger or pen: show tapped details in cards, not hover tooltips
+  document.addEventListener("pointerdown", e => { touch = e.pointerType !== "mouse"; }, true);
+  const tapMode = () => touch || VK.small();
+  const pct = (v, d = 1) => v == null || isNaN(v) ? "–" : v.toFixed(d) + "%";
+  const $ = id => document.getElementById(id);
+  // Dates are calendar dates: format them in UTC so no time zone shifts them a day
+  const month = s => d3.utcFormat("%B %Y")(s instanceof Date ? s : new Date(s + "T00:00Z"));
+  const range = r => `${month(r[0])} and ${month(r[1])}`;
+  const E = sum.by_expansion, non = E.non, exp = E.exp, late = E.late;
+  const GROUP = { non: "Did not expand Medicaid", exp: "Expanded Medicaid", late: "Expanded during these years" };
+  const stName = new Map(states.map(s => [s.state, s.name]));
+  const expStates = n => exp.states.includes("DC") ? `${n - 1} states and DC` : `${n} states`;
+  const lateNames = late.states.map(s => stName.get(s)).join(" and ");
+  const lateDate = month(states.find(s => s.state === late.states[0]).expansion_date);
 
-  const profitable = hosp.filter(h => h.fed_tax_est > 0);
-  const above = profitable.filter(h => h.fed_tax_est > h.charity_care).length;
-  VK.stats(document.getElementById("stats"), [
-    ["Nonprofit hospitals", VK.int(sum.hospitals), `acute care and critical access, ${sum.year}`],
-    ["Total charity care", VK.money(sum.charity_total), "at cost"],
-    ["Est. federal income tax exemption", VK.money(sum.fed_tax_est_total), "21% of positive net income; a floor"],
-    ["Exemption above charity care", Math.round(100 * above / profitable.length) + "%",
-      `of the ${VK.int(profitable.length)} hospitals with positive net income`],
+  // ---- Opening
+  $("lede").innerHTML = `Nonprofit hospitals don't pay income tax and, in most states, property or sales tax. In return they are expected to benefit their communities, and free or discounted care for patients who can't pay is the most direct way. Federal law sets no minimum. How much they give differs sharply between states that expanded Medicaid and states that didn't. In the ${non.n_states} states that haven't, the typical hospital spent <b>${pct(non.median_charity_pct_costs)}</b> of its costs on charity care. In the ${expStates(exp.n_states)} that expanded it before these reports began, the typical hospital spent <b>${pct(exp.median_charity_pct_costs)}</b>. The figures come from cost reports that ${VK.int(sum.hospitals)} nonprofit hospitals filed with Medicare for fiscal years that began between ${range(sum.fy_begin_range)}.`;
+  VK.stats($("stats"), [
+    ["Charity care, all nonprofit hospitals", VK.money(sum.charity_total), `at cost, ${VK.int(sum.hospitals - sum.charity_not_reported)} hospitals that reported it`],
+    ["Typical hospital, non-expansion states", pct(non.median_charity_pct_costs), "of its total costs went to charity care"],
+    ["Typical hospital, expansion states", pct(exp.median_charity_pct_costs), "of its total costs went to charity care"],
+    ["Non-expansion states' share", Math.round(non.pct_charity_dollars) + "%", `of all charity care dollars, from ${Math.round(non.pct_hospitals)}% of hospitals`],
   ]);
-  document.getElementById("outnote").textContent =
+
+  // ---- State strip chart: one circle per state at its median hospital's charity care share
+  $("strip-intro").textContent = `Each circle is a state, placed at its typical (median) hospital's charity care as a share of total costs. ${lateNames} expanded Medicaid in ${lateDate}, partway into some of its hospitals' report years, so it is shown on its own.`;
+  // On a narrow screen the chart is drawn at its real pixel width (1 unit = 1px) so the text stays readable
+  function drawStrip() {
+    const wrap = $("strip-wrap"), narrow = wrap.clientWidth < 600;
+    const W = narrow ? Math.max(wrap.clientWidth, 300) : 975, ML = narrow ? 4 : 20, MR = narrow ? 8 : 24;
+    const R = narrow ? 10 : 13, rowGap = 26, labelH = narrow ? 56 : 30;
+    const xMax = Math.ceil(d3.max(states, s => s.median_charity_pct_costs));
+    const x = d3.scaleLinear().domain([0, xMax]).range([ML + R, W - MR - R]);
+    const svg = d3.select("#strip"), tip = d3.select("#strip-tip");
+    svg.selectAll("*").remove();
+    let y0 = 8;
+    const rows = ["non", "late", "exp"].map(g => {
+      // Simple beeswarm: place each circle at the smallest vertical offset that doesn't overlap
+      const pts = states.filter(s => s.group === g).sort((a, b) => a.median_charity_pct_costs - b.median_charity_pct_costs)
+        .map(s => ({ s, x: x(s.median_charity_pct_costs), y: 0 }));
+      const placed = [];
+      for (const p of pts) {
+        for (let k = 0; ; k++) {
+          const off = (k % 2 ? 1 : -1) * Math.ceil(k / 2) * (R * 0.9);
+          if (placed.every(q => Math.hypot(q.x - p.x, q.y - off) >= 2 * R + 1)) { p.y = off; break; }
+        }
+        placed.push(p);
+      }
+      const lo = d3.min(pts, p => p.y) - R, hi = d3.max(pts, p => p.y) + R;
+      const row = { g, pts, top: y0, mid: y0 + labelH - lo };
+      y0 = row.mid + hi + rowGap;
+      row.bottom = row.mid + hi;
+      return row;
+    });
+    const H = y0 + 20;
+    svg.attr("viewBox", `0 0 ${W} ${H}`)
+      .attr("aria-label", `Strip chart of state median charity care as a share of costs: ${pct(sum.state_medians.non_min)} to ${pct(sum.state_medians.non_max)} in non-expansion states, ${pct(sum.state_medians.exp_min)} to ${pct(sum.state_medians.exp_max)} in expansion states`);
+    svg.append("g").attr("class", "grid").selectAll("line").data(x.ticks(xMax)).join("line")
+      .attr("x1", d => x(d)).attr("x2", d => x(d)).attr("y1", 0).attr("y2", H - 24);
+    svg.append("g").attr("class", "axis").attr("transform", `translate(0,${H - 24})`)
+      .call(d3.axisBottom(x).ticks(xMax).tickFormat(d => d + "%").tickSize(4)).call(g => g.select(".domain").remove());
+    for (const row of rows) {
+      const info = E[row.g];
+      const t = svg.append("text").attr("class", "row-label").attr("x", ML).attr("y", row.top + 14).text(GROUP[row.g]);
+      t.append("tspan").attr("class", "row-sub").attr("x", narrow ? ML : null).attr("dy", narrow ? 17 : null).text(`${narrow ? "" : "   "}${info.n_states === 1 ? stName.get(info.states[0]) : row.g === "exp" ? expStates(info.n_states) : info.n_states + " states"} · ${VK.int(info.hospitals)} hospitals`);
+      if (row.g !== "late") {
+        const mx = x(info.median_charity_pct_costs);
+        svg.append("line").attr("class", "med-line").attr("x1", mx).attr("x2", mx).attr("y1", row.top + labelH - (narrow ? 14 : 12)).attr("y2", row.bottom + 4)
+          .attr("stroke", `var(--${row.g})`);
+        svg.append("text").attr("class", "med-label").attr("x", mx + 6).attr("y", row.top + labelH - (narrow ? 6 : 0)).attr("fill", `var(--${row.g})`)
+          .text(`${narrow ? "All hospitals:" : "All hospitals in these states:"} median ${pct(info.median_charity_pct_costs)}`);
+      }
+      const g = svg.append("g").selectAll("g").data(row.pts).join("g").attr("transform", p => `translate(${p.x},${row.mid + p.y})`);
+      g.append("circle").attr("class", p => `st-circle g-${row.g}${p.s.state === stripSel ? " sel" : ""}`).attr("r", R)
+        .on("pointermove", (e, p) => {
+          if (e.pointerType !== "mouse" || VK.small()) return;
+          const [px, py] = d3.pointer(e, wrap);
+          tip.html(stateHtml(p.s))
+            .style("opacity", 1).style("left", Math.min(px + 14, wrap.clientWidth - 270) + "px").style("top", (py + 14) + "px");
+        })
+        .on("pointerleave", () => tip.style("opacity", 0))
+        .on("click", (e, p) => { if (tapMode()) openStrip(p.s); });
+      g.append("text").attr("class", "st-code").attr("text-anchor", "middle").attr("dy", ".35em")
+        .style("font-size", narrow ? "8px" : null).text(p => p.s.state);
+    }
+  }
+  function stateHtml(s) {
+    return `<b>${s.name}</b>${GROUP[s.group]}${s.expansion_date ? " (" + month(s.expansion_date) + ")" : ""}<table>
+            <tr class="cur"><td>Median hospital, charity care / costs</td><td>${pct(s.median_charity_pct_costs, 2)}</td></tr>
+            <tr><td>All hospitals combined</td><td>${pct(s.aggregate_charity_pct_costs, 2)}</td></tr>
+            <tr><td>Charity care</td><td>${VK.money(s.charity_total)}</td></tr>
+            <tr><td>Nonprofit hospitals</td><td>${VK.int(s.hospitals)}</td></tr></table>`;
+  }
+  // Tapped state: a card below the strip chart, closed by its × or a tap anywhere else
+  let stripSel = null;
+  const stripCard = document.createElement("div");
+  stripCard.className = "vk-card vk-sheet"; stripCard.hidden = true; stripCard.setAttribute("aria-live", "polite");
+  $("strip-wrap").appendChild(stripCard);
+  function openStrip(s) {
+    stripSel = s.state;
+    d3.select("#strip-tip").style("opacity", 0);
+    stripCard.innerHTML = VK.CLOSE + stateHtml(s);
+    stripCard.hidden = false;
+    stripCard.querySelector(".close").onclick = closeStrip;
+    d3.selectAll("#strip .st-circle").classed("sel", p => p.s.state === stripSel);
+  }
+  function closeStrip() {
+    stripSel = null; stripCard.hidden = true;
+    d3.selectAll("#strip .st-circle").classed("sel", false);
+  }
+  document.addEventListener("click", e => {
+    if (stripSel && !e.target.closest(".st-circle, #strip-wrap .vk-card")) closeStrip();
+  });
+  drawStrip();
+  let lastNarrow = $("strip-wrap").clientWidth < 600;
+  window.addEventListener("resize", () => {
+    const n = $("strip-wrap").clientWidth < 600;
+    if (n || n !== lastNarrow) drawStrip();
+    lastNarrow = n;
+  });
+
+  const wi = states.find(s => s.state === "WI"), ga = states.find(s => s.state === "GA");
+  const lim = sum.non_expansion_adult_limits;
+  const ks = states.find(s => s.state === "KS"), wy = states.find(s => s.state === "WY");
+  $("differs").innerHTML = `These are associations; this data can't show that expansion causes the gap. Of the ${non.n_states} non-expansion states, ${non.states_south.length} are in the South, and their hospitals sit in counties where more people are uninsured (median county rate ${pct(non.median_county_uninsured)} vs ${pct(exp.median_county_uninsured)}), partly because those states didn't expand. They also differ in other ways: state charity care rules, how hospitals report it, and how much care falls to public hospitals (not counted here). Two checks are consistent with coverage mattering. Within the South, the typical hospital in a non-expansion state gave ${pct(non.median_charity_pct_costs_south)}, vs ${pct(exp.median_charity_pct_costs_south)} in Southern states that expanded. And Wisconsin, which didn't adopt the ACA expansion but covers adults up to ${lim.WI.pct_poverty_line}% of the poverty line in Medicaid, looks like an expansion state (${pct(wi.median_charity_pct_costs)}). Georgia also covers adults up to ${lim.GA.pct_poverty_line}% of the poverty line, but only those who meet a work requirement; its typical hospital gave ${pct(ga.median_charity_pct_costs)}. Outside the South, though, the gap mostly disappears. Non-expansion hospitals there (in Kansas, Wisconsin and Wyoming) had a median of ${pct(non.median_charity_pct_costs_not_south)}, vs ${pct(exp.median_charity_pct_costs_not_south)} in expansion states outside the South. Kansas (${pct(ks.median_charity_pct_costs)}, ${ks.charity_reported} hospitals) and Wyoming (${pct(wy.median_charity_pct_costs)}, ${wy.charity_reported} hospitals) don't cover adults without children at all, yet sit much closer to the expansion-state median than to the ${pct(non.median_charity_pct_costs_south)} of non-expansion states in the South.`;
+
+  // ---- County quarters
+  const qu = sum.by_county_uninsured, qp = sum.by_county_poverty;
+  $("quart-intro").innerHTML = `Median charity care as a share of costs, with hospitals grouped into four equal-sized groups by their county's uninsured rate or by its poverty rate. In non-expansion states, charity care climbs with both: from ${pct(qu[0].non.median)} to ${pct(qu[3].non.median)} across uninsured groups. In expansion states it rises less steeply with the uninsured rate (${pct(qu[0].exp.median)} to ${pct(qu[3].exp.median)}) and is flat across poverty: ${pct(qp[0].exp.median)} in the least-poor quarter of counties and ${pct(qp[3].exp.median)} in the poorest.`;
+  const qmax = d3.max([...qu, ...qp], q => Math.max(q.exp.median, q.non.median));
+  const qrows = (qs, unit, names) => qs.flatMap((q, i) => [
+    { group: `${names[i]} · ${q.range[0]}–${q.range[1]}% ${unit}`, label: `Expanded <span style="color:var(--muted);font-size:11px">${VK.int(q.exp.hospitals)} hosp.</span>`, value: q.exp.median, color: "var(--exp)" },
+    { label: `Did not expand <span style="color:var(--muted);font-size:11px">${VK.int(q.non.hospitals)} hosp.</span>`, value: q.non.median, color: "var(--non)" }]);
+  VK.bars($("bars-unins"), qrows(qu, "uninsured", ["Least uninsured", "2nd", "3rd", "Most uninsured"]), { max: qmax });
+  VK.bars($("bars-pov"), qrows(qp, "below 150% of poverty", ["Least poor", "2nd", "3rd", "Poorest"]), { max: qmax });
+  $("quart-after").textContent = `Where few people are uninsured, the two groups look alike (${pct(qu[0].exp.median)} vs ${pct(qu[0].non.median)}, though only ${qu[0].non.hospitals} non-expansion hospitals are in that group). One reading is that where Medicaid covers low-income adults, being poor less often means being uninsured, so poverty alone doesn't drive charity care. Another is that hospitals' charity policies don't scale with local need. This data can't tell the two apart. County rates are 2018–2022 estimates; ${lateNames} is left out of these bars.`;
+
+  // ---- Change from the prior year, same hospitals
+  const C = sum.change;
+  $("chg-title").textContent = `Charity care rose ${Math.round(C.all.charity_change_pct)}% in one year`;
+  $("chg-intro").innerHTML = `Among the ${VK.int(C.all.hospitals)} hospitals with full-year reports and a charity care figure in both files, charity care rose from ${VK.money(C.all.charity_prev)} (fiscal years that began between ${range(sum.prev_fy_begin_range)}) to ${VK.money(C.all.charity)} (years that began between ${range(sum.fy_begin_range)}). Their total costs rose ${pct(C.all.costs_change_pct)}. Charity care went up at ${Math.round(C.all.pct_hospitals_up)}% of these hospitals.`;
+  const plus = v => (v > 0 ? "+" : "") + v.toFixed(1) + "%";
+  VK.bars($("bars-chg"), [
+    { group: "Change in charity care, same hospitals", label: `All <span style="color:var(--muted);font-size:11px">${VK.int(C.all.hospitals)} hosp.</span>`, value: C.all.charity_change_pct, color: "var(--fg)" },
+    { label: `Expansion states <span style="color:var(--muted);font-size:11px">${VK.int(C.exp.hospitals)} hosp.</span>`, value: C.exp.charity_change_pct, color: "var(--exp)" },
+    { label: `Non-expansion states <span style="color:var(--muted);font-size:11px">${VK.int(C.non.hospitals)} hosp.</span>`, value: C.non.charity_change_pct, color: "var(--non)" },
+    { group: "Change in total costs, same hospitals", label: "All", value: C.all.costs_change_pct, color: "var(--faint)" },
+  ], { fmt: plus });
+  const unw = month(sum.unwinding_start);
+  const U = C.prev_in_unwinding;
+  $("chg-after").textContent = `Both years overlap the Medicaid "unwinding": after a pandemic-era pause, states started removing people from Medicaid again in ${unw}, and millions were disenrolled through 2024. For ${VK.int(U.hospitals)} of these hospitals, even the earlier year began in ${unw} or later, so it fell inside the unwinding too, and their charity care rose ${Math.round(U.charity_change_pct)}%. So this data can't tie the rise to the unwinding; charity care policies, prices and reporting also change from year to year. The rise was larger in expansion states than in non-expansion states. ${C.excluded_states.map(s => stName.get(s)).join(" and ")}, which expanded Medicaid during these two years, are left out of the expansion split. ${VK.int(C.pairs_not_reported)} hospitals that left the charity care line blank in either year are left out.`;
+
+  // ---- Tax exemption scatter
+  const share = sum.pct_profitable_tax_above_charity;
+  $("tax-title").textContent = `About ${Math.round(share / 10)} in 10 profitable nonprofit hospitals got a bigger estimated tax break than they gave in charity care`;
+  $("tax-intro").innerHTML = `Nonprofit hospitals are exempt from federal income tax. As a rough check on what that is worth, each hospital's federal income tax break is estimated here as ${Math.round(sum.fed_rate * 100)}% (the corporate rate) of its positive net income. Of the ${VK.int(sum.with_positive_income)} hospitals with positive net income and a reported charity care figure, ${VK.int(sum.n_profitable_tax_above_charity)} (${pct(share)}) had an estimated break larger than their charity care. The estimate is crude. It leaves out state and local property and sales tax exemptions, tax-exempt bonds and deductible donations, which would make the break larger; cost-report net income includes investment gains that swing from year to year; and charity care is only one part of what hospitals report as community benefit. The ${VK.int(sum.no_positive_income)} hospitals without positive net income are not in the share, and neither are the ${VK.int(sum.charity_not_reported_positive_income)} that left the charity care line blank. It was ${pct(exp.pct_profitable_tax_above_charity)} in expansion states and ${pct(non.pct_profitable_tax_above_charity)} in non-expansion states, where hospitals give more charity care. Across the hospitals that reported charity care, the estimated federal breaks add up to ${VK.money(sum.fed_tax_est_total_reported)}, against ${VK.money(sum.charity_total)} in charity care.`;
+
+  const fyTxt = range(sum.fy_begin_range), fyPrevTxt = range(sum.prev_fy_begin_range);
+  document.querySelectorAll(".fy").forEach(e => e.textContent = fyTxt);
+  document.querySelectorAll(".fy-prev").forEach(e => e.textContent = fyPrevTxt);
+  $("kff-asof").textContent = "as of " + sum.kff_as_of;
+  $("elig-asof").textContent = sum.kff_eligibility_as_of.replace(/^As/, "as");
+  $("byname").textContent = VK.int(sum.county_by_name);
+  $("fed-rate").textContent = Math.round(sum.fed_rate * 100);
+  $("late-key2").textContent = `Expanded during these years (${late.states.join(", ")})`;
+  const expDate = s => month(states.find(x => x.state === s).expansion_date);
+  $("late-note").textContent = `${lateNames} (expanded ${lateDate}) falls partway into some of its hospitals' report years in the main file and is shown separately. ` +
+    C.excluded_states.filter(s => !late.states.includes(s)).map(s => `${stName.get(s)} (expanded ${expDate(s)}) counts as expanded in the main file but is left out of the year-over-year split, since its expansion fell inside the earlier year.`).join(" ");
+  $("blanknote").textContent = `${VK.int(sum.charity_not_reported)} hospitals left the charity care line blank (${VK.int(sum.charity_not_reported_s10_blank)} of them left the whole uncompensated care section blank). CMS's files don't store zeros, so a blank can mean $0 or a line never filled in; these hospitals are left out of every median, share and change on this page.`;
+  $("outnote").textContent =
     `${sum.excluded_outliers} hospitals reporting net income above ${sum.max_margin * 100}% of total costs are left out, since margins that large usually reflect one-time items or reporting differences.`;
 
-  document.getElementById("n-noinc").textContent = VK.int(hosp.length - profitable.length);
-  document.getElementById("n-nocare").textContent = VK.int(hosp.filter(h => !(h.charity_care > 0)).length);
+  const hosp = await hospP;
+  const profitable = hosp.filter(h => h.fed_tax_est > 0);
+  $("n-noinc").textContent = VK.int(hosp.length - profitable.length);
+  $("n-nocare").textContent = VK.int(hosp.filter(h => h.charity_care == null).length);
+  const careTxt = d => d.charity_care == null ? "Not reported" : VK.money(d.charity_care);
+  const shareTxt = (d, k) => d.charity_pct_costs == null ? "–" : d.charity_pct_costs.toFixed(k) + "%";
   const bedsTxt = d => d.beds > 0 ? `${VK.int(d.beds)} beds` : "beds not reported";
 
   // ---- Scales: same log domain on both axes so the parity line runs at 45°
-  const W = 975, H = 680, M = { top: 20, right: 24, bottom: 96, left: 136 };
+  const W = 975, H = 680, M = { top: 20, right: 24, bottom: 96, left: VK.small() ? 170 : 136 };
   const RAIL = 34, GAP = 10; // zero bands outside the log plot
   const LO = 1e4, HI = 5e8;
   const x = d3.scaleLog().domain([LO, HI]).range([M.left, W - M.right]).clamp(true);
   const y = d3.scaleLog().domain([LO, HI]).range([H - M.bottom, M.top]).clamp(true);
-  const R = 3.5;
+  const R = VK.small() ? 5 : 3.5;
   const ticks = [1e4, 1e5, 1e6, 1e7, 1e8];
   const fmtTick = v => VK.money(v).replace(".0", "");
 
@@ -116,7 +355,7 @@
   const jit = s => { let h = 0; for (const c of String(s)) h = (h * 31 + c.charCodeAt(0)) >>> 0; return (h % 1000) / 1000 - .5; };
   const railY = H - M.bottom + GAP + RAIL / 2, railX = M.left - GAP - RAIL / 2;
   hosp.forEach(h => {
-    h.px = h.charity_care > 0 ? x(h.charity_care) : railX + jit(h.ccn + "x") * (RAIL - 8);
+    h.px = h.charity_care != null ? x(h.charity_care) : railX + jit(h.ccn + "x") * (RAIL - 8);
     h.py = h.fed_tax_est > 0 ? y(h.fed_tax_est) : railY + jit(h.ccn + "y") * (RAIL - 8);
   });
 
@@ -126,7 +365,8 @@
   svg.append("rect").attr("class", "rail-bg").attr("x", x0).attr("y", y0 + GAP).attr("width", x1 - x0).attr("height", RAIL).attr("rx", 4);
   svg.append("rect").attr("class", "rail-bg").attr("x", railX - RAIL / 2).attr("y", y1).attr("width", RAIL).attr("height", y0 - y1).attr("rx", 4);
   // The bands read as "$0" on each axis
-  svg.append("text").attr("class", "rail-label").attr("x", railX).attr("y", y0 + GAP + RAIL + 17).attr("text-anchor", "middle").text("$0");
+  // "Blank" sits one line lower on wide screens so it clears the $10K tick label (hidden on phones)
+  svg.append("text").attr("class", "rail-label").attr("x", railX).attr("y", y0 + GAP + RAIL + (VK.small() ? 17 : 31)).attr("text-anchor", "middle").text("Blank");
   svg.append("text").attr("class", "rail-label").attr("x", railX - RAIL / 2 - 7).attr("y", railY).attr("dy", ".32em").attr("text-anchor", "end").text("$0");
   svg.append("g").attr("class", "grid").selectAll("line").data(ticks).join("line")
     .attr("x1", d => x(d)).attr("x2", d => x(d)).attr("y1", y0).attr("y2", y1);
@@ -137,7 +377,7 @@
   svg.append("g").attr("class", "axis").attr("transform", `translate(${railX - RAIL / 2},0)`)
     .call(d3.axisLeft(y).tickValues(ticks).tickFormat(fmtTick).tickSize(4)).call(g => g.select(".domain").remove());
   svg.append("text").attr("class", "axis-title").attr("x", (x0 + x1) / 2).attr("y", H - 22).attr("text-anchor", "middle")
-    .text("Charity care, at cost (2023)");
+    .text("Charity care, at cost");
   svg.append("text").attr("class", "axis-title").attr("text-anchor", "middle")
     .attr("transform", `translate(14,${(y0 + y1) / 2}) rotate(-90)`).text("Estimated federal income tax exemption");
 
@@ -146,39 +386,64 @@
   svg.append("text").attr("class", "region").attr("x", x(3e8)).attr("y", y(1.6e4)).attr("text-anchor", "end").text("↘ Charity care larger than est. exemption");
 
   const dots = svg.append("g").selectAll("circle").data(hosp)
-    .join("circle").attr("class", "dot").attr("cx", d => d.px).attr("cy", d => d.py).attr("r", R)
-    .on("mousemove", (e, d) => hoverDot(e, d)).on("mouseleave", () => d3.select("#tooltip").style("opacity", 0))
+    .join("circle").attr("class", d => `dot g-${d.expansion}`).attr("cx", d => d.px).attr("cy", d => d.py).attr("r", R)
+    .on("pointermove", (e, d) => { if (e.pointerType === "mouse" && !VK.small()) hoverDot(e, d); })
+    .on("pointerleave", () => d3.select("#tooltip").style("opacity", 0))
     .on("click", (e, d) => { e.stopPropagation(); openCard(d); });
 
-  const wrap = document.getElementById("wrap");
+  const wrap = $("wrap");
   function hoverDot(e, d) {
     const [px, py] = d3.pointer(e, wrap);
     d3.select("#tooltip").html(`<b>${d.name}</b>${d.city}, ${d.state} · ${bedsTxt(d)}<table>
-      <tr class="cur"><td>Charity care</td><td>${VK.money(d.charity_care)}</td></tr>
+      <tr class="cur"><td>Charity care</td><td>${careTxt(d)}</td></tr>
       <tr class="cur"><td>Est. federal exemption</td><td>${d.fed_tax_est > 0 ? VK.money(d.fed_tax_est) : "– (no net income)"}</td></tr>
-      <tr><td>Charity care / total costs</td><td>${d.charity_pct_costs.toFixed(1)}%</td></tr></table><div class="note">Click for details</div>`)
+      <tr><td>Charity care / total costs</td><td>${shareTxt(d, 1)}</td></tr></table><div class="note">Click for details</div>`)
       .style("opacity", 1).style("left", Math.min(px + 14, wrap.clientWidth - 270) + "px").style("top", Math.min(py + 14, wrap.clientHeight - 140) + "px");
   }
-  const card = document.getElementById("card");
+  const card = $("card");
+  let openH = null; // hospital whose card is open
   function openCard(d) {
-    card.innerHTML = `<button class="close" aria-label="Close">×</button><h3>${d.name}</h3>
+    openH = d;
+    card.innerHTML = `${VK.CLOSE}<h3>${d.name}</h3>
       <div style="color:var(--muted)">${d.city}, ${d.state} · ${d.type} · ${bedsTxt(d)}</div>
       <table>
-        <tr><td>Charity care (cost)</td><td>${VK.money(d.charity_care)}</td></tr>
+        <tr><td>Charity care (cost)</td><td>${careTxt(d)}</td></tr>
+        <tr><td>Prior year charity care</td><td>${d.charity_prev != null ? VK.money(d.charity_prev) : "–"}</td></tr>
         <tr><td>Est. federal income tax exemption*</td><td>${d.fed_tax_est > 0 ? VK.money(d.fed_tax_est) : "–"}</td></tr>
-        <tr><td>Charity care / total costs</td><td>${d.charity_pct_costs.toFixed(2)}%</td></tr>
+        <tr><td>Charity care / total costs</td><td>${shareTxt(d, 2)}</td></tr>
         <tr><td>Total costs</td><td>${VK.money(d.total_costs)}</td></tr>
         <tr><td>Net income</td><td>${VK.money(d.net_income)}</td></tr>
+        <tr><td>State Medicaid expansion</td><td>${{ exp: "Yes", non: "No", late: "During year" }[d.expansion]}</td></tr>
         <tr><td>County uninsured</td><td>${pct(d.county_uninsured)}</td></tr>
-        <tr><td>Fiscal year ending</td><td>${d.fy_end}</td></tr>
+        <tr><td>Fiscal year</td><td>${d.fy_begin} – ${d.fy_end}</td></tr>
         <tr><td>Medicare CCN</td><td>${String(d.ccn).padStart(6, "0")}</td></tr>
       </table>
-      <div style="font-size:11px;color:var(--muted);margin-top:6px">*21% of positive net income; a rough floor. See “About the data.”</div>`;
+      <div style="font-size:11px;color:var(--muted);margin-top:6px">*${Math.round(sum.fed_rate * 100)}% of positive net income; a rough floor. See “About the data.”</div>`;
     card.hidden = false;
-    card.querySelector(".close").onclick = () => { card.hidden = true; dots.classed("sel", false); };
+    d3.select("#tooltip").style("opacity", 0);
+    card.querySelector(".close").onclick = closeCard;
     dots.classed("sel", x => x === d).filter(x => x === d).raise();
   }
-  svg.on("click", () => { card.hidden = true; dots.classed("sel", false); });
+  function closeCard() { openH = null; card.hidden = true; dots.classed("sel", false); }
+  // Dots are too small to hit with a finger: a tap opens the nearest hospital within about 24px
+  svg.on("click", e => {
+    if (tapMode()) {
+      const [mx, my] = d3.pointer(e), st = stSel.property("value");
+      const k = svg.node().getBoundingClientRect().width / W;
+      let best = null, bd = Infinity;
+      for (const h of hosp) {
+        if (st && h.state !== st) continue;
+        const dd = Math.hypot(h.px - mx, h.py - my);
+        if (dd < bd) { bd = dd; best = h; }
+      }
+      if (best && bd * k <= 24) { openCard(best); return; }
+    }
+    closeCard();
+  });
+  document.addEventListener("click", e => {
+    if (!card.hidden && !e.target.closest("#plot, #card, #rank li, button, select, a")) closeCard();
+  });
+  document.addEventListener("keydown", e => { if (e.key === "Escape" && !card.hidden) closeCard(); });
 
   const stSel = d3.select("#state");
   [...new Set(hosp.map(h => h.state))].sort().forEach(s => stSel.append("option").attr("value", s).text(s));
@@ -188,25 +453,22 @@
       .attr("pointer-events", d => st && d.state !== st ? "none" : null);
     if (st) dots.filter(d => d.state === st).raise();
     const [cmp, fmt] = {
-      dollars: [(a, b) => b.charity_care - a.charity_care, h => VK.money(h.charity_care)],
+      dollars: [(a, b) => (b.charity_care ?? -1) - (a.charity_care ?? -1), careTxt],
       tax: [(a, b) => b.fed_tax_est - a.fed_tax_est, h => VK.money(h.fed_tax_est)],
-      pct: [(a, b) => b.charity_pct_costs - a.charity_pct_costs, h => h.charity_pct_costs.toFixed(1) + "%"],
+      pct: [(a, b) => (b.charity_pct_costs ?? -1) - (a.charity_pct_costs ?? -1), h => shareTxt(h, 1)],
       beds: [(a, b) => b.beds - a.beds, h => VK.int(h.beds)],
     }[d3.select("#sort").property("value")];
     const data = hosp.filter(h => !st || h.state === st).sort(cmp).slice(0, 100);
     d3.select("#rank").selectAll("li").data(data, d => d.ccn).join("li")
       .html((d, i) => `<span class="n">${i + 1}</span><span>${d.name} <span class="st">${d.city}, ${d.state}</span></span><span class="val">${fmt(d)}</span>`)
-      .style("cursor", "pointer")
+      .style("cursor", "pointer").attr("tabindex", 0).attr("role", "button")
       .on("mouseenter", (e, d) => dots.classed("sel", x => x === d).filter(x => x === d).raise())
-      .on("mouseleave", () => dots.classed("sel", false))
-      .on("click", (e, d) => openCard(d));
+      .on("mouseleave", () => dots.classed("sel", x => x === openH))
+      .on("click", (e, d) => { openCard(d); VK.reveal(wrap); })
+      .on("keydown", (e, d) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openCard(d); VK.reveal(wrap); } });
   }
   stSel.on("change", update); d3.select("#sort").on("change", update);
   update();
-
-  VK.bars(document.getElementById("bars-pct"), Object.entries(sum.by_county_uninsured).map(([k, v]) => ({
-    label: `${k.replace(" uninsured quarter", "")} <span style="color:var(--muted);font-size:11px">${v.uninsured_range[0]}–${v.uninsured_range[1]}% uninsured</span>`,
-    value: v.median_charity_pct_costs })), { fmt: v => v.toFixed(1) + "%" });
 })();
 </script>
 </body>

@@ -4,12 +4,29 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Dialysis Time Tax</title>
-<meta name="description" content="How many hours a year people on dialysis spend just getting to treatment, county by county, and who has no car to get there.">
+<meta name="description" content="How long the drive to the nearest dialysis center would take, three times a week, for the people living in every U.S. neighborhood, and where households have no car to make that trip.">
+<meta name="author" content="Usnish Majumdar, MD">
+<link rel="canonical" href="https://usnish.xyz/dialysis-time-tax/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Usnish Majumdar">
+<meta property="og:title" content="The dialysis time tax">
+<meta property="og:description" content="Most people with kidney failure get hemodialysis at a center three times a week, every week, for years. This map estimates how much time that drive would take in every neighborhood in the country, and shows where households have no car to make that trip.">
+<meta property="og:url" content="https://usnish.xyz/dialysis-time-tax/">
+<meta property="og:image" content="https://usnish.xyz/img/og-dialysis-time-tax.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="U.S. county map shaded by the hours a year a resident would spend driving to the nearest dialysis center">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The dialysis time tax">
+<meta name="twitter:description" content="Most people with kidney failure get hemodialysis at a center three times a week, every week, for years. This map estimates how much time that drive would take in every neighborhood in the country, and shows where households have no car to make that trip.">
+<meta name="twitter:image" content="https://usnish.xyz/img/og-dialysis-time-tax.png">
 <link rel="stylesheet" href="../assets/viz/viz.css">
 <style>
   .fac { fill: var(--dot); fill-opacity: .55; stroke: none; pointer-events: none; }
   .big { font-size: 15px; color: var(--fg); margin: 14px 0 0; max-width: 80ch; }
   .big b { color: var(--accent); }
+  .toggle-row label { padding: 8px 0; display: inline-block; }
+  #ties { font-size: 11px; color: var(--muted); margin: 6px 0 0; }
 </style>
 </head>
 <body>
@@ -17,17 +34,28 @@
   <a class="back" href="/projects/">&larr; all projects</a>
   <header>
     <h1>The dialysis time tax</h1>
-    <p class="lede">Most people with kidney failure get hemodialysis at a center three times a week, every week, for years. This map estimates how much of their life goes to the drive alone, based on the distance from every neighborhood in the country to the nearest dialysis center, and shows where households have no car to make that trip.</p>
+    <p class="byline">By Usnish Majumdar, MD · Updated November 2026</p>
+    <p class="lede">Most people with kidney failure get hemodialysis at a center three times a week, every week, for years. This map estimates how much time that drive would take for the people living in every neighborhood in the country, based on the drive to the nearest dialysis center, and shows where households have no car to make that trip.</p>
   </header>
   <p class="big" id="headline"></p>
+  <div class="stats" id="stats"></div>
+
+  <section class="chart">
+    <h2>Vulnerable neighborhoods are not farther away, but far more of their households have no car</h2>
+    <p id="equity"></p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:28px">
+      <div class="bars" id="bars-car"></div>
+      <div class="bars" id="bars"></div>
+    </div>
+  </section>
 
   <div class="controls" id="measures" role="group" aria-label="Map measure"></div>
   <p class="mtitle" id="mtitle"></p>
-  <div class="stats" id="stats"></div>
 
   <div class="layout">
     <div class="map-wrap" id="wrap">
       <svg class="map" id="map" viewBox="0 0 975 640" role="img" aria-label="County map of dialysis travel burden"></svg>
+      <div class="toggle-row"><label><input type="checkbox" id="showfac" checked> Show dialysis centers (<span id="nfac"></span>)</label></div>
       <div class="tooltip" id="tooltip"></div>
     </div>
     <aside class="panel">
@@ -35,27 +63,28 @@
         <select id="state" aria-label="Filter by state"><option value="">All states</option></select>
         <button id="sort" type="button">highest first</button>
       </h2>
+      <p id="ties" hidden></p>
       <ol class="rank" id="rank"></ol>
-      <p style="font-size:11px;color:var(--muted);margin:8px 0 0">Excludes counties where most residents are beyond the drive model's range (mostly remote Alaska).</p>
+      <p style="font-size:11px;color:var(--muted);margin:8px 0 0">Leaves out counties where most residents have no drive time to a center (mostly Alaska). In the "No car and far away" ranking, LaGrange and Daviess counties in Indiana are home to two of the largest <a href="https://groups.etown.edu/amishstudies/statistics/twelve-largest-settlements-2024/">Amish settlements</a>, where many households <a href="https://groups.etown.edu/amishstudies/cultural-practices/technology/">do not own cars</a> by choice and hire drivers.</p>
     </aside>
   </div>
-  <div class="toggle-row"><label><input type="checkbox" id="showfac" checked> Show dialysis centers (<span id="nfac"></span>)</label></div>
 
-  <section class="chart">
-    <h2>Distance hits rural areas; car access hits vulnerable ones</h2>
-    <p>Left: estimated hours a year driving to and from in-center dialysis, averaged over residents of each group of neighborhoods. Right: share of households with no vehicle. The most socially vulnerable neighborhoods are mostly urban and closer to a center, but far more of their households have no car to get there.</p>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:28px">
-      <div class="bars" id="bars"></div>
-      <div class="bars" id="bars-car"></div>
-    </div>
+  <section class="about" id="pays">
+    <h2>Who pays for the ride</h2>
+    <p><b>Traditional Medicare</b> pays for dialysis but, in most cases, not for the trip. It covers only an ambulance between home and the nearest dialysis center, and only when any other way of traveling could endanger the patient's health. For scheduled trips like these, the ambulance company needs a doctor's written order saying the ambulance is medically necessary. For repeated trips (3 or more round trips in 10 days, or at least weekly for 3 weeks), the patient or ambulance company can ask Medicare for prior authorization; if that is denied and the trips go on, Medicare denies the claims. (<a href="https://www.medicare.gov/publications/10128-medicare-coverage-esrd.pdf">Medicare Coverage of Kidney Dialysis &amp; Kidney Transplant Services</a>, CMS, November 2025; <a href="https://www.medicare.gov/coverage/ambulance-services">Medicare.gov: ambulance services</a>.)</p>
+    <p><b>Medicaid</b> must make sure enrollees who have no other way to get to medical care have a ride, a benefit called non-emergency medical transportation. People with both Medicare and full Medicaid generally get these rides from Medicaid, even when Medicare pays for the dialysis itself. People whose Medicaid only helps with Medicare premiums and cost-sharing (partial-benefit dual eligibility) do not. In MACPAC's analysis of 2018 Medicaid data, enrollees with kidney failure used these rides more often than any other diagnosis group it studied. (<a href="https://www.macpac.gov/wp-content/uploads/2021/06/Chapter-5-Mandated-Report-on-Non-Emergency-Medical-Transportation.pdf">MACPAC, June 2021 report to Congress, chapter 5</a>.)</p>
+    <p><b>Medicare Advantage</b> plans, which people with kidney failure can join, may cover some non-ambulance rides to dialysis as an extra benefit. It depends on the plan. (<a href="https://www.medicare.gov/publications/10128-medicare-coverage-esrd.pdf">CMS booklet</a>, section on transportation to dialysis facilities.)</p>
+    <p>For other help with rides, Medicare's advice is to talk to the social worker at the dialysis center.</p>
   </section>
 
   <section class="about">
     <h2>How this was estimated</h2>
-    <p><b>Dialysis centers.</b> Every Medicare-certified facility offering in-center hemodialysis in the CMS <a href="https://data.cms.gov/provider-data/dataset/23ew-n7w9">Dialysis Facility listing</a>, located with the Census Bureau geocoder (ZIP code center when the address did not match).</p>
-    <p><b>Drive time.</b> For each of the ~84,000 census tracts, the straight-line distance from the tract's 2020 population center to the nearest center was converted to driving minutes with a model fitted to real routes: <span id="model"></span> Times are floored at 2 minutes and ignore traffic. <span id="beyond"></span> Annual hours = one-way time × 2 × 3 sessions a week × 52 weeks.</p>
+    <p><b>Dialysis centers.</b> Every Medicare-certified facility offering in-center hemodialysis in the CMS <a href="https://data.cms.gov/provider-data/dataset/23ew-n7w9">Dialysis Facility listing</a>, located with the Census Bureau geocoder. <span id="geocode"></span></p>
+    <p><b>Drive time.</b> <span id="routing"></span> Times are floored at 2 minutes and ignore traffic, so real trips, especially in cities, usually take longer. Annual hours = one-way time × 2 × 3 sessions a week × 52 weeks.</p>
+    <p><b>What routing changed.</b> <span id="changed"></span></p>
+    <p><b>No road route.</b> <span id="noroad"></span></p>
     <p><b>Households without a vehicle</b> and the <b>Social Vulnerability Index</b> come from CDC/ATSDR SVI 2022 (American Community Survey 2018–2022). Without a car, the same trip by transit, paratransit or rides from others usually takes longer than the drive time shown, so those households' real time cost is understated here.</p>
-    <p><b>Caveats.</b> Estimates describe a typical resident of each neighborhood, not actual dialysis patients, who are older and more often Black or Hispanic than the population as a whole. Patients do not always use the nearest center (shift times, capacity, insurance and chain networks matter), and some dialyze at home instead. Connecticut and Alaska county boundaries follow the 2020 Census.</p>
+    <p><b>Caveats.</b> Estimates describe a typical resident of each neighborhood, not actual dialysis patients, who are older and more often Black or Hispanic than the population as a whole. Patients do not always use the nearest center (shift times, capacity, insurance and chain networks matter), and some dialyze at home instead. Connecticut county figures follow the 2020 Census counties. The map uses pre-2019 Alaska county shapes, so Chugach and Copper River are drawn together as the former Valdez-Cordova area; the ranking lists them separately.</p>
     <p>Data and build scripts: <a href="https://github.com/usnish/usnish.github.io/tree/master/dialysis-time-tax">github.com/usnish/usnish.github.io</a>.</p>
   </section>
 </main>
@@ -65,14 +94,13 @@
 <script src="../assets/viz/vizkit.js"></script>
 <script>
 (async function () {
-  const [us, rows, fac, sum] = await Promise.all([
+  // The small summary draws the headline, stat cards and bar charts right away; the map data follows
+  const big = Promise.all([
     d3.json("../assets/viz/counties-albers-10m.json"),
     d3.csv("data/counties.csv", d3.autoType),
-    d3.csv("data/facilities.csv", d3.autoType),
-    d3.json("data/summary.json")
+    d3.csv("data/facilities.csv", d3.autoType)
   ]);
-  rows.forEach(r => { r.fips = String(r.fips).padStart(5, "0"); r.noveh_far_per1k = r.households ? 1000 * r.no_vehicle_far_hh / r.households : null; });
-  const by = new Map(rows.map(r => [r.fips, r]));
+  const sum = await d3.json("data/summary.json");
   const hrs = v => v == null || isNaN(v) ? "–" : VK.int(Math.round(v)) + " hrs";
   const measures = [
     { id: "annual_hours", label: "Hours a year on the road", sub: "round trips, 3× a week", fmt: hrs, unit: "Hours per year driving to dialysis" },
@@ -82,63 +110,49 @@
   ];
   let m = measures[0], desc = true;
 
-  const workweeks = (sum.median_annual_hours / 40).toFixed(1);
+  const workweeks = (sum.mean_annual_hours / 40).toFixed(1);
   document.getElementById("headline").innerHTML =
-    `For a typical American on in-center dialysis, getting there and back takes about <b>${sum.median_annual_hours} hours a year</b>, roughly ${workweeks} work weeks. ` +
-    `In rural counties it averages <b>${sum.nonmetro_mean_annual_hours} hours</b>, against ${sum.metro_mean_annual_hours} in metro areas. ` +
-    `And ${VK.int(Math.round(sum.no_vehicle_far_hh / 1000) * 1000)} households with no car live more than ${sum.far_minutes} minutes' drive from the nearest center.`;
+    `If the average U.S. resident needed in-center dialysis, driving to the nearest center and back three times a week would take at least <b>${sum.mean_annual_hours} hours a year</b>, roughly ${workweeks} full-time work weeks, before traffic, parking or waiting. ` +
+    `For residents of rural counties the average is <b>${sum.nonmetro_mean_annual_hours} hours</b>, against ${sum.metro_mean_annual_hours} in metro areas. ` +
+    `These figures describe everyone living in each neighborhood, not current dialysis patients.`;
+  const nv = sum.pct_no_vehicle_by_svi_quarter, nvx = sum.pct_no_vehicle_by_svi_quarter_without_vehicle_measure;
+  const hq = sum.hours_by_svi_quarter, fq = sum.pct_far_by_svi_quarter;
+  const p1 = v => v.toFixed(1);
+  const LEAST = "Least vulnerable quarter", MOST = "Most vulnerable quarter";
+  const ratio = nv[MOST] / nv[LEAST], ratiox = nvx[MOST] / nvx[LEAST];
+  const drive = hq[MOST] <= hq[LEAST] ? "no longer" : hq[MOST] <= hq[LEAST] * 1.1 ? "about the same" : "longer";
+  document.getElementById("equity").innerHTML =
+    `In the most socially vulnerable quarter of neighborhoods, ${p1(fq[MOST])}% of residents live more than ${sum.far_minutes} minutes' drive from the nearest center, against ${p1(fq[LEAST])}% in the least vulnerable quarter. ` +
+    `Their drive is ${drive}: on free-flowing roads, residents there would average ${hq[MOST]} hours a year, against ${hq[LEAST]}. ` +
+    `What differs is the car. <b>${p1(nv[MOST])}%</b> of households in the most vulnerable quarter have no vehicle, against ${p1(nv[LEAST])}% in the least vulnerable: ${ratio.toFixed(1)} times as many. ` +
+    `Lack of a car is one of the 16 measures that make up the index, so part of this gap is built in; with that measure removed from the ranking, the figures are ${p1(nvx[MOST])}% against ${p1(nvx[LEAST])}% (${ratiox.toFixed(1)} times as many). ` +
+    `Nationwide, ${VK.int(Math.round(sum.no_vehicle_far_hh / 1000) * 1000)} households with no car live more than ${sum.far_minutes} minutes' drive from the nearest center. ` +
+    `Without a car, the same trip by transit, paratransit or borrowed rides usually takes longer than the drive shown here.`;
   VK.stats(document.getElementById("stats"), [
     ["Dialysis centers", VK.int(sum.facilities), "offering in-center hemodialysis"],
-    ["Median one-way drive", Math.round(sum.median_one_way_min) + " min", "population-weighted"],
+    ["Average one-way drive", Math.round(sum.mean_one_way_min) + " min", "to the nearest center, per resident"],
     [`Live >${sum.far_minutes} min away`, (sum.people_far / 1e6).toFixed(1) + "M people", sum.pct_people_far + "% of the U.S."],
     ["Households with no car", (sum.no_vehicle_hh / 1e6).toFixed(1) + "M", `${VK.int(sum.no_vehicle_far_hh)} of them >${sum.far_minutes} min away`],
   ]);
-  document.getElementById("beyond").textContent =
-    `About ${VK.int(Math.round(sum.beyond_range_pop / 1000) * 1000)} people live more than ${sum.beyond_range_km} km from any center, beyond the range of routes the model was fitted on (mostly remote Alaska, where many communities have no road connection). They are left out of the national figures, and their counties are shown but not ranked.`;
-  const dm = sum.drive_model;
-  document.getElementById("model").textContent =
-    `${dm.metro.a.toFixed(1)} + ${dm.metro.b.toFixed(2)} min per km in metro counties (R² ${dm.metro.r2}, median error ${dm.metro.median_abs_err_min} min, n = ${dm.metro.n}) and ` +
-    `${dm.nonmetro.a.toFixed(1)} + ${dm.nonmetro.b.toFixed(2)} min per km elsewhere (R² ${dm.nonmetro.r2}, median error ${dm.nonmetro.median_abs_err_min} min, n = ${dm.nonmetro.n}), ` +
-    `using driving times from the OSRM routing engine between random pairs of tract population centers.`;
-
-  const wrap = document.getElementById("wrap"), svg = d3.select("#map");
-  const map = VK.countyMap({ svg, us, tooltip: "#tooltip", wrap, html: (fips, name) => {
-    const r = by.get(fips);
-    if (!r) return `<b>${name}</b>No data`;
-    return `<b>${name}</b><table>${measures.map(x => `<tr class="${x === m ? "cur" : ""}"><td>${x.label}</td><td>${x.fmt(r[x.id])}</td></tr>`).join("")}
-      <tr><td>Households with no car</td><td>${VK.int(r.no_vehicle_hh)}</td></tr>
-      <tr><td>…of them >${sum.far_minutes} min away</td><td>${VK.int(r.no_vehicle_far_hh)}</td></tr>
-      <tr><td>Farthest neighborhood</td><td>${r.max_one_way_min} min</td></tr></table>` +
-      (r.pct_beyond_range > 0 ? `<div class="note">${r.pct_beyond_range}% of residents live more than ${sum.beyond_range_km} km from a center, beyond the drive model's range; many such communities are reached by air or water, so these times are rough.</div>` : "");
-  }});
-  const dots = map.overlay.selectAll("circle").data(fac.map(f => VK.projection([f.lon, f.lat])).filter(Boolean))
-    .join("circle").attr("class", "fac").attr("cx", d => d[0]).attr("cy", d => d[1]).attr("r", 0.9);
-  document.getElementById("nfac").textContent = VK.int(fac.length);
-  d3.select("#showfac").on("change", function () { dots.attr("display", this.checked ? null : "none"); });
-
-  function draw() {
-    VK.pressButtons("#measures", measures, m, d => { m = d; draw(); });
-    document.getElementById("mtitle").innerHTML = `<b>${m.unit}</b> · by county, population-weighted across its neighborhoods`;
-    const vals = rows.map(r => r[m.id]).filter(v => v != null && !isNaN(v));
-    const color = d3.scaleQuantile().domain(vals).range(VK.RAMP);
-    map.fill(f => by.get(f)?.[m.id], color);
-    VK.legend(map.legend, color, v => m.fmt(v).replace(" hrs", "").replace(" min", ""), m.unit + " · equal-count bins");
-    renderList();
-  }
-  const stSel = d3.select("#state");
-  [...map.stateNames].sort((a, b) => d3.ascending(a[1], b[1])).forEach(([id, n]) => stSel.append("option").attr("value", id).text(n));
-  const cname = new Map(map.counties.map(f => [f.id, f.properties.name]));
-  function renderList() {
-    const st = stSel.property("value");
-    const data = rows.filter(r => r[m.id] != null && r.pct_beyond_range < 50 && (!st || r.fips.slice(0, 2) === st))
-      .sort((a, b) => desc ? b[m.id] - a[m.id] : a[m.id] - b[m.id]).slice(0, 100);
-    d3.select("#rank").selectAll("li").data(data, d => d.fips).join("li")
-      .html((d, i) => `<span class="n">${i + 1}</span><span>${cname.get(d.fips) || d.fips} <span class="st">${map.stateNames.get(d.fips.slice(0, 2)) || ""}</span></span><span class="val">${m.fmt(d[m.id])}</span>`)
-      .on("mouseenter", (e, d) => map.highlight(d.fips)).on("mouseleave", () => map.highlight(null));
-  }
-  stSel.on("change", renderList);
-  d3.select("#sort").on("click", function () { desc = !desc; this.textContent = desc ? "highest first" : "lowest first"; renderList(); });
-  draw();
+  const ro = sum.routing, dm = sum.drive_model;
+  const bg = sum.block_group_routing;
+  document.getElementById("routing").innerHTML =
+    `Every trip starts at the 2020 population center of one of ${VK.int(sum.tracts)} census tracts with residents and was routed on real roads with the OSRM routing engine, using <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> roads (© OpenStreetMap contributors), ` +
+    `to each of the nearest dialysis centers by straight line (${ro.candidates_long} for trips likely to be long, ${ro.candidates_short} otherwise), keeping the fastest drive. ` +
+    `Every chosen route was checked for a ferry; one that used a ferry was dropped and the next center tried. ` +
+    `For ${VK.int(bg.tracts)} tracts (${VK.int(bg.pop)} people) whose population center sits more than ${ro.snap_km} km from a mapped road or whose route was more than ${bg.ratio} times longer than distance alone would suggest, each of their ${VK.int(bg.block_groups)} block groups was routed instead. Routes were pulled on ${ro.date}.`;
+  document.getElementById("geocode").textContent =
+    `Addresses the batch geocoder missed were tried again with the Census single-address geocoder and OpenStreetMap's Nominatim (${VK.int(sum.regeocoded)} found). ` +
+    `The other ${VK.int(sum.zip_placed)} centers, whose address still did not match, were placed at their ZIP code's center, which can be several kilometers off.`;
+  const lt = ro.long_trips, st = ro.short_trips;
+  const ex = ro.examples.map(e => e.model_center === e.road_center
+    ? `${e.place}, to ${e.road_center}: ${e.model_min} minutes estimated, ${e.road_min} by road`
+    : `${e.place}: ${e.model_min} minutes estimated to ${e.model_center}, straight across water; ${e.road_min} by road to ${e.road_center}`).join(". ");
+  document.getElementById("changed").textContent =
+    `An earlier version of this page estimated drive times from straight-line distance, using a model fitted to real routes (${dm.metro.a.toFixed(1)} + ${dm.metro.b.toFixed(2)} min per km in metro counties, ` +
+    `${dm.nonmetro.a.toFixed(1)} + ${dm.nonmetro.b.toFixed(2)} elsewhere). For long rural trips it could be far off: ${ex}. ` +
+    `For trips it put over ${ro.long_min} minutes, routing changed the average only a little (${lt.mean_model_min} to ${lt.mean_road_min} minutes), but it overstated shorter trips (${st.mean_model_min} to ${st.mean_road_min} minutes). ` +
+    `With the same centers, the model would have put the national average at ${ro.old_model_mean_annual_hours} hours a year and ${(ro.old_model_people_far / 1e6).toFixed(1)} million people more than ${sum.far_minutes} minutes away.`;
 
   VK.bars(document.getElementById("bars"), [
     ...Object.entries(sum.hours_by_svi_quarter).map(([k, v]) => ({ group: "By social vulnerability of the neighborhood", label: k, value: v })),
@@ -147,6 +161,89 @@
   ], { fmt: v => Math.round(v) + " hrs" });
   VK.bars(document.getElementById("bars-car"),
     Object.entries(sum.pct_no_vehicle_by_svi_quarter).map(([k, v]) => ({ group: "Households with no vehicle", label: k, value: v, color: "var(--warn)" })));
+  let mapReady = false;
+  function drawTop() {
+    VK.pressButtons("#measures", measures, m, d => { m = d; mapReady ? draw() : drawTop(); });
+    document.getElementById("mtitle").innerHTML = `<b>${m.unit}</b> · by county, population-weighted across its neighborhoods`;
+  }
+  drawTop();
+
+  const [us, rows, fac] = await big;
+  rows.forEach(r => { r.fips = String(r.fips).padStart(5, "0"); r.noveh_far_per1k = r.households ? 1000 * r.no_vehicle_far_hh / r.households : null; });
+  const by = new Map(rows.map(r => [r.fips, r]));
+
+  // Alaska's 2019 split of Valdez-Cordova (02261) into Chugach and Copper River is newer than the map's county
+  // shapes: the old shape shows a combined row from the build, and the two ranking rows point at it.
+  const newAK = new Map([["02063", "Chugach"], ["02066", "Copper River"]]), OLD_AK = "02261";
+  const shapeOf = fips => newAK.has(fips) ? OLD_AK : fips;
+  const why = {
+    "only by ferry": "the only way to a center is by ferry or air",
+    "no road route": "their roads do not connect to any center",
+    "over 6 hours": `the only road route takes more than ${sum.routing.max_drive_min / 60} hours each way`,
+    "far from a road": "their neighborhood's population center is far from any mapped road",
+  };
+  const wrap = document.getElementById("wrap"), svg = d3.select("#map");
+  const map = VK.countyMap({ svg, us, tooltip: "#tooltip", wrap, html: (fips, name) => {
+    const r = by.get(fips);
+    if (fips === OLD_AK) name = "Valdez-Cordova (since 2019: Chugach and Copper River), Alaska";
+    if (!r) return `<b>${name}</b>No data`;
+    const parts = fips === OLD_AK ? [...newAK].map(([f, n]) => by.get(f) && `${n}: ${hrs(by.get(f).annual_hours)} a year` + (by.get(f).pct_no_road ? ` (${by.get(f).pct_no_road}% of residents with no drive time)` : "")).filter(Boolean).join("; ") : "";
+    return `<b>${name}</b><table>${measures.map(x => `<tr class="${x === m ? "cur" : ""}"><td>${x.label}</td><td>${x.fmt(r[x.id])}</td></tr>`).join("")}
+      <tr><td>Households with no car</td><td>${VK.int(r.no_vehicle_hh)}</td></tr>
+      <tr><td>…of them >${sum.far_minutes} min away</td><td>${VK.int(r.no_vehicle_far_hh)}</td></tr>
+      <tr><td>Farthest neighborhood</td><td>${r.max_one_way_min} min</td></tr></table>` +
+      (parts ? `<div class="note">${parts}.</div>` : "") +
+      (r.pct_no_road > 0 ? `<div class="note">${r.pct_no_road}% of residents have no drive time here (mainly because ${why[r.no_road_reason] || "there is no practical road route"}) and are left out of these figures.</div>` : "");
+  }});
+  const dots = map.overlay.selectAll("circle").data(fac.map(f => VK.projection([f.lon, f.lat])).filter(Boolean))
+    .join("circle").attr("class", "fac").attr("cx", d => d[0]).attr("cy", d => d[1]).attr("r", 0.9);
+  document.getElementById("nfac").textContent = VK.int(fac.length);
+  const stName = f => map.stateNames.get(f) || f;
+  const reasons = sum.no_road_pop_by_reason;
+  document.getElementById("noroad").textContent =
+    `For ${VK.int(sum.no_road_pop)} people in ${VK.int(sum.no_road_tracts)} tracts (${sum.no_road_states.map(stName).join(", ")}), no drive time is shown: ` +
+    `the only way to a center uses a ferry, as on many islands (${VK.int(reasons["only by ferry"] || 0)} people); the population center of the neighborhood, or of each of its block groups, is more than ${ro.snap_km} km from a mapped road (${VK.int(reasons["far from a road"] || 0)}); ` +
+    `its roads do not connect to any center (${VK.int(reasons["no road route"] || 0)}); or the only road route takes more than ${ro.max_drive_min / 60} hours each way, as from Skagway and Haines, Alaska, through Canada, or from Prudhoe Bay (${VK.int(reasons["over 6 hours"] || 0)}). ` +
+    `They are left out of every average and count, and counties where they are the majority are shown on the map but not ranked.`;
+  d3.select("#showfac").on("change", function () { dots.attr("display", this.checked ? null : "none"); });
+
+  function draw() {
+    drawTop();
+    const vals = rows.filter(r => !r.map_only).map(r => r[m.id]).filter(v => v != null && !isNaN(v));
+    // Shares pile up at 0 and 100%, so they get fixed bins (a zero class first); times get equal-count bins
+    const color = m.id === "pct_far" ? d3.scaleThreshold().domain([0.05, 10, 25, 50, 75, 99.95]).range(VK.RAMP)
+      : m.id === "noveh_far_per1k" ? d3.scaleThreshold().domain([1e-9, ...d3.scaleQuantile().domain(vals.filter(v => v > 0)).range(d3.range(6)).quantiles()]).range(VK.RAMP)
+      : d3.scaleQuantile().domain(vals).range(VK.RAMP);
+    map.fill(f => by.get(f)?.[m.id], color);
+    const tick = v => v <= 0.05 ? ">0" : m.id === "pct_far" && v > 99.9 ? "100" : m.fmt(v).replace(" hrs", "").replace(" min", "").replace("%", "");
+    VK.legend(map.legend, color, tick, m.unit + (m.id === "pct_far" ? " · %" : m.id === "noveh_far_per1k" ? " · lightest = none" : " · equal-count bins"));
+    renderList();
+  }
+  const stSel = d3.select("#state");
+  [...map.stateNames].sort((a, b) => d3.ascending(a[1], b[1])).forEach(([id, n]) => stSel.append("option").attr("value", id).text(n));
+  const cname = new Map([...map.counties.map(f => [f.id, f.properties.name]), ...newAK]);
+  function renderList() {
+    const st = stSel.property("value");
+    const sign = desc ? -1 : 1;
+    const all = rows.filter(r => !r.map_only && r[m.id] != null && r.pct_no_road < 50 && (!st || r.fips.slice(0, 2) === st))
+      .sort((a, b) => sign * (a[m.id] - b[m.id]) || sign * (a.annual_hours - b.annual_hours));
+    // Tied values share a rank number
+    const shown = v => m.fmt(v);
+    let rank = 0;
+    all.forEach((r, i) => { if (i === 0 || shown(r[m.id]) !== shown(all[i - 1][m.id])) rank = i + 1; r._rank = rank; });
+    const data = all.slice(0, 100);
+    const tied = all.filter(r => data.length && shown(r[m.id]) === shown(data[0][m.id])).length;
+    const ties = document.getElementById("ties");
+    ties.hidden = tied < 10;
+    if (tied >= 10) ties.textContent = `${VK.int(tied)} counties are at ${shown(data[0][m.id])}; they are ordered by hours a year on the road.`;
+    d3.select("#rank").selectAll("li").data(data, d => d.fips).join("li")
+      .html(d => `<span class="n">${d._rank}</span><span>${cname.get(d.fips) || d.fips} <span class="st">${map.stateNames.get(d.fips.slice(0, 2)) || ""}</span></span><span class="val">${m.fmt(d[m.id])}</span>`)
+      .call(sel => map.bindRows(sel, d => shapeOf(d.fips)));
+  }
+  stSel.on("change", renderList);
+  d3.select("#sort").on("click", function () { desc = !desc; this.textContent = desc ? "highest first" : "lowest first"; renderList(); });
+  mapReady = true;
+  draw();
 })();
 </script>
 </body>
