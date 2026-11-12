@@ -4,6 +4,8 @@ How many US children aged 5-17 are fluent in English while every adult at home h
 
 **Live:** https://usnish.xyz/bridge-children/
 
+The "What could change this" section (before "About the data") describes one option, an adults-only companion to the Census limited-English household table; its share and count are filled from `data/summary.json` (`missed_share`, `missed_by_census`) and follow the definition toggle.
+
 ## Findings (ACS 2020-2024 5-year PUMS)
 
 - 2,598,432 bridge children (SE 16,997) under the standard definition (every adult speaks English less than "very well"); 975,093 (SE 11,215) under the strict one ("not well" or "not at all").

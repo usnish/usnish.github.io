@@ -248,6 +248,49 @@ def required(area, plan_units, lang, basis):
     return pop > 0 and x / pop >= THRESH, (x / pop if pop else 0)
 
 
+COUNTY_N = 10000    # alternative trigger: any county in the service area with this many speakers with limited English
+PLAN_N = 1000       # comparison trigger: this many speakers with limited English across the whole service area
+
+
+def alt_thresholds(plans, plan_units, open_plans, total, langs):
+    """What-if triggers on CMS's limited-English method, CY2027 plans anyone can join.
+
+    current  the 5% service-area rule as it stands.
+    county   5% across the service area, or any county the plan serves has COUNTY_N or more people who
+             speak the language with limited English (modeled on Voting Rights Act section 203, which
+             counts voting-age citizens, not all residents 5+).
+    n1000    5% across the service area, or PLAN_N or more such people across it (the "5% or 1,000,
+             whichever is lower" form).
+    Reach counts limited-English speakers living in a county where at least one open plan must translate.
+    """
+    openk = [k for k, p in plans.items() if not p["snp"] and not p["pace"]]
+
+    def base(k, l):
+        return required(plans[k]["area"], plan_units, l, "lep")[0]
+
+    tests = {
+        "current": base,
+        "county": lambda k, l: base(k, l) or any(plan_units[f]["langs"][l]["lep"] >= COUNTY_N for f in plans[k]["area"]),
+        "n1000": lambda k, l: base(k, l) or sum(plan_units[f]["langs"][l]["lep"] for f in plans[k]["area"]) >= PLAN_N,
+    }
+    lep_all = sum(total[l]["lep"] for l in langs)
+    out = {"languages": langs, "county_n": COUNTY_N, "plan_n": PLAN_N, "plans_open": len(openk),
+           "lep_total": round(lep_all)}
+    for name, test in tests.items():
+        req = {k: {l: test(k, l) for l in langs} for k in openk}
+        reach = {l: sum(plan_units[f]["langs"][l]["lep"] for f in plan_units
+                        if any(req[k][l] for k in open_plans.get(f, ()))) for l in langs}
+        r = {"plans_any": sum(1 for k in openk if any(req[k].values())),
+             "lep_reached": round(sum(reach.values())), "pct": round(100 * sum(reach.values()) / lep_all, 1),
+             "by_language": {l: {"plans": sum(1 for k in openk if req[k][l]), "lep_reached": round(reach[l]),
+                                 "pct": round(100 * reach[l] / total[l]["lep"], 1)} for l in langs}}
+        for fips, l, key in (("06059", "Vietnamese", "orange_vietnamese"), ("06075", "Chinese", "sf_chinese")):
+            ks = open_plans.get(fips, ())
+            r[key] = {"plans": sum(1 for k in ks if req[k][l]), "of": len(ks)}
+        out[name] = r
+    return out
+
+
 def enrollment_fraction(plans, req, plan_units):
     """{fips: {lang/basis: share of individual MA+PDP members in plans that must translate}} for CY2026."""
     enroll, _, _ = M.enrollment(2026, "September")
@@ -589,6 +632,7 @@ def main():
         "checks": checks,
         "navajo_pumas": navajo,
         "hawaii_group": hawaii,
+        "alt_thresholds": alt_thresholds(plans, plan_units, open_plans, total, nonsp),
     }
     summary["state_top"] = [r for r in summary["state_top"] if r["language"] != "Spanish"][:6] + \
         [r for r in summary["state_top"] if r["language"] == "Spanish" and r["lep_share"] >= 5]

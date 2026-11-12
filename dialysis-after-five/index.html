@@ -219,6 +219,12 @@
     <p class="note" id="trendnote"></p>
   </section>
 
+  <section class="about" id="change">
+    <h2>What could change this</h2>
+    <p>Medicare's public facility data record only whether a unit has a shift starting at 5&nbsp;pm or later. The <i>Late Shift</i> field is a yes or no, and nothing in the <a href="https://data.cms.gov/provider-data/sites/default/files/data_dictionaries/dialysis/DF_Data_Dictionary.pdf">CMS data dictionary</a> records how many chairs that shift has or whether it is taking new patients. CMS could also ask units for both. By the yes/no measure, <span id="capshare">21.8%</span> of patients go to a unit with an evening shift; the data cannot say how many of those evening chairs are free.</p>
+    <p>One state already counts evening shifts. Since 2007, Washington's certificate-of-need rules for kidney dialysis centers have given applicants a point for a shift that begins after 5&nbsp;pm (<a href="https://lawfilesext.leg.wa.gov/Law/WSR/2006/24/06-24-050.htm">WSR 06-24-050</a>; now <a href="https://app.leg.wa.gov/WAC/default.aspx?cite=246-310-827">WAC 246-310-827</a>), and the current rule takes the answer from Medicare's Dialysis Facility Compare data or from a center's attestation. Washington has the highest share of the states and DC on this page, but this page cannot show that the rule is the reason.</p>
+  </section>
+
   <section class="about">
     <h2>About the data</h2>
     <p><b>Units and shifts.</b> CMS Provider Data Catalog, <a href="https://data.cms.gov/provider-data/dataset/23ew-n7w9">Dialysis Facility &ndash; Listing by Facility</a> (dataset 23ew-n7w9), <span id="srcdate"></span>. Every unit marked as offering in-center hemodialysis is counted. The CMS data dictionary defines its <i>Late Shift</i> field as &ldquo;a shift starting at 5:00 P.M. or later&rdquo;. Chains are the file's <i>Chain Organization</i> field; &ldquo;Fresenius&rdquo; is Fresenius Medical Care.</p>
@@ -577,6 +583,7 @@
     `and the ${Object.keys(sum.esrd_networks).length} ESRD Networks for ${(ve.omega2_network * 100).toFixed(1)}%. Company accounts for ${(ve.omega2_chain * 100).toFixed(1)}% with the ${ve.chain_groups} company groups used on this page, which fold small chains into “Other”, ` +
     `and ${(ve.omega2_chain_raw * 100).toFixed(1)}% with all ${ve.chain_raw_groups} chain names in the file kept apart; several small regional nonprofits run evening shifts at most of their units. State, company and network overlap, so these figures are not compared as a ratio.`;
   $("chk2020").textContent = p1(sum.check_2020_all_facilities.pct_all_facilities);
+  $("capshare").textContent = p1(nat.pct_patients);
 
   function redraw() { drawDumbbell(); drawCdf(); drawTrend(); }
   redraw();

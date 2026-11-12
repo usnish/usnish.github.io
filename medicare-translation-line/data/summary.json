@@ -486,5 +486,138 @@
   "all_in_hawaii": true,
   "share_min": 5.05,
   "share_max": 5.24
+ },
+ "alt_thresholds": {
+  "languages": [
+   "Chinese",
+   "Vietnamese",
+   "Korean",
+   "Tagalog",
+   "Arabic"
+  ],
+  "county_n": 10000,
+  "plan_n": 1000,
+  "plans_open": 3526,
+  "lep_total": 4300177,
+  "current": {
+   "plans_any": 24,
+   "lep_reached": 529132,
+   "pct": 12.3,
+   "by_language": {
+    "Chinese": {
+     "plans": 24,
+     "lep_reached": 529132,
+     "pct": 29.1
+    },
+    "Vietnamese": {
+     "plans": 0,
+     "lep_reached": 0,
+     "pct": 0.0
+    },
+    "Korean": {
+     "plans": 0,
+     "lep_reached": 0,
+     "pct": 0.0
+    },
+    "Tagalog": {
+     "plans": 0,
+     "lep_reached": 0,
+     "pct": 0.0
+    },
+    "Arabic": {
+     "plans": 0,
+     "lep_reached": 0,
+     "pct": 0.0
+    }
+   },
+   "orange_vietnamese": {
+    "plans": 0,
+    "of": 72
+   },
+   "sf_chinese": {
+    "plans": 18,
+    "of": 35
+   }
+  },
+  "county": {
+   "plans_any": 950,
+   "lep_reached": 3364948,
+   "pct": 78.3,
+   "by_language": {
+    "Chinese": {
+     "plans": 805,
+     "lep_reached": 1673403,
+     "pct": 92.2
+    },
+    "Vietnamese": {
+     "plans": 439,
+     "lep_reached": 680568,
+     "pct": 75.5
+    },
+    "Korean": {
+     "plans": 382,
+     "lep_reached": 436155,
+     "pct": 78.5
+    },
+    "Tagalog": {
+     "plans": 311,
+     "lep_reached": 344028,
+     "pct": 63.6
+    },
+    "Arabic": {
+     "plans": 287,
+     "lep_reached": 230794,
+     "pct": 47.5
+    }
+   },
+   "orange_vietnamese": {
+    "plans": 72,
+    "of": 72
+   },
+   "sf_chinese": {
+    "plans": 35,
+    "of": 35
+   }
+  },
+  "n1000": {
+   "plans_any": 2965,
+   "lep_reached": 4298366,
+   "pct": 100.0,
+   "by_language": {
+    "Chinese": {
+     "plans": 2870,
+     "lep_reached": 1815058,
+     "pct": 100.0
+    },
+    "Vietnamese": {
+     "plans": 2667,
+     "lep_reached": 901543,
+     "pct": 100.0
+    },
+    "Korean": {
+     "plans": 2056,
+     "lep_reached": 555862,
+     "pct": 100.0
+    },
+    "Tagalog": {
+     "plans": 2152,
+     "lep_reached": 540654,
+     "pct": 100.0
+    },
+    "Arabic": {
+     "plans": 2379,
+     "lep_reached": 485249,
+     "pct": 99.9
+    }
+   },
+   "orange_vietnamese": {
+    "plans": 72,
+    "of": 72
+   },
+   "sf_chinese": {
+    "plans": 35,
+    "of": 35
+   }
+  }
  }
 }

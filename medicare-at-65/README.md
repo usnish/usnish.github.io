@@ -4,6 +4,8 @@ Page: https://usnish.xyz/medicare-at-65/
 
 Who is uninsured at 65 and older in the US, by nativity, citizenship, age at arrival, years in the US and language, from American Community Survey microdata.
 
+"What could change this" (static text, after "Earned, or by residence"): residency test in Medicare for All bills, with the 5-year buy-in rule and HEAL Act as context; its numbers are typed in from `summary.json` (`years_rate`, `price`), so update them by hand if the data are rebuilt.
+
 ## Build
 
 ```

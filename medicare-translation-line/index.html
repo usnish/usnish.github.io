@@ -193,6 +193,12 @@
   </section>
 
   <section class="about">
+    <h2>What could change this</h2>
+    <p id="change-1"></p>
+    <p id="change-2"></p>
+  </section>
+
+  <section class="about">
     <h2>About the data</h2>
     <p><b>The rule.</b> Medicare Advantage and Part D plans "must translate required materials into any non-English language that is the primary language of at least 5 percent of the individuals in a plan benefit package (PBP) service area" (<a href="https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-B/part-422/subpart-V/section-422.2267">42 CFR 422.2267(a)(2)</a>; 423.2267(a)(2) for drug plans). Required materials include the Evidence of Coverage, the Annual Notice of Change, the Notice of Denial of Medical Coverage or Payment, appeal notices and the formulary (422.2267(e)).</p>
     <p><b>Languages.</b> American Community Survey 2020–2024 5-year estimates, table C16001 (language spoken at home by ability to speak English, people 5 and older) for <span id="ncounties"></span> counties and the states, downloaded from the Census Bureau's <a href="https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/">table-based summary file</a>. Puerto Rico is left out (CMS requires Spanish there). Table B16001 (detailed languages, states and public use microdata areas) feeds "Your language"; table B16004 (by age) feeds the age panel. The six languages on the guessing chart are the only single languages C16001 reports by county; it lumps the rest (French with Haitian, Russian with Polish, and so on).</p>
@@ -496,6 +502,22 @@
   const cz = C.get("Chinese|lep|county");
   document.getElementById("moe").textContent =
     `counting every county whose margin of error reaches 5% would move Chinese from ${cz.pct}% to ${cz.pct_hi}% of speakers with limited English, and leave Vietnamese, Korean and Arabic at ${C.get("Vietnamese|lep|county").pct_hi}%, ${C.get("Korean|lep|county").pct_hi}% and ${C.get("Arabic|lep|county").pct_hi}%.`;
+  // ---------------- what could change this (data/summary.json alt_thresholds)
+  const at = sum.alt_thresholds, atNow = at.current, atCty = at.county, at1k = at.n1000;
+  const enrolledPct = (100 * sum.nonspanish_covered["lep|enrolled"] / sum.nonspanish_lep_total).toFixed(1);
+  document.getElementById("change-1").innerHTML =
+    `CMS could add a second trigger: a plan would also have to translate when any county it serves has ${VK.int(at.county_n)} or more people who speak a language and have limited English. ` +
+    `The test is modeled on the one the <a href="https://www.law.cornell.edu/uscode/text/52/10503">Voting Rights Act</a> uses for ballots, which counts citizens of voting age rather than everyone 5 and older. ` +
+    `Under the current 5% line, ${atNow.pct}% of people who speak Chinese, Vietnamese, Korean, Tagalog or Arabic with limited English live in a county where at least one plan open to them must translate into their language. ` +
+    `With the county test it would be about ${Math.round(atCty.pct)}%, and all ${atCty.orange_vietnamese.of} plans anyone can join in Orange County, California would have to translate into Vietnamese` +
+    (atNow.orange_vietnamese.plans === 0 ? `; today none does. ` : `, up from ${atNow.orange_vietnamese.plans}. `) +
+    `Both shares count people living in a county where some plan must translate, not people enrolled in one, so they are upper bounds: weighted by where people actually enrolled in 2026, the current figure is ${enrolledPct}%. ` +
+    `The change would take a new rule amending 42 CFR 422.2267(a)(2) and 423.2267(a)(2).`;
+  document.getElementById("change-2").innerHTML =
+    `A lower floor would reach further and cost plans more. <a href="https://justiceinaging.org/wp-content/uploads/2026/01/Justice-in-Aging-Medicare-Advantage-2027-rule-comment.pdf">Justice in Aging</a> asked CMS in January 2026 to trigger translation at 5% or ${VK.int(at.plan_n)} people in a service area who speak a language, whichever is lower; ` +
+    `even counting only people with limited English, ${VK.int(at1k.plans_any)} of the ${VK.int(at.plans_open)} plans anyone can join would then have to translate into at least one of these five languages. ` +
+    `CMS has estimated that translating one set of 47 required materials into one more language costs $28,452 the first time, less to update in later years (<a href="https://www.federalregister.gov/documents/2023/04/12/2023-07115/">88 FR 22319</a>).`;
+
   const ck = sum.checks;
   document.getElementById("checklep").textContent =
     `${(ck.c16001_lep_all_languages / 1e6).toFixed(1)} million people 5 and older with limited English in all languages (${(100 * ck.c16001_lep_all_languages / sum.pop5).toFixed(1)}%), and the separate age table B16004 gives ${(ck.b16004_lep_all_languages / 1e6).toFixed(1)} million`;

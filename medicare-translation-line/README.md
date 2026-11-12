@@ -22,6 +22,7 @@ uv run --with numpy --with scipy python3 medicare-translation-line/scripts/build
 - `languages.csv`: B16001 detailed languages at state and PUMA level, plus an approximate top-15-in-state share.
 - `age.csv`: B16004 language groups, share of all ages vs 65+, for the six counties with the most Asian/Pacific Island-language speakers 65+ with limited English.
 - `summary.json`: headline numbers and checks. `policy.json`: dated policy timeline (written by the script).
+- `summary.json` `alt_thresholds`: what-if triggers for the "What could change this" section, CMS's limited-English method, real 2027 plans anyone can join (3,526), for Chinese, Vietnamese, Korean, Tagalog and Arabic. `current` = the 5% service-area rule; `county` = 5% across the service area, or any county the plan serves with 10,000+ speakers with limited English (modeled on Voting Rights Act section 203, which counts voting-age citizens and also has a county 5% prong not used here); `n1000` = 5%, or 1,000+ speakers with limited English across the whole service area (Justice in Aging's "5% or 1,000 people, whichever is lower" counts everyone who speaks the language, so theirs would reach at least as many plans). Each gives open plans that must translate any of the five (`plans_any`) and each language (`by_language.plans`), limited-English speakers living in a county where at least one open plan must translate (`lep_reached`, `pct`; residents, not enrollees, so an upper bound), and open plans that must translate Vietnamese in Orange County, CA (06059) and Chinese in San Francisco (06075).
 
 ## Findings (build of 2026-11-12)
 
@@ -29,6 +30,7 @@ uv run --with numpy --with scipy python3 medicare-translation-line/scripts/build
 - Most generous reading: Vietnamese 20.8%, Tagalog 4.5%, Korean and Arabic 0%.
 - Weighted by where people actually enroll: Chinese 3.1% (CMS method).
 - Navajo-area counties (McKinley NM, Apache AZ, San Juan NM and UT, Navajo AZ) cross 5% for "other languages" on their own, but no plan sold there must translate.
+- Alternative triggers (Chinese, Vietnamese, Korean, Tagalog, Arabic combined): now 24 open plans, 529,132 of 4,300,177 (12.3%); county 10,000 test 950 plans, 3,364,948 (78.3%), Orange County Vietnamese 72 of 72 (now 0), San Francisco Chinese 35 of 35 (now 18); 1,000 floor 2,965 of 3,526 plans.
 - Validation: the limited-English method finds 17 non-PACE contracts for Chinese and 16 for "other Asian" in 2027, close to CMS's own 2023 count (16 and 19, 88 FR 22227); the all-speakers method would add Vietnamese and French/Haitian contracts CMS never reported.
 
 ## Caveats
