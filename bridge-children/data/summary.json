@@ -1,0 +1,286 @@
+{
+ "source": "ACS 2020-2024 5-year PUMS (U.S. Census Bureau), persons in housing units",
+ "built": "2026-11-12",
+ "hhs": {
+  "bridge_children": {
+   "est": 2598432,
+   "se": 16997
+  },
+  "bridge_children_n": 85773,
+  "age_5_9": {
+   "est": 819638
+  },
+  "age_10_13": {
+   "est": 901461
+  },
+  "age_14_17": {
+   "est": 877333
+  },
+  "age_le13_share": {
+   "est": 0.6624,
+   "se": 0.0021
+  },
+  "counted_by_census": {
+   "est": 1181700,
+   "se": 10014
+  },
+  "missed_by_census": {
+   "est": 1416732,
+   "se": 13700
+  },
+  "missed_share": {
+   "est": 0.5452,
+   "se": 0.0032
+  },
+  "sole_fluent_share": {
+   "est": 0.3022,
+   "se": 0.0032
+  },
+  "us_born_share": {
+   "est": 0.8213,
+   "se": 0.0019
+  },
+  "medicaid_share": {
+   "est": 0.6617,
+   "se": 0.0028
+  },
+  "below_poverty_share": {
+   "est": 0.3185,
+   "se": 0.003
+  },
+  "below_200fpl_share": {
+   "est": 0.6569,
+   "se": 0.0032
+  },
+  "share_of_kids_in_lep_homes": {
+   "est": 0.6654,
+   "se": 0.0021
+  },
+  "share_of_all_kids_5_17": {
+   "est": 0.0476,
+   "se": 0.0003
+  },
+  "households_with_child": {
+   "est": 2099439,
+   "se": 9459
+  },
+  "households_with_bridge": {
+   "est": 1483863,
+   "se": 8010
+  },
+  "households_bridge_missed": {
+   "est": 726896,
+   "se": 5690
+  },
+  "households_bridge_counted": {
+   "est": 756967,
+   "se": 5747
+  },
+  "rate_bridge_given_child": {
+   "est": 0.7068,
+   "se": 0.002
+  },
+  "dependent_adults": {
+   "est": 3045501,
+   "se": 18331
+  },
+  "dependent_adults_medicaid": {
+   "est": 839135,
+   "se": 8514
+  },
+  "dependent_adults_65plus": {
+   "est": 163602,
+   "se": 3946
+  },
+  "dependent_adults_eng_well_share": {
+   "est": 0.4507,
+   "se": 0.0026
+  },
+  "dependent_adults_eng_notwell_share": {
+   "est": 0.3726,
+   "se": 0.0022
+  },
+  "dependent_adults_eng_notatall_share": {
+   "est": 0.1767,
+   "se": 0.002
+  },
+  "lep_adults_all": {
+   "est": 11728118,
+   "se": 48120
+  }
+ },
+ "strict": {
+  "bridge_children": {
+   "est": 975093,
+   "se": 11215
+  },
+  "bridge_children_n": 28663,
+  "age_5_9": {
+   "est": 278337
+  },
+  "age_10_13": {
+   "est": 350516
+  },
+  "age_14_17": {
+   "est": 346240
+  },
+  "age_le13_share": {
+   "est": 0.6449,
+   "se": 0.0035
+  },
+  "counted_by_census": {
+   "est": 410708,
+   "se": 6639
+  },
+  "missed_by_census": {
+   "est": 564385,
+   "se": 8723
+  },
+  "missed_share": {
+   "est": 0.5788,
+   "se": 0.0053
+  },
+  "sole_fluent_share": {
+   "est": 0.2985,
+   "se": 0.0044
+  },
+  "us_born_share": {
+   "est": 0.8022,
+   "se": 0.0043
+  },
+  "medicaid_share": {
+   "est": 0.7508,
+   "se": 0.0041
+  },
+  "below_poverty_share": {
+   "est": 0.4177,
+   "se": 0.005
+  },
+  "below_200fpl_share": {
+   "est": 0.7836,
+   "se": 0.0043
+  },
+  "share_of_kids_in_lep_homes": {
+   "est": 0.5954,
+   "se": 0.0037
+  },
+  "share_of_all_kids_5_17": {
+   "est": 0.0179,
+   "se": 0.0002
+  },
+  "households_with_child": {
+   "est": 859605,
+   "se": 6947
+  },
+  "households_with_bridge": {
+   "est": 545320,
+   "se": 5183
+  },
+  "households_bridge_missed": {
+   "est": 285531,
+   "se": 3772
+  },
+  "households_bridge_counted": {
+   "est": 259789,
+   "se": 3566
+  },
+  "rate_bridge_given_child": {
+   "est": 0.6344,
+   "se": 0.0035
+  },
+  "dependent_adults": {
+   "est": 1055933,
+   "se": 12175
+  },
+  "dependent_adults_medicaid": {
+   "est": 307524,
+   "se": 5505
+  },
+  "dependent_adults_65plus": {
+   "est": 44276,
+   "se": 1517
+  },
+  "dependent_adults_eng_well_share": {
+   "est": 0.0,
+   "se": 0.0
+  },
+  "dependent_adults_eng_notwell_share": {
+   "est": 0.6576,
+   "se": 0.0042
+  },
+  "dependent_adults_eng_notatall_share": {
+   "est": 0.3424,
+   "se": 0.0042
+  },
+  "lep_adults_all": {
+   "est": 4720980,
+   "se": 33136
+  }
+ },
+ "all_kids_5_17": {
+  "est": 54622580,
+  "se": 5121
+ },
+ "lngi_mismatch_households": 0,
+ "sample_households": 234742,
+ "check_2024_1yr": {
+  "hhs": {
+   "bridge_children": {
+    "est": 2490674,
+    "se": 28429
+   },
+   "missed_share": {
+    "est": 0.5467,
+    "se": 0.0066
+   },
+   "age_le13_share": {
+    "est": 0.656,
+    "se": 0.004
+   },
+   "rate_bridge_given_child": {
+    "est": 0.6722,
+    "se": 0.0041
+   },
+   "counted_by_census": {
+    "est": 1129124,
+    "se": 21631
+   }
+  },
+  "strict": {
+   "bridge_children": {
+    "est": 935787,
+    "se": 20322
+   },
+   "missed_share": {
+    "est": 0.5757,
+    "se": 0.0115
+   },
+   "age_le13_share": {
+    "est": 0.6418,
+    "se": 0.0069
+   },
+   "rate_bridge_given_child": {
+    "est": 0.5878,
+    "se": 0.0074
+   },
+   "counted_by_census": {
+    "est": 397054,
+    "se": 13788
+   }
+  },
+  "source": "ACS 2024 1-year PUMS"
+ },
+ "check_census_poster": {
+  "published_2017": 0.207,
+  "2019": {
+   "share": 0.1972,
+   "fluent_kids_in_lote_adult_homes": 15089037,
+   "bridge_children": 2975878
+  },
+  "2024": {
+   "share": 0.1595,
+   "fluent_kids_in_lote_adult_homes": 15611452,
+   "bridge_children": 2490674
+  }
+ }
+}

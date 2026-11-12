@@ -1,0 +1,218 @@
+group,label,age,n,pop,rate,lo,hi
+usborn,Born in the US,55,101722,3049771,6.36,6.14,6.57
+usborn,Born in the US,56,102230,3034300,6.43,6.21,6.65
+usborn,Born in the US,57,108237,3178698,6.24,6.05,6.44
+usborn,Born in the US,58,113436,3310525,6.02,5.83,6.22
+usborn,Born in the US,59,117915,3404725,6.15,5.97,6.33
+usborn,Born in the US,60,124166,3589648,6.15,5.95,6.35
+usborn,Born in the US,61,124736,3547193,6.05,5.85,6.25
+usborn,Born in the US,62,128443,3607672,5.75,5.57,5.94
+usborn,Born in the US,63,128279,3562478,5.77,5.57,5.98
+usborn,Born in the US,64,129691,3584577,5.67,5.51,5.83
+usborn,Born in the US,65,130446,3364874,1.02,0.95,1.09
+usborn,Born in the US,66,128818,3276814,0.79,0.72,0.85
+usborn,Born in the US,67,126108,3195236,0.54,0.49,0.6
+usborn,Born in the US,68,123353,3097571,0.49,0.44,0.55
+usborn,Born in the US,69,120162,3015983,0.49,0.43,0.54
+usborn,Born in the US,70,117115,2936117,0.34,0.29,0.39
+usborn,Born in the US,71,111222,2782736,0.3,0.25,0.35
+usborn,Born in the US,72,107431,2673959,0.27,0.23,0.31
+usborn,Born in the US,73,102228,2532729,0.22,0.19,0.26
+usborn,Born in the US,74,98772,2458520,0.24,0.21,0.28
+usborn,Born in the US,75,98072,2393440,0.22,0.18,0.26
+usborn,Born in the US,76,88336,2144619,0.22,0.18,0.26
+usborn,Born in the US,77,77405,1872520,0.18,0.14,0.22
+usborn,Born in the US,78,67063,1628771,0.27,0.21,0.33
+usborn,Born in the US,79,64212,1564214,0.17,0.13,0.21
+usborn,Born in the US,80,59705,1468927,0.16,0.12,0.2
+usborn,Born in the US,81,53349,1308880,0.19,0.14,0.24
+usborn,Born in the US,82,46021,1129210,0.2,0.15,0.25
+usborn,Born in the US,83,40678,1000407,0.21,0.16,0.27
+usborn,Born in the US,84,35776,879521,0.22,0.14,0.29
+usborn,Born in the US,85,31908,786645,0.19,0.12,0.26
+arr_lt45,Moved here before 45,55,20989,748903,14.46,13.86,15.05
+arr_lt45,Moved here before 45,56,20300,721473,13.92,13.36,14.49
+arr_lt45,Moved here before 45,57,19905,702334,13.33,12.69,13.97
+arr_lt45,Moved here before 45,58,19849,692646,12.42,11.88,12.95
+arr_lt45,Moved here before 45,59,19463,674473,12.22,11.68,12.76
+arr_lt45,Moved here before 45,60,19512,674470,12.52,11.85,13.18
+arr_lt45,Moved here before 45,61,18228,614277,11.67,11.04,12.3
+arr_lt45,Moved here before 45,62,18154,613466,11.7,11.0,12.39
+arr_lt45,Moved here before 45,63,17051,570011,10.9,10.27,11.52
+arr_lt45,Moved here before 45,64,16316,544524,11.01,10.37,11.65
+arr_lt45,Moved here before 45,65,15714,505048,4.83,4.45,5.21
+arr_lt45,Moved here before 45,66,14877,472811,3.35,2.96,3.74
+arr_lt45,Moved here before 45,67,14288,456702,2.79,2.43,3.16
+arr_lt45,Moved here before 45,68,13592,435027,2.2,1.87,2.54
+arr_lt45,Moved here before 45,69,12677,398087,2.12,1.72,2.51
+arr_lt45,Moved here before 45,70,12126,384550,1.53,1.26,1.8
+arr_lt45,Moved here before 45,71,11169,343163,1.49,1.17,1.81
+arr_lt45,Moved here before 45,72,10806,334999,1.51,1.21,1.81
+arr_lt45,Moved here before 45,73,10111,309037,1.08,0.78,1.37
+arr_lt45,Moved here before 45,74,9739,296868,1.15,0.84,1.46
+arr_lt45,Moved here before 45,75,9208,282253,1.04,0.76,1.32
+arr_lt45,Moved here before 45,76,8431,255477,0.86,0.58,1.15
+arr_lt45,Moved here before 45,77,7422,225394,0.71,0.47,0.96
+arr_lt45,Moved here before 45,78,6684,202108,0.86,0.59,1.13
+arr_lt45,Moved here before 45,79,6116,184123,0.58,0.36,0.81
+arr_lt45,Moved here before 45,80,5655,173149,0.49,0.24,0.74
+arr_lt45,Moved here before 45,81,5026,150546,0.74,0.45,1.03
+arr_lt45,Moved here before 45,82,4580,139761,0.79,0.43,1.16
+arr_lt45,Moved here before 45,83,4070,122966,0.45,0.21,0.69
+arr_lt45,Moved here before 45,84,3705,111284,0.61,0.31,0.92
+arr_lt45,Moved here before 45,85,3398,100690,0.6,0.22,0.99
+arr_45_59,Moved here at 45–59,55,2497,96033,23.94,21.77,26.11
+arr_45_59,Moved here at 45–59,56,2549,96705,20.22,18.37,22.06
+arr_45_59,Moved here at 45–59,57,2747,103621,21.49,19.61,23.37
+arr_45_59,Moved here at 45–59,58,2761,105312,21.14,18.94,23.34
+arr_45_59,Moved here at 45–59,59,2912,105575,19.13,17.26,21.0
+arr_45_59,Moved here at 45–59,60,2802,102009,17.59,15.8,19.39
+arr_45_59,Moved here at 45–59,61,2580,93985,15.41,13.58,17.24
+arr_45_59,Moved here at 45–59,62,2385,85181,14.42,12.75,16.09
+arr_45_59,Moved here at 45–59,63,2483,89608,15.01,12.9,17.12
+arr_45_59,Moved here at 45–59,64,2206,77270,16.42,14.47,18.38
+arr_45_59,Moved here at 45–59,65,2373,84568,9.77,8.2,11.34
+arr_45_59,Moved here at 45–59,66,2292,78115,9.13,7.44,10.82
+arr_45_59,Moved here at 45–59,67,2175,75212,8.88,7.37,10.4
+arr_45_59,Moved here at 45–59,68,2244,78323,7.49,6.14,8.84
+arr_45_59,Moved here at 45–59,69,2205,75113,6.58,5.17,7.99
+arr_45_59,Moved here at 45–59,70,2142,72378,5.61,4.21,7.0
+arr_45_59,Moved here at 45–59,71,1842,60656,4.73,3.51,5.95
+arr_45_59,Moved here at 45–59,72,1853,62578,4.93,3.36,6.49
+arr_45_59,Moved here at 45–59,73,1861,61550,5.1,3.68,6.52
+arr_45_59,Moved here at 45–59,74,1649,58441,4.62,3.03,6.2
+arr_45_59,Moved here at 45–59,75,1694,58668,4.55,3.12,5.98
+arr_45_59,Moved here at 45–59,76,1540,51043,3.13,1.99,4.27
+arr_45_59,Moved here at 45–59,77,1407,48953,2.62,1.39,3.86
+arr_45_59,Moved here at 45–59,78,1279,42530,2.86,1.69,4.03
+arr_45_59,Moved here at 45–59,79,1253,41557,2.35,1.31,3.39
+arr_45_59,Moved here at 45–59,80,1153,38227,2.35,1.26,3.43
+arr_45_59,Moved here at 45–59,81,1083,35950,1.29,0.58,1.99
+arr_45_59,Moved here at 45–59,82,1021,35134,2.18,0.96,3.4
+arr_45_59,Moved here at 45–59,83,926,30045,2.04,1.0,3.08
+arr_45_59,Moved here at 45–59,84,883,30211,1.74,0.56,2.92
+arr_45_59,Moved here at 45–59,85,798,26955,2.02,0.6,3.44
+arr_60p,Moved here at 60 or older,55,0,0,,,
+arr_60p,Moved here at 60 or older,56,0,0,,,
+arr_60p,Moved here at 60 or older,57,0,0,,,
+arr_60p,Moved here at 60 or older,58,0,0,,,
+arr_60p,Moved here at 60 or older,59,0,0,,,
+arr_60p,Moved here at 60 or older,60,227,7384,34.99,28.13,41.85
+arr_60p,Moved here at 60 or older,61,425,14019,39.4,33.92,44.88
+arr_60p,Moved here at 60 or older,62,539,17628,29.96,25.84,34.07
+arr_60p,Moved here at 60 or older,63,663,23269,30.53,26.3,34.76
+arr_60p,Moved here at 60 or older,64,670,23072,23.47,19.69,27.25
+arr_60p,Moved here at 60 or older,65,864,30462,25.17,21.6,28.74
+arr_60p,Moved here at 60 or older,66,904,29801,23.94,20.65,27.23
+arr_60p,Moved here at 60 or older,67,983,33286,23.49,20.01,26.98
+arr_60p,Moved here at 60 or older,68,1116,38823,21.08,18.23,23.92
+arr_60p,Moved here at 60 or older,69,1049,36981,19.97,16.84,23.1
+arr_60p,Moved here at 60 or older,70,1246,42924,17.95,15.12,20.78
+arr_60p,Moved here at 60 or older,71,1139,38289,13.97,11.43,16.52
+arr_60p,Moved here at 60 or older,72,1202,39693,14.97,12.65,17.3
+arr_60p,Moved here at 60 or older,73,1270,42256,13.92,11.57,16.27
+arr_60p,Moved here at 60 or older,74,1241,40797,13.26,10.73,15.79
+arr_60p,Moved here at 60 or older,75,1240,40980,14.28,11.78,16.79
+arr_60p,Moved here at 60 or older,76,1139,38464,10.75,8.45,13.06
+arr_60p,Moved here at 60 or older,77,1066,36283,10.6,8.45,12.76
+arr_60p,Moved here at 60 or older,78,996,33922,10.81,8.36,13.26
+arr_60p,Moved here at 60 or older,79,922,32232,9.87,7.31,12.44
+arr_60p,Moved here at 60 or older,80,953,33208,10.0,7.45,12.56
+arr_60p,Moved here at 60 or older,81,884,30765,7.82,5.66,9.99
+arr_60p,Moved here at 60 or older,82,881,29739,8.4,5.89,10.9
+arr_60p,Moved here at 60 or older,83,931,32160,8.44,6.28,10.6
+arr_60p,Moved here at 60 or older,84,784,25968,9.45,6.62,12.27
+arr_60p,Moved here at 60 or older,85,745,24145,7.24,5.18,9.29
+lep_cit,"Limited English, US citizen",55,7345,257412,11.56,10.61,12.52
+lep_cit,"Limited English, US citizen",56,7491,264644,11.45,10.57,12.33
+lep_cit,"Limited English, US citizen",57,7695,269471,10.88,9.89,11.87
+lep_cit,"Limited English, US citizen",58,7851,277230,10.23,9.47,10.98
+lep_cit,"Limited English, US citizen",59,7802,269930,10.16,9.38,10.94
+lep_cit,"Limited English, US citizen",60,8206,279186,10.36,9.52,11.21
+lep_cit,"Limited English, US citizen",61,7919,269643,10.1,9.26,10.93
+lep_cit,"Limited English, US citizen",62,7893,264186,10.09,9.22,10.96
+lep_cit,"Limited English, US citizen",63,7710,259987,9.83,9.12,10.54
+lep_cit,"Limited English, US citizen",64,7427,247511,10.44,9.48,11.41
+lep_cit,"Limited English, US citizen",65,7736,250982,3.31,2.76,3.85
+lep_cit,"Limited English, US citizen",66,7623,243207,2.46,1.99,2.94
+lep_cit,"Limited English, US citizen",67,7321,239066,1.97,1.54,2.4
+lep_cit,"Limited English, US citizen",68,7271,237122,1.7,1.37,2.04
+lep_cit,"Limited English, US citizen",69,6843,217392,1.41,1.13,1.7
+lep_cit,"Limited English, US citizen",70,6888,220897,1.18,0.87,1.5
+lep_cit,"Limited English, US citizen",71,6329,203995,1.08,0.77,1.39
+lep_cit,"Limited English, US citizen",72,6222,200649,1.27,0.88,1.65
+lep_cit,"Limited English, US citizen",73,5882,189053,0.9,0.58,1.21
+lep_cit,"Limited English, US citizen",74,5760,186039,0.94,0.63,1.26
+lep_cit,"Limited English, US citizen",75,5440,174536,0.92,0.56,1.27
+lep_cit,"Limited English, US citizen",76,4953,159913,0.75,0.48,1.02
+lep_cit,"Limited English, US citizen",77,4487,143965,0.87,0.51,1.24
+lep_cit,"Limited English, US citizen",78,4065,129711,1.07,0.67,1.48
+lep_cit,"Limited English, US citizen",79,3801,122374,0.64,0.31,0.97
+lep_cit,"Limited English, US citizen",80,3600,119027,0.32,0.1,0.54
+lep_cit,"Limited English, US citizen",81,3271,105693,0.74,0.43,1.05
+lep_cit,"Limited English, US citizen",82,3057,101059,0.53,0.24,0.82
+lep_cit,"Limited English, US citizen",83,2881,94190,0.56,0.29,0.82
+lep_cit,"Limited English, US citizen",84,2681,86088,0.96,0.39,1.53
+lep_cit,"Limited English, US citizen",85,2419,78104,0.6,0.1,1.11
+lep_noncit,"Limited English, not a citizen",55,5302,222710,31.87,30.24,33.5
+lep_noncit,"Limited English, not a citizen",56,4993,207186,30.31,28.9,31.71
+lep_noncit,"Limited English, not a citizen",57,4829,192914,31.44,29.72,33.17
+lep_noncit,"Limited English, not a citizen",58,4606,187032,28.71,27.13,30.3
+lep_noncit,"Limited English, not a citizen",59,4426,175494,28.59,27.06,30.11
+lep_noncit,"Limited English, not a citizen",60,4463,179772,27.48,25.71,29.24
+lep_noncit,"Limited English, not a citizen",61,3956,154679,27.68,25.86,29.5
+lep_noncit,"Limited English, not a citizen",62,3859,152093,26.55,24.86,28.24
+lep_noncit,"Limited English, not a citizen",63,3492,135580,26.97,25.22,28.73
+lep_noncit,"Limited English, not a citizen",64,3337,129098,24.95,23.39,26.52
+lep_noncit,"Limited English, not a citizen",65,3219,123458,19.19,17.51,20.86
+lep_noncit,"Limited English, not a citizen",66,2932,108870,15.85,14.22,17.48
+lep_noncit,"Limited English, not a citizen",67,2767,104435,17.31,15.56,19.06
+lep_noncit,"Limited English, not a citizen",68,2616,99919,16.09,14.51,17.67
+lep_noncit,"Limited English, not a citizen",69,2358,91178,14.73,12.74,16.72
+lep_noncit,"Limited English, not a citizen",70,2227,84281,14.26,12.45,16.07
+lep_noncit,"Limited English, not a citizen",71,1905,65479,13.17,11.15,15.18
+lep_noncit,"Limited English, not a citizen",72,1859,67366,13.55,11.51,15.6
+lep_noncit,"Limited English, not a citizen",73,1711,61248,13.43,11.52,15.35
+lep_noncit,"Limited English, not a citizen",74,1547,55947,13.21,10.84,15.58
+lep_noncit,"Limited English, not a citizen",75,1494,55151,12.62,10.8,14.43
+lep_noncit,"Limited English, not a citizen",76,1247,44159,11.23,9.27,13.18
+lep_noncit,"Limited English, not a citizen",77,1062,39118,10.29,8.02,12.57
+lep_noncit,"Limited English, not a citizen",78,1027,37631,10.81,8.63,12.99
+lep_noncit,"Limited English, not a citizen",79,916,31891,10.03,7.47,12.59
+lep_noncit,"Limited English, not a citizen",80,848,30157,12.62,9.8,15.44
+lep_noncit,"Limited English, not a citizen",81,795,27957,8.74,6.29,11.18
+lep_noncit,"Limited English, not a citizen",82,745,25732,10.38,7.35,13.42
+lep_noncit,"Limited English, not a citizen",83,652,21848,11.12,8.12,14.12
+lep_noncit,"Limited English, not a citizen",84,550,19305,12.96,8.98,16.94
+lep_noncit,"Limited English, not a citizen",85,532,18625,10.63,7.48,13.78
+eng_only,Speaks only English at home,55,99475,2970199,6.21,6.0,6.42
+eng_only,Speaks only English at home,56,99963,2957410,6.35,6.12,6.57
+eng_only,Speaks only English at home,57,105587,3093736,6.09,5.92,6.26
+eng_only,Speaks only English at home,58,111293,3235322,5.93,5.74,6.12
+eng_only,Speaks only English at home,59,115877,3340102,6.04,5.86,6.22
+eng_only,Speaks only English at home,60,121932,3517669,6.0,5.81,6.19
+eng_only,Speaks only English at home,61,122219,3466938,6.02,5.81,6.22
+eng_only,Speaks only English at home,62,126268,3535148,5.68,5.5,5.86
+eng_only,Speaks only English at home,63,126162,3502889,5.68,5.48,5.87
+eng_only,Speaks only English at home,64,127729,3526193,5.64,5.47,5.8
+eng_only,Speaks only English at home,65,128107,3299525,1.04,0.97,1.11
+eng_only,Speaks only English at home,66,126561,3212751,0.82,0.74,0.89
+eng_only,Speaks only English at home,67,124147,3137903,0.54,0.49,0.6
+eng_only,Speaks only English at home,68,121270,3040346,0.47,0.42,0.52
+eng_only,Speaks only English at home,69,118378,2968333,0.51,0.45,0.57
+eng_only,Speaks only English at home,70,115245,2884417,0.37,0.31,0.42
+eng_only,Speaks only English at home,71,109480,2733368,0.29,0.24,0.33
+eng_only,Speaks only English at home,72,105894,2627510,0.26,0.22,0.3
+eng_only,Speaks only English at home,73,100960,2497003,0.25,0.2,0.3
+eng_only,Speaks only English at home,74,97591,2425365,0.28,0.24,0.31
+eng_only,Speaks only English at home,75,96868,2361688,0.24,0.2,0.28
+eng_only,Speaks only English at home,76,87610,2126635,0.25,0.2,0.3
+eng_only,Speaks only English at home,77,76638,1851072,0.2,0.16,0.25
+eng_only,Speaks only English at home,78,66445,1614026,0.27,0.2,0.33
+eng_only,Speaks only English at home,79,63671,1551245,0.2,0.16,0.25
+eng_only,Speaks only English at home,80,59153,1454664,0.15,0.12,0.19
+eng_only,Speaks only English at home,81,52951,1298660,0.19,0.14,0.24
+eng_only,Speaks only English at home,82,45662,1120442,0.23,0.17,0.28
+eng_only,Speaks only English at home,83,40207,987051,0.23,0.17,0.29
+eng_only,Speaks only English at home,84,35361,870069,0.21,0.15,0.27
+eng_only,Speaks only English at home,85,31600,778942,0.19,0.12,0.26

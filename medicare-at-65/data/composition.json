@@ -1,0 +1,64 @@
+{
+ "year": 2024,
+ "uninsured_65": 490830,
+ "uninsured_65_moe90": 16026,
+ "pop_65": 59812431,
+ "uninsured_rate_65": 0.82,
+ "steps": [
+  {
+   "key": "fb",
+   "label": "Born outside the US",
+   "share_uninsured": 59.3,
+   "share_uninsured_se": 0.87,
+   "share_all": 15.1,
+   "share_all_se": 0.05
+  },
+  {
+   "key": "noncit",
+   "label": "Not a US citizen",
+   "share_uninsured": 47.4,
+   "share_uninsured_se": 0.97,
+   "share_all": 3.4,
+   "share_all_se": 0.03
+  },
+  {
+   "key": "arr55",
+   "label": "Moved to the US at 55 or older",
+   "share_uninsured": 28.2,
+   "share_uninsured_se": 0.97,
+   "share_all": 2.2,
+   "share_all_se": 0.02
+  },
+  {
+   "key": "lep",
+   "label": "Speaks English less than \u201cvery well\u201d",
+   "share_uninsured": 48.0,
+   "share_uninsured_se": 0.78,
+   "share_all": 9.2,
+   "share_all_se": 0.04
+  }
+ ],
+ "fb_uninsured_not_well_or_not_at_all": 62.6,
+ "rates": {
+  "usborn": {
+   "rate": 0.39,
+   "se": 0.012,
+   "n": 684652
+  },
+  "naturalized": {
+   "rate": 0.84,
+   "se": 0.046,
+   "n": 74584
+  },
+  "noncitizen": {
+   "rate": 11.48,
+   "se": 0.297,
+   "n": 19313
+  },
+  "all": {
+   "rate": 0.82,
+   "se": 0.016,
+   "n": 778549
+  }
+ }
+}

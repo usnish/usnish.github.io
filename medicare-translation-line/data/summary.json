@@ -1,0 +1,490 @@
+{
+ "acs": "ACS 2020-2024 5-year estimates",
+ "plan_year": 2027,
+ "floor": 10000,
+ "counties": 3144,
+ "pop5": 316142548,
+ "plans_individual": 5776,
+ "plans_open": 3526,
+ "members_2026": 48355166,
+ "lep_total": {
+  "Spanish": 17218782,
+  "Chinese": 1815921,
+  "Vietnamese": 901832,
+  "Korean": 555923,
+  "Tagalog": 540724,
+  "Arabic": 485777
+ },
+ "speakers_total": {
+  "Spanish": 42869908,
+  "Chinese": 3549780,
+  "Vietnamese": 1562558,
+  "Korean": 1101846,
+  "Tagalog": 1778009,
+  "Arabic": 1422969
+ },
+ "nonspanish_lep_total": 4300177,
+ "nonspanish_covered": {
+  "lep|county": 225195,
+  "lep|plans": 529132,
+  "lep|enrolled": 55407,
+  "lep|state": 0,
+  "all|county": 950154,
+  "all|plans": 1205488,
+  "all|enrolled": 286776,
+  "all|state": 0
+ },
+ "county_hits": {
+  "Chinese|lep": [
+   "San Francisco County, California",
+   "Queens County, New York"
+  ],
+  "Chinese|all": [
+   "Alameda County, California",
+   "San Francisco County, California",
+   "San Mateo County, California",
+   "Santa Clara County, California",
+   "Norfolk County, Massachusetts",
+   "Kings County, New York",
+   "New York County, New York",
+   "Queens County, New York",
+   "Richmond County, New York",
+   "King County, Washington"
+  ],
+  "Vietnamese|all": [
+   "Orange County, California",
+   "Santa Clara County, California"
+  ],
+  "Korean|all": [
+   "Bergen County, New Jersey"
+  ],
+  "Tagalog|lep": [
+   "Kodiak Island Borough, Alaska"
+  ],
+  "Tagalog|all": [
+   "Ketchikan Gateway Borough, Alaska",
+   "Kodiak Island Borough, Alaska",
+   "San Mateo County, California",
+   "Solano County, California"
+  ],
+  "Arabic|all": [
+   "Wayne County, Michigan"
+  ]
+ },
+ "floor_left_out": [
+  {
+   "county": "Loving County, Texas",
+   "language": "Chinese",
+   "basis": "lep",
+   "pop5": 33,
+   "share": 6.1,
+   "lep": 2
+  },
+  {
+   "county": "Loving County, Texas",
+   "language": "Chinese",
+   "basis": "all",
+   "pop5": 33,
+   "share": 6.1,
+   "lep": 2
+  },
+  {
+   "county": "Aleutians West Census Area, Alaska",
+   "language": "Vietnamese",
+   "basis": "all",
+   "pop5": 5107,
+   "share": 5.6,
+   "lep": 40
+  },
+  {
+   "county": "Baker County, Georgia",
+   "language": "Vietnamese",
+   "basis": "all",
+   "pop5": 2729,
+   "share": 6.2,
+   "lep": 18
+  },
+  {
+   "county": "Aleutians East Borough, Alaska",
+   "language": "Tagalog",
+   "basis": "lep",
+   "pop5": 3378,
+   "share": 6.3,
+   "lep": 213
+  },
+  {
+   "county": "Aleutians West Census Area, Alaska",
+   "language": "Tagalog",
+   "basis": "lep",
+   "pop5": 5107,
+   "share": 8.5,
+   "lep": 436
+  },
+  {
+   "county": "Aleutians East Borough, Alaska",
+   "language": "Tagalog",
+   "basis": "all",
+   "pop5": 3378,
+   "share": 16.3,
+   "lep": 213
+  },
+  {
+   "county": "Aleutians West Census Area, Alaska",
+   "language": "Tagalog",
+   "basis": "all",
+   "pop5": 5107,
+   "share": 26.2,
+   "lep": 436
+  },
+  {
+   "county": "Bristol Bay Borough, Alaska",
+   "language": "Tagalog",
+   "basis": "all",
+   "pop5": 864,
+   "share": 8.1,
+   "lep": 39
+  },
+  {
+   "county": "Glasscock County, Texas",
+   "language": "Arabic",
+   "basis": "all",
+   "pop5": 1002,
+   "share": 5.5,
+   "lep": 0
+  }
+ ],
+ "senior_lep_65": {
+  "Spanish": 2601441,
+  "Other Indo-European": 962635,
+  "Asian and Pacific Island": 1358173,
+  "Other": 174446
+ },
+ "senior_lep_65_total": 5096695,
+ "asianpi_seniors": {
+  "total": 1358173,
+  "pct_pass_all_ages": 45.0,
+  "pct_pass_65plus": 63.4
+ },
+ "state_top": [
+  {
+   "state": "Hawaii",
+   "language": "Tagalog",
+   "lep_share": 2.06,
+   "all_share": 4.41
+  },
+  {
+   "state": "New York",
+   "language": "Chinese",
+   "lep_share": 2.0,
+   "all_share": 3.2
+  },
+  {
+   "state": "California",
+   "language": "Chinese",
+   "lep_share": 1.81,
+   "all_share": 3.48
+  },
+  {
+   "state": "Hawaii",
+   "language": "Chinese",
+   "lep_share": 1.53,
+   "all_share": 2.55
+  },
+  {
+   "state": "Massachusetts",
+   "language": "Chinese",
+   "lep_share": 1.02,
+   "all_share": 2.17
+  },
+  {
+   "state": "Alaska",
+   "language": "Tagalog",
+   "lep_share": 0.99,
+   "all_share": 2.52
+  },
+  {
+   "state": "California",
+   "language": "Spanish",
+   "lep_share": 11.06,
+   "all_share": 28.32
+  },
+  {
+   "state": "Texas",
+   "language": "Spanish",
+   "lep_share": 10.74,
+   "all_share": 28.08
+  },
+  {
+   "state": "Florida",
+   "language": "Spanish",
+   "lep_share": 9.75,
+   "all_share": 22.55
+  },
+  {
+   "state": "New Jersey",
+   "language": "Spanish",
+   "lep_share": 7.93,
+   "all_share": 17.18
+  },
+  {
+   "state": "Nevada",
+   "language": "Spanish",
+   "lep_share": 7.82,
+   "all_share": 19.94
+  },
+  {
+   "state": "New Mexico",
+   "language": "Spanish",
+   "lep_share": 7.19,
+   "all_share": 24.46
+  },
+  {
+   "state": "New York",
+   "language": "Spanish",
+   "lep_share": 6.58,
+   "all_share": 14.77
+  },
+  {
+   "state": "Arizona",
+   "language": "Spanish",
+   "lep_share": 6.25,
+   "all_share": 19.25
+  },
+  {
+   "state": "Rhode Island",
+   "language": "Spanish",
+   "lep_share": 5.94,
+   "all_share": 13.51
+  },
+  {
+   "state": "Illinois",
+   "language": "Spanish",
+   "lep_share": 5.49,
+   "all_share": 14.01
+  },
+  {
+   "state": "Connecticut",
+   "language": "Spanish",
+   "lep_share": 5.27,
+   "all_share": 12.78
+  }
+ ],
+ "groups_2027": {
+  "Other Asian and Pacific Island languages|lep": {
+   "language": "Other Asian and Pacific Island languages",
+   "basis": "lep",
+   "plans": 40,
+   "plans_open": 32,
+   "contracts": 16,
+   "contracts_no_pace": 16,
+   "ma_contracts": 12,
+   "pdp_contracts": 4
+  },
+  "Other Asian and Pacific Island languages|all": {
+   "language": "Other Asian and Pacific Island languages",
+   "basis": "all",
+   "plans": 65,
+   "plans_open": 50,
+   "contracts": 25,
+   "contracts_no_pace": 24,
+   "ma_contracts": 21,
+   "pdp_contracts": 4
+  },
+  "French, Haitian or Cajun|lep": {
+   "language": "French, Haitian or Cajun",
+   "basis": "lep",
+   "plans": 0,
+   "plans_open": 0,
+   "contracts": 0,
+   "contracts_no_pace": 0,
+   "ma_contracts": 0,
+   "pdp_contracts": 0
+  },
+  "French, Haitian or Cajun|all": {
+   "language": "French, Haitian or Cajun",
+   "basis": "all",
+   "plans": 105,
+   "plans_open": 47,
+   "contracts": 23,
+   "contracts_no_pace": 19,
+   "ma_contracts": 23,
+   "pdp_contracts": 0
+  },
+  "Russian, Polish or other Slavic|lep": {
+   "language": "Russian, Polish or other Slavic",
+   "basis": "lep",
+   "plans": 0,
+   "plans_open": 0,
+   "contracts": 0,
+   "contracts_no_pace": 0,
+   "ma_contracts": 0,
+   "pdp_contracts": 0
+  },
+  "Russian, Polish or other Slavic|all": {
+   "language": "Russian, Polish or other Slavic",
+   "basis": "all",
+   "plans": 4,
+   "plans_open": 3,
+   "contracts": 3,
+   "contracts_no_pace": 3,
+   "ma_contracts": 3,
+   "pdp_contracts": 0
+  },
+  "German or other West Germanic|lep": {
+   "language": "German or other West Germanic",
+   "basis": "lep",
+   "plans": 0,
+   "plans_open": 0,
+   "contracts": 0,
+   "contracts_no_pace": 0,
+   "ma_contracts": 0,
+   "pdp_contracts": 0
+  },
+  "German or other West Germanic|all": {
+   "language": "German or other West Germanic",
+   "basis": "all",
+   "plans": 3,
+   "plans_open": 3,
+   "contracts": 3,
+   "contracts_no_pace": 3,
+   "ma_contracts": 3,
+   "pdp_contracts": 0
+  },
+  "Other Indo-European|lep": {
+   "language": "Other Indo-European",
+   "basis": "lep",
+   "plans": 0,
+   "plans_open": 0,
+   "contracts": 0,
+   "contracts_no_pace": 0,
+   "ma_contracts": 0,
+   "pdp_contracts": 0
+  },
+  "Other Indo-European|all": {
+   "language": "Other Indo-European",
+   "basis": "all",
+   "plans": 292,
+   "plans_open": 178,
+   "contracts": 106,
+   "contracts_no_pace": 85,
+   "ma_contracts": 100,
+   "pdp_contracts": 6
+  },
+  "Other and unspecified|lep": {
+   "language": "Other and unspecified",
+   "basis": "lep",
+   "plans": 0,
+   "plans_open": 0,
+   "contracts": 0,
+   "contracts_no_pace": 0,
+   "ma_contracts": 0,
+   "pdp_contracts": 0
+  },
+  "Other and unspecified|all": {
+   "language": "Other and unspecified",
+   "basis": "all",
+   "plans": 8,
+   "plans_open": 5,
+   "contracts": 3,
+   "contracts_no_pace": 3,
+   "ma_contracts": 3,
+   "pdp_contracts": 0
+  }
+ },
+ "other_lang_counties": [
+  {
+   "county": "McKinley County",
+   "state": "New Mexico",
+   "pop5": 66359,
+   "lep": 8343,
+   "lep_share": 12.6,
+   "plans_open": 14,
+   "plans_lep": 0,
+   "best_plan_lep": 3.09
+  },
+  {
+   "county": "San Juan County",
+   "state": "Utah",
+   "pop5": 13643,
+   "lep": 1494,
+   "lep_share": 11.0,
+   "plans_open": 19,
+   "plans_lep": 0,
+   "best_plan_lep": 0.53
+  },
+  {
+   "county": "Apache County",
+   "state": "Arizona",
+   "pop5": 61593,
+   "lep": 6631,
+   "lep_share": 10.8,
+   "plans_open": 16,
+   "plans_lep": 0,
+   "best_plan_lep": 1.49
+  },
+  {
+   "county": "San Juan County",
+   "state": "New Mexico",
+   "pop5": 114083,
+   "lep": 9313,
+   "lep_share": 8.2,
+   "plans_open": 17,
+   "plans_lep": 0,
+   "best_plan_lep": 3.09
+  },
+  {
+   "county": "North Slope Borough",
+   "state": "Alaska",
+   "pop5": 10173,
+   "lep": 693,
+   "lep_share": 6.8,
+   "plans_open": 9,
+   "plans_lep": 0,
+   "best_plan_lep": 0.56
+  },
+  {
+   "county": "Navajo County",
+   "state": "Arizona",
+   "pop5": 101960,
+   "lep": 6341,
+   "lep_share": 6.2,
+   "plans_open": 17,
+   "plans_lep": 0,
+   "best_plan_lep": 1.49
+  },
+  {
+   "county": "Bethel Census Area",
+   "state": "Alaska",
+   "pop5": 16504,
+   "lep": 913,
+   "lep_share": 5.5,
+   "plans_open": 9,
+   "plans_lep": 0,
+   "best_plan_lep": 0.56
+  }
+ ],
+ "checks": {
+  "c16001_lep_all_languages": 27139643,
+  "b16004_lep_all_languages": 27139643,
+  "fl_bengali_speakers": 16519,
+  "fl_bengali_lep": 6076
+ },
+ "navajo_pumas": {
+  "pumas": 3,
+  "navajo_lep": 27596,
+  "pct_of_non_spanish_lep": 85.0
+ },
+ "hawaii_group": {
+  "state_lep_share": 5.05,
+  "state_all_share": 11.64,
+  "group_lep": 68902,
+  "austronesian_lep": 50118,
+  "japanese_lep": 16337,
+  "plans": 40,
+  "plans_open": 32,
+  "pdp_plans": 8,
+  "all_in_hawaii": true,
+  "share_min": 5.05,
+  "share_max": 5.24
+ }
+}

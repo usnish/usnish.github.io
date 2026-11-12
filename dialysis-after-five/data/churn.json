@@ -1,0 +1,50 @@
+{
+ "from": "2020-10-31",
+ "to": "2026-10-22",
+ "units_then": 7261,
+ "late_then": 1277,
+ "units_now": 6959,
+ "late_now": 1131,
+ "units_in_both": 6443,
+ "late_in_both_then": 1173,
+ "kept_late": 1010,
+ "dropped_late": 163,
+ "added_late": 98,
+ "units_gone": 818,
+ "late_units_gone": 104,
+ "late_units_gone_still_listed": 1,
+ "units_new": 516,
+ "new_with_late": 23,
+ "pct_new_with_late": 4.5,
+ "pct_gone_late": 12.7,
+ "by_chain": {
+  "Fresenius": {
+   "dropped": 61,
+   "added": 36
+  },
+  "DaVita": {
+   "dropped": 57,
+   "added": 28
+  },
+  "US Renal Care": {
+   "dropped": 2,
+   "added": 9
+  },
+  "American Renal Associates": {
+   "dropped": 8,
+   "added": 1
+  },
+  "Independent": {
+   "dropped": 14,
+   "added": 15
+  },
+  "DCI": {
+   "dropped": 6,
+   "added": 1
+  },
+  "Other": {
+   "dropped": 15,
+   "added": 8
+  }
+ }
+}

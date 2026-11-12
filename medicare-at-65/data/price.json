@@ -1,0 +1,68 @@
+{
+ "year": 2026,
+ "part_a_under_30_quarters": 565.0,
+ "part_a_30_39_quarters": 311.0,
+ "part_b_standard": 202.9,
+ "monthly_full_buyin": 767.9,
+ "annual_full_buyin": 9214.8,
+ "profile_recent_uninsured_arrivals": {
+  "n_records": 2755,
+  "count": 101360,
+  "count_se": 2465,
+  "median_personal_income": 0.0,
+  "share_personal_income_zero_or_less": 75.4,
+  "share_personal_income_below_buyin": 82.1,
+  "median_family_pct_poverty": 271.0,
+  "share_family_below_138pct": 26.1,
+  "share_family_at_or_above_200pct": 62.5,
+  "share_parent_of_householder": 66.6,
+  "share_householder_or_spouse": 20.0,
+  "share_household_with_worker": 80.9,
+  "share_not_well_or_not_at_all": 68.9,
+  "share_noncitizen": 96.4,
+  "usborn65_median_personal_income": 31894.7166,
+  "top_birthplaces": [
+   {
+    "place": "Mexico",
+    "share": 32.3,
+    "n": 2235
+   },
+   {
+    "place": "China",
+    "share": 5.3,
+    "n": 462
+   },
+   {
+    "place": "India",
+    "share": 4.1,
+    "n": 342
+   },
+   {
+    "place": "El Salvador",
+    "share": 3.5,
+    "n": 225
+   },
+   {
+    "place": "Philippines",
+    "share": 3.0,
+    "n": 274
+   },
+   {
+    "place": "Colombia",
+    "share": 3.0,
+    "n": 207
+   },
+   {
+    "place": "Dominican Republic",
+    "share": 2.9,
+    "n": 159
+   },
+   {
+    "place": "Cuba",
+    "share": 2.7,
+    "n": 198
+   }
+  ],
+  "fb_uninsured_65_pooled": 286939
+ }
+}

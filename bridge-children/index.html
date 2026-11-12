@@ -1,0 +1,574 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bridge Children</title>
+<meta name="description" content="About 2.6 million US children aged 5 to 17 are fluent in English while every adult at home is not. Health rules bar clinics from relying on them to interpret, and the Census limited-English household measure does not class more than half of their homes as limited-English.">
+<link rel="canonical" href="https://usnish.xyz/bridge-children/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Old enough to count, too young to interpret">
+<meta property="og:description" content="About 2.6 million US children are the fluent English speakers in homes where every adult has limited English. More than half live in homes the official limited-English household measure does not count as limited-English.">
+<meta property="og:url" content="https://usnish.xyz/bridge-children/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Old enough to count, too young to interpret">
+<meta name="twitter:description" content="About 2.6 million US children are the fluent English speakers in homes where every adult has limited English. More than half live in homes the official limited-English household measure does not count as limited-English.">
+<link rel="stylesheet" href="../assets/viz/viz.css">
+<style>
+  main { max-width: 860px; }
+  .byline { font-size: 13px; color: var(--muted); margin: 10px 0 0; }
+  .big { font-size: 16px; color: var(--fg); margin: 16px 0 0; max-width: 72ch; }
+  .big b { color: var(--accent); }
+  .tierbar { margin: 22px 0 0; padding: 10px 12px; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; }
+  .tierbar .k { font-size: 12px; color: var(--muted); margin: 0 0 6px; }
+  .tierbar .controls { margin: 0; }
+  section.chart h2 { line-height: 1.3; }
+  .q { font-size: 16px; color: var(--fg); margin: 8px 0 14px; max-width: 70ch; }
+  .hint { font-size: 13px; color: var(--muted); margin: 6px 0; }
+  .btn { font: inherit; font-size: 14px; background: var(--accent); color: #fff; border: 0; border-radius: 6px; padding: 9px 16px; cursor: pointer; }
+  .btn[disabled] { background: var(--line); color: var(--muted); cursor: default; }
+  .btn.ghost { background: var(--bg); color: var(--accent); border: 1px solid var(--line); }
+  .answer { margin: 14px 0 0; font-size: 15px; max-width: 72ch; }
+  .answer b { color: var(--accent); }
+  .answer .you { color: var(--warn); font-weight: 600; }
+  /* guess: homes */
+  .homes { display: grid; grid-template-columns: repeat(10, 1fr); gap: 4px; max-width: 520px; margin: 4px 0 8px; }
+  .homes svg { width: 100%; height: auto; display: block; }
+  .homes .h { fill: var(--nodata); transition: fill .15s; }
+  .homes .h.on { fill: var(--warn); }
+  .homes .h.real { fill: var(--accent); }
+  .homes .kid { fill: #fff; opacity: 0; }
+  .homes .h.on + .kid, .homes .h.real + .kid { opacity: 1; }
+  .slider { display: flex; align-items: center; gap: 12px; max-width: 520px; }
+  .slider input { flex: 1; accent-color: var(--warn); height: 32px; }
+  .slider output { font-size: 22px; font-weight: 650; min-width: 76px; font-variant-numeric: tabular-nums; color: var(--warn); }
+  /* language strip */
+  .strip text { font-size: 12px; fill: var(--fg); }
+  .strip .ax text { fill: var(--muted); font-size: 11px; }
+  .strip .ax line, .strip .ax path { stroke: var(--line); }
+  .strip .ci { stroke: var(--accent); stroke-width: 2; opacity: .45; }
+  .strip .pt { fill: var(--accent); }
+  .strip .guess { stroke: var(--warn); stroke-width: 2; stroke-dasharray: 4 3; }
+  .strip .guesslbl { fill: var(--warn); font-size: 11px; font-weight: 600; }
+  .strip .row:hover text, .strip .row.sel text { font-weight: 650; }
+  .strip .n { fill: var(--muted); font-size: 11px; }
+  .strip .det { fill: var(--fg); font-size: 11px; font-weight: 600; paint-order: stroke; stroke: var(--bg); stroke-width: 4px; stroke-linejoin: round; }
+  .strip .row.sel .hit { fill: var(--panel); }
+  /* draw ages */
+  .draw { touch-action: none; user-select: none; -webkit-user-select: none; cursor: crosshair; display: block; width: 100%; }
+  .draw .ax text { fill: var(--muted); font-size: 11px; }
+  .draw .ax line, .draw .ax path { stroke: var(--line); }
+  .draw .gbar { fill: var(--warn); fill-opacity: .25; stroke: var(--warn); stroke-width: 1.5; }
+  .draw .gbar.after { fill: none; stroke-width: 2.5; }
+  .draw .gbar.empty { fill: none; stroke: var(--line); stroke-dasharray: 3 3; }
+  .draw .rbar { fill: var(--accent); }
+  .draw .rlbl { fill: var(--fg); font-size: 10px; text-anchor: middle; }
+  .draw .prompt { fill: var(--muted); font-size: 14px; text-anchor: middle; }
+  .legend-row { display: flex; gap: 16px; flex-wrap: wrap; font-size: 12px; color: var(--muted); margin: 6px 0 0; }
+  .sw { display: inline-block; width: 12px; height: 12px; border-radius: 2px; vertical-align: -2px; margin-right: 5px; }
+  /* dots */
+  .steps { display: flex; gap: 6px; flex-wrap: wrap; margin: 10px 0 8px; }
+  .steps button { font: inherit; font-size: 13px; background: var(--bg); color: var(--muted); border: 1px solid var(--line); border-radius: 6px; padding: 7px 11px; cursor: pointer; text-align: left; }
+  .steps .sub { display: block; font-size: 11px; opacity: .8; }
+  .steps button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .dots { display: block; width: 100%; }
+  .dots text { font-size: 11px; fill: var(--muted); }
+  .dots text.gl { font-size: 13px; fill: var(--fg); font-weight: 600; }
+  .steptext { font-size: 14px; max-width: 72ch; min-height: 3em; margin: 6px 0 0; }
+  .steptext b { color: var(--accent); }
+  .defs { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin: 18px 0 0; }
+  .defs blockquote { margin: 0; background: var(--panel); border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: 6px; padding: 10px 12px; font-size: 13px; }
+  .defs blockquote.reg { border-left-color: var(--warn); }
+  .defs .who { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 0 0 4px; }
+  .defs cite { display: block; font-style: normal; color: var(--muted); font-size: 12px; margin-top: 6px; }
+  /* states */
+  .statebox { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin: 8px 0; }
+  .statebox select { font: inherit; font-size: 14px; padding: 6px 8px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--fg); max-width: 100%; }
+  #stateout { font-size: 15px; max-width: 72ch; }
+  #stateout b { color: var(--accent); }
+  .stat .v small { font-size: 13px; font-weight: 500; color: var(--muted); }
+  @media (max-width: 520px) {
+    header h1 { font-size: 25px; }
+    .stat { min-width: 140px; }
+    .slider output { font-size: 19px; min-width: 64px; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <a class="back" href="/projects/">&larr; all projects</a>
+  <header>
+    <h1>Old enough to count, too young to interpret</h1>
+    <p class="lede" id="lede"></p>
+    <p class="byline">By Usnish Majumdar, MD · November 2026</p>
+  </header>
+
+  <div class="tierbar">
+    <p class="k">Count an adult as having limited English if they speak English…</p>
+    <div class="controls" id="tiers" role="group" aria-label="Limited English definition"></div>
+  </div>
+  <div class="stats" id="stats"></div>
+
+  <section class="chart" id="s-guess">
+    <h2>First, a guess</h2>
+    <p class="q" id="guessq"></p>
+    <div class="homes" id="homes" aria-hidden="true"></div>
+    <div class="slider">
+      <input type="range" id="guess" min="0" max="10" step="1" value="0" aria-label="Your guess, out of 10 homes">
+      <output id="guessout" for="guess">? of 10</output>
+    </div>
+    <p class="hint" id="guesshint">Slide to pick a number, then check it.</p>
+    <button class="btn" id="reveal1" type="button" disabled>Show the answer</button>
+    <div id="ans1" hidden>
+      <p class="answer" id="ans1text"></p>
+      <h2 style="margin-top:22px;font-size:16px">Not one community’s story</h2>
+      <p class="hint" id="striphint"></p>
+      <svg class="strip" id="strip" role="img" aria-label="Share of homes with a bridge child, by language"></svg>
+      <button class="btn ghost" id="alllangs" type="button">Show all languages</button>
+      <p class="hint" id="langnote"></p>
+    </div>
+  </section>
+
+  <section class="chart" id="s-age">
+    <h2>How old are they?</h2>
+    <p class="q">Out of every 100 of these children, how many are each age? <b>Drag across the chart</b> to draw your guess, one bar per age from 5 to 17.</p>
+    <svg class="draw" id="draw" role="img" aria-label="Draw your guess of the age distribution"></svg>
+    <div class="legend-row" id="drawlegend"></div>
+    <p class="hint" id="drawhint"></p>
+    <button class="btn" id="reveal2" type="button" disabled>Show the real ages</button>
+    <button class="btn ghost" id="redraw" type="button" hidden>Draw again</button>
+    <p class="answer" id="ans2" hidden></p>
+  </section>
+
+  <section class="chart" id="s-dots">
+    <h2>Two federal standards that disagree about the same homes</h2>
+    <p id="dotintro"></p>
+    <div class="steps" id="steps" role="group" aria-label="Arrange the dots"></div>
+    <svg class="dots" id="dots" role="img" aria-label="One dot per thousand bridge children"></svg>
+    <div class="legend-row" id="dotlegend"></div>
+    <p class="steptext" id="steptext"></p>
+    <div class="defs">
+      <blockquote>
+        <p class="who">Census Bureau statistical definition</p>
+        A “limited English speaking household” is one in which “no member 14 years old and over (1) speaks only English at home or (2) speaks a language other than English at home and speaks English ‘very well.’” “All members of a household are included in this group, including members under 14 years old who may speak only English or speak a language other than English at home and speak English ‘very well.’” The variable “identifies households that may need English-language assistance.”
+        <cite><a href="https://www2.census.gov/programs-surveys/acs/tech_docs/subject_definitions/2024_ACSSubjectDefinitions.pdf">2024 ACS Subject Definitions</a>, p. 55. KIDS COUNT’s indicator of <a href="https://datacenter.aecf.org/data/tables/129-children-living-in-linguistically-isolated-households-by-family-nativity">children in linguistically isolated households</a> is built on it.</cite>
+      </blockquote>
+      <blockquote class="reg">
+        <p class="who">Federal civil-rights rule for health care</p>
+        A covered entity must not “rely on a minor child to interpret or facilitate communication, except as a temporary measure while finding a qualified interpreter in an emergency involving an imminent threat to the safety or welfare of an individual or the public where there is no qualified interpreter … immediately available.”
+        <cite><a href="https://www.ecfr.gov/current/title-45/subtitle-A/subchapter-A/part-92/subpart-C/section-92.201">45 CFR 92.201(e)(3)</a>, Section 1557 rule, text as shown on eCFR (current as of November 6, 2026; this version in effect since July 5, 2024; a similar bar has been in the rule since 2016).</cite>
+      </blockquote>
+    </div>
+  </section>
+
+  <section class="chart" id="s-deps">
+    <h2>The adults in their homes</h2>
+    <p id="depintro"></p>
+    <div class="stats" id="depstats"></div>
+    <p id="kidintro" style="margin-top:18px"></p>
+    <div class="stats" id="kidstats"></div>
+  </section>
+
+  <section class="chart" id="s-state">
+    <h2>In your state</h2>
+    <div class="statebox">
+      <select id="state" aria-label="Choose a state"><option value="">Choose a state</option></select>
+    </div>
+    <p id="stateout"></p>
+  </section>
+
+  <section class="about">
+    <h2>About the data</h2>
+    <p><b>Source.</b> U.S. Census Bureau, American Community Survey <a href="https://www2.census.gov/programs-surveys/acs/data/pums/2024/5-Year/">2020–2024 5-year Public Use Microdata Sample</a> (person and housing files; <a href="https://www2.census.gov/programs-surveys/acs/tech_docs/pums/data_dict/PUMS_Data_Dictionary_2020-2024.csv">data dictionary</a>). People in group quarters (dorms, nursing homes, prisons) are left out.</p>
+    <p><b>Definitions.</b> A child is <i>fluent</i> if the household’s answer says they speak only English at home, or speak another language and speak English “very well.” An adult (18 or older) has <i>limited English</i> under the standard definition if they speak another language at home and speak English “well,” “not well” or “not at all” (less than “very well,” the usual federal data definition), and under the strict definition if “not well” or “not at all.” A <i>bridge child</i> is a fluent child aged 5 to 17 in a home where every adult has limited English. <span id="methodn"></span></p>
+    <p><b>Method.</b> Person counts use the person weight; household counts and the “out of 10 homes” rate use the housing-unit weight. Standard errors come from the 80 replicate weights with the Census Bureau’s successive-difference formula, SE = √(4/80 × Σ(replicate − estimate)²); ranges shown are 90% margins of error (1.645 × SE). The Census limited-English household flag was recomputed from the person records and <span id="nhh"></span> Household language is the language of the householder (the ACS reference person, usually the person in whose name the home is owned or rented), or of the first adult listed if the householder is under 18. Language rates are shown only where at least 100 sample homes have a school-age child; state counts are hidden when the standard error is more than 30% of the estimate. <span id="check1y"></span></p>
+    <p><b>What this does and does not show.</b> One person answers the survey for everyone in the home, so a child’s English rating is a parent’s report, and “very well” for a 6-year-old means fluent for their age, not able to explain a medication change. Being the only fluent speaker at home does not prove a child interprets, and relatives or neighbors outside the home are not seen. Studies of youth language brokering find it consequential: a 2022 meta-analysis of 65 studies (Shen et al., <a href="https://doi.org/10.1037/amp0001035"><i>American Psychologist</i></a>; PubMed 36190758) linked more frequent brokering with somewhat worse family relationships and more acculturation stress, with how children felt about it mattering more than how often they did it. Many adults counted here speak English “well” (<span id="wellshare"></span> under the standard definition), which is why the strict count is also shown.</p>
+    <p><b>The Census measure is not wrong.</b> Its 14-and-over rule is a deliberate statistical convention, used the same way since the ACS began, and it answers a different question: is there someone at home who can handle English? Health-care civil-rights rules answer that question differently for anyone under 18. This page puts the two side by side; it does not find an error in either.</p>
+    <p><b>Prior work.</b> A 2019 Census Bureau poster by Sandy Dietrich and Kurt Bauman (<a href="https://www.census.gov/content/dam/Census/library/working-papers/2019/demo/sehsd-wp2019-16-poster.pdf">SEHSD-WP2019-16</a>, 2017 ACS) saw this group: 20.7% of English-fluent children aged 5–17 in homes where someone speaks another language lived where every adult spoke English less than very well. <span id="postercheck"></span> The poster studied what predicts children’s English and did not count the children, profile their ages or households, or connect them to health-care rules. KFF’s September 2026 <a href="https://www.kff.org/racial-equity-and-health-policy/overview-of-health-coverage-and-care-for-individuals-with-limited-english-proficiency/">overview of people with limited English proficiency</a> counts 28.5 million people aged 5 and older with limited English (2024 ACS), by language and state; it does not count households, the children in them, or mention the rule on minors. A figure of 11 million child language brokers is widely repeated but has no traceable source; it is not comparable to the count here.</p>
+    <p>Data and build script: <a href="https://github.com/usnish/usnish.github.io/tree/master/bridge-children">github.com/usnish/usnish.github.io</a>.</p>
+  </section>
+</main>
+
+<script src="../assets/viz/d3.min.js"></script>
+<script src="../assets/viz/vizkit.js"></script>
+<script>
+(async function () {
+  const [S, ages, langs, states] = await Promise.all([
+    d3.json("data/summary.json"),
+    d3.csv("data/ages.csv", d3.autoType),
+    d3.csv("data/lang.csv", d3.autoType),
+    d3.csv("data/states.csv", d3.autoType),
+  ]);
+  const TIERS = [
+    { id: "hhs", label: "less than “very well”", sub: "standard federal data definition" },
+    { id: "strict", label: "“not well” or “not at all”", sub: "strict" },
+  ];
+  let tier = TIERS[0];
+  const T = () => S[tier.id];
+  const M = n => (n / 1e6).toFixed(n >= 1e7 ? 0 : 1) + " million";
+  const K = n => VK.int(Math.round(n / 1000) * 1000);
+  const nice = n => n >= 1e6 ? M(n) : K(n);
+  const pct = r => Math.round(100 * r) + "%";
+  const moe = se => 1.645 * se;
+  const adultsWord = () => tier.id === "hhs" ? "speaks English less than “very well”" : "speaks English “not well” or “not at all”";
+
+  // ---------- headline ----------
+  function headline() {
+    const t = T();
+    document.getElementById("lede").innerHTML =
+      `About <b>${nice(t.bridge_children.est)}</b> children aged 5 to 17 in the United States are fluent in English while every adult they live with ${adultsWord()}. ` +
+      `When a parent needs to understand a diagnosis, a bill or a pharmacy label, the nearest English speaker in the house is a child. ` +
+      `Federal health-care rules bar clinics and hospitals from relying on minors to interpret. Yet <b>${pct(t.missed_share.est)}</b> of these children (${nice(t.missed_by_census.est)}) live in homes the official statistic does not class as limited-English, because a 14-to-17-year-old there speaks English fluently. Health-care rules say that teenager should not be the interpreter either.`;
+    VK.stats(document.getElementById("stats"), [
+      ["Bridge children, 5–17", nice(t.bridge_children.est), `±${K(moe(t.bridge_children.se))} · ${(100 * t.share_of_all_kids_5_17.est).toFixed(1)}% of all US children 5–17`],
+      ["In homes not classed as limited-English", pct(t.missed_share.est), `${nice(t.missed_by_census.est)} children in ${K(t.households_bridge_missed.est)} homes`],
+      ["Adults in their homes", nice(t.dependent_adults.est), `${K(t.dependent_adults_medicaid.est)} on Medicaid`],
+      ["Children below the poverty line", pct(t.below_poverty_share.est), `${pct(t.below_200fpl_share.est)} below twice the poverty line`],
+    ]);
+  }
+
+  // ---------- 1. guess homes ----------
+  const homes = d3.select("#homes");
+  const housePath = "M3 18 L20 4 L37 18 L37 40 L3 40 Z";
+  for (let i = 0; i < 10; i++) {
+    const s = homes.append("svg").attr("viewBox", "0 0 40 42");
+    s.append("path").attr("class", "h").attr("d", housePath);
+    s.append("circle").attr("class", "kid").attr("cx", 20).attr("cy", 30).attr("r", 5);
+  }
+  let guess = null, revealed1 = false;
+  const gIn = document.getElementById("guess");
+  function paintHomes() {
+    const real = Math.round(10 * T().rate_bridge_given_child.est);
+    homes.selectAll(".h").each(function (d, i) {
+      d3.select(this).classed("on", !revealed1 && guess != null && i < guess).classed("real", revealed1 && i < real);
+    });
+  }
+  function guessQ() {
+    document.getElementById("guessq").innerHTML =
+      `Picture homes where every adult ${adultsWord()} and at least one child aged 5 to 17 lives. <b>Out of 10 such homes, how many have a child who speaks English fluently</b>, while no adult does?`;
+  }
+  gIn.addEventListener("input", () => {
+    guess = +gIn.value;
+    document.getElementById("guessout").textContent = `${guess} of 10`;
+    document.getElementById("reveal1").disabled = false;
+    if (revealed1) { renderAns1(); renderStrip(); } else paintHomes();
+  });
+  document.getElementById("reveal1").addEventListener("click", () => {
+    if (guess == null) return;
+    revealed1 = true;
+    document.getElementById("reveal1").hidden = true;
+    document.getElementById("guesshint").textContent = "The blue homes show the answer. You can still move the slider; your guess shows as the orange line below.";
+    document.getElementById("ans1").hidden = false;
+    renderAns1(); renderStrip();
+  });
+  function renderAns1() {
+    paintHomes();
+    const t = T(), r = t.rate_bridge_given_child;
+    const real10 = Math.round(10 * r.est);
+    const diff = guess === real10 ? "You got it." : guess < real10 ? `You guessed ${guess}: lower than the real number.` : `You guessed ${guess}: higher than the real number.`;
+    document.getElementById("ans1text").innerHTML =
+      `<span class="you">${diff}</span> The answer is about <b>${real10} in 10</b>: ${(100 * r.est).toFixed(1)}% (±${(100 * moe(r.se)).toFixed(1)} points) of the ${K(t.households_with_child.est)} such homes have a child who speaks English fluently. ` +
+      `That is ${K(t.households_with_bridge.est)} households.`;
+  }
+
+  let allLangs = false;
+  const SHORT = { "Other Middle and South American languages": "Indigenous Americas", "Pennsylvania German": "Penn. German", "Other languages of Asia": "Other Asian" };
+  const shortLang = n => SHORT[n] || n;
+  function renderStrip() {
+    if (!revealed1) return;
+    const id = tier.id;
+    let rows = langs.filter(d => d[id + "_rate"] != null && d[id + "_rate"] !== "");
+    const top = rows.slice().sort((a, b) => b[id + "_homes"] - a[id + "_homes"]);
+    rows = allLangs ? top : top.slice(0, 10);
+    const W = Math.min(760, document.getElementById("s-guess").clientWidth);
+    const svg = d3.select("#strip");
+    svg.selectAll("*").remove();
+    // label gutter: at least the default, wider if the longest label needs it
+    const probe = svg.append("g").selectAll("text").data(rows).join("text").text(d => shortLang(d.lang));
+    const longest = d3.max(probe.nodes(), n => n.getComputedTextLength()) || 0;
+    svg.selectAll("*").remove();
+    const lw = Math.max(W < 480 ? 124 : 150, Math.ceil(longest) + 14), rh = 24, mt = 28, mb = 30;
+    const H = mt + rows.length * rh + mb;
+    const x = d3.scaleLinear().domain([0, 1]).range([lw, W - 20]);
+    svg.attr("viewBox", `0 0 ${W} ${H}`).attr("width", W).attr("height", H);
+    svg.append("g").attr("class", "ax").attr("transform", `translate(0,${H - mb + 6})`)
+      .call(d3.axisBottom(x).ticks(W < 480 ? 5 : 10, "%").tickSizeOuter(0));
+    svg.append("g").attr("class", "ax").selectAll("line").data(x.ticks(5)).join("line")
+      .attr("x1", x).attr("x2", x).attr("y1", mt - 6).attr("y2", H - mb + 6).attr("stroke", "var(--line)");
+    const g = svg.selectAll("g.row").data(rows).join("g").attr("class", "row").attr("transform", (d, i) => `translate(0,${mt + i * rh + rh / 2})`);
+    g.append("rect").attr("class", "hit").attr("x", 0).attr("y", -rh / 2).attr("width", W).attr("height", rh).attr("fill", "transparent");
+    g.append("text").attr("x", lw - 8).attr("dy", "0.35em").attr("text-anchor", "end").text(d => shortLang(d.lang));
+    const lo_ = d => x(Math.max(0, d[id + "_rate"] - moe(d[id + "_se"]))), hi_ = d => x(Math.min(1, d[id + "_rate"] + moe(d[id + "_se"])));
+    g.append("line").attr("class", "ci").attr("x1", lo_).attr("x2", hi_);
+    g.append("circle").attr("class", "pt").attr("r", 5).attr("cx", d => x(d[id + "_rate"]));
+    const detail = d => `${(100 * d[id + "_rate"]).toFixed(0)}% ±${(100 * moe(d[id + "_se"])).toFixed(0)} · ${VK.int(d[id + "_n"])} sample homes`;
+    g.append("title").text(d => `${shortLang(d.lang)}: ${detail(d)}`);
+    const clearSel = () => { g.classed("sel", false); g.selectAll("text.det").remove(); };
+    g.style("cursor", "pointer").on("click", function (e, d) {
+      e.stopPropagation();
+      const was = d3.select(this).classed("sel");
+      clearSel();
+      if (was) return;
+      const row = d3.select(this).classed("sel", true);
+      const right = (W - 4) - hi_(d) >= lo_(d) - lw;
+      row.append("text").attr("class", "det").attr("dy", "0.35em")
+        .attr("x", right ? hi_(d) + 8 : lo_(d) - 8).attr("text-anchor", right ? "start" : "end").text(detail(d))
+        .each(function () { // drop the sample size if the full note would run into a label or off the chart
+          const room = right ? (W - 4) - hi_(d) - 8 : lo_(d) - 8 - lw;
+          if (this.getComputedTextLength() > room) d3.select(this).text(`${(100 * d[id + "_rate"]).toFixed(0)}% ±${(100 * moe(d[id + "_se"])).toFixed(0)}`);
+        });
+    });
+    svg.on("click", clearSel);
+    if (guess != null) {
+      svg.append("line").attr("class", "guess").attr("x1", x(guess / 10)).attr("x2", x(guess / 10)).attr("y1", mt - 8).attr("y2", H - mb + 4);
+      svg.append("text").attr("class", "guesslbl").attr("x", x(guess / 10)).attr("y", mt - 12)
+        .attr("text-anchor", guess >= 8 ? "end" : guess <= 1 ? "start" : "middle").text(`your guess: ${guess} in 10`);
+    }
+    const t10 = top.slice(0, 10), lo = d3.min(t10, d => d[id + "_rate"]), hi = d3.max(t10, d => d[id + "_rate"]);
+    document.getElementById("striphint").innerHTML =
+      `Share of these homes with a fluent child, by the language the adults speak, ${allLangs ? `all ${rows.length} languages with at least 100 sample homes` : "the 10 most common"}. Dots are estimates; lines are 90% margins of error. Tap a row for its numbers. ` +
+      `Among the 10 most common languages the share runs from ${pct(lo)} to ${pct(hi)}, and in ${t10.filter(d => d[id + "_rate"] > 0.5).length} of the 10 it is more than half.`;
+    document.getElementById("alllangs").textContent = allLangs ? "Show the 10 most common" : `Show all ${top.length} languages`;
+    const yid = langs.find(d => d.lang === "Yiddish"), pg = langs.find(d => d.lang === "Pennsylvania German");
+    document.getElementById("langnote").textContent = allLangs && yid && pg && yid[id + "_rate"] !== "" && yid[id + "_rate"] != null
+      ? `The clear exceptions are communities that raise children in the home language, such as Yiddish (${pct(yid[id + "_rate"])}) and Pennsylvania German (${pct(pg[id + "_rate"])}) speakers.` : "";
+  }
+  document.getElementById("alllangs").addEventListener("click", () => { allLangs = !allLangs; renderStrip(); });
+
+  // ---------- 2. draw ages ----------
+  const AGES = d3.range(5, 18);
+  let drawn = new Map(), revealed2 = false;
+  const dsvg = d3.select("#draw");
+  let dx, dy, DW, DH;
+  const YMAX = 15;
+  function realShare() {
+    const tot = d3.sum(ages, d => d[tier.id]);
+    return new Map(ages.map(d => [d.age, 100 * d[tier.id] / tot]));
+  }
+  function renderDraw() {
+    DW = Math.min(760, document.getElementById("s-age").clientWidth);
+    DH = DW < 480 ? 250 : 290;
+    const m = { t: 16, r: 6, b: 34, l: 30 };
+    dx = d3.scaleBand().domain(AGES).range([m.l, DW - m.r]).padding(0.18);
+    dy = d3.scaleLinear().domain([0, YMAX]).range([DH - m.b, m.t]);
+    dsvg.attr("viewBox", `0 0 ${DW} ${DH}`).attr("height", DH);
+    dsvg.selectAll("*").remove();
+    dsvg.append("g").attr("class", "ax").attr("transform", `translate(${m.l},0)`)
+      .call(d3.axisLeft(dy).ticks(5).tickSize(-(DW - m.l - m.r)).tickFormat(d => d)).call(g => g.select(".domain").remove());
+    dsvg.append("g").attr("class", "ax").attr("transform", `translate(0,${DH - m.b})`).call(d3.axisBottom(dx).tickSizeOuter(0));
+    dsvg.append("text").attr("x", DW / 2).attr("y", DH - 3).attr("text-anchor", "middle").attr("fill", "var(--muted)").attr("font-size", 11).text("Age");
+    dsvg.append("g").attr("class", "real");
+    dsvg.append("g").attr("class", "guessg");
+    if (!drawn.size) dsvg.append("text").attr("class", "prompt").attr("x", DW / 2).attr("y", dy(YMAX * 0.6)).text("Drag here to draw ↔");
+    paintDraw();
+  }
+  function paintDraw() {
+    const rs = realShare();
+    dsvg.select("g.real").selectAll("rect").data(revealed2 ? AGES : []).join(
+      enter => enter.append("rect").attr("class", "rbar").attr("x", a => dx(a)).attr("width", dx.bandwidth()).attr("y", dy(0)).attr("height", 0)
+        .call(e => e.transition().duration(700).delay((a, i) => i * 40).attr("y", a => dy(rs.get(a))).attr("height", a => dy(0) - dy(rs.get(a)))),
+      upd => upd.transition().duration(400).attr("y", a => dy(rs.get(a))).attr("height", a => dy(0) - dy(rs.get(a))));
+    dsvg.select("g.real").selectAll("text").data(revealed2 ? AGES : []).join("text").attr("class", "rlbl")
+      .attr("x", a => dx(a) + dx.bandwidth() / 2).attr("y", a => dy(rs.get(a)) - 4)
+      .text(a => DW < 480 ? Math.round(rs.get(a)) : rs.get(a).toFixed(1));
+    const gw = revealed2 ? dx.bandwidth() * 0.55 : dx.bandwidth();
+    dsvg.select("g.guessg").selectAll("rect").data(AGES).join("rect")
+      .attr("class", a => drawn.has(a) ? (revealed2 ? "gbar after" : "gbar") : "gbar empty")
+      .attr("x", a => dx(a) + (dx.bandwidth() - gw) / 2).attr("width", gw)
+      .attr("y", a => dy(drawn.get(a) || 0)).attr("height", a => Math.max(drawn.has(a) ? 0 : 1, dy(0) - dy(drawn.get(a) || 0)));
+    const left = AGES.length - drawn.size;
+    const r2 = document.getElementById("reveal2");
+    r2.disabled = left > 0;
+    r2.textContent = left > 0 ? `Draw all 13 bars first (${left} left)` : "Show the real ages";
+    document.getElementById("drawhint").textContent = revealed2 ? "" : "Bars snap to wherever your finger or mouse passes. Each bar is the number of children per 100 at that age.";
+    document.getElementById("drawlegend").innerHTML = revealed2
+      ? `<span><span class="sw" style="background:var(--accent)"></span>Real share at each age</span><span><span class="sw" style="border:2px solid var(--warn)"></span>Your guess (rescaled to 100)</span>`
+      : `<span><span class="sw" style="background:rgba(180,83,42,.3);border:1.5px solid var(--warn)"></span>Your guess</span>`;
+  }
+  let lastPt = null, drawing = false;
+  function setAt(px, py) {
+    const step = dx.step(), a0 = dx.range()[0];
+    const idx = Math.max(0, Math.min(AGES.length - 1, Math.floor((px - a0) / step)));
+    const v = Math.max(0, Math.min(YMAX, dy.invert(py)));
+    if (lastPt) { // fill bars skipped by a fast stroke
+      const [li, lv] = lastPt, lo = Math.min(li, idx), hi = Math.max(li, idx);
+      for (let i = lo; i <= hi; i++) {
+        const f = hi === lo ? 1 : (i - li) / (idx - li);
+        drawn.set(AGES[i], lv + (v - lv) * f);
+      }
+    } else drawn.set(AGES[idx], v);
+    lastPt = [idx, v];
+  }
+  function ptr(e) { const r = dsvg.node().getBoundingClientRect(); return [(e.clientX - r.left) * DW / r.width, (e.clientY - r.top) * DH / r.height]; }
+  dsvg.on("pointerdown", e => {
+    if (revealed2) return;
+    try { dsvg.node().setPointerCapture(e.pointerId); } catch (err) { /* synthetic pointer */ }
+    drawing = true; lastPt = null;
+    dsvg.select(".prompt").remove();
+    setAt(...ptr(e)); paintDraw(); e.preventDefault();
+  }).on("pointermove", e => {
+    if (revealed2 || !drawing) return;
+    setAt(...ptr(e)); paintDraw();
+  }).on("pointerup pointercancel", () => { lastPt = null; drawing = false; });
+  document.getElementById("reveal2").addEventListener("click", () => {
+    const tot = d3.sum(AGES, a => drawn.get(a));
+    if (tot > 0) AGES.forEach(a => drawn.set(a, 100 * drawn.get(a) / tot));
+    else AGES.forEach(a => drawn.set(a, 100 / 13));
+    revealed2 = true;
+    document.getElementById("reveal2").hidden = true;
+    document.getElementById("redraw").hidden = false;
+    paintDraw(); renderAns2();
+  });
+  document.getElementById("redraw").addEventListener("click", () => {
+    revealed2 = false; drawn = new Map();
+    document.getElementById("reveal2").hidden = false;
+    document.getElementById("redraw").hidden = true;
+    document.getElementById("ans2").hidden = true;
+    renderDraw();
+  });
+  function renderAns2() {
+    if (!revealed2) return;
+    const t = T(), rs = realShare();
+    const gTeen = d3.sum([14, 15, 16, 17], a => drawn.get(a)), rTeen = 100 * t.age_14_17.est / t.bridge_children.est;
+    const byAge = new Map(ages.map(d => [d.age, d[tier.id]]));
+    const peak = d3.greatest(ages, d => d[tier.id]);
+    const el = document.getElementById("ans2");
+    el.hidden = false;
+    el.innerHTML =
+      `<span class="you">You put ${Math.round(gTeen)} of every 100 at ages 14 to 17.</span> The real number is <b>${Math.round(rTeen)}</b>, so <b>${pct(t.age_le13_share.est)}</b> are 13 or younger (${nice(t.age_5_9.est + t.age_10_13.est)} children). ` +
+      `The count climbs from ${K(byAge.get(5))} five-year-olds, who are still learning English, to a peak of ${K(peak[tier.id])} at age ${peak.age}, then holds steady: there are about as many 10-year-olds (${K(byAge.get(10))}) as 17-year-olds (${K(byAge.get(17))}). ` +
+      `If they were spread evenly, 9 of the 13 ages would put 69% at 13 or younger, so the real pattern is close to flat: a child in grade school is about as likely as a high schooler to be the family’s English speaker.`;
+  }
+
+  // ---------- 3. unit dots ----------
+  const STEPS = [
+    { id: "all", label: "1. Every child", sub: "1 dot = 1,000 children" },
+    { id: "census", label: "2. As the Census measure sees them", sub: "limited-English home or not" },
+  ];
+  let step = STEPS[0];
+  const dotsvg = d3.select("#dots");
+  function dotData() {
+    // Real age split from the survey: at each age, how many live in a home the Census measure does not class
+    // as limited-English (a fluent 14-17-year-old is there). For ages 14-17 that is every child.
+    const out = [];
+    ages.forEach(d => {
+      const n = Math.round(d[tier.id] / 1000), m = Math.min(n, Math.round(d[tier.id + "_missed"] / 1000));
+      for (let i = 0; i < n; i++) out.push({ age: d.age, missed: i < m });
+    });
+    return out;
+  }
+  let dots = [];
+  function layoutDots() {
+    const W = Math.min(760, document.getElementById("s-dots").clientWidth);
+    const n = dots.length;
+    const s = W < 480 ? (tier.id === "hhs" ? 5 : 8) : (tier.id === "hhs" ? 7.5 : 11);
+    const r = s * 0.36;
+    let H, labels = [];
+    if (step.id === "all") {
+      const cols = Math.floor(W / s), rows = Math.ceil(n / cols);
+      dots.forEach((d, i) => { d.x = (i % cols) * s + s / 2; d.y = 22 + Math.floor(i / cols) * s + s / 2; });
+      H = 22 + rows * s + 8;
+      labels.push({ x: 0, y: 14, t: `${VK.int(n)} dots`, cls: "gl", anchor: "start" });
+    } else {
+      const gap = 16, gw = (W - gap) / 2, cols = Math.floor(gw / s);
+      const A = dots.filter(d => !d.missed).sort((a, b) => a.age - b.age), B = dots.filter(d => d.missed).sort((a, b) => (a.age >= 14) - (b.age >= 14) || a.age - b.age);
+      const top = W < 480 ? 50 : 40;
+      [[A, 0], [B, gw + gap]].forEach(([g, x0]) => g.forEach((d, i) => { d.x = x0 + (i % cols) * s + s / 2; d.y = top + Math.floor(i / cols) * s + s / 2; }));
+      H = top + Math.ceil(Math.max(A.length, B.length) / cols) * s + 8;
+      const t = T();
+      if (W < 480) {
+        labels.push({ x: 0, y: 14, t: "Limited-English home", cls: "gl", anchor: "start" }, { x: 0, y: 30, t: `${nice(t.counted_by_census.est)} children`, anchor: "start" });
+        labels.push({ x: gw + gap, y: 14, t: "Not limited-English", cls: "gl", anchor: "start" }, { x: gw + gap, y: 30, t: `${nice(t.missed_by_census.est)} children`, anchor: "start" });
+      } else {
+        labels.push({ x: 0, y: 16, t: `In a limited-English home: ${nice(t.counted_by_census.est)}`, cls: "gl", anchor: "start" });
+        labels.push({ x: gw + gap, y: 16, t: `Not classed limited-English: ${nice(t.missed_by_census.est)}`, cls: "gl", anchor: "start" });
+      }
+    }
+    dotsvg.attr("viewBox", `0 0 ${W} ${H}`).attr("height", H);
+    const teen = d => d.age >= 14;
+    const fill = d => step.id === "all" ? "var(--accent)" : teen(d) ? "var(--warn)" : step.id === "census" && d.missed ? "#7a9cc0" : "var(--accent)";
+    dotsvg.selectAll("circle").data(dots).join(enter => enter.append("circle").attr("cx", d => d.x).attr("cy", d => d.y).attr("fill", fill)).attr("r", r)
+      .transition().duration(900).delay((d, i) => (i % 97) * 4)
+      .attr("cx", d => d.x).attr("cy", d => d.y).attr("fill", fill);
+    dotsvg.selectAll("text").data(labels).join("text").attr("class", d => d.cls || null)
+      .attr("x", d => d.x).attr("y", d => d.y).attr("text-anchor", d => d.anchor).text(d => d.t);
+    const t = T();
+    const lg = document.getElementById("dotlegend");
+    lg.innerHTML = step.id === "all" ? `<span><span class="sw" style="background:var(--accent)"></span>1 dot = 1,000 bridge children</span>`
+      : `<span><span class="sw" style="background:var(--accent)"></span>5–13, in a limited-English home</span><span><span class="sw" style="background:#7a9cc0"></span>5–13, lives with a fluent teen</span><span><span class="sw" style="background:var(--warn)"></span>14–17</span>`;
+    const missedYounger = t.missed_by_census.est - t.age_14_17.est;
+    document.getElementById("steptext").innerHTML = step.id === "all"
+      ? `Each dot is about 1,000 children aged 5 to 17 who are fluent in English in a home where no adult is: ${nice(t.bridge_children.est)} in all, about 1 in ${Math.round(1 / t.share_of_all_kids_5_17.est)} US children that age. ${pct(t.sole_fluent_share.est)} of them are the only fluent person in the home, with no fluent brother or sister living with them.`
+      : `The Census measure classes the homes of <b>${nice(t.counted_by_census.est)}</b> of these children as limited-English households. The other <b>${nice(t.missed_by_census.est)} (${pct(t.missed_share.est)})</b> live in ${K(t.households_bridge_missed.est)} homes it classes as not limited-English: the ${nice(t.age_14_17.est)} fluent teenagers themselves (orange) plus ${nice(missedYounger)} younger brothers and sisters who live with one. A single fluent member aged 14 or older is enough for the measure to treat the whole home as able to manage English. Under the health-care rule quoted below, none of these ${nice(t.bridge_children.est)} children, on either side, should be the interpreter.`;
+  }
+  function renderDots() {
+    VK.pressButtons("#steps", STEPS, step, d => { step = d; renderDots(); });
+    d3.select("#steps").selectAll("button").attr("type", "button");
+    layoutDots();
+  }
+  function rebuildDots() { dotsvg.selectAll("circle").remove(); dots = dotData(); renderDots(); }
+
+  // ---------- 4. dependents ----------
+  function renderDeps() {
+    const t = T();
+    document.getElementById("depintro").innerHTML =
+      `${nice(t.dependent_adults.est)} adults live in these homes, none of whom speaks English “very well”. They are the patients and caregivers who may need an interpreter at the doctor’s office.`;
+    const engNote = tier.id === "hhs"
+      ? `${pct(t.dependent_adults_eng_well_share.est)} speak English “well”; ${pct(t.dependent_adults_eng_notwell_share.est)} “not well”; ${pct(t.dependent_adults_eng_notatall_share.est)} “not at all”`
+      : `${pct(t.dependent_adults_eng_notwell_share.est)} speak English “not well”; ${pct(t.dependent_adults_eng_notatall_share.est)} “not at all”`;
+    VK.stats(document.getElementById("depstats"), [
+      ["Adults in these homes", nice(t.dependent_adults.est), engNote],
+      ["On Medicaid", K(t.dependent_adults_medicaid.est), `${pct(t.dependent_adults_medicaid.est / t.dependent_adults.est)} of these adults (Medicaid or similar public plan)`],
+      ["Aged 65 or older", K(t.dependent_adults_65plus.est), "grandparents and older parents"],
+    ]);
+    document.getElementById("kidintro").textContent = "The children themselves are mostly US-born, and most are in families with low incomes.";
+    VK.stats(document.getElementById("kidstats"), [
+      ["Born in the US", pct(t.us_born_share.est), "of bridge children"],
+      ["Below the poverty line", pct(t.below_poverty_share.est), `${pct(t.below_200fpl_share.est)} below twice the poverty line`],
+      ["On Medicaid or CHIP", pct(t.medicaid_share.est), "or another means-tested public plan"],
+    ]);
+  }
+
+  // ---------- 5. states ----------
+  const sel = d3.select("#state");
+  states.slice().sort((a, b) => d3.ascending(a.state, b.state)).forEach(d => sel.append("option").attr("value", d.fips).text(d.state));
+  function renderState() {
+    const f = sel.property("value"), out = document.getElementById("stateout");
+    if (!f) { out.textContent = ""; return; }
+    const d = states.find(r => String(r.fips).padStart(2, "0") === String(f).padStart(2, "0"));
+    const v = d[tier.id], se = d[tier.id + "_se"];
+    if (v == null || v === "") { out.innerHTML = `The survey sample in ${d.state} is too small for a reliable estimate under this definition (the standard error is more than 30% of the estimate).`; return; }
+    out.innerHTML = `<b>${K(v)}</b> bridge children in ${d.state} (90% margin of error ±${K(moe(se))}), about ${(100 * v / T().bridge_children.est).toFixed(1)}% of the national count.`;
+  }
+  sel.on("change", renderState);
+
+  // ---------- tier + boot ----------
+  function renderAll() {
+    VK.pressButtons("#tiers", TIERS, tier, d => { tier = d; renderAll(); });
+    headline(); guessQ(); paintHomes();
+    if (revealed1) { renderAns1(); renderStrip(); }
+    if (revealed2) { paintDraw(); renderAns2(); }
+    rebuildDots(); renderDeps(); renderState();
+    const t = T();
+    document.getElementById("wellshare").textContent = pct(S.hhs.dependent_adults_eng_well_share.est);
+    document.getElementById("methodn").textContent = `The standard count rests on ${VK.int(S.hhs.bridge_children_n)} sampled children (strict: ${VK.int(S.strict.bridge_children_n)}).`;
+    document.getElementById("nhh").textContent = S.lngi_mismatch_households === 0
+      ? `matched the Bureau’s own variable (LNGI) in every one of the ${VK.int(S.sample_households)} sampled homes where every adult has limited English.`
+      : `differed from the Bureau’s own variable (LNGI) in ${VK.int(S.lngi_mismatch_households)} of ${VK.int(S.sample_households)} sampled homes.`;
+    const pc = S.check_census_poster;
+    document.getElementById("postercheck").textContent =
+      `Applying this page’s definitions to the single-year 2019 survey gives ${(100 * pc["2019"].share).toFixed(1)}%, close to their figure; in 2024 it was ${(100 * pc["2024"].share).toFixed(1)}% (${M(pc["2019"].bridge_children)} bridge children in 2019, ${M(pc["2024"].bridge_children)} in 2024).`;
+    const c = S.check_2024_1yr;
+    document.getElementById("check1y").textContent =
+      `As a check, the single-year 2024 file gives ${M(c.hhs.bridge_children.est)} bridge children (strict: ${K(c.strict.bridge_children.est)}), ${pct(c.hhs.missed_share.est)} in homes not classed as limited-English, ${pct(c.hhs.age_le13_share.est)} aged 13 or under, and ${pct(c.hhs.rate_bridge_given_child.est)} of homes with a school-age child having one.`;
+  }
+  renderAll(); renderDraw();
+  let rw = window.innerWidth;
+  window.addEventListener("resize", () => {
+    if (Math.abs(window.innerWidth - rw) < 30) return;
+    rw = window.innerWidth; renderDraw(); layoutDots(); renderStrip();
+  });
+})();
+</script>
+</body>
+</html>

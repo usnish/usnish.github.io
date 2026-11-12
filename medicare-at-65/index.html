@@ -1,0 +1,634 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Medicare at 65</title>
+<meta name="description" content="About 491,000 Americans 65 and older have no health insurance, and most were born abroad. For people who move to the US at 60 or older, the uninsured rate does not drop at 65. American Community Survey microdata by age at arrival, years in the US and language.">
+<link rel="canonical" href="https://usnish.xyz/medicare-at-65/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The 65th birthday that never comes: who Medicare leaves uninsured">
+<meta property="og:description" content="Most of the 491,000 uninsured Americans 65 and older were born abroad. For people who arrive at 60 or older, turning 65 barely changes the odds of being uninsured.">
+<meta property="og:url" content="https://usnish.xyz/medicare-at-65/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="The 65th birthday that never comes: who Medicare leaves uninsured">
+<meta name="twitter:description" content="Most of the 491,000 uninsured Americans 65 and older were born abroad. For people who arrive at 60 or older, turning 65 barely changes the odds of being uninsured.">
+<link rel="stylesheet" href="../assets/viz/viz.css">
+<style>
+  main { max-width: 860px; }
+  :root { --c-us: #6b6b6b; --c-a1: #8fbcdb; --c-a2: #3a7fb8; --c-a3: #b4532a; --c-guess: #1c1c1c; }
+  .byline { font-size: 13px; color: var(--muted); margin: 10px 0 12px; }
+  .big { font-size: 16px; color: var(--fg); margin: 16px 0 0; max-width: 72ch; }
+  .big b { color: var(--accent); }
+  section.chart h2 { line-height: 1.3; }
+  .q { font-size: 16px; color: var(--fg); margin: 8px 0 12px; max-width: 70ch; }
+  .hint { font-size: 13px; color: var(--muted); margin: 6px 0; min-height: 1.4em; }
+  .btnrow { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin: 8px 0 0; }
+  .btn { font: inherit; font-size: 14px; background: var(--accent); color: #fff; border: 0; border-radius: 6px; padding: 9px 16px; cursor: pointer; }
+  .btn[disabled] { background: var(--line); color: var(--muted); cursor: default; }
+  .btn.ghost { background: var(--bg); color: var(--accent); border: 1px solid var(--line); }
+  .answer { margin: 14px 0 0; font-size: 15px; max-width: 72ch; }
+  .answer b { color: var(--accent); }
+  .answer .you { font-weight: 650; }
+  .answer .late { color: var(--c-a3); font-weight: 650; }
+  .chartbox { position: relative; margin: 6px 0 0; }
+  svg.lc { display: block; width: 100%; user-select: none; -webkit-user-select: none; }
+  svg.lc.drawing { touch-action: none; cursor: crosshair; }
+  .lc .ax text { fill: var(--muted); font-size: 11px; }
+  .lc .ax line, .lc .ax path { stroke: var(--line); }
+  .lc .grid line { stroke: var(--line); stroke-opacity: .7; }
+  .lc .rule { stroke: var(--fg); stroke-dasharray: 4 4; stroke-width: 1; opacity: .55; }
+  .lc .rulelbl { font-size: 11px; fill: var(--muted); }
+  .lc .line { fill: none; stroke-width: 2.4; stroke-linejoin: round; stroke-linecap: round; }
+  .lc .band { stroke: none; opacity: .16; }
+  .lc .lbl { font-size: 12px; font-weight: 600; paint-order: stroke; stroke: var(--bg); stroke-width: 4px; stroke-linejoin: round; }
+  .lc .zone { fill: var(--c-a3); fill-opacity: .05; stroke: var(--c-a3); stroke-opacity: .35; stroke-dasharray: 3 3; }
+  .lc .prompt { font-size: 14px; fill: var(--c-a3); text-anchor: middle; font-weight: 600; }
+  .lc .guess { fill: none; stroke: var(--c-guess); stroke-width: 2.4; stroke-dasharray: 6 4; stroke-linecap: round; }
+  .lc .guessdot { fill: var(--c-guess); }
+  .lc .cross { stroke: var(--fg); stroke-width: 1; opacity: .35; }
+  .lc .hit { fill: transparent; }
+  .lc .anchor { fill: var(--c-a3); stroke: var(--bg); stroke-width: 2; }
+  .legend-row { display: flex; gap: 6px 16px; flex-wrap: wrap; font-size: 12px; color: var(--fg); margin: 8px 0 0; }
+  .legend-row span { white-space: nowrap; }
+  .sw { display: inline-block; width: 18px; height: 3px; border-radius: 2px; vertical-align: 3px; margin-right: 6px; }
+  .sw.dash { background: repeating-linear-gradient(90deg, var(--c-guess) 0 6px, transparent 6px 9px) !important; }
+  .readout { font-size: 13px; color: var(--muted); margin: 8px 0 0; min-height: 2.8em; max-width: 72ch; }
+  .readout b { color: var(--fg); }
+  .readout table { border-collapse: collapse; margin-top: 4px; font-size: 13px; }
+  .readout td { padding: 1px 12px 1px 0; color: var(--fg); font-variant-numeric: tabular-nums; }
+  .readout td.ci { color: var(--muted); }
+  /* waffles */
+  .steps { display: flex; gap: 6px; flex-wrap: wrap; margin: 10px 0 8px; }
+  .steps button { font: inherit; font-size: 13px; background: var(--bg); color: var(--muted); border: 1px solid var(--line); border-radius: 6px; padding: 7px 11px; cursor: pointer; text-align: left; }
+  .steps button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .waffles { display: flex; gap: 18px; flex-wrap: wrap; align-items: flex-start; margin: 8px 0 0; }
+  .waf { flex: 1 1 0; min-width: 140px; max-width: 280px; }
+  .waf .sub { min-height: 2.8em; }
+  .waf h3 { font-size: 13px; font-weight: 600; margin: 0 0 2px; }
+  .waf .sub { font-size: 12px; color: var(--muted); margin: 0 0 6px; }
+  .waf .big2 { font-size: 26px; font-weight: 650; line-height: 1.1; margin: 6px 0 0; font-variant-numeric: tabular-nums; }
+  .waf svg { display: block; width: 100%; height: auto; }
+  .waf rect { fill: var(--nodata); transition: fill .25s; }
+  .waf rect.on { fill: var(--c-a3); }
+  .waf.all rect.on { fill: var(--accent); }
+  .steptext { font-size: 14px; max-width: 72ch; min-height: 3em; margin: 10px 0 0; }
+  .steptext b { color: var(--fg); }
+  .bars { grid-template-columns: minmax(120px, 210px) minmax(60px, 1fr) 52px; }
+  @media (max-width: 480px) { .bars { grid-template-columns: 116px minmax(40px, 1fr) 46px; font-size: 12px; } }
+  /* language */
+  .lang text { font-size: 12px; fill: var(--fg); }
+  .lang .ax text { fill: var(--muted); font-size: 11px; }
+  .lang .ax line, .lang .ax path { stroke: var(--line); }
+  .lang .row { cursor: pointer; }
+  .lang .row rect.bg { fill: transparent; }
+  .lang .row.sel rect.bg, .lang .row:hover rect.bg { fill: var(--panel); }
+  .lang .ci { stroke-width: 2; opacity: .5; }
+  .lang .val { fill: var(--muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+  .lang .ref { stroke: var(--fg); stroke-dasharray: 3 3; opacity: .6; }
+  .lang .reflbl { fill: var(--muted); font-size: 11px; }
+  .keyrow { display: flex; gap: 6px 16px; flex-wrap: wrap; font-size: 12px; color: var(--muted); margin: 6px 0 0; }
+  .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 5px; vertical-align: -1px; }
+  /* price + closing */
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin: 12px 0 0; }
+  .pc { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; font-size: 13px; }
+  .pc .k { font-size: 12px; color: var(--muted); }
+  .pc .v { font-size: 28px; font-weight: 650; line-height: 1.2; font-variant-numeric: tabular-nums; margin: 2px 0 4px; }
+  .pc.price .v { color: var(--c-a3); }
+  .pc p { margin: 4px 0 0; }
+  .defs { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin: 14px 0 0; }
+  .defs blockquote { margin: 0; background: var(--panel); border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: 6px; padding: 10px 12px; font-size: 13px; }
+  .defs blockquote.law { border-left-color: var(--c-a3); }
+  .defs .who { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 0 0 4px; }
+  .defs p { margin: 0 0 6px; }
+  .note { font-size: 13px; color: var(--muted); max-width: 72ch; margin: 10px 0 0; }
+</style>
+</head>
+<body>
+<main>
+  <a class="back" href="/projects/">&larr; all projects</a>
+  <header>
+    <h1>The 65th birthday that never comes: who Medicare leaves uninsured</h1>
+    <p class="byline">By Usnish Majumdar, MD · November 2026</p>
+    <p class="lede">Medicare is the closest thing the United States has to single-payer health care, and at 65 nearly everyone born here gets it. But Medicare is earned: with about 10 years of US payroll taxes, or, for a green-card holder, by living here 5 years and then paying a monthly premium. People who move here late in life often have neither.</p>
+  </header>
+  <p class="big" id="headline"></p>
+
+  <section class="chart" id="draw-sec">
+    <h2>What happens at 65?</h2>
+    <p class="q" id="drawq"></p>
+    <div class="legend-row" id="draw-legend"></div>
+    <div class="chartbox" id="draw-box"></div>
+    <p class="hint" id="draw-hint"></p>
+    <div class="btnrow">
+      <button class="btn" id="reveal" type="button" disabled>Show me the real lines</button>
+      <button class="btn ghost" id="skip" type="button">Skip, just show me</button>
+    </div>
+    <div class="readout" id="draw-readout" hidden></div>
+    <div class="answer" id="draw-answer" hidden></div>
+  </section>
+
+  <section class="chart">
+    <h2>Who the uninsured seniors are</h2>
+    <p id="waf-intro"></p>
+    <div class="steps" id="waf-steps" role="group" aria-label="Group to highlight"></div>
+    <div class="waffles">
+      <div class="waf un"><h3>Uninsured, 65 and older</h3><p class="sub" id="waf-un-sub"></p><svg id="waf-un" viewBox="0 0 100 100" role="img" aria-label="100 squares, one per 1% of uninsured people 65 and older"></svg><p class="big2" id="waf-un-v"></p></div>
+      <div class="waf all"><h3>Everyone 65 and older</h3><p class="sub" id="waf-all-sub"></p><svg id="waf-all" viewBox="0 0 100 100" role="img" aria-label="100 squares, one per 1% of all people 65 and older"></svg><p class="big2" id="waf-all-v"></p></div>
+    </div>
+    <p class="steptext" id="waf-text"></p>
+    <h3 style="font-size:15px;margin:24px 0 4px">The later people arrive, the more often they are uninsured after 65</h3>
+    <p class="note" style="margin:0 0 8px" id="dose-note"></p>
+    <div class="bars" id="dose"></div>
+  </section>
+
+  <section class="chart">
+    <h2>The one step that lines up with a rule: five years</h2>
+    <p id="yrs-intro"></p>
+    <div class="chartbox" id="yrs-box"></div>
+    <div class="readout" id="yrs-readout"></div>
+  </section>
+
+  <section class="chart">
+    <h2>Citizenship, more than English, decides who gets Medicare at 65</h2>
+    <p id="lep-intro"></p>
+    <div class="controls" id="lep-tog" role="group" aria-label="Which group to show"></div>
+    <div class="legend-row" id="lep-legend"></div>
+    <div class="chartbox" id="lep-box"></div>
+    <div class="readout" id="lep-readout"></div>
+
+    <h3 style="font-size:15px;margin:26px 0 4px">Uninsured at 65 and older, among people with limited English, by the language they speak</h3>
+    <p class="note" style="margin:0 0 6px" id="lang-intro"></p>
+    <div class="controls" id="lang-tog" role="group" aria-label="Citizenship"></div>
+    <div class="keyrow" id="lang-key"></div>
+    <div class="chartbox" id="lang-box"></div>
+    <div class="btnrow"><button class="btn ghost" id="lang-all" type="button"></button></div>
+    <div class="readout" id="lang-readout"></div>
+  </section>
+
+  <section class="chart">
+    <h2>The price of buying in, and who would pay it</h2>
+    <p id="price-intro"></p>
+    <div class="cards" id="price-cards"></div>
+    <div id="i864"></div>
+  </section>
+
+  <section class="chart">
+    <h2>Earned, or by residence</h2>
+    <p>Medicare for All bills would replace the earning rules with residence. Meanwhile, the 2025 budget law moved Medicare the other way for some immigrants.</p>
+    <div class="defs">
+      <blockquote><p class="who">Medicare today</p>
+        <p><b>Earned.</b> Premium-free Part A comes with 40 quarters (about 10 years) of work under Social Security, your own or a spouse's.</p>
+        <p><b>Bought.</b> Without that record, a US citizen, or a permanent resident who has lived here 5 years in a row, can buy Part A <span id="close-a"></span> plus Part B <span id="close-b"></span>.</p>
+        <p>Without the work record, no one else 65 or older can enroll, however long they have lived here.</p>
+        <p><b>Until then.</b> Lawfully present older immigrants can buy a Marketplace plan, with premium subsidies through 2026; from 2027 only permanent residents, Cuban and Haitian entrants and COFA migrants keep the subsidies. Most permanent residents also wait 5 years for Medicaid (<a href="https://justiceinaging.org/older-immigrants-and-medicare/">Justice in Aging</a>).</p></blockquote>
+      <blockquote class="law"><p class="who">The 2025 budget law (Pub. L. 119-21, sec. 71201)</p>
+        <p>Limits Medicare to citizens, permanent residents, certain Cuban and Haitian entrants and people living here under the Compacts of Free Association.</p>
+        <p>Refugees, people granted asylum, people with Temporary Protected Status and some other lawfully present immigrants lose eligibility. Those already enrolled lose coverage by <b>January 4, 2027</b>, according to <a href="https://www.kff.org/racial-equity-and-health-policy/key-facts-on-health-coverage-of-immigrants/">KFF</a> and <a href="https://justiceinaging.org/older-immigrants-and-medicare/">Justice in Aging</a>.</p></blockquote>
+      <blockquote><p class="who">Medicare for All Act (S.1506 / H.R.3069, 2025), sec. 102</p>
+        <p>&ldquo;Every individual who is a resident of the United States is entitled to benefits&hellip;&rdquo; The bills leave the test of residency to a rule from the Secretary of Health and Human Services, and let the Secretary cover others.</p>
+        <p>Both bills also bar travel to the US &ldquo;for the sole purpose of obtaining health care items and services&rdquo; (the Senate bill by a rule from the Secretary). The same section 102 appeared in the 2023 bills, S.1655 and H.R.3421.</p></blockquote>
+    </div>
+    <p class="note">Nothing on this page says who among the uninsured could enroll under any of these rules. The survey does not record immigration status (see below).</p>
+  </section>
+
+  <section class="about">
+    <h2>About the data</h2>
+    <p><b>Source.</b> US Census Bureau, American Community Survey (ACS) Public Use Microdata Sample person files: the 2024 1-year file (who the uninsured are), the 2022, 2023 and 2024 1-year files pooled (age curves, years in the US, recent arrivals), and the 2020&ndash;2024 5-year file (age at arrival and language at 65 and older). Downloaded from <a href="https://www2.census.gov/programs-surveys/acs/data/pums/">census.gov</a>. All figures cover the civilian noninstitutional population, the universe ACS uses for health insurance; people in nursing homes, prisons and other institutions are left out.</p>
+    <p><b>Method.</b> Uninsured means no health insurance of any kind at the time of the survey (HICOV). Age at arrival is the age now minus the years since the year of entry (YOEP), so it can be off by a year. All rates are weighted. 95% confidence intervals use the Census Bureau's 80 replicate weights (successive difference replication). For the pooled years every weight is divided by three. Single-year-of-age points with fewer than 100 survey records are not shown. Language rows need at least 100 records. Limited English means speaking English less than &ldquo;very well&rdquo;. Grouped categories such as &ldquo;Other languages of Asia&rdquo; are left out of the language chart.</p>
+    <p id="check"></p>
+    <p><b>Caveats.</b></p>
+    <ul>
+      <li>The ACS does not ask about immigration status. &ldquo;Not a citizen&rdquo; mixes permanent residents, refugees and people granted asylum, people with Temporary Protected Status or other temporary status, and people without status. So the data cannot say who could buy into Medicare. The rules on this page sit beside the data; they do not classify it.</li>
+      <li>The ACS counts people staying at an address for more than two months, so some recent arrivals, especially in their first year or two, are long-stay visitors such as parents visiting on tourist visas, not immigrants.</li>
+      <li>The year of entry is the most recent arrival, so people who lived here before, left and came back look like recent arrivals.</li>
+      <li>That people who arrive at 60 or older see no drop at 65 is not a surprise or a malfunction. It is what the work-quarter and residency rules produce. The point is how many people it touches and who they are.</li>
+      <li>Coverage is self-reported. People whose only care is through the Indian Health Service are counted as uninsured, as the ACS does.</li>
+      <li>The 2020&ndash;2024 file spans the pandemic years, when Medicaid kept people enrolled continuously.</li>
+      <li id="cav-pa"></li>
+      <li>Language rows from small groups have wide intervals. The West and East African languages are shown to set them against the rest, not to rank them against each other.</li>
+    </ul>
+    <p><b>Prior work.</b> Other researchers have shown that Medicare's coverage jump at 65 is smaller for immigrants as a whole: Park and colleagues, using a regression discontinuity in the Medical Expenditure Panel Survey (<a href="https://doi.org/10.1111/jgs.18380"><i>J Am Geriatr Soc</i> 2023</a>), and Jun and colleagues in the Health and Retirement Study (<a href="https://doi.org/10.1093/geront/gnad070"><i>The Gerontologist</i> 2024</a>). The Congressional Research Service reported in 2009 that Medicare reached 69% of noncitizens 65 and older, against 94% of the US-born (<a href="https://www.everycrsreport.com/reports/R40772.html">CRS R40772</a>). KFF's <a href="https://www.kff.org/racial-equity-and-health-policy/key-facts-on-health-coverage-of-immigrants/">Key Facts on Health Coverage of Immigrants</a> gives uninsured rates for adults by immigration status. Yin and colleagues (<a href="https://generations.asaging.org/understanding-late-arriving-immigrants-social-security-eligibility-and-retirement-security/"><i>Generations</i>, 2025</a>, ACS 2019&ndash;23) showed Medicare participation by age lags for people who arrive at 50 or older, as O'Neil and Tienda found earlier (<i>J Gerontol B</i> 2015). This page adds the uninsured rate, rather than Medicare receipt, by single year of age and age at arrival, the make-up of the uninsured 65 and older by nativity, citizenship, arrival age and English ability, rates by years in the US, and rates by detailed language.</p>
+    <p><b>Rules and prices.</b> Premiums: CMS, <a href="https://www.cms.gov/newsroom/fact-sheets/2026-medicare-parts-b-premiums-deductibles">2026 Medicare Parts A &amp; B Premiums and Deductibles</a>. Eligibility: <a href="https://www.kff.org/faqs/medicare-open-enrollment-faqs/enrollment-information-for-people-new-to-medicare/can-immigrants-enroll-in-medicare/">KFF, Can immigrants enroll in Medicare?</a> and <a href="https://justiceinaging.org/older-immigrants-and-medicare/">Justice in Aging, Older Immigrants and Medicare</a>. Bills: <a href="https://www.congress.gov/bill/119th-congress/senate-bill/1506/text">S.1506</a> and <a href="https://www.congress.gov/bill/119th-congress/house-bill/3069/text">H.R.3069</a> (119th Congress). Affidavit of support: <a href="https://www.uscis.gov/i-864">USCIS, Form I-864</a>.</p>
+    <p>Data and build script: <a href="https://github.com/usnish/usnish.github.io/tree/master/medicare-at-65">github.com/usnish/usnish.github.io</a>.</p>
+  </section>
+</main>
+
+<script src="../assets/viz/d3.min.js"></script>
+<script src="../assets/viz/vizkit.js"></script>
+<script>
+(async function () {
+  const [curves, yrs, lang, comp, price, sum] = await Promise.all([
+    d3.csv("data/curves.csv", d3.autoType),
+    d3.csv("data/years_in_us.csv", d3.autoType),
+    d3.csv("data/lang65.csv", d3.autoType),
+    d3.json("data/composition.json"),
+    d3.json("data/price.json"),
+    d3.json("data/summary.json"),
+  ]);
+  const css = getComputedStyle(document.documentElement);
+  const col = k => css.getPropertyValue(k).trim();
+  const P = v => v == null ? "–" : (v < 10 ? v.toFixed(1) : v.toFixed(1)) + "%";
+  const P0 = v => Math.round(v) + "%";
+  const int = VK.int;
+  const at = (g, a) => sum.curves_at[g][String(a)];
+  const byGroup = d3.group(curves, d => d.group);
+  const series = g => byGroup.get(g).filter(d => d.rate != null);
+  const st = Object.fromEntries(comp.steps.map(s => [s.key, s]));
+  const rec = price.profile_recent_uninsured_arrivals;
+
+  // Headline -------------------------------------------------------------------
+  document.getElementById("headline").innerHTML =
+    `In 2024, about <b>${int(Math.round(comp.uninsured_65 / 1000) * 1000)}</b> people 65 and older in the US had no health insurance. ` +
+    `<b>${P0(st.fb.share_uninsured)}</b> of them were born in another country, though immigrants are ${P0(st.fb.share_all)} of people that age. ` +
+    `<b>${P0(st.noncit.share_uninsured)}</b> are not US citizens, a group that is ${st.noncit.share_all.toFixed(1)}% of all seniors. ` +
+    `<b>${P0(st.arr55.share_uninsured)}</b> moved to the US at 55 or older, a group that is just ${st.arr55.share_all.toFixed(1)}% of seniors.`;
+
+  // 1. Draw-your-guess ------------------------------------------------------------
+  const G = [
+    { key: "usborn", name: "Born in the US", c: col("--c-us") },
+    { key: "arr_lt45", name: "Moved here before 45", c: col("--c-a1") },
+    { key: "arr_45_59", name: "Moved here at 45–59", c: col("--c-a2") },
+    { key: "arr_60p", name: "Moved here at 60 or older", c: col("--c-a3") },
+  ];
+  const a64 = at("arr_60p", 64);
+  document.getElementById("drawq").innerHTML =
+    `The gray line is the share of people born in the US who are uninsured, at each age from 55 to 85. At 65 Medicare arrives and the line falls off a cliff. ` +
+    `The orange line is people who moved to the US at 60 or older, shown up to age 64 (${P(a64)} uninsured). <b>Draw where you think their line goes from 64 to 85.</b>`;
+  const box = document.getElementById("draw-box");
+  const guess = new Map();  // age 65..85 -> value
+  let revealed = false, skipped = false, readAge = 66, lastAge = null;
+  const YMAX = 45;
+  const hint = document.getElementById("draw-hint");
+  const revealBtn = document.getElementById("reveal");
+  const legendEl = document.getElementById("draw-legend");
+
+  function legend() {
+    const items = revealed ? G : [G[0], G[3]];
+    legendEl.innerHTML = items.map(g => `<span><i class="sw" style="background:${g.c}"></i>${g.name}</span>`).join("") +
+      (guess.size ? `<span><i class="sw dash"></i>Your guess</span>` : "");
+  }
+  function frame(el, h) {
+    const W = el.clientWidth || 340;
+    const H = h(W);
+    el.innerHTML = "";
+    const svg = d3.select(el).append("svg").attr("class", "lc").attr("viewBox", `0 0 ${W} ${H}`).attr("height", H);
+    return { svg, W, H };
+  }
+  function ageAxes(svg, W, H, m, yMax, yStep) {
+    const x = d3.scaleLinear([55, 85], [m.l, W - m.r]);
+    const y = d3.scaleLinear([0, yMax], [H - m.b, m.t]);
+    svg.append("g").attr("class", "grid").selectAll("line").data(d3.range(0, yMax + 0.01, yStep)).join("line")
+      .attr("x1", m.l).attr("x2", W - m.r).attr("y1", y).attr("y2", y);
+    svg.append("g").attr("class", "ax").attr("transform", `translate(0,${H - m.b})`)
+      .call(d3.axisBottom(x).tickValues(W < 420 ? [55, 65, 75, 85] : [55, 60, 65, 70, 75, 80, 85]).tickFormat(d3.format("d")).tickSizeOuter(0));
+    svg.append("g").attr("class", "ax").attr("transform", `translate(${m.l},0)`)
+      .call(d3.axisLeft(y).tickValues(d3.range(0, yMax + 0.01, yStep)).tickFormat(d => d + "%").tickSize(0)).call(g => g.select(".domain").remove());
+    svg.append("text").attr("class", "rulelbl").attr("x", W - m.r).attr("y", H - 4).attr("text-anchor", "end").text("age");
+    svg.append("line").attr("class", "rule").attr("x1", x(65)).attr("x2", x(65)).attr("y1", m.t - 4).attr("y2", H - m.b);
+    svg.append("text").attr("class", "rulelbl").attr("x", x(65) + 4).attr("y", m.t + 6).text("65");
+    return { x, y };
+  }
+  const line = (x, y) => d3.line().x(d => x(d.age)).y(d => y(d.rate));
+  const band = (x, y) => d3.area().x(d => x(d.age)).y0(d => y(d.lo)).y1(d => y(d.hi));
+
+  function renderDraw() {
+    const { svg, W, H } = frame(box, W => W < 520 ? 330 : 380);
+    const m = { t: 18, r: 12, b: 34, l: 38 };
+    const { x, y } = ageAxes(svg, W, H, m, YMAX, 10);
+    const ln = line(x, y), bd = band(x, y);
+    svg.classed("drawing", !revealed);
+    const show = revealed ? G : [G[0], G[3]];
+    if (revealed) {
+      show.forEach(g => svg.append("path").attr("class", "band").attr("fill", g.c).attr("d", bd(series(g.key))));
+    }
+    show.forEach(g => {
+      let d = series(g.key);
+      if (!revealed && g.key === "arr_60p") d = d.filter(r => r.age <= 64);
+      const p = svg.append("path").attr("class", "line").attr("stroke", g.c).attr("d", ln(d));
+      if (revealed && !skipped && g.key !== "usborn") {
+        const L = p.node().getTotalLength();
+        p.attr("stroke-dasharray", `${L} ${L}`).attr("stroke-dashoffset", L).transition().duration(1100).attr("stroke-dashoffset", 0)
+          .on("end", function () { d3.select(this).attr("stroke-dasharray", null); });
+      }
+    });
+    // labels on the known lines
+    const u57 = series("usborn").find(d => d.age === 57);
+    svg.append("text").attr("class", "lbl").attr("fill", col("--c-us")).attr("x", x(55) + 4).attr("y", y(u57.rate) - 8).text("Born in the US");
+    if (!revealed) {
+      svg.append("circle").attr("class", "anchor").attr("cx", x(64)).attr("cy", y(a64)).attr("r", 5);
+      const zx = x(64), zw = x(85) - x(64);
+      svg.insert("rect", ".line").attr("class", "zone").attr("x", zx).attr("y", m.t).attr("width", zw).attr("height", H - m.b - m.t);
+      if (!guess.size) svg.append("text").attr("class", "prompt").attr("x", zx + zw / 2).attr("y", y(YMAX * 0.82)).text("Draw your guess here");
+    } else {
+      const r60 = series("arr_60p");
+      const last = r60[r60.length - 1];
+      svg.append("text").attr("class", "lbl").attr("fill", col("--c-a3")).attr("x", x(last.age)).attr("y", y(Math.max(...r60.filter(d => d.age >= 76).map(d => d.hi))) - 6)
+        .attr("text-anchor", "end").text("Moved here at 60+");
+    }
+    const gp = svg.append("path").attr("class", "guess");
+    const gd = svg.append("g");
+    function drawGuess() {
+      const pts = [{ age: 64, rate: a64 }, ...[...guess].sort((a, b) => a[0] - b[0]).map(([age, rate]) => ({ age, rate }))];
+      gp.attr("d", guess.size ? ln(pts) : null);
+      gd.selectAll("circle").data(guess.size && revealed ? pts.filter(d => d.age === 66 || d.age === 80) : []).join("circle")
+        .attr("class", "guessdot").attr("r", 3.5).attr("cx", d => x(d.age)).attr("cy", d => y(d.rate));
+    }
+    drawGuess();
+    const cross = svg.append("line").attr("class", "cross").attr("y1", m.t).attr("y2", H - m.b).attr("display", "none");
+    const hit = svg.append("rect").attr("class", "hit").attr("x", m.l).attr("y", 0).attr("width", W - m.l - m.r).attr("height", H - m.b + 10);
+    function setGuess(e) {
+      const [px, py] = d3.pointer(e, svg.node());
+      let a = Math.round(x.invert(px));
+      if (a < 64) return;
+      a = Math.max(65, Math.min(85, a));
+      const v = Math.max(0, Math.min(YMAX, y.invert(py)));
+      const maxA = guess.size ? Math.max(...guess.keys()) : 64;
+      // continue the current stroke; a new stroke bridges only a gap past the end of the old line
+      const from = lastAge != null ? lastAge : (!guess.size || a > maxA + 1) ? maxA : a;
+      const fromV = from === 64 ? a64 : guess.get(from);
+      const lo = Math.min(from, a), hi = Math.max(from, a);
+      for (let k = lo; k <= hi; k++) {
+        if (k < 65) continue;
+        const t = hi === lo ? 1 : (k - from) / (a - from);
+        guess.set(k, k === a ? v : fromV + (v - fromV) * t);
+      }
+      // fill any gap between 64 and the first guessed age
+      const minA = Math.min(...guess.keys()), minV = guess.get(minA);
+      for (let k = 65; k < minA; k++) guess.set(k, a64 + (minV - a64) * (k - 64) / (minA - 64));
+      lastAge = a;
+      drawGuess();
+      svg.select(".prompt").remove();
+      afterGuess();
+    }
+    if (!revealed) {
+      let down = false;
+      hit.on("pointerdown", e => { down = true; lastAge = null; hit.node().setPointerCapture?.(e.pointerId); setGuess(e); e.preventDefault(); })
+        .on("pointermove", e => { if (down) setGuess(e); })
+        .on("pointerup pointercancel", () => { down = false; lastAge = null; });
+    } else {
+      const read = e => {
+        const [px] = d3.pointer(e, svg.node());
+        readAge = Math.max(55, Math.min(85, Math.round(x.invert(px))));
+        cross.attr("display", null).attr("x1", x(readAge)).attr("x2", x(readAge));
+        readout();
+      };
+      hit.on("pointerdown pointermove", read);
+      cross.attr("display", null).attr("x1", x(readAge)).attr("x2", x(readAge));
+    }
+  }
+  function afterGuess() {
+    const maxA = guess.size ? Math.max(...guess.keys()) : 64;
+    revealBtn.disabled = maxA < 80;
+    hint.textContent = maxA < 80 ? (guess.size ? "Keep going, at least to age 80." : "Press and drag across the shaded area (works with a finger, too).") : "Ready. Redraw if you like, then press the button.";
+    legend();
+  }
+  function readout() {
+    const el = document.getElementById("draw-readout");
+    const rows = G.map(g => {
+      const d = byGroup.get(g.key).find(r => r.age === readAge);
+      return d && d.rate != null ? `<tr><td><i class="sw" style="background:${g.c}"></i>${g.name}</td><td>${P(d.rate)}</td><td class="ci">${d.lo.toFixed(1)}–${d.hi.toFixed(1)}</td></tr>` : "";
+    }).join("");
+    const gv = guess.get(readAge);
+    el.innerHTML = `<b>Age ${readAge}</b>, share uninsured (95% CI). Tap or drag across the chart to read other ages.<table>${rows}` +
+      (gv != null ? `<tr><td><i class="sw dash"></i>Your guess</td><td>${P(gv)}</td><td></td></tr>` : "") + `</table>`;
+  }
+  function reveal(skip) {
+    revealed = true; skipped = skip;
+    if (skip) guess.clear();
+    document.getElementById("reveal").hidden = true;
+    document.getElementById("drawq").innerHTML = `Share uninsured at each age, by the age people moved to the US. Shaded bands are 95% confidence intervals.` + (skip ? "" : " Your guess is the dashed black line.");
+    document.getElementById("skip").hidden = true;
+    hint.textContent = "";
+    legend();
+    renderDraw();
+    document.getElementById("draw-readout").hidden = false;
+    readout();
+    const ans = document.getElementById("draw-answer");
+    ans.hidden = false;
+    const u = k => at("usborn", k), l = k => at("arr_60p", k), mid = k => at("arr_45_59", k);
+    let you = "";
+    if (guess.size) {
+      you = `<p>You drew <span class="you">${P(guess.get(66))}</span> at 66 and <span class="you">${P(guess.get(80))}</span> at 80. ` +
+        `The real figures are <span class="late">${P(l(66))}</span> and <span class="late">${P(l(80))}</span>.</p>`;
+    }
+    ans.innerHTML = you +
+      `<p>For people born in the US, the share uninsured falls from ${P(u(64))} at 64 to ${P(u(65))} at 65. For people who moved here at 60 or older it does not fall: ` +
+      `<span class="late">${P(l(64))}</span> at 64, <span class="late">${P(l(65))}</span> at 65, and still <span class="late">${P(l(80))}</span> at 80, when only ${P(u(80))} of the US-born are uninsured. ` +
+      `People who arrived at 45 to 59 get part of the drop, from ${P(mid(64))} to ${P(mid(65))}.</p>` +
+      `<p>This is the rules working as written. Premium-free Medicare comes with 40 quarters of US work, your own or a spouse's. A permanent resident without them can buy in, but only after 5 years of living here, and people with other kinds of status cannot buy in at all. ` +
+      `Someone who arrives at 62 has had time to earn neither. The slow decline after 65 is consistent with people reaching those milestones, but it also reflects who is still alive and still here at 80; the survey follows different people at each age, not the same people over time.</p>`;
+  }
+  revealBtn.addEventListener("click", () => reveal(false));
+  document.getElementById("skip").addEventListener("click", () => reveal(true));
+  afterGuess();
+  renderDraw();
+  if (location.hash === "#answer") reveal(true);  // link straight to the answer
+
+  // 2. Waffles -------------------------------------------------------------------
+  document.getElementById("waf-intro").innerHTML =
+    `Each square is 1% of a group. Left: the ${int(Math.round(comp.uninsured_65 / 1000) * 1000)} people 65 and older with no insurance in 2024 (90% margin of error ±${int(Math.round(comp.uninsured_65_moe90 / 1000) * 1000)}). Right: all ${(comp.pop_65 / 1e6).toFixed(1)} million people that age. Pick a group to light up.`;
+  document.getElementById("waf-un-sub").textContent = `${int(Math.round(comp.uninsured_65 / 1000) * 1000)} people, ${comp.uninsured_rate_65}% of seniors`;
+  document.getElementById("waf-all-sub").textContent = `${(comp.pop_65 / 1e6).toFixed(1)} million people`;
+  function waffle(id) {
+    const s = 9.2, gap = 0.8;
+    d3.select(id).selectAll("rect").data(d3.range(100)).join("rect")
+      .attr("x", i => (i % 10) * (s + gap) + 0.4).attr("y", i => Math.floor(i / 10) * (s + gap) + 0.4).attr("width", s).attr("height", s).attr("rx", 1.2);
+  }
+  waffle("#waf-un"); waffle("#waf-all");
+  const wtext = {
+    fb: s => `<b>Born outside the US:</b> ${P0(s.share_uninsured)} of uninsured seniors, against ${P0(s.share_all)} of all seniors. The uninsured rate at 65 and older is ${comp.rates.usborn.rate.toFixed(1)}% for the US-born, ${comp.rates.naturalized.rate.toFixed(1)}% for naturalized citizens and ${comp.rates.noncitizen.rate.toFixed(1)}% for noncitizens.`,
+    noncit: s => `<b>Not a US citizen:</b> ${P0(s.share_uninsured)} of uninsured seniors, against ${s.share_all.toFixed(1)}% of all seniors.`,
+    arr55: s => `<b>Moved to the US at 55 or older:</b> ${P0(s.share_uninsured)} of uninsured seniors, against ${s.share_all.toFixed(1)}% of all seniors.`,
+    lep: s => `<b>Speaks English less than “very well”:</b> ${P0(s.share_uninsured)} of uninsured seniors, against ${P0(s.share_all)} of all seniors. Among the uninsured who were born abroad, ${P0(comp.fb_uninsured_not_well_or_not_at_all)} speak English “not well” or “not at all”.`,
+  };
+  const wsteps = comp.steps.map(s => ({ ...s, sub: null, label: { fb: "Born abroad", noncit: "Not a citizen", arr55: "Arrived at 55+", lep: "Limited English" }[s.key] }));
+  let wcur = wsteps[0];
+  function wdraw() {
+    VK.pressButtons("#waf-steps", wsteps, wcur, d => { wcur = d; wdraw(); });
+    const ku = Math.round(wcur.share_uninsured), ka = Math.round(wcur.share_all);
+    d3.select("#waf-un").selectAll("rect").classed("on", i => i < ku);
+    d3.select("#waf-all").selectAll("rect").classed("on", i => i < ka);
+    document.getElementById("waf-un-v").textContent = P0(wcur.share_uninsured);
+    document.getElementById("waf-all-v").textContent = wcur.share_all < 10 ? wcur.share_all.toFixed(1) + "%" : P0(wcur.share_all);
+    document.getElementById("waf-text").innerHTML = wtext[wcur.key](wcur);
+  }
+  wdraw();
+  const dose = sum.dose_5y;
+  document.getElementById("dose-note").textContent =
+    `Share uninsured at 65 and older, by age on arrival in the US (2020–2024). People who arrived at 55 or older are ${dose[3].share_of_seniors}% of seniors and ${P0(dose[3].share_of_uninsured)} of the uninsured.`;
+  const short = { usborn: "Born in the US", arr_lt40: "Arrived before 40", arr_40_54: "Arrived at 40\u201354", arr_55p: "Arrived at 55+" };
+  VK.bars(document.getElementById("dose"), dose.map((d, i) => ({ label: short[d.key], value: d.rate, color: [col("--c-us"), col("--c-a1"), col("--c-a2"), col("--c-a3")][i] })), { fmt: v => v.toFixed(1) + "%" });
+
+  // 3. Years in the US -------------------------------------------------------------
+  const yr = yrs.filter(d => d.years !== "31+").map(d => ({ ...d, years: +d.years }));
+  const yr_ = k => sum.years_rate[String(k)];
+  document.getElementById("yrs-intro").innerHTML =
+    `Immigrants 65 and older, by years since they arrived (2022–2024 pooled). ${P(yr_(0))} of those in their arrival year are uninsured. ` +
+    `The rate stays near ${P0((yr_(2) + yr_(3) + yr_(4)) / 3)} through years 2 to 4, then drops to ${P(yr_(5))} at year 5, the point at which a permanent resident can first buy into Medicare. ` +
+    `It falls steeply between the first and second year too, which no Medicare rule explains; some of it may be visitors who leave. After year 5 the decline is gradual, with no step at year 10, where 40 quarters of work could first be complete (${P(yr_(9))} at year 9, ${P(yr_(10))} at year 10).`;
+  let ySel = 5;
+  function renderYrs() {
+    const el = document.getElementById("yrs-box");
+    const { svg, W, H } = frame(el, W => W < 520 ? 280 : 320);
+    const m = { t: 22, r: 12, b: 36, l: 38 };
+    const ymax = 40;
+    const x = d3.scaleLinear([-0.5, 30.5], [m.l, W - m.r]);
+    const y = d3.scaleLinear([0, ymax], [H - m.b, m.t]);
+    svg.append("g").attr("class", "grid").selectAll("line").data([0, 10, 20, 30, 40]).join("line").attr("x1", m.l).attr("x2", W - m.r).attr("y1", y).attr("y2", y);
+    svg.append("g").attr("class", "ax").attr("transform", `translate(0,${H - m.b})`).call(d3.axisBottom(x).tickValues([0, 5, 10, 15, 20, 25, 30]).tickSizeOuter(0));
+    svg.append("g").attr("class", "ax").attr("transform", `translate(${m.l},0)`).call(d3.axisLeft(y).tickValues([0, 10, 20, 30, 40]).tickFormat(d => d + "%").tickSize(0)).call(g => g.select(".domain").remove());
+    svg.append("text").attr("class", "rulelbl").attr("x", W - m.r).attr("y", H - 4).attr("text-anchor", "end").text("years in the US");
+    svg.append("g").selectAll("line").data(yr).join("line").attr("stroke", col("--c-a3")).attr("opacity", .35).attr("stroke-width", 2)
+      .attr("x1", d => x(d.years)).attr("x2", d => x(d.years)).attr("y1", d => y(d.lo)).attr("y2", d => y(d.hi));
+    svg.append("path").attr("class", "line").attr("stroke", col("--c-a3")).attr("stroke-width", 2)
+      .attr("d", d3.line().curve(d3.curveStep).x(d => x(d.years)).y(d => y(d.rate))(yr));
+    svg.append("g").selectAll("circle").data(yr).join("circle").attr("r", d => d.years === ySel ? 5 : 3).attr("fill", col("--c-a3"))
+      .attr("stroke", "var(--bg)").attr("stroke-width", 1.5).attr("cx", d => x(d.years)).attr("cy", d => y(d.rate));
+    const x5 = x(4.5), y5 = y(yr_(4)) - 26;
+    svg.append("line").attr("class", "rule").attr("x1", x5).attr("x2", x5).attr("y1", y5 + 4).attr("y2", H - m.b);
+    const t = svg.append("text").attr("class", "rulelbl").attr("x", x5 + 5).attr("y", y5 - 8).style("fill", "var(--fg)").style("font-weight", 600);
+    t.append("tspan").text("Year 5: permanent residents");
+    t.append("tspan").attr("x", x5 + 5).attr("dy", 14).text("can first buy into Medicare");
+    svg.append("rect").attr("class", "hit").attr("x", m.l).attr("y", 0).attr("width", W - m.l - m.r).attr("height", H)
+      .on("pointerdown pointermove", e => {
+        const [px] = d3.pointer(e, svg.node());
+        const k = Math.max(0, Math.min(30, Math.round(x.invert(px))));
+        if (k !== ySel) { ySel = k; renderYrs(); }
+      });
+    const d = yr.find(r => r.years === ySel);
+    document.getElementById("yrs-readout").innerHTML =
+      `<b>${ySel === 0 ? "Arrival year" : "Year " + ySel}</b>: ${P(d.rate)} uninsured (95% CI ${d.lo.toFixed(1)}–${d.hi.toFixed(1)}), ${int(d.n)} survey records; about ${int(Math.round(d.uninsured / 100) * 100)} uninsured people in an average year. Tap or drag across the chart to read other years.`;
+  }
+  renderYrs();
+
+  // 4a. LEP citizens vs noncitizens -------------------------------------------------
+  const LEP = [
+    { key: "lep_cit", label: "US citizens with limited English", sub: "naturalized or born a citizen", c: col("--accent") },
+    { key: "lep_noncit", label: "Noncitizens with limited English", sub: null, c: col("--c-a3") },
+  ];
+  let lepCur = LEP[0];
+  const lc = k => at("lep_cit", k), ln_ = k => at("lep_noncit", k);
+  document.getElementById("lep-intro").innerHTML =
+    `Limited English alone does not keep people from Medicare. Seniors with limited English who are US citizens get the drop at 65: ${P(lc(64))} uninsured at 64, ${P(lc(65))} at 65, ${P(lc(80))} at 80. ` +
+    `Those who are not citizens get a much smaller drop, and the rate stays high: ${P(ln_(64))} at 64, ${P(ln_(65))} at 65, and still ${P(ln_(80))} at 80, about ${Math.round(ln_(80) / lc(80) / 10) * 10} times the citizens' rate. The dashed gray line is people who speak only English at home.`;
+  function renderLep() {
+    VK.pressButtons("#lep-tog", LEP, lepCur, d => { lepCur = d; renderLep(); });
+    document.getElementById("lep-legend").innerHTML = LEP.map(g => `<span style="opacity:${g === lepCur ? 1 : .45}"><i class="sw" style="background:${g.c}"></i>${g.label}</span>`).join("") +
+      `<span><i class="sw" style="background:repeating-linear-gradient(90deg, ${col("--c-us")} 0 5px, transparent 5px 8px)"></i>Speaks only English</span>`;
+    const el = document.getElementById("lep-box");
+    const { svg, W, H } = frame(el, W => W < 520 ? 280 : 320);
+    const m = { t: 18, r: 12, b: 34, l: 38 };
+    const { x, y } = ageAxes(svg, W, H, m, 35, 10);
+    const ln = line(x, y), bd = band(x, y);
+    svg.append("path").attr("class", "line").attr("stroke", col("--c-us")).attr("stroke-dasharray", "5 4").attr("d", ln(series("eng_only")));
+    LEP.filter(g => g !== lepCur).forEach(g => svg.append("path").attr("class", "line").attr("stroke", g.c).attr("opacity", .25).attr("d", ln(series(g.key))));
+    svg.append("path").attr("class", "band").attr("fill", lepCur.c).attr("d", bd(series(lepCur.key)));
+    svg.append("path").attr("class", "line").attr("stroke", lepCur.c).attr("d", ln(series(lepCur.key)));
+    const s = series(lepCur.key);
+    document.getElementById("lep-readout").innerHTML = `<b>${lepCur.label}</b>: ` +
+      [64, 65, 70, 80].map(a => { const d = s.find(r => r.age === a); return `${P(d.rate)} at ${a} (${d.lo.toFixed(1)}–${d.hi.toFixed(1)})`; }).join(", ") + ".";
+  }
+  renderLep();
+
+  // 4b. Languages ---------------------------------------------------------------
+  const L = sum.lang;
+  const HL_AFR = new Set(["Yoruba", "Akan (including Twi)", "Swahili", "Igbo", "Amharic", "Tigrinya", "Somali"]);
+  const FLOOR = new Set(["Vietnamese", "Hmong", "Khmer", "Lao", "Korean", "Cantonese"]);
+  const CORE = new Set([...HL_AFR, ...FLOOR, "Spanish", "Chinese", "Mandarin", "Tagalog", "Russian", "Arabic", "Hindi", "Urdu", "Bengali", "Nepali", "Haitian", "Punjabi", "Gujarati", "Portuguese", "French", "Polish", "Italian", "Japanese", "Farsi"]);
+  const disp = n => n.replace(" (including Twi)", "");
+  // Highlight by a rule, not by hand: the whole 95% interval sits above the Spanish speakers' rate in the same view.
+  const spanishRate = v => lang.find(d => d.view === v && d.language === "Spanish").rate;
+  const above = d => d.lo > spanishRate(d.view);
+  const colorOf = d => above(d) ? col("--c-a3") : FLOOR.has(d.language) ? col("--c-a2") : col("--c-us");
+  document.getElementById("lang-key").innerHTML =
+    `<span><i class="dot" style="background:${col("--c-a3")}"></i>Clearly above Spanish speakers (whole interval above their rate)</span>` +
+    `<span><i class="dot" style="background:${col("--c-a2")}"></i>Long-settled communities</span>` +
+    `<span><i class="dot" style="background:${col("--c-us")}"></i>Other languages</span>`;
+  const pick = n => lang.find(d => d.view === "all" && d.language === n);
+  const hiAll = lang.filter(d => d.view === "all" && !d.residual && above(d)).sort((a, b) => b.rate - a.rate);
+  const near = ["Hindi", "Urdu", "Haitian", "Bengali"].map(pick);
+  document.getElementById("lang-intro").innerHTML =
+    `2020–2024. Dots are the share uninsured; lines are 95% confidence intervals. The dashed line is people 65 and older who speak only English at home (${L.english_only_65.toFixed(1)}%). ` +
+    `${hiAll.map(d => disp(d.language)).join(", ").replace(/, ([^,]*)$/, " and $1")} speakers, from West and East Africa, are uninsured at ${P(d3.min(hiAll, d => d.rate))} to ${P(d3.max(hiAll, d => d.rate))}, clearly above Spanish speakers (${P(pick("Spanish").rate)}), though their intervals are wide. ` +
+    `Nepali (${P(pick("Nepali").rate)}), Hindi, Urdu, Haitian Creole and Bengali (${P(d3.min(near, d => d.rate))} to ${P(d3.max(near, d => d.rate))}) speakers are uninsured about as often as Spanish speakers or somewhat more; their intervals overlap. ` +
+    `Languages of long-settled communities, including Southeast Asian refugees who arrived in the 1970s and 1980s, sit near the floor: Vietnamese ${P(pick("Vietnamese").rate)}, Hmong ${P(pick("Hmong").rate)}, Korean ${P(pick("Korean").rate)}. Tap a language for its details.`;
+  const VIEWS = [
+    { key: "all", label: "Everyone with limited English" },
+    { key: "citizen", label: "Citizens" },
+    { key: "noncitizen", label: "Noncitizens" },
+  ];
+  let view = VIEWS[0], showAll = false, selLang = "Bengali";
+  const allBtn = document.getElementById("lang-all");
+  allBtn.addEventListener("click", () => { showAll = !showAll; renderLang(); });
+  function renderLang() {
+    VK.pressButtons("#lang-tog", VIEWS, view, d => { view = d; renderLang(); });
+    const rowsAll = lang.filter(d => d.view === view.key && !d.residual).sort((a, b) => b.rate - a.rate || b.n - a.n);
+    const rows = showAll ? rowsAll : rowsAll.filter(d => CORE.has(d.language));
+    allBtn.textContent = showAll ? "Show fewer languages" : `Show all ${rowsAll.length} languages`;
+    const el = document.getElementById("lang-box");
+    const rh = 24, m = { t: 26, r: 46, b: 24 };
+    const W0 = el.clientWidth || 340;
+    const lw = W0 < 480 ? 92 : 150;
+    const { svg, W, H } = frame(el, () => m.t + rows.length * rh + m.b);
+    svg.attr("class", "lang");
+    const xmax = Math.max(10, Math.ceil(d3.max(rows, d => d.hi) / 5) * 5);
+    const x = d3.scaleLinear([0, xmax], [lw, W - m.r]);
+    svg.append("g").attr("class", "ax").attr("transform", `translate(0,${m.t - 6})`)
+      .call(d3.axisTop(x).ticks(W < 480 ? 4 : 8).tickFormat(d => d + "%").tickSizeOuter(0).tickSize(4));
+    const refx = x(L.english_only_65);
+    svg.append("line").attr("class", "ref").attr("x1", refx).attr("x2", refx).attr("y1", m.t - 4).attr("y2", H - m.b);
+    const g = svg.append("g").selectAll("g").data(rows).join("g").attr("class", d => "row" + (d.language === selLang ? " sel" : ""))
+      .attr("transform", (d, i) => `translate(0,${m.t + i * rh})`)
+      .on("click", (e, d) => { selLang = d.language; renderLang(); });
+    g.append("rect").attr("class", "bg").attr("x", 0).attr("width", W).attr("height", rh);
+    g.append("text").attr("x", 0).attr("y", rh / 2 + 4).text(d => disp(d.language))
+      .style("font-weight", d => above(d) ? 650 : null);
+    g.append("line").attr("class", "ci").attr("stroke", d => colorOf(d)).attr("x1", d => x(d.lo)).attr("x2", d => x(d.hi)).attr("y1", rh / 2).attr("y2", rh / 2);
+    g.append("circle").attr("r", 4.5).attr("fill", d => colorOf(d)).attr("cx", d => x(d.rate)).attr("cy", rh / 2);
+    g.append("text").attr("class", "val").attr("x", W).attr("text-anchor", "end").attr("y", rh / 2 + 4).text(d => d.rate.toFixed(1) + "%");
+    svg.append("text").attr("class", "reflbl").attr("x", refx + 4).attr("y", H - 6).text("\u2190 dashed line: speaks only English");
+    let d = rows.find(r => r.language === selLang) || rowsAll.find(r => r.language === selLang);
+    const vtxt = { all: "with limited English", citizen: "with limited English who are US citizens", noncitizen: "with limited English who are not US citizens" }[view.key];
+    document.getElementById("lang-readout").innerHTML = d
+      ? `<b>${disp(d.language)}</b> speakers 65 and older ${vtxt}: ${P(d.rate)} uninsured (95% CI ${d.lo.toFixed(1)}–${d.hi.toFixed(1)}), from ${int(d.n)} survey records, about ${int(Math.round(d.pop / 100) * 100)} people.` +
+        (d.rate === 0 ? " No one in the sample was uninsured, so no interval can be computed." : "")
+      : `<b>${disp(selLang)}</b>: fewer than 100 survey records in this group, so it is not shown.`;
+  }
+  renderLang();
+
+  // 5. Price ---------------------------------------------------------------------
+  const $ = v => "$" + v.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const $0 = v => "$" + int(Math.round(v));
+  document.getElementById("close-a").textContent = `(${$0(price.part_a_under_30_quarters)} a month in 2026 with fewer than 30 quarters, ${$0(price.part_a_30_39_quarters)} with 30 to 39)`;
+  document.getElementById("close-b").textContent = `(${$(price.part_b_standard)} a month)`;
+  document.getElementById("price-intro").innerHTML =
+    `About ${int(Math.round(rec.count / 1000) * 1000)} uninsured people 65 and older arrived in the US less than 10 years ago (2022–2024 average). ${P0(rec.share_noncitizen)} are not citizens. ` +
+    `Most live in a family home with working adults: ${P0(rec.share_parent_of_householder)} are the parent or parent-in-law of the person who owns or rents the home, and ${P0(rec.share_household_with_worker)} live with someone 18 to 64 who has a job. ${P0(rec.share_not_well_or_not_at_all)} speak English “not well” or “not at all”.`;
+  document.getElementById("price-cards").innerHTML = `
+    <div class="pc price"><div class="k">Full Medicare buy-in, 2026</div><div class="v">${$(price.monthly_full_buyin)}<span style="font-size:14px;font-weight:400"> /month</span></div>
+      <p>Part A ${$0(price.part_a_under_30_quarters)} (fewer than 30 quarters of work) + Part B ${$(price.part_b_standard)}. That is ${$0(price.annual_full_buyin)} a year, before deductibles. Open only to citizens and to permanent residents after 5 years.</p></div>
+    <div class="pc"><div class="k">Their own income (median)</div><div class="v">${$0(rec.median_personal_income)}</div>
+      <p>${P0(rec.share_personal_income_zero_or_less)} report no personal income (zero or a loss), and ${P0(rec.share_personal_income_below_buyin)} have less than a year of premiums (${$0(price.annual_full_buyin)}). For comparison, US-born people 65 and older have a median personal income of ${$0(Math.round(rec.usborn65_median_personal_income / 100) * 100)}.</p></div>
+    <div class="pc"><div class="k">Their family's income (median)</div><div class="v">${Math.round(rec.median_family_pct_poverty)}%<span style="font-size:14px;font-weight:400"> of poverty</span></div>
+      <p>${P0(rec.share_family_at_or_above_200pct)} live in families at or above twice the poverty line; ${P0(rec.share_family_below_138pct)} are below 138% of it. On paper the household often looks comfortable, while ${P0(rec.share_personal_income_zero_or_less)} of these older people report no income of their own.</p></div>`;
+  document.getElementById("i864").innerHTML =
+    `<p class="note">Many parents who immigrate through a son or daughter come with an affidavit of support (Form I-864), a contract in which the sponsor promises to keep them at or above 125% of the poverty line. ` +
+    `If the sponsored immigrant receives means-tested public benefits, the agency can ask the sponsor to repay them (<a href="https://www.uscis.gov/i-864">USCIS</a>). ` +
+    `The obligation generally lasts until the immigrant becomes a citizen, is credited with 40 quarters of work, or leaves the country. The survey does not record who has a sponsor.</p>` +
+    `<p class="note">Before they can buy into Medicare, lawfully present older immigrants can buy a Marketplace plan, with premium subsidies through 2026; from 2027 the 2025 law keeps those subsidies only for permanent residents, Cuban and Haitian entrants and COFA migrants. Most permanent residents also wait 5 years for Medicaid (<a href="https://justiceinaging.org/older-immigrants-and-medicare/">Justice in Aging</a>).</p>`;
+
+  // About: check + caveats ----------------------------------------------------------
+  document.getElementById("check").innerHTML =
+    `<b>Check.</b> This page counts ${int(comp.uninsured_65)} uninsured people 65 and older in 2024, ${comp.uninsured_rate_65}% of that age group. KFF's <a href="https://www.kff.org/uninsured/key-facts-about-the-uninsured-population/">Key Facts about the Uninsured Population</a> (June 2026), which uses the same survey, independently reports 491,000 people over 65 uninsured.`;
+  const pa = L.pa_german_excluded.find(d => d.view === "all");
+  document.getElementById("cav-pa").innerHTML = pa
+    ? `Pennsylvania German speakers with limited English (${P(pa.rate)} uninsured, ${int(pa.n)} records) are left out of the language chart. ${P0(L.pa_german_us_born_share)} of them were born in the US. The language is spoken mainly in Amish and other Plain communities, many of whose members waive Social Security and Medicare under a religious exemption in federal law; their rate has nothing to do with immigration rules.`
+    : "";
+
+  let rt;
+  window.addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => { renderDraw(); renderYrs(); renderLep(); renderLang(); }, 150); });
+})();
+</script>
+</body>
+</html>

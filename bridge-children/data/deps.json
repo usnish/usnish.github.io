@@ -1,0 +1,54 @@
+{
+ "hhs": {
+  "dependent_adults": {
+   "est": 3045501,
+   "se": 18331
+  },
+  "dependent_adults_medicaid": {
+   "est": 839135,
+   "se": 8514
+  },
+  "dependent_adults_65plus": {
+   "est": 163602,
+   "se": 3946
+  },
+  "dependent_adults_eng_well_share": {
+   "est": 0.4507,
+   "se": 0.0026
+  },
+  "dependent_adults_eng_notwell_share": {
+   "est": 0.3726,
+   "se": 0.0022
+  },
+  "dependent_adults_eng_notatall_share": {
+   "est": 0.1767,
+   "se": 0.002
+  }
+ },
+ "strict": {
+  "dependent_adults": {
+   "est": 1055933,
+   "se": 12175
+  },
+  "dependent_adults_medicaid": {
+   "est": 307524,
+   "se": 5505
+  },
+  "dependent_adults_65plus": {
+   "est": 44276,
+   "se": 1517
+  },
+  "dependent_adults_eng_well_share": {
+   "est": 0.0,
+   "se": 0.0
+  },
+  "dependent_adults_eng_notwell_share": {
+   "est": 0.6576,
+   "se": 0.0042
+  },
+  "dependent_adults_eng_notatall_share": {
+   "est": 0.3424,
+   "se": 0.0042
+  }
+ }
+}

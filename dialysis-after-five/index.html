@@ -1,0 +1,587 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dialysis After Five</title>
+<meta name="description" content="Inside the same dialysis company, the odds of a chair after 5 pm depend on the state: DaVita runs an evening shift at 31 of its 47 units in Washington but 2 of its 95 in North Carolina. And 57 million Americans live more than 30 miles from a unit with an evening shift.">
+<link rel="canonical" href="https://usnish.xyz/dialysis-after-five/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://usnish.xyz/dialysis-after-five/">
+<meta property="og:title" content="Same company, different state: who gets a dialysis chair after 5 pm">
+<meta property="og:description" content="DaVita runs a shift starting at 5 pm or later at 31 of its 47 units in Washington but 2 of its 95 in North Carolina, and 57 million Americans live more than 30 miles from a unit with an evening shift. CMS facility data, state by state.">
+<meta property="og:site_name" content="Usnish Majumdar">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Same company, different state: who gets a dialysis chair after 5 pm">
+<meta name="twitter:description" content="Inside the same dialysis company, the odds of a chair after 5 pm depend on the state, and 57 million Americans live more than 30 miles from a unit with an evening shift.">
+<meta name="author" content="Usnish Majumdar, MD">
+<link rel="stylesheet" href="../assets/viz/viz.css">
+<style>
+  :root { --eve: #c8641e; --eve-soft: #f6e3d3; --dv: #1f4e79; --fr: #2b9a8a; }
+  main { max-width: 900px; }
+  .byline { font-size: 13px; color: var(--muted); margin: 10px 0 0; }
+  .big { font-size: 17px; line-height: 1.5; color: var(--fg); margin: 18px 0 0; max-width: 70ch; }
+  .big b { color: var(--eve); }
+  section.chart > p.note, .note { font-size: 12px; color: var(--muted); margin: 6px 0 0; }
+  .q { font-size: 17px; font-weight: 600; margin: 4px 0 10px; max-width: 60ch; line-height: 1.4; }
+  .q-sub { font-size: 14px; color: var(--muted); margin: -4px 0 12px; max-width: 70ch; }
+
+  /* guess controls */
+  .guess-box { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 16px; }
+  .slider-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .slider-row label { font-size: 14px; color: var(--muted); min-width: 9em; }
+  .slider-row output { font-size: 24px; font-weight: 700; color: var(--fg); font-variant-numeric: tabular-nums; }
+  input[type=range] { flex: 1 1 220px; min-width: 0; height: 36px; accent-color: var(--eve); touch-action: pan-y; }
+  .btn { font: inherit; font-size: 15px; font-weight: 600; padding: 10px 18px; border-radius: 8px; border: 0; background: var(--fg); color: #fff; cursor: pointer; }
+  .btn[disabled] { opacity: .35; cursor: default; }
+  .btn.ghost { background: var(--bg); color: var(--muted); border: 1px solid var(--line); font-weight: 500; }
+  select.pick { font: inherit; font-size: 15px; padding: 8px 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--bg); max-width: 100%; }
+  .result { font-size: 15px; margin: 12px 0 0; max-width: 70ch; }
+  .result b { color: var(--eve); }
+  .hint { font-size: 12px; color: var(--muted); margin: 8px 0 0; }
+
+  /* dial + unit grid */
+  .g1 { display: grid; grid-template-columns: minmax(0, 260px) minmax(0, 1fr); gap: 20px; align-items: center; margin-top: 14px; }
+  @media (max-width: 640px) { .g1 { grid-template-columns: minmax(0, 1fr); } .g1 .dialwrap { max-width: 250px; margin: 0 auto; } }
+  .dialwrap svg { width: 100%; height: auto; display: block; }
+  .dial text { font-size: 11px; fill: var(--muted); }
+  .dial .ctr { font-size: 30px; font-weight: 700; fill: var(--fg); }
+  .dial .ctr2 { font-size: 11px; fill: var(--muted); }
+  .grid100 { display: grid; grid-template-columns: repeat(10, 1fr); gap: 4px; max-width: 300px; }
+  .grid100 i { display: block; aspect-ratio: 1; border-radius: 3px; background: #e2e2e4; border: 2px solid transparent; }
+  .grid100 i.g { border-color: var(--eve); background: var(--eve-soft); }
+  .grid100 i.a { background: var(--eve); }
+  .grid100 i.a.g { border-color: var(--eve); }
+  .key { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 12px; color: var(--muted); margin: 8px 0 0; }
+  .key span { display: inline-flex; align-items: center; gap: 5px; }
+  .sw { display: inline-block; width: 12px; height: 12px; border-radius: 3px; }
+  .sw.round { border-radius: 50%; }
+
+  /* state strip */
+  .strip { margin-top: 14px; }
+  .strip .hdr, .srow { display: grid; grid-template-columns: 112px minmax(0, 1fr) 44px; gap: 8px; align-items: center; }
+  .strip .hdr { font-size: 11px; color: var(--muted); position: sticky; top: 0; background: var(--bg); padding: 4px 0; z-index: 1; }
+  .srow { width: 100%; font: inherit; font-size: 13px; text-align: left; background: none; border: 0; border-radius: 4px; padding: 2px 0; cursor: pointer; color: var(--fg); }
+  .srow:hover, .srow.open { background: var(--panel); }
+  .srow.me { background: var(--eve-soft); font-weight: 650; }
+  .srow .nm { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding-left: 4px; }
+  .srow .val { text-align: right; font-variant-numeric: tabular-nums; padding-right: 4px; }
+  .trk { position: relative; height: 18px; }
+  .trk::before { content: ""; position: absolute; left: 0; right: 0; top: 8px; height: 2px; background: var(--line); }
+  .trk .nat { position: absolute; top: 0; bottom: 0; width: 0; border-left: 1px dashed var(--faint); }
+  .trk .dot { position: absolute; top: 4px; width: 10px; height: 10px; margin-left: -5px; border-radius: 50%; background: var(--eve); }
+  .trk .dot.small { background: var(--bg); border: 2px solid var(--eve); }
+  .trk .gs { position: absolute; top: 1px; width: 16px; height: 16px; margin-left: -8px; border-radius: 50%; border: 2px solid var(--fg); background: transparent; }
+  .sdetail { font-size: 13px; color: var(--fg); background: var(--panel); border-radius: 6px; padding: 8px 10px; margin: 2px 0 6px; }
+  .sdetail span { color: var(--muted); }
+  .strip .grp { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; margin: 14px 0 4px; }
+  .axis-row { display: grid; grid-template-columns: 112px minmax(0, 1fr) 44px; gap: 8px; font-size: 11px; color: var(--muted); }
+  .axis-row .ticks { position: relative; height: 14px; }
+  .axis-row .ticks span { position: absolute; transform: translateX(-50%); }
+
+  /* charts */
+  .chartbox { position: relative; }
+  .chartbox svg { width: 100%; height: auto; display: block; overflow: visible; }
+  svg text { font-size: 11px; fill: var(--muted); }
+  svg .lbl { fill: var(--fg); font-size: 12px; }
+  svg .ann { fill: var(--fg); font-size: 12px; font-weight: 600; }
+  .axis line, .axis path { stroke: var(--line); }
+  .readout { font-size: 13px; min-height: 2.6em; margin: 6px 0 0; color: var(--fg); }
+  .readout b.e { color: var(--eve); }
+  .detail { font-size: 13px; min-height: 2.6em; margin: 8px 0 0; background: var(--panel); border-radius: 6px; padding: 8px 10px; }
+  .row-hit { fill: transparent; cursor: pointer; }
+  .row-hit:hover, .row-hit.on { fill: var(--panel); }
+  .map-fac { stroke: none; }
+  #cdf svg { touch-action: pan-y; }
+
+  /* waterfall */
+  .wf { display: grid; grid-template-columns: minmax(0, 1fr) 70px; gap: 4px 10px; align-items: center; font-size: 13px; max-width: 760px; margin-top: 12px; }
+  .wf .l { grid-column: 1 / -1; margin-top: 6px; }
+  .wf .l small { color: var(--muted); }
+  .wf .t { position: relative; height: 16px; background: var(--panel); border-radius: 3px; }
+  .wf .t div { position: absolute; top: 0; bottom: 0; border-radius: 3px; }
+  .wf .n { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+  .stats .stat { max-width: none; }
+  .stat .v.e { color: var(--eve); }
+</style>
+</head>
+<body>
+<main>
+  <a class="back" href="/projects/">&larr; all projects</a>
+  <header>
+    <h1>Same company, different state: who gets a dialysis chair after 5&nbsp;pm</h1>
+    <p class="lede" id="lede">In-center hemodialysis takes about four hours, three times a week. For someone trying to keep a day job, the question is whether there is a chair after work, and how far away it is. The answer depends on the state, even within the same company.</p>
+    <p class="byline">By Usnish Majumdar, MD &middot; November 2026</p>
+  </header>
+  <p class="big" id="headline"></p>
+
+  <!-- 1. guess the national share -->
+  <section class="chart" id="s1">
+    <h2>Start with a guess</h2>
+    <p class="q">Out of every 100 U.S. dialysis units that offer in-center hemodialysis, how many run a shift that starts at 5&nbsp;pm or later?</p>
+    <div class="guess-box">
+      <div class="slider-row">
+        <label for="g1">Your guess: <output id="g1out">50</output></label>
+        <input type="range" id="g1" min="0" max="100" step="1" value="50" aria-label="Your guess, units out of 100">
+        <button class="btn" id="g1btn" type="button">Show me</button>
+      </div>
+      <p class="hint" id="g1hint">Drag the slider (the grid fills as you go), then press <b>Show me</b>.</p>
+      <div class="g1">
+        <div class="dialwrap"><svg class="dial" id="dial" viewBox="-150 -138 300 276" role="img" aria-label="A 24-hour clock showing typical dialysis shifts and the after-5-pm window"></svg></div>
+        <div>
+          <div class="grid100" id="grid100" aria-hidden="true"></div>
+          <div class="key" id="g1key">
+            <span><i class="sw" style="background:var(--eve-soft);border:2px solid var(--eve)"></i>your guess</span>
+          </div>
+        </div>
+      </div>
+      <p class="result" id="g1result" hidden></p>
+    </div>
+  </section>
+
+  <section class="about" id="why" style="margin-top:28px">
+    <h2>Why 5 pm matters</h2>
+    <p id="whytext"></p>
+  </section>
+
+  <!-- 2. your state -->
+  <section class="chart" id="s2">
+    <h2>Now your state</h2>
+    <p class="q">In your state, what share of in-center hemodialysis patients go to a unit that offers a shift starting at 5&nbsp;pm or later?</p>
+    <div class="guess-box">
+      <div class="slider-row" style="margin-bottom:8px">
+        <label for="st">Your state</label>
+        <select class="pick" id="st"><option value="">Pick a state</option></select>
+      </div>
+      <div class="slider-row">
+        <label for="g2">Your guess: <output id="g2out">50%</output></label>
+        <input type="range" id="g2" min="0" max="100" step="1" value="50" aria-label="Your guess, percent of patients">
+        <button class="btn" id="g2btn" type="button" disabled>Show me</button>
+      </div>
+      <p class="hint" id="g2hint">Pick a state and drag the slider to make your guess.</p>
+      <p class="result" id="g2result" hidden></p>
+    </div>
+    <div class="strip" id="strip" hidden>
+      <div class="key">
+        <span><i class="sw round" style="background:var(--eve)"></i>share of the state's in-center hemodialysis patients at a unit with a 5 pm+ shift</span>
+        <span><i class="sw round" style="border:2px solid var(--eve)"></i>fewer than 15 units</span>
+        <span><i class="sw round" style="border:2px solid var(--fg)"></i>your guess</span>
+        <span><i style="display:inline-block;width:0;height:12px;border-left:1px dashed var(--faint)"></i>U.S. overall</span>
+      </div>
+      <p class="note">Tap a state for its counts.</p>
+      <div class="axis-row" style="margin-top:8px"><span></span><div class="ticks" id="stripticks"></div><span></span></div>
+      <div id="striprows"></div>
+    </div>
+  </section>
+
+  <!-- 3. same chain, different state -->
+  <section class="chart" id="s3">
+    <h2>Same company, different state</h2>
+    <p id="chaintext"></p>
+    <div class="key">
+      <span><i class="sw round" style="background:var(--dv)"></i>DaVita</span>
+      <span><i class="sw round" style="background:var(--fr)"></i>Fresenius Medical Care</span>
+      <span>dashed lines: each company's share in all 50 states and DC</span>
+    </div>
+    <div class="chartbox" id="dumbbell"></div>
+    <p class="detail" id="dbdetail">Tap a state for the unit counts.</p>
+    <p class="note" id="chainnote"></p>
+  </section>
+
+  <!-- 4. distance -->
+  <section class="chart" id="s4">
+    <h2>A unit nearby is common. An evening unit nearby is not.</h2>
+    <p id="disttext"></p>
+    <div class="stats" id="diststats"></div>
+    <div class="key">
+      <span><i class="sw" style="background:var(--faint);height:3px"></i>nearest unit of any kind</span>
+      <span><i class="sw" style="background:var(--eve);height:3px"></i>nearest unit with a 5 pm+ shift</span>
+    </div>
+    <div class="chartbox" id="cdf"></div>
+    <p class="readout" id="cdfread">Drag across the chart to read any distance.</p>
+    <p class="note">Straight-line miles from where people live (2020 census tract population centers, lower 48 states and DC). For drive times to the nearest unit of any kind, see <a href="/dialysis-time-tax/">The Dialysis Time Tax</a>.</p>
+
+    <h2 style="margin-top:28px">Where the evening chairs are</h2>
+    <div class="key">
+      <span><i class="sw round" style="background:#b9b9bd"></i>in-center hemodialysis unit, no 5 pm+ shift</span>
+      <span><i class="sw round" style="background:var(--eve)"></i>unit with a 5 pm+ shift</span>
+    </div>
+    <div class="chartbox"><svg id="map" viewBox="0 0 975 610" role="img" aria-label="Dot map of dialysis units in the lower 48 states, units with an evening shift highlighted"></svg></div>
+    <p class="note" id="mapnote"></p>
+  </section>
+
+  <!-- 5. churn -->
+  <section class="chart" id="s5">
+    <h2>A slow drift down</h2>
+    <p id="churntext"></p>
+    <div class="wf" id="wf"></div>
+    <div class="chartbox" id="trend" style="max-width:760px;margin-top:20px"></div>
+    <p class="note" id="trendnote"></p>
+  </section>
+
+  <section class="about">
+    <h2>About the data</h2>
+    <p><b>Units and shifts.</b> CMS Provider Data Catalog, <a href="https://data.cms.gov/provider-data/dataset/23ew-n7w9">Dialysis Facility &ndash; Listing by Facility</a> (dataset 23ew-n7w9), <span id="srcdate"></span>. Every unit marked as offering in-center hemodialysis is counted. The CMS data dictionary defines its <i>Late Shift</i> field as &ldquo;a shift starting at 5:00 P.M. or later&rdquo;. Chains are the file's <i>Chain Organization</i> field; &ldquo;Fresenius&rdquo; is Fresenius Medical Care.</p>
+    <p><b>Patients.</b> Patient shares weight each unit by the CMS column <i>Number of adult HD patients with KT/V data</i>, a count of adult hemodialysis patients the unit reported dialysis-adequacy lab results for over the reporting window. It is a stand-in for how many patients a unit treats, not a census on a given day (<span id="ptsn"></span>). Weighting by dialysis stations instead gives <span id="stw"></span> nationally, with the same ordering of states.</p>
+    <p><b>Distance.</b> Units in the lower 48 states and DC were located from their street addresses with the Census Bureau geocoder (ZIP code center when the address did not match; <span id="geon"></span>). For each of <span id="ntr"></span> 2020 census tracts, the straight-line distance from its population center to the nearest unit, and to the nearest unit with a late shift, was weighted by the tract's population. Straight lines understate the road trip, and the nearest evening unit can be across a state line.</p>
+    <p><b>Change over time.</b> The <a href="https://data.cms.gov/provider-data/archived-data/dialysis-facilities">CMS archive</a> snapshot of <span id="basedate"></span> is compared with the current file, matching units on their CMS Certification Number. A unit that moved or was re-certified under a new number counts as one closure and one opening. The archive's 2021 and 2022 snapshots carry an identical copy of the 2020 facility file, so they are skipped.</p>
+    <p><b>What this cannot tell you.</b> The late-shift field is a yes/no reported by each unit. It does not say how many chairs the evening shift has, whether it is full or open to new patients, or whether it is a 5 pm shift or an overnight (nocturnal) one. Where people live is not where patients live, and the nearest evening unit may be full, out of a patient's insurance network or too far by transit. <span id="whydiffer"></span></p>
+    <p><b>State versus company.</b> <span id="varnote"></span></p>
+    <p><b>Prior work.</b> The national share is not new: Crouch and colleagues reported that 16.0% of facilities offered late-shift services in 2020 CMS data, more often in urban than rural facilities (<a href="https://doi.org/10.1159/000537763">Am J Nephrol 2024</a>); this page's 2020 snapshot gives <span id="chk2020"></span> of all facilities. Perez and colleagues linked evening shifts to employment at the facility level (<a href="https://doi.org/10.2215/CJN.0000000819">CJASN 2025</a>). What is new here is the patient-weighted share by state, the same-company comparison across states, the distance to an evening unit, and unit-level change since 2020. I could not find these published by KFF, its Health System Tracker, or the other policy and research sources I checked.</p>
+    <p>Data and build script: <a href="https://github.com/usnish/usnish.github.io/tree/master/dialysis-after-five">github.com/usnish/usnish.github.io</a>.</p>
+  </section>
+</main>
+
+<script src="../assets/viz/d3.min.js"></script>
+<script src="../assets/viz/topojson-client.min.js"></script>
+<script src="../assets/viz/vizkit.js"></script>
+<script>
+(async function () {
+  const [sum, states, cs, cdf, trend, churn, fac] = await Promise.all([
+    d3.json("data/summary.json"),
+    d3.csv("data/states.csv", d3.autoType),
+    d3.csv("data/chain_states.csv", d3.autoType),
+    d3.csv("data/dist_cdf.csv", d3.autoType),
+    d3.csv("data/trend.csv", r => ({ snapshot: r.snapshot, units: +r.units, late_units: +r.late_units, pct_units: +r.pct_units, pct_patients: +r.pct_patients })),
+    d3.json("data/churn.json"),
+    d3.csv("data/facilities.csv", d3.autoType),
+  ]);
+  const nat = sum.national, dist = sum.distance, sp = sum.chain_spread;
+  const $ = id => document.getElementById(id);
+  const int = VK.int;
+  const p0 = v => Math.round(v) + "%";
+  const p1 = v => v.toFixed(1) + "%";
+  const byState = new Map(states.map(r => [r.state, r]));
+  const name = s => byState.get(s)?.name || s;
+  const oneIn = p => { const n = 100 / p; return "1 in " + (n >= 20 ? Math.round(n / 10) * 10 : Math.round(n)); };
+  const monthYear = d => new Date(d + "T12:00:00").toLocaleDateString("en-US", { month: "long", year: "numeric" });
+  const dvH = cs.find(r => r.chain === "DaVita" && r.state === sp.DaVita.high_state);
+  const dvL = cs.find(r => r.chain === "DaVita" && r.state === sp.DaVita.low_state);
+  const ranked = states.filter(r => !r.territory).sort((a, b) => b.pct_patients - a.pct_patients);
+
+  // Headline ------------------------------------------------------------------
+  $("headline").innerHTML =
+    `Inside the same company, the odds of an after-work dialysis chair depend on the state: DaVita runs a shift starting at 5 pm or later at <b>${dvH.late_units} of its ${dvH.units}</b> units in ${name(dvH.state)} but <b>${dvL.late_units} of its ${dvL.units}</b> in ${name(dvL.state)}. ` +
+    `Half of Americans live within ${dist.median_any_mi} miles of a dialysis unit, yet <b>${(dist.people_beyond30_evening / 1e6).toFixed(0)} million</b> live more than 30 miles from one with an evening shift.`;
+
+  // 1. Guess + dial -----------------------------------------------------------
+  const grid = d3.select("#grid100").selectAll("i").data(d3.range(100)).join("i");
+  const actual = Math.round(nat.pct_units);
+  let g1 = 50, revealed1 = false;
+  function paintGrid() {
+    grid.classed("g", i => i < g1).classed("a", i => revealed1 && i < actual);
+  }
+  paintGrid();
+  $("g1").addEventListener("input", e => { g1 = +e.target.value; $("g1out").textContent = g1; paintGrid(); });
+
+  const dial = d3.select("#dial");
+  const R = 100, ang = h => h / 24 * 2 * Math.PI; // midnight at top, clockwise
+  const arc = d3.arc();
+  // the 5 pm - midnight window
+  const win = dial.append("path").attr("d", arc({ innerRadius: 0, outerRadius: R + 18, startAngle: ang(17), endAngle: ang(24) }))
+    .attr("fill", "var(--eve-soft)").attr("opacity", .55);
+  dial.append("circle").attr("r", R).attr("fill", "none").attr("stroke", "var(--line)").attr("stroke-width", 1);
+  d3.range(24).forEach(h => {
+    const a = ang(h) - Math.PI / 2, major = h % 6 === 0;
+    dial.append("line").attr("x1", Math.cos(a) * (R - (major ? 8 : 4))).attr("y1", Math.sin(a) * (R - (major ? 8 : 4)))
+      .attr("x2", Math.cos(a) * R).attr("y2", Math.sin(a) * R).attr("stroke", "var(--faint)");
+  });
+  [[0, "midnight"], [6, "6 am"], [12, "noon"], [18, "6 pm"]].forEach(([h, t]) => {
+    const a = ang(h) - Math.PI / 2;
+    dial.append("text").attr("x", Math.cos(a) * (R + 14)).attr("y", Math.sin(a) * (R + 14) + 4)
+      .attr("text-anchor", h === 6 ? "start" : h === 18 ? "end" : "middle").text(t);
+  });
+  // illustrative day shifts (about 4 hours each)
+  const shifts = [[6, 10], [11, 15], [16, 20]];
+  dial.selectAll(".sh").data(shifts).join("path").attr("class", "sh")
+    .attr("d", d => arc({ innerRadius: R - 30, outerRadius: R - 14, startAngle: ang(d[0]), endAngle: ang(d[1]), cornerRadius: 3 }))
+    .attr("fill", "#b9b9bd");
+  const late = dial.append("path")
+    .attr("d", arc({ innerRadius: R - 48, outerRadius: R - 34, startAngle: ang(17.5), endAngle: ang(21.5), cornerRadius: 3 }))
+    .attr("fill", "none").attr("stroke", "var(--eve)").attr("stroke-dasharray", "3 3").attr("stroke-width", 1.5);
+  const t5 = ang(17) - Math.PI / 2;
+  dial.append("line").attr("x1", 0).attr("y1", 0).attr("x2", Math.cos(t5) * (R + 18)).attr("y2", Math.sin(t5) * (R + 18))
+    .attr("stroke", "var(--eve)").attr("stroke-width", 1.5);
+  const ctr = dial.append("text").attr("class", "ctr").attr("text-anchor", "middle").attr("y", 6).text("?");
+  const ctr2 = dial.append("text").attr("class", "ctr2").attr("text-anchor", "middle").attr("y", 22).text("of units");
+  dial.append("text").attr("x", Math.cos(t5) * (R + 22)).attr("y", Math.sin(t5) * (R + 22) + 10).attr("text-anchor", "end").style("fill", "var(--eve)").text("5 pm");
+
+  $("g1btn").addEventListener("click", () => {
+    if (revealed1) return;
+    revealed1 = true; paintGrid();
+    $("g1btn").disabled = true; $("g1").disabled = true;
+    $("g1hint").textContent = "Gray arcs: a typical daytime schedule of three shifts (illustrative). Orange: a shift that starts at 5 pm or later.";
+    late.transition().duration(600).attr("fill", "var(--eve)").attr("stroke", "none");
+    win.transition().duration(600).attr("opacity", 1);
+    ctr.text(p0(nat.pct_units));
+    d3.select("#g1key").html(`<span><i class="sw" style="background:var(--eve-soft);border:2px solid var(--eve)"></i>your guess (${g1})</span>` +
+      `<span><i class="sw" style="background:var(--eve)"></i>actual (${actual})</span>`);
+    const diff = g1 - nat.pct_units;
+    const how = Math.abs(diff) < 3 ? "Close." : diff > 0 ? `You guessed ${g1}; it is lower.` : `You guessed ${g1}; it is higher.`;
+    $("g1result").hidden = false;
+    $("g1result").innerHTML = `${how} <b>${p1(nat.pct_units)}</b> of the ${int(nat.units)} units that offer in-center hemodialysis run a shift starting at 5 pm or later: ${int(nat.late_units)} units, about ${oneIn(nat.pct_units)}. ` +
+      `Evening units tend to be bigger, so they treat <b>${p1(nat.pct_patients)}</b> of patients. The other ${p0(100 - nat.pct_units)} of units have no shift that starts at 5 pm or later.`;
+  });
+
+  // Why --------------------------------------------------------------------
+  $("whytext").innerHTML =
+    `Three sessions a week of about four hours each is 12 hours or more before counting the trip, and a daytime chair collides with a daytime job. Many people stop working when they start dialysis. ` +
+    `In a national study of dialysis units from 2016 to 2019, patients aged 18 to 54 at units that offered an evening shift were employed at a rate about 6% higher, in relative terms, than at units that did not (95% CI 4% to 8%), after adjusting for patient, unit and area differences. With a median unit employment rate near 20%, that is roughly 20 versus 21 in 100: a modest association, not proof that evening shifts cause employment (<a href="https://doi.org/10.2215/CJN.0000000819">Perez et al., CJASN 2025</a>). ` +
+    `The job can also carry the insurance. For people who have employer or union group coverage when they qualify for Medicare because of kidney failure, that plan pays first for a 30-month coordination period, and Medicare pays second (<a href="https://www.medicare.gov/basics/end-stage-renal-disease">Medicare.gov</a>). Keeping the job keeps that plan paying first.`;
+
+  // 2. Your state -------------------------------------------------------------
+  const sel = d3.select("#st");
+  states.filter(r => !r.territory).sort((a, b) => d3.ascending(a.name, b.name))
+    .forEach(r => sel.append("option").attr("value", r.state).text(r.name));
+  states.filter(r => r.territory).sort((a, b) => d3.ascending(a.name, b.name))
+    .forEach(r => sel.append("option").attr("value", r.state).text(r.name + " (territory)"));
+  let me = "", g2 = 50, stripShown = false;
+  const guesses = new Map(); // one guess per state
+  const ready2 = () => {
+    const done = guesses.has(me);
+    $("g2btn").disabled = !me || done;
+    $("g2").disabled = done;
+  };
+  sel.on("change", function () {
+    me = this.value;
+    if (guesses.has(me)) {
+      g2 = guesses.get(me); $("g2").value = g2; $("g2out").textContent = g2 + "%";
+      showResult2();
+    } else {
+      $("g2result").hidden = true;
+      $("g2hint").textContent = me ? `Make a guess for ${name(me)}, then press Show me.` : "Pick a state and drag the slider to make your guess.";
+    }
+    ready2();
+    if (stripShown) drawStrip();
+  });
+  $("g2").addEventListener("input", e => { g2 = +e.target.value; $("g2out").textContent = g2 + "%"; ready2(); });
+  const SMALL = 15;
+  function rowHtml(r) {
+    const small = r.units < SMALL;
+    return `<div class="nm">${r.name}</div><div class="trk"><div class="nat" style="left:${nat.pct_patients}%"></div>` +
+      (guesses.has(r.state) ? `<div class="gs" style="left:${guesses.get(r.state)}%"></div>` : "") +
+      `<div class="dot${small ? " small" : ""}" style="left:${r.pct_patients}%"></div></div><div class="val">${p0(r.pct_patients)}</div>`;
+  }
+  const pS = v => v < 0.1 ? "under 0.1%" : p1(v);
+  function detailHtml(r) {
+    const far = r.pct_beyond30_evening == null ? "" :
+      ` ${pS(r.pct_beyond30_evening)} of residents live more than 30 miles (straight line) from the nearest unit with one, against ${pS(r.pct_beyond30_any)} from any unit.`;
+    return `<b>${r.name}:</b> ${r.late_units} of ${r.units} in-center units have a 5 pm+ shift (${p0(r.pct_units)}), serving ${int(r.late_patients)} of ${int(r.patients)} patients (${p1(r.pct_patients)}).` +
+      (r.davita_units + r.fresenius_units ? ` <span>Of its units, DaVita runs ${r.davita_units} and Fresenius ${r.fresenius_units}.</span>` : "") + far;
+  }
+  function drawStrip() {
+    const host = d3.select("#striprows").html("");
+    const groups = [["States and DC", ranked], ["Territories (few units)", states.filter(r => r.territory).sort((a, b) => b.pct_patients - a.pct_patients)]];
+    groups.forEach(([g, rows]) => {
+      host.append("div").attr("class", "grp").text(g);
+      rows.forEach(r => {
+        const b = host.append("button").attr("type", "button").attr("class", "srow" + (r.state === me ? " me" : ""))
+          .attr("aria-label", `${r.name}: ${p1(r.pct_patients)}`).html(rowHtml(r));
+        const d = host.append("div").attr("class", "sdetail").attr("hidden", r.state === me ? null : true).html(detailHtml(r));
+        if (r.state === me) b.classed("open", true);
+        b.on("click", () => { const open = d.attr("hidden") !== null; d.attr("hidden", open ? null : true); b.classed("open", open); });
+      });
+    });
+    d3.select("#stripticks").html([0, 25, 50, 75, 100].map(t => `<span style="left:${t}%">${t}%</span>`).join(""));
+  }
+  function showResult2() {
+    const g = guesses.get(me);
+    const r = byState.get(me), rank = ranked.findIndex(x => x.state === me) + 1;
+    const diff = g - r.pct_patients;
+    const how = Math.abs(diff) < 5 ? "Close." : diff > 0 ? `You guessed ${g}%; it is lower.` : `You guessed ${g}%; it is higher.`;
+    $("g2result").hidden = false;
+    $("g2result").innerHTML = `${how} In ${r.name}, <b>${p1(r.pct_patients)}</b> of in-center hemodialysis patients go to a unit with a shift starting at 5 pm or later` +
+      (r.territory ? ` (${r.units} units in all).` : `, ${rank === 1 ? "the highest" : `number ${rank} of ${ranked.length}`} among the states and DC. The U.S. figure is ${p1(nat.pct_patients)}.`) +
+      (r.units < SMALL ? ` With only ${r.units} units, one unit changes this a lot.` : "");
+    $("g2hint").textContent = "Pick another state to guess again, or tap any state below for its counts.";
+  }
+  $("g2btn").addEventListener("click", () => {
+    if (!me || guesses.has(me)) return;
+    guesses.set(me, g2);
+    ready2();
+    showResult2();
+    $("strip").hidden = false; stripShown = true;
+    drawStrip();
+  });
+
+  // 3. Same chain, different state --------------------------------------------
+  const MIN = sum.min_chain_state_units;
+  const shown = cs.filter(r => r.shown && (r.chain === "DaVita" || r.chain === "Fresenius"));
+  const rowsDB = d3.groups(shown, r => r.state).map(([st, rs]) => ({
+    state: st, name: name(st), dv: rs.find(r => r.chain === "DaVita"), fr: rs.find(r => r.chain === "Fresenius")
+  })).map(r => ({ ...r, key: d3.max([r.dv?.pct_units, r.fr?.pct_units].filter(v => v != null)) }))
+    .sort((a, b) => b.key - a.key);
+  const chainAvg = new Map((await d3.csv("data/chains.csv", d3.autoType)).map(r => [r.chain, r]));
+  const sF = sp.Fresenius;
+  $("chaintext").innerHTML =
+    `The two largest dialysis companies run most U.S. units. Each row is a state where a company has at least ${MIN} in-center units, and the dot is the share of that company's units there that offer a shift starting at 5 pm or later. ` +
+    `DaVita ranges from ${p0(sp.DaVita.high_pct)} of its units in ${name(sp.DaVita.high_state)} to ${p0(sp.DaVita.low_pct)} in ${name(sp.DaVita.low_state)}; Fresenius from ${p0(sF.high_pct)} in ${name(sF.high_state)} to ${p0(sF.low_pct)} in ${name(sF.low_state)}. ` +
+    `And the two companies tend to be high or low in the same states (rank correlation ${sum.davita_fresenius_state_rank_corr.toFixed(2)} across the ${sum.davita_fresenius_states_compared} states where both have at least ${MIN} units).`;
+  const ve = sum.variance_explained;
+  $("chainnote").textContent =
+    `Across all ${int(sum.national_states_only.units)} units in the states and DC, most of the variation in whether a unit has an evening shift is between units in the same state; neither state nor company explains much of it on its own.`;
+
+  function drawDumbbell() {
+    const host = d3.select("#dumbbell").html("");
+    const W = Math.max(300, $("dumbbell").clientWidth), rh = 22, padT = 28;
+    const labW = W < 480 ? 92 : 140, padR = 16;
+    const H = padT + rowsDB.length * rh + 24;
+    const x = d3.scaleLinear().domain([0, 70]).range([labW, W - padR]);
+    const svg = host.append("svg").attr("viewBox", `0 0 ${W} ${H}`).attr("role", "img")
+      .attr("aria-label", "Share of each company's units with an evening shift, by state");
+    svg.append("g").attr("class", "axis").attr("transform", `translate(0,${H - 22})`)
+      .call(d3.axisBottom(x).ticks(W < 480 ? 4 : 7).tickFormat(d => d + "%").tickSizeOuter(0))
+      .call(g => g.select(".domain").remove());
+    x.ticks(W < 480 ? 4 : 7).forEach(t => svg.append("line").attr("x1", x(t)).attr("x2", x(t)).attr("y1", padT - 6).attr("y2", H - 22).attr("stroke", "var(--line)"));
+    [["DaVita", "var(--dv)", -14], ["Fresenius", "var(--fr)", -2]].forEach(([c, col, dy]) => {
+      const v = chainAvg.get(c).pct_units;
+      svg.append("line").attr("x1", x(v)).attr("x2", x(v)).attr("y1", padT - 4).attr("y2", H - 22).attr("stroke", col).attr("stroke-dasharray", "4 3");
+      svg.append("text").attr("x", x(v) + 4).attr("y", padT + dy - 4).attr("fill", col).style("fill", col).text(`${c} overall ${p0(v)}`);
+    });
+    const g = svg.selectAll(".r").data(rowsDB).join("g").attr("transform", (d, i) => `translate(0,${padT + i * rh})`);
+    g.append("rect").attr("class", "row-hit").attr("x", 0).attr("width", W).attr("height", rh).attr("rx", 3)
+      .on("click", function (e, d) {
+        svg.selectAll(".row-hit").classed("on", false); d3.select(this).classed("on", true);
+        const f = (c, r) => r ? `${c}: ${r.late_units} of ${r.units} units (${p0(r.pct_units)})` : `${c}: fewer than ${MIN} units`;
+        $("dbdetail").innerHTML = `<b>${d.name}</b> &middot; ${f("DaVita", d.dv)} &middot; ${f("Fresenius", d.fr)}`;
+      });
+    g.append("text").attr("class", "lbl").attr("x", 4).attr("y", rh / 2 + 4).style("pointer-events", "none")
+      .text(d => W < 480 && d.name.length > 13 ? d.state : d.name);
+    g.filter(d => d.dv && d.fr).append("line").style("pointer-events", "none")
+      .attr("x1", d => x(d.dv.pct_units)).attr("x2", d => x(d.fr.pct_units)).attr("y1", rh / 2).attr("y2", rh / 2)
+      .attr("stroke", "#c9c9cc").attr("stroke-width", 3);
+    g.filter(d => d.dv).append("circle").style("pointer-events", "none").attr("cx", d => x(d.dv.pct_units)).attr("cy", rh / 2).attr("r", 6).attr("fill", "var(--dv)");
+    g.filter(d => d.fr).append("circle").style("pointer-events", "none").attr("cx", d => x(d.fr.pct_units)).attr("cy", rh / 2).attr("r", 6).attr("fill", "var(--fr)").attr("fill-opacity", .9);
+  }
+
+  // 4. Distance ----------------------------------------------------------------
+  $("disttext").innerHTML =
+    `Half of Americans live within ${dist.median_any_mi} miles of a dialysis unit, but the typical distance to one with an evening shift is ${dist.median_evening_mi} miles. ` +
+    `At 30 miles, ${p1(dist.pct_beyond30_any)} of people (${oneIn(dist.pct_beyond30_any)}) live farther than that from any in-center unit, but <b>${p1(dist.pct_beyond30_evening)}</b> (${oneIn(dist.pct_beyond30_evening)}) live farther than that from one with an evening shift.`;
+  VK.stats($("diststats"), [
+    ["Typical distance, any unit", dist.median_any_mi + " mi", "population-weighted median"],
+    ["Typical distance, evening unit", `<span style="color:var(--eve)">${dist.median_evening_mi} mi</span>`, "population-weighted median"],
+    ["Outside metro areas", `${dist.nonmetro_median_any_mi} vs <span style="color:var(--eve)">${dist.nonmetro_median_evening_mi} mi</span>`, "median, any unit vs evening unit"],
+    ["Over 30 mi from an evening unit", `<span style="color:var(--eve)">${(dist.people_beyond30_evening / 1e6).toFixed(0)} million</span>`, `vs ${(dist.people_beyond30_any / 1e6).toFixed(1)} million from any unit`],
+  ]);
+  function drawCdf() {
+    const host = d3.select("#cdf").html("");
+    const W = Math.max(300, $("cdf").clientWidth), H = W < 480 ? 260 : 320;
+    const m = { l: 40, r: 14, t: 14, b: 34 };
+    const XMAX = 60, data = cdf.filter(d => d.miles <= XMAX);
+    const x = d3.scaleLinear().domain([0, XMAX]).range([m.l, W - m.r]);
+    const y = d3.scaleLinear().domain([0, 100]).range([H - m.b, m.t]);
+    const svg = host.append("svg").attr("viewBox", `0 0 ${W} ${H}`).attr("role", "img")
+      .attr("aria-label", "Share of people living farther than each distance from a dialysis unit and from an evening dialysis unit");
+    y.ticks(5).forEach(t => svg.append("line").attr("x1", m.l).attr("x2", W - m.r).attr("y1", y(t)).attr("y2", y(t)).attr("stroke", "var(--line)"));
+    svg.append("g").attr("class", "axis").attr("transform", `translate(0,${H - m.b})`).call(d3.axisBottom(x).ticks(W < 480 ? 4 : 6).tickFormat(d => d + " mi").tickSizeOuter(0));
+    svg.append("g").attr("class", "axis").attr("transform", `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(5).tickFormat(d => d + "%").tickSize(0)).call(g => g.select(".domain").remove());
+    svg.append("text").attr("x", W - m.r).attr("y", m.t + 10).attr("text-anchor", "end").text("share of people living farther than this distance");
+    const line = k => d3.line().x(d => x(d.miles)).y(d => y(d[k])).curve(d3.curveMonotoneX)(data);
+    svg.append("path").attr("d", line("pct_beyond_any")).attr("fill", "none").attr("stroke", "var(--faint)").attr("stroke-width", 2.5);
+    svg.append("path").attr("d", line("pct_beyond_evening")).attr("fill", "none").attr("stroke", "var(--eve)").attr("stroke-width", 3);
+    const a30 = cdf.find(d => d.miles === 30);
+    svg.append("line").attr("x1", x(30)).attr("x2", x(30)).attr("y1", y(0)).attr("y2", y(a30.pct_beyond_evening) - 4).attr("stroke", "var(--fg)").attr("stroke-dasharray", "2 3");
+    svg.append("text").attr("class", "ann").attr("x", x(30) + 6).attr("y", y(a30.pct_beyond_evening) - 8).style("fill", "var(--eve)").text(`${oneIn(a30.pct_beyond_evening)} from an evening unit`);
+    svg.append("text").attr("class", "ann").attr("x", x(30) + 6).attr("y", y(a30.pct_beyond_any) - 6).text(`${oneIn(a30.pct_beyond_any)} from any unit`);
+    // scrubber (works with touch and mouse)
+    const cur = svg.append("g").style("display", "none");
+    cur.append("line").attr("y1", m.t).attr("y2", H - m.b).attr("stroke", "var(--fg)").attr("stroke-width", 1);
+    const c1 = cur.append("circle").attr("r", 4.5).attr("fill", "var(--faint)");
+    const c2 = cur.append("circle").attr("r", 4.5).attr("fill", "var(--eve)");
+    function move(ev) {
+      const [px] = d3.pointer(ev, svg.node());
+      const mi = Math.max(1, Math.min(XMAX, Math.round(x.invert(px))));
+      const d = cdf[mi];
+      cur.style("display", null).attr("transform", `translate(${x(mi)},0)`);
+      c1.attr("cy", y(d.pct_beyond_any)); c2.attr("cy", y(d.pct_beyond_evening));
+      $("cdfread").innerHTML = `Farther than <b>${mi} miles</b>: ${p1(d.pct_beyond_any)} of people from any in-center unit, <b class="e">${p1(d.pct_beyond_evening)}</b> from a unit with an evening shift.`;
+    }
+    svg.append("rect").attr("x", m.l).attr("y", m.t).attr("width", W - m.l - m.r).attr("height", H - m.t - m.b)
+      .attr("fill", "transparent").on("pointerdown pointermove", move)
+      .on("pointerdown.cap", function (ev) { try { this.setPointerCapture(ev.pointerId); } catch (e) { /* not supported */ } });
+  }
+
+  // Map ----------------------------------------------------------------------
+  const us = await d3.json("../assets/viz/counties-albers-10m.json");
+  const map = d3.select("#map"), path = d3.geoPath();
+  const lower48 = topojson.feature(us, us.objects.states).features.filter(f => f.id !== "02" && f.id !== "15");
+  map.append("g").selectAll("path").data(lower48).join("path").attr("d", path).attr("fill", "var(--panel)");
+  map.append("path").datum(topojson.mesh(us, us.objects.states, (a, b) => a !== b && !["02", "15"].includes(a.id))).attr("d", path).attr("fill", "none").attr("stroke", "#d8d8dc");
+  const pts = fac.map(f => ({ p: VK.projection([f.lon, f.lat]), late: f.late })).filter(d => d.p);
+  map.append("g").selectAll("circle").data(pts.filter(d => !d.late)).join("circle").attr("class", "map-fac")
+    .attr("cx", d => d.p[0]).attr("cy", d => d.p[1]).attr("r", 1.8).attr("fill", "#b9b9bd");
+  map.append("g").selectAll("circle").data(pts.filter(d => d.late)).join("circle").attr("class", "map-fac")
+    .attr("cx", d => d.p[0]).attr("cy", d => d.p[1]).attr("r", 2.8).attr("fill", "var(--eve)").attr("fill-opacity", .85);
+  $("mapnote").textContent = `${int(dist.units_placed)} in-center units in the lower 48 states and DC, ${int(dist.late_units_placed)} with a shift starting at 5 pm or later. ` +
+    `${int(dist.units_zip_centroid)} are placed at their ZIP code's center because the street address did not match.`;
+
+  // 5. Churn -------------------------------------------------------------------
+  const c = churn;
+  const cyr = new Map(sum.by_certification_year.map(r => [r.certified, r]));
+  const cy15 = cyr.get("2015-2019"), cyOld = cyr.get("before 2000");
+  $("churntext").innerHTML =
+    `In ${monthYear(c.from)}, ${int(c.late_then)} in-center units offered a shift starting at 5 pm or later. In ${monthYear(c.to)}, ${int(c.late_now)} did. ` +
+    `Units that dropped the evening shift outnumbered those that added one, and of the ${int(c.units_new)} units that opened in between, only ${c.new_with_late} (${p1(c.pct_new_with_late)}) opened with one. ` +
+    `New units are smaller and may add shifts as they fill, but older ones have not caught up: units certified in ${cy15.certified} run an evening shift at ${p0(cy15.pct_units)}, against ${p0(cyOld.pct_units)} of units certified ${cyOld.certified}.`;
+  const steps = [
+    { l: `Units with a 5 pm+ shift, ${monthYear(c.from)}`, v: c.late_then, from: 0, to: c.late_then, col: "var(--muted)" },
+    { l: "Stopped offering it (unit still open)", v: -c.dropped_late, col: "var(--warn)" },
+    { l: "Closed, or stopped in-center hemodialysis", v: -c.late_units_gone, col: "var(--warn)" },
+    { l: "Started offering it", v: c.added_late, col: "var(--accent)" },
+    { l: `New units that opened with one <small>(of ${int(c.units_new)} new units)</small>`, v: c.new_with_late, col: "var(--accent)" },
+  ];
+  let run = c.late_then;
+  steps.slice(1).forEach(s => { s.from = Math.min(run, run + s.v); s.to = Math.max(run, run + s.v); run += s.v; });
+  steps.push({ l: `Units with a 5 pm+ shift, ${monthYear(c.to)}`, v: run, from: 0, to: run, col: "var(--eve)" });
+  const wmax = d3.max(steps, s => s.to);
+  $("wf").innerHTML = steps.map((s, i) =>
+    `<div class="l">${s.l}</div><div class="t"><div style="left:${100 * s.from / wmax}%;width:${Math.max(.4, 100 * (s.to - s.from) / wmax)}%;background:${s.col}"></div></div>` +
+    `<div class="n">${i === 0 || i === steps.length - 1 ? int(s.v) : (s.v > 0 ? "+" : "&minus;") + int(Math.abs(s.v))}</div>`).join("");
+
+  function drawTrend() {
+    const host = d3.select("#trend").html("");
+    const W = Math.max(300, $("trend").clientWidth), H = 200, narrow = W < 480, m = { l: 40, r: narrow ? 12 : 64, t: 16, b: 28 };
+    const pd = d => new Date(d + "T12:00:00");
+    const x = d3.scaleTime().domain(d3.extent(trend, d => pd(d.snapshot))).range([m.l, W - m.r]);
+    const y = d3.scaleLinear().domain([0, 30]).range([H - m.b, m.t]);
+    const svg = host.append("svg").attr("viewBox", `0 0 ${W} ${H}`).attr("role", "img").attr("aria-label", "Share with an evening shift over time");
+    y.ticks(3).forEach(t => svg.append("line").attr("x1", m.l).attr("x2", W - m.r).attr("y1", y(t)).attr("y2", y(t)).attr("stroke", "var(--line)"));
+    svg.append("g").attr("class", "axis").attr("transform", `translate(0,${H - m.b})`).call(d3.axisBottom(x).ticks(d3.timeYear.every(W < 480 ? 2 : 1)).tickFormat(d3.timeFormat("%Y")).tickSizeOuter(0));
+    svg.append("g").attr("class", "axis").attr("transform", `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(3).tickFormat(d => d + "%").tickSize(0)).call(g => g.select(".domain").remove());
+    [["pct_patients", "var(--eve)", "of patients"], ["pct_units", "var(--muted)", "of units"]].forEach(([k, col, lab]) => {
+      svg.append("path").attr("d", d3.line().x(d => x(pd(d.snapshot))).y(d => y(d[k]))(trend)).attr("fill", "none").attr("stroke", col).attr("stroke-width", 2.5);
+      svg.selectAll(null).data(trend).join("circle").attr("cx", d => x(pd(d.snapshot))).attr("cy", d => y(d[k])).attr("r", 3).attr("fill", col);
+      const a = trend[0], b = trend[trend.length - 1];
+      const below = k === "pct_units"; // units line sits below the patient line: label it underneath so it clears the 20% tick
+      svg.append("text").attr("x", x(pd(a.snapshot))).attr("y", y(a[k]) + (below ? 16 : -8)).style("fill", col).text(p1(a[k]));
+      if (narrow) svg.append("text").attr("x", x(pd(b.snapshot))).attr("y", y(b[k]) + (below ? 16 : -13)).attr("text-anchor", "end").style("fill", col).text(`${p1(b[k])} ${lab}`);
+      else svg.append("text").attr("x", x(pd(b.snapshot)) + 6).attr("y", y(b[k]) + 4).style("fill", col).text(`${p1(b[k])} ${lab}`);
+    });
+  }
+  $("trendnote").textContent = `Share of in-center units, and of their patients, at a unit with a 5 pm+ shift, in each CMS snapshot used (${trend.map(d => monthYear(d.snapshot)).join(", ")}). ` +
+    `The patient line uses each year's adequacy-reporting counts, whose reporting windows are not identical, so read its decline as approximate.`;
+
+  // About-the-data fill-ins ------------------------------------------------------
+  $("srcdate").textContent = `file updated ${monthYear(sum.source_modified)}, downloaded ${sum.built}`;
+  $("ptsn").textContent = `${int(nat.patients)} patients in all; ${sum.pts_blank_units} units report none and count only toward unit shares`;
+  $("stw").textContent = p1(nat.pct_stations) + " of stations";
+  $("geon").textContent = `${int(dist.units_zip_centroid)} of ${int(dist.units_placed)} units; ${dist.units_unplaced} could not be placed and are left out of the distances`;
+  $("ntr").textContent = int(dist.tracts);
+  $("basedate").textContent = monthYear(c.from);
+  const n6 = sum.esrd_networks["6"], n16 = sum.esrd_networks["16"];
+  const stList = a => a.map(name).join(a.length > 2 ? ", " : " and ").replace(/, ([^,]*)$/, " and $1");
+  $("whydiffer").textContent = `Why states differ so much is not in this data; staffing, demand, local competition, state rules and regional differences in how units report the field ` +
+    `(states cluster by ESRD Network region: ${stList(n6.states)}, one network, are all near ${p0(n6.pct_units)}, while ${p0(n16.pct_units)} of units in Network 16, which includes Washington and Oregon, report an evening shift) are all possible, and none is tested here.`;
+  $("varnote").textContent = `Treating the evening-shift flag as a 0/1 outcome, state accounts for ${(ve.omega2_state * 100).toFixed(1)}% of its variance across units (omega squared, which adjusts for the number of groups) ` +
+    `and the ${Object.keys(sum.esrd_networks).length} ESRD Networks for ${(ve.omega2_network * 100).toFixed(1)}%. Company accounts for ${(ve.omega2_chain * 100).toFixed(1)}% with the ${ve.chain_groups} company groups used on this page, which fold small chains into “Other”, ` +
+    `and ${(ve.omega2_chain_raw * 100).toFixed(1)}% with all ${ve.chain_raw_groups} chain names in the file kept apart; several small regional nonprofits run evening shifts at most of their units. State, company and network overlap, so these figures are not compared as a ratio.`;
+  $("chk2020").textContent = p1(sum.check_2020_all_facilities.pct_all_facilities);
+
+  function redraw() { drawDumbbell(); drawCdf(); drawTrend(); }
+  redraw();
+  let rt; window.addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(redraw, 150); });
+})();
+</script>
+</body>
+</html>

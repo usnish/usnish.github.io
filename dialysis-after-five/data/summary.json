@@ -1,0 +1,461 @@
+{
+ "source_modified": "2026-10-22",
+ "source_url": "https://data.cms.gov/provider-data/sites/default/files/resources/610e4ab03db86f9cfac93530c3ba5a7c_1792706819/DFC_FACILITY_2.csv",
+ "built": "2026-11-12",
+ "national": {
+  "units": 6959,
+  "late_units": 1131,
+  "pct_units": 16.3,
+  "patients": 495551,
+  "late_patients": 108189,
+  "pct_patients": 21.8,
+  "stations": 131019,
+  "pct_stations": 19.3
+ },
+ "national_states_only": {
+  "units": 6897,
+  "late_units": 1101,
+  "pct_units": 16.0,
+  "patients": 487958,
+  "late_patients": 103985,
+  "pct_patients": 21.3,
+  "stations": 129303,
+  "pct_stations": 18.8
+ },
+ "states_50_dc": 51,
+ "chain_spread": {
+  "DaVita": {
+   "states_shown": 32,
+   "high_state": "WA",
+   "high_pct": 66.0,
+   "high_late": 31,
+   "high_units": 47,
+   "low_state": "NC",
+   "low_pct": 2.1,
+   "low_late": 2,
+   "low_units": 95
+  },
+  "Fresenius": {
+   "states_shown": 34,
+   "high_state": "WA",
+   "high_pct": 51.7,
+   "high_late": 15,
+   "high_units": 29,
+   "low_state": "SC",
+   "low_pct": 4.3,
+   "low_late": 3,
+   "low_units": 69
+  }
+ },
+ "davita_fresenius_state_corr": 0.73,
+ "davita_fresenius_state_rank_corr": 0.57,
+ "davita_fresenius_states_compared": 28,
+ "variance_explained": {
+  "eta2_state": 0.078,
+  "omega2_state": 0.072,
+  "eta2_chain": 0.005,
+  "omega2_chain": 0.005,
+  "chain_groups": 7,
+  "eta2_chain_raw": 0.032,
+  "omega2_chain_raw": 0.027,
+  "chain_raw_groups": 30,
+  "eta2_network": 0.059,
+  "omega2_network": 0.056
+ },
+ "esrd_networks": {
+  "1": {
+   "states": [
+    "CT",
+    "MA",
+    "ME",
+    "NH",
+    "RI",
+    "VT"
+   ],
+   "units": 193,
+   "late_units": 55,
+   "pct_units": 28.5,
+   "patients": 14392,
+   "late_patients": 5198,
+   "pct_patients": 36.1,
+   "stations": 3538,
+   "pct_stations": 33.3
+  },
+  "2": {
+   "states": [
+    "NY"
+   ],
+   "units": 327,
+   "late_units": 114,
+   "pct_units": 34.9,
+   "patients": 29307,
+   "late_patients": 13791,
+   "pct_patients": 47.1,
+   "stations": 6538,
+   "pct_stations": 39.4
+  },
+  "3": {
+   "states": [
+    "NJ"
+   ],
+   "units": 186,
+   "late_units": 26,
+   "pct_units": 14.0,
+   "patients": 13792,
+   "late_patients": 2459,
+   "pct_patients": 17.8,
+   "stations": 3450,
+   "pct_stations": 16.2
+  },
+  "4": {
+   "states": [
+    "DE",
+    "PA"
+   ],
+   "units": 314,
+   "late_units": 41,
+   "pct_units": 13.1,
+   "patients": 18328,
+   "late_patients": 3007,
+   "pct_patients": 16.4,
+   "stations": 5372,
+   "pct_stations": 16.0
+  },
+  "5": {
+   "states": [
+    "DC",
+    "MD",
+    "VA",
+    "WV"
+   ],
+   "units": 400,
+   "late_units": 62,
+   "pct_units": 15.5,
+   "patients": 27237,
+   "late_patients": 5203,
+   "pct_patients": 19.1,
+   "stations": 7454,
+   "pct_stations": 17.9
+  },
+  "6": {
+   "states": [
+    "GA",
+    "NC",
+    "SC"
+   ],
+   "units": 700,
+   "late_units": 38,
+   "pct_units": 5.4,
+   "patients": 47826,
+   "late_patients": 3452,
+   "pct_patients": 7.2,
+   "stations": 14217,
+   "pct_stations": 7.1
+  },
+  "7": {
+   "states": [
+    "FL"
+   ],
+   "units": 505,
+   "late_units": 70,
+   "pct_units": 13.9,
+   "patients": 32889,
+   "late_patients": 4897,
+   "pct_patients": 14.9,
+   "stations": 8985,
+   "pct_stations": 15.0
+  },
+  "8": {
+   "states": [
+    "AL",
+    "MS",
+    "TN"
+   ],
+   "units": 418,
+   "late_units": 41,
+   "pct_units": 9.8,
+   "patients": 25789,
+   "late_patients": 3603,
+   "pct_patients": 14.0,
+   "stations": 8161,
+   "pct_stations": 13.9
+  },
+  "9": {
+   "states": [
+    "IN",
+    "KY",
+    "OH"
+   ],
+   "units": 541,
+   "late_units": 75,
+   "pct_units": 13.9,
+   "patients": 28801,
+   "late_patients": 5659,
+   "pct_patients": 19.6,
+   "stations": 8901,
+   "pct_stations": 18.2
+  },
+  "10": {
+   "states": [
+    "IL"
+   ],
+   "units": 280,
+   "late_units": 33,
+   "pct_units": 11.8,
+   "patients": 18724,
+   "late_patients": 2532,
+   "pct_patients": 13.5,
+   "stations": 4885,
+   "pct_stations": 14.6
+  },
+  "11": {
+   "states": [
+    "MI",
+    "MN",
+    "ND",
+    "SD",
+    "WI"
+   ],
+   "units": 463,
+   "late_units": 53,
+   "pct_units": 11.4,
+   "patients": 27671,
+   "late_patients": 4357,
+   "pct_patients": 15.7,
+   "stations": 7341,
+   "pct_stations": 15.1
+  },
+  "12": {
+   "states": [
+    "IA",
+    "KS",
+    "MO",
+    "NE"
+   ],
+   "units": 291,
+   "late_units": 35,
+   "pct_units": 12.0,
+   "patients": 15084,
+   "late_patients": 2612,
+   "pct_patients": 17.3,
+   "stations": 4573,
+   "pct_stations": 15.6
+  },
+  "13": {
+   "states": [
+    "AR",
+    "LA",
+    "OK"
+   ],
+   "units": 306,
+   "late_units": 36,
+   "pct_units": 11.8,
+   "patients": 18907,
+   "late_patients": 3054,
+   "pct_patients": 16.2,
+   "stations": 5330,
+   "pct_stations": 14.4
+  },
+  "14": {
+   "states": [
+    "TX"
+   ],
+   "units": 701,
+   "late_units": 85,
+   "pct_units": 12.1,
+   "patients": 55083,
+   "late_patients": 7768,
+   "pct_patients": 14.1,
+   "stations": 14145,
+   "pct_stations": 13.0
+  },
+  "15": {
+   "states": [
+    "AZ",
+    "CO",
+    "NM",
+    "NV",
+    "UT",
+    "WY"
+   ],
+   "units": 366,
+   "late_units": 73,
+   "pct_units": 19.9,
+   "patients": 26516,
+   "late_patients": 6573,
+   "pct_patients": 24.8,
+   "stations": 6670,
+   "pct_stations": 23.3
+  },
+  "16": {
+   "states": [
+    "AK",
+    "ID",
+    "MT",
+    "OR",
+    "WA"
+   ],
+   "units": 224,
+   "late_units": 105,
+   "pct_units": 46.9,
+   "patients": 14977,
+   "late_patients": 8856,
+   "pct_patients": 59.1,
+   "stations": 3680,
+   "pct_stations": 52.5
+  },
+  "17": {
+   "states": [
+    "CA",
+    "HI"
+   ],
+   "units": 276,
+   "late_units": 69,
+   "pct_units": 25.0,
+   "patients": 27282,
+   "late_patients": 8821,
+   "pct_patients": 32.3,
+   "stations": 6283,
+   "pct_stations": 29.8
+  },
+  "18": {
+   "states": [
+    "CA"
+   ],
+   "units": 406,
+   "late_units": 90,
+   "pct_units": 22.2,
+   "patients": 45353,
+   "late_patients": 12143,
+   "pct_patients": 26.8,
+   "stations": 9780,
+   "pct_stations": 22.8
+  }
+ },
+ "by_certification_year": [
+  {
+   "certified": "before 2000",
+   "units": 2388,
+   "late_units": 540,
+   "pct_units": 22.6,
+   "median_patients": 76.0,
+   "median_stations": 20.0
+  },
+  {
+   "certified": "2000-2009",
+   "units": 1824,
+   "late_units": 330,
+   "pct_units": 18.1,
+   "median_patients": 66.0,
+   "median_stations": 17.0
+  },
+  {
+   "certified": "2010-2014",
+   "units": 938,
+   "late_units": 137,
+   "pct_units": 14.6,
+   "median_patients": 64.0,
+   "median_stations": 16.0
+  },
+  {
+   "certified": "2015-2019",
+   "units": 1208,
+   "late_units": 98,
+   "pct_units": 8.1,
+   "median_patients": 59.0,
+   "median_stations": 16.0
+  },
+  {
+   "certified": "2020 or later",
+   "units": 601,
+   "late_units": 26,
+   "pct_units": 4.3,
+   "median_patients": 44.0,
+   "median_stations": 15.0
+  }
+ ],
+ "cert_year_blank_units": 0,
+ "min_chain_state_units": 20,
+ "check_2020_all_facilities": {
+  "facilities": 7724,
+  "late": 1281,
+  "pct_all_facilities": 16.6
+ },
+ "distance": {
+  "tracts": 83239,
+  "population": 329260619,
+  "units_placed": 6842,
+  "units_zip_centroid": 700,
+  "units_unplaced": 8,
+  "late_units_placed": 1082,
+  "late_units_unplaced": 1,
+  "median_any_mi": 2.2,
+  "median_evening_mi": 6.6,
+  "metro_median_evening_mi": 5.3,
+  "nonmetro_median_evening_mi": 42.1,
+  "metro_median_any_mi": 2.0,
+  "nonmetro_median_any_mi": 8.2,
+  "people_beyond30_evening": 56958681,
+  "people_beyond30_any": 3013819,
+  "pct_beyond10_any": 10.31,
+  "pct_beyond10_evening": 38.92,
+  "pct_beyond20_any": 2.73,
+  "pct_beyond20_evening": 24.22,
+  "pct_beyond30_any": 0.92,
+  "pct_beyond30_evening": 17.3,
+  "pct_beyond50_any": 0.25,
+  "pct_beyond50_evening": 8.92
+ },
+ "churn": {
+  "from": "2020-10-31",
+  "to": "2026-10-22",
+  "units_then": 7261,
+  "late_then": 1277,
+  "units_now": 6959,
+  "late_now": 1131,
+  "units_in_both": 6443,
+  "late_in_both_then": 1173,
+  "kept_late": 1010,
+  "dropped_late": 163,
+  "added_late": 98,
+  "units_gone": 818,
+  "late_units_gone": 104,
+  "late_units_gone_still_listed": 1,
+  "units_new": 516,
+  "new_with_late": 23,
+  "pct_new_with_late": 4.5,
+  "pct_gone_late": 12.7,
+  "by_chain": {
+   "Fresenius": {
+    "dropped": 61,
+    "added": 36
+   },
+   "DaVita": {
+    "dropped": 57,
+    "added": 28
+   },
+   "US Renal Care": {
+    "dropped": 2,
+    "added": 9
+   },
+   "American Renal Associates": {
+    "dropped": 8,
+    "added": 1
+   },
+   "Independent": {
+    "dropped": 14,
+    "added": 15
+   },
+   "DCI": {
+    "dropped": 6,
+    "added": 1
+   },
+   "Other": {
+    "dropped": 15,
+    "added": 8
+   }
+  }
+ },
+ "pts_column": "Number of adult HD patients with KT/V data",
+ "pts_blank_units": 83
+}

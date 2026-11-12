@@ -1,0 +1,61 @@
+{
+ "checked": "2026-11-12",
+ "events": [
+  {
+   "date": "2011-07-15",
+   "title": "CMS spells out the method",
+   "text": "An HPMS memo to plans tells them to divide the people 5 and older who speak a language and speak English less than \"very well\" by everyone 5 and older in the plan's counties or states. At 5% or more, the plan must translate.",
+   "url": "https://www.cms.gov/medicare/prescription-drug-coverage/prescriptiondrugcovcontra/downloads/update2012translatedmaterialsrequirementsandresourcesfinalhpmsmemo_071511.pdf",
+   "src": "CMS HPMS memo, Appendix A"
+  },
+  {
+   "date": "2023-04-12",
+   "title": "CMS counts contracts, not people",
+   "text": "For 2023, CMS wrote, 16 Medicare Advantage contracts met the line for Chinese and 19 Medicare Advantage and drug plans for \"other Asian languages\", and no service area met it for any other language besides Spanish.",
+   "url": "https://www.federalregister.gov/documents/2023/04/12/2023-07115/",
+   "src": "88 FR 22120, at 22227"
+  },
+  {
+   "date": "2024-05-06",
+   "title": "Civil-rights notice in 15 languages",
+   "text": "HHS's Office for Civil Rights requires a notice, in at least the 15 languages most common among people with limited English in the state, that free language help is available (45 CFR 92.11).",
+   "url": "https://www.federalregister.gov/documents/2024/05/06/2024-08711/",
+   "src": "89 FR 37522"
+  },
+  {
+   "date": "2025-09-30",
+   "title": "CMS stops translating its model documents",
+   "text": "CMS translated its model coverage documents into Spanish, Chinese, Korean and Vietnamese for 2026, then wrote: \"Beginning with CY 2027, CMS will provide model materials in English only.\"",
+   "url": "https://clearpolappstorage.blob.core.windows.net/media/docs/user_1/document_124496/Contract%20Year%202026%20Translated%20Model%20Materials%20Requirements%20and%20Language%20Data%20Analysis_Memo.pdf",
+   "src": "CMS memo, CY2026 translated model materials"
+  },
+  {
+   "date": "2025-11-28",
+   "title": "The 5% rule is on the table",
+   "text": "The proposed 2027 rule asks for comment on \"Modifying the 5 percent translation requirement\", in a list of ideas for reducing burden on plans, and proposes dropping CMS's own notice of language help.",
+   "url": "https://www.federalregister.gov/documents/2025/11/28/2025-21456/",
+   "src": "90 FR 54894, at 54897"
+  },
+  {
+   "date": "2026-01-26",
+   "title": "Advocates push back",
+   "text": "Justice in Aging asks CMS not to weaken the rule and to trigger translation at 5% or 1,000 people, whichever is lower, writing that the 5% trigger \"neglects many substantial non-English speaking communities\".",
+   "url": "https://justiceinaging.org/wp-content/uploads/2026/01/Justice-in-Aging-Medicare-Advantage-2027-rule-comment.pdf",
+   "src": "Justice in Aging comment"
+  },
+  {
+   "date": "2026-04-06",
+   "title": "CMS's language notice is rescinded",
+   "text": "The final 2027 rule removes CMS's own notice of language help (42 CFR 422.2267(e)(31) now reads \"[Reserved]\"), leaving OCR's 15-language notice. The 5% translation rule itself is unchanged.",
+   "url": "https://www.federalregister.gov/documents/2026/04/06/2026-06600/",
+   "src": "91 FR 17384"
+  },
+  {
+   "date": "2026-11-09",
+   "title": "Still the rule",
+   "text": "The eCFR, current to this date, still sets the line at \"at least 5 percent of the individuals in a plan benefit package (PBP) service area\".",
+   "url": "https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-B/part-422/subpart-V/section-422.2267",
+   "src": "eCFR 42 CFR 422.2267(a)(2)"
+  }
+ ]
+}

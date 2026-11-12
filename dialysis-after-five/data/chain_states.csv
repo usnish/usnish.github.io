@@ -1,0 +1,137 @@
+chain,state,name,units,late_units,pct_units,patients,late_patients,pct_patients,stations,pct_stations,shown
+American Renal Associates,CO,Colorado,11,4,36.4,649,338,52.1,198,44.9,0
+American Renal Associates,TX,Texas,22,7,31.8,1640,703,42.9,477,35.8,1
+American Renal Associates,MA,Massachusetts,15,3,20.0,1165,266,22.8,296,25.3,0
+American Renal Associates,FL,Florida,39,5,12.8,2551,376,14.7,707,15.3,1
+American Renal Associates,GA,Georgia,20,2,10.0,1286,136,10.6,390,10.8,1
+American Renal Associates,NY,New York,10,1,10.0,555,79,14.2,142,14.1,0
+American Renal Associates,SC,South Carolina,11,1,9.1,752,44,5.9,210,9.5,0
+American Renal Associates,PA,Pennsylvania,10,0,0.0,555,0,0.0,200,0.0,0
+DCI,NY,New York,17,5,29.4,1523,444,29.2,351,28.8,0
+DCI,MO,Missouri,18,4,22.2,890,305,34.3,296,40.2,0
+DCI,NM,New Mexico,12,1,8.3,497,100,20.1,247,13.0,0
+DCI,PA,Pennsylvania,18,1,5.6,820,12,1.5,316,1.9,0
+DCI,AL,Alabama,13,0,0.0,581,0,0.0,233,0.0,0
+DCI,GA,Georgia,15,0,0.0,862,0,0.0,333,0.0,0
+DCI,LA,Louisiana,12,0,0.0,561,0,0.0,246,0.0,0
+DCI,SC,South Carolina,12,0,0.0,709,0,0.0,246,0.0,0
+DCI,TN,Tennessee,33,0,0.0,1578,0,0.0,682,0.0,1
+DaVita,WA,Washington,47,31,66.0,3239,2464,76.1,701,71.0,1
+DaVita,CO,Colorado,36,14,38.9,2168,1161,53.6,600,49.7,1
+DaVita,OR,Oregon,27,10,37.0,1790,852,47.6,447,43.4,1
+DaVita,MA,Massachusetts,12,4,33.3,1454,644,44.3,269,40.9,0
+DaVita,MS,Mississippi,10,3,30.0,663,235,35.4,242,35.5,0
+DaVita,CA,California,312,73,23.4,34675,9559,27.6,7575,24.1,1
+DaVita,NY,New York,89,20,22.5,6980,1921,27.5,1842,22.3,1
+DaVita,CT,Connecticut,28,6,21.4,2724,805,29.6,630,25.4,1
+DaVita,MO,Missouri,52,10,19.2,3021,726,24.0,810,23.2,1
+DaVita,WI,Wisconsin,53,10,18.9,2795,715,25.6,805,23.4,1
+DaVita,MD,Maryland,78,14,17.9,6549,1337,20.4,1595,19.1,1
+DaVita,UT,Utah,17,3,17.6,876,138,15.8,294,22.1,0
+DaVita,VA,Virginia,87,15,17.2,5963,1259,21.1,1629,20.8,1
+DaVita,IL,Illinois,110,17,15.5,6315,1222,19.4,1787,19.0,1
+DaVita,KS,Kansas,33,5,15.2,1796,327,18.2,545,17.2,1
+DaVita,PA,Pennsylvania,121,18,14.9,7596,1356,17.9,2087,18.6,1
+DaVita,MI,Michigan,83,12,14.5,5711,1210,21.2,1460,17.7,1
+DaVita,OK,Oklahoma,37,5,13.5,2072,339,16.4,568,14.8,1
+DaVita,AZ,Arizona,45,6,13.3,4241,767,18.1,854,15.3,1
+DaVita,FL,Florida,196,26,13.3,13123,1911,14.6,3619,14.0,1
+DaVita,TX,Texas,245,32,13.1,18610,2580,13.9,4960,13.2,1
+DaVita,OH,Ohio,123,14,11.4,5816,775,13.3,1912,15.3,1
+DaVita,NV,Nevada,28,3,10.7,2412,222,9.2,611,11.8,1
+DaVita,NJ,New Jersey,89,9,10.1,6110,798,13.1,1547,13.0,1
+DaVita,AR,Arkansas,34,3,8.8,2134,215,10.1,602,8.6,1
+DaVita,IN,Indiana,58,5,8.6,3329,360,10.8,911,12.1,1
+DaVita,TN,Tennessee,51,4,7.8,2721,233,8.6,864,10.5,1
+DaVita,NE,Nebraska,13,1,7.7,651,84,12.9,185,11.4,0
+DaVita,LA,Louisiana,28,2,7.1,1589,191,12.0,455,10.8,1
+DaVita,AL,Alabama,53,3,5.7,2637,225,8.5,825,9.0,1
+DaVita,GA,Georgia,127,5,3.9,8355,384,4.6,2278,4.4,1
+DaVita,IA,Iowa,28,1,3.6,1306,55,4.2,410,4.9,1
+DaVita,SC,South Carolina,33,1,3.0,2115,114,5.4,666,7.8,1
+DaVita,KY,Kentucky,35,1,2.9,1613,53,3.3,490,2.4,1
+DaVita,MN,Minnesota,44,1,2.3,2323,86,3.7,579,4.1,1
+DaVita,NC,North Carolina,95,2,2.1,5943,145,2.4,1948,2.1,1
+Fresenius,WA,Washington,29,15,51.7,2217,1306,58.9,473,53.7,1
+Fresenius,ME,Maine,12,6,50.0,618,400,64.7,185,58.9,0
+Fresenius,NY,New York,65,31,47.7,6353,3905,61.5,1382,53.6,1
+Fresenius,HI,Hawaii,20,9,45.0,2325,1601,68.9,510,62.4,1
+Fresenius,NH,New Hampshire,16,7,43.8,925,493,53.3,251,51.0,0
+Fresenius,MA,Massachusetts,35,13,37.1,2975,1288,43.3,694,43.5,1
+Fresenius,NV,Nevada,16,5,31.2,2211,710,32.1,376,29.5,0
+Fresenius,CO,Colorado,26,8,30.8,1688,681,40.3,455,36.9,1
+Fresenius,IN,Indiana,62,19,30.6,4038,1495,37.0,1131,34.0,1
+Fresenius,CT,Connecticut,10,3,30.0,747,291,39.0,203,32.5,0
+Fresenius,NM,New Mexico,24,7,29.2,1782,471,26.4,448,30.4,1
+Fresenius,DE,Delaware,22,6,27.3,1437,457,31.8,362,33.7,1
+Fresenius,OK,Oklahoma,30,7,23.3,2661,700,26.3,547,26.3,1
+Fresenius,OR,Oregon,31,7,22.6,2251,677,30.1,588,27.7,1
+Fresenius,WV,West Virginia,28,6,21.4,1562,477,30.5,503,25.4,1
+Fresenius,NJ,New Jersey,75,15,20.0,6145,1514,24.6,1533,20.5,1
+Fresenius,UT,Utah,15,3,20.0,802,214,26.7,229,23.1,0
+Fresenius,OH,Ohio,99,19,19.2,5840,1419,24.3,1757,22.5,1
+Fresenius,ID,Idaho,16,3,18.8,775,155,20.0,221,20.8,0
+Fresenius,CA,California,131,24,18.3,15470,3363,21.7,3224,18.3,1
+Fresenius,MI,Michigan,77,14,18.2,5390,1189,22.1,1464,23.2,1
+Fresenius,LA,Louisiana,106,17,16.0,6709,1319,19.7,1938,18.9,1
+Fresenius,AZ,Arizona,58,9,15.5,5548,1069,19.3,1171,16.1,1
+Fresenius,MS,Mississippi,58,9,15.5,5277,946,17.9,1366,19.8,1
+Fresenius,VA,Virginia,68,10,14.7,4565,788,17.3,1369,18.6,1
+Fresenius,FL,Florida,161,23,14.3,11380,1786,15.7,2964,15.7,1
+Fresenius,TX,Texas,259,37,14.3,23028,3678,16.0,5527,15.3,1
+Fresenius,WI,Wisconsin,42,6,14.3,2656,583,22.0,699,19.7,1
+Fresenius,PA,Pennsylvania,99,14,14.1,6343,1106,17.4,1787,17.2,1
+Fresenius,AL,Alabama,88,12,13.6,5580,1000,17.9,1709,18.7,1
+Fresenius,MO,Missouri,44,5,11.4,2654,388,14.6,770,13.5,1
+Fresenius,IL,Illinois,130,14,10.8,9083,1190,13.1,2503,14.2,1
+Fresenius,KS,Kansas,20,2,10.0,1074,169,15.7,320,13.1,1
+Fresenius,TN,Tennessee,71,7,9.9,4482,672,15.0,1475,11.9,1
+Fresenius,KY,Kentucky,56,5,8.9,2868,360,12.6,904,11.7,1
+Fresenius,MD,Maryland,46,4,8.7,3057,293,9.6,819,7.2,1
+Fresenius,NC,North Carolina,117,10,8.5,9648,1134,11.8,2907,11.8,1
+Fresenius,GA,Georgia,99,8,8.1,6510,656,10.1,1766,9.3,1
+Fresenius,IA,Iowa,13,1,7.7,725,133,18.3,210,11.4,0
+Fresenius,MN,Minnesota,47,3,6.4,2152,165,7.7,659,7.3,1
+Fresenius,SC,South Carolina,69,3,4.3,5297,312,5.9,1442,6.0,1
+Fresenius,AR,Arkansas,10,0,0.0,806,0,0.0,208,0.0,0
+Independent,NY,New York,108,50,46.3,10440,6476,62.0,2036,54.9,1
+Independent,MA,Massachusetts,12,3,25.0,346,106,30.6,125,36.8,0
+Independent,CA,California,75,17,22.7,6436,2116,32.9,1575,25.1,1
+Independent,MI,Michigan,14,3,21.4,725,174,24.0,146,37.0,0
+Independent,IA,Iowa,18,2,11.1,610,93,15.2,220,14.5,0
+Independent,FL,Florida,74,8,10.8,3693,263,7.1,1028,7.6,1
+Independent,MD,Maryland,19,2,10.5,1040,137,13.2,300,9.7,0
+Independent,NE,Nebraska,10,1,10.0,292,90,30.8,111,19.8,0
+Independent,OH,Ohio,13,1,7.7,188,8,4.3,148,13.5,0
+Independent,WI,Wisconsin,13,1,7.7,697,72,10.3,160,10.0,0
+Independent,IL,Illinois,28,2,7.1,2809,120,4.3,429,4.7,1
+Independent,TX,Texas,29,2,6.9,999,106,10.6,400,5.8,1
+Independent,LA,Louisiana,15,1,6.7,429,54,12.6,211,7.6,0
+Independent,AR,Arkansas,16,1,6.2,1054,236,22.4,268,20.5,0
+Independent,MO,Missouri,21,1,4.8,1002,55,5.5,340,3.2,1
+Independent,GA,Georgia,20,0,0.0,970,0,0.0,337,0.0,1
+Independent,MS,Mississippi,15,0,0.0,887,0,0.0,310,0.0,0
+Independent,ND,North Dakota,11,0,0.0,489,0,0.0,148,0.0,0
+Independent,PA,Pennsylvania,11,0,0.0,222,0,0.0,153,0.0,0
+Independent,SD,South Dakota,15,0,0.0,562,0,0.0,156,0.0,0
+Other,WA,Washington,30,29,96.7,2583,2542,98.4,575,98.1,1
+Other,FL,Florida,12,5,41.7,642,335,52.2,218,52.8,0
+Other,OH,Ohio,15,5,33.3,1463,800,54.7,390,55.6,0
+Other,NY,New York,19,5,26.3,2176,674,31.0,466,27.3,0
+Other,GA,Georgia,18,2,11.1,1076,194,18.0,353,15.9,0
+Other,TX,Texas,29,3,10.3,2057,462,22.5,529,17.6,1
+Other,PA,Pennsylvania,11,1,9.1,371,4,1.1,138,13.0,0
+Other,MI,Michigan,14,1,7.1,1848,70,3.8,364,4.4,0
+Other,VA,Virginia,14,1,7.1,756,161,21.3,260,17.7,0
+Other,NC,North Carolina,19,1,5.3,1805,171,9.5,567,8.5,0
+Other,MN,Minnesota,14,0,0.0,522,0,0.0,179,0.0,0
+US Renal Care,HI,Hawaii,18,5,27.8,1560,661,42.4,490,38.8,0
+US Renal Care,CA,California,99,23,23.2,9597,2671,27.8,2119,27.7,1
+US Renal Care,IN,Indiana,10,2,20.0,490,166,33.9,152,27.0,0
+US Renal Care,FL,Florida,17,3,17.6,1061,226,21.3,300,23.3,0
+US Renal Care,SC,South Carolina,13,2,15.4,746,160,21.4,223,22.4,0
+US Renal Care,NY,New York,19,2,10.5,1280,292,22.8,319,18.5,0
+US Renal Care,OH,Ohio,17,1,5.9,748,50,6.7,240,5.4,0
+US Renal Care,TX,Texas,114,4,3.5,8615,239,2.8,2205,2.1,1
+US Renal Care,GA,Georgia,24,0,0.0,1391,0,0.0,399,0.0,1
+US Renal Care,PA,Pennsylvania,11,0,0.0,571,0,0.0,186,0.0,0
