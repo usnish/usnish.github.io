@@ -9,11 +9,6 @@
 
 - title: Data Visualizations
   items:
-    - title: "Same Curve, Two Worlds"
-      url: /cr-session-curve/
-      repo: https://github.com/usnish/usnish.github.io/tree/master/cr-session-curve
-      description: A simulation of whether the Medicare dose-response curve for cardiac rehab sessions (36 vs 24, 12 or 1) can tell a real benefit from healthier people sticking with rehab, set beside the randomized trials and the placebo-adherer evidence.
-
     - title: One High Reading
       url: /one-high-reading/
       repo: https://github.com/usnish/usnish.github.io/tree/master/one-high-reading
