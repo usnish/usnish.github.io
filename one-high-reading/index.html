@@ -1,0 +1,710 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>One High Reading</title>
+<meta name="description" content="When one blood pressure reading is high and nothing is done, how much lower is the next visit? 15,689 U.S. adults measured at home and again at an exam centre about a month later.">
+<link rel="stylesheet" href="../assets/viz/viz.css">
+<style>
+  :root { --seg-offset: #c4c4c4; --seg-same: #8fb2d6; --seg-day: var(--accent); --drug: #2f7d5c; --guess: var(--warn); }
+  main { max-width: 980px; }
+  [hidden] { display: none !important; }
+  .big { font-size: 15px; color: var(--fg); margin: 14px 0 0; max-width: 78ch; }
+  .big b { color: var(--accent); }
+  section.chart > p.note { font-size: 13px; }
+  .plotwrap { position: relative; max-width: 720px; margin-top: 10px; outline: none; }
+  .plotwrap:focus-visible { box-shadow: 0 0 0 2px var(--accent); border-radius: 6px; }
+  .plotwrap canvas, .plotwrap svg { position: absolute; left: 0; top: 0; display: block; }
+  .plotwrap svg { overflow: visible; }
+  svg text { font-family: inherit; }
+  .axis text { fill: var(--muted); font-size: 11px; }
+  .axis path, .axis line { stroke: var(--line); }
+  .grid line { stroke: var(--line); }
+  .axis-title { fill: var(--fg); font-size: 12px; font-weight: 600; }
+  .ident { stroke: var(--faint); stroke-width: 1.25; stroke-dasharray: 4 4; fill: none; }
+  .ident-label { fill: var(--faint); font-size: 11px; }
+  .guess-line { stroke: var(--guess); stroke-width: 3; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .guess-pt { fill: var(--guess); stroke: var(--bg); stroke-width: 1.5; }
+  .actual-line { stroke: var(--fg); stroke-width: 3; fill: none; stroke-linejoin: round; }
+  .actual-pt { fill: var(--fg); stroke: var(--bg); stroke-width: 1.5; }
+  .band { fill: var(--fg); opacity: 0; }
+  .band.on { opacity: .05; }
+  .focus-ring { fill: none; stroke: var(--accent); stroke-width: 2; }
+  .hint { fill: var(--muted); font-size: 14px; }
+  .hint tspan.em { fill: var(--guess); font-weight: 650; }
+  .slope-label { fill: var(--fg); font-size: 12px; }
+  .slope-label tspan.k { fill: var(--muted); }
+  .legend1 { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 12px; color: var(--muted); margin: 8px 0 0; }
+  .legend1 i { display: inline-block; width: 18px; height: 3px; border-radius: 2px; vertical-align: middle; margin-right: 5px; }
+  .legend1 i.dot { width: 7px; height: 7px; border-radius: 50%; opacity: .6; }
+  .row-ctl { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; margin: 12px 0 0; font-size: 13px; color: var(--muted); }
+  .btn { font: inherit; font-size: 14px; font-weight: 600; border-radius: 6px; padding: 7px 14px; cursor: pointer;
+    border: 1px solid var(--accent); background: var(--accent); color: var(--bg); }
+  .btn:disabled { opacity: .4; cursor: not-allowed; }
+  .btn.ghost { background: var(--bg); color: var(--accent); }
+  .btn:focus-visible, .controls button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .linkish { font: inherit; font-size: 13px; background: none; border: 0; color: var(--muted); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; padding: 0; }
+  .row-ctl label { cursor: pointer; }
+  .row-ctl label.off { opacity: .45; cursor: default; }
+  .controls.small button { font-size: 12px; padding: 4px 9px; }
+  .controls button:disabled { opacity: .45; cursor: default; }
+  .result { margin: 14px 0 0; max-width: 78ch; font-size: 15px; min-height: 3em; }
+  .result.empty { color: var(--muted); font-size: 14px; }
+  .result b { color: var(--accent); }
+  .result .you { color: var(--guess); font-weight: 650; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  /* stacked bars */
+  .stack { display: grid; grid-template-columns: minmax(120px, 190px) 1fr 104px; gap: 10px 12px; align-items: center; max-width: 820px; font-size: 13px; margin-top: 12px; }
+  .stack .lbl b { display: block; font-weight: 600; }
+  .stack .lbl span { color: var(--muted); font-size: 11px; }
+  .stack .track { position: relative; height: 26px; background: var(--panel); border-radius: 4px; }
+  .stack .segs { position: absolute; inset: 0; display: flex; border-radius: 4px; overflow: hidden; }
+  .seg { height: 100%; width: 0; transition: width .7s cubic-bezier(.4,0,.2,1); display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 11px; font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; overflow: hidden; cursor: default; }
+  .seg.offset { background: var(--seg-offset); color: #333; }
+  .seg.same { background: var(--seg-same); color: #10273d; }
+  .seg.day { background: var(--seg-day); }
+  .seg.drug { background: var(--drug); }
+  .seg:hover, .seg:focus-visible { filter: brightness(1.08); outline: none; box-shadow: inset 0 0 0 2px var(--fg); }
+  .stack .num { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; white-space: nowrap; }
+  .stack .num span { display: block; font-weight: 400; color: var(--muted); font-size: 11px; }
+  .marker { position: absolute; top: -5px; bottom: -5px; width: 0; border-left: 2px dashed var(--fg); opacity: 0; transition: left .7s cubic-bezier(.4,0,.2,1), opacity .4s; pointer-events: none; }
+  .marker.on { opacity: .7; }
+  .keys { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 12px; color: var(--muted); margin: 10px 0 0; }
+  .keys i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; vertical-align: -2px; margin-right: 5px; }
+  .keys .dash { width: 0; height: 13px; border-left: 2px dashed var(--fg); border-radius: 0; opacity: .7; }
+  .punch { margin: 14px 0 0; max-width: 78ch; font-size: 15px; }
+  .punch b { color: var(--accent); }
+
+  .smallplot { position: relative; max-width: 820px; margin-top: 8px; }
+  .smallplot svg { display: block; width: 100%; overflow: visible; }
+  .row-label { fill: var(--fg); font-size: 12px; font-weight: 600; }
+  .row-sub { fill: var(--muted); font-size: 11px; }
+  .dumb-line { stroke: var(--accent); stroke-width: 2.5; }
+  .pred { stroke: var(--fg); stroke-width: 1.5; stroke-dasharray: 3 3; }
+  .gapbrace { stroke: var(--warn); stroke-width: 2; fill: none; }
+  .gaptext { fill: var(--warn); font-size: 12px; font-weight: 650; }
+  .pt-start { fill: var(--bg); stroke: var(--fg); stroke-width: 2; }
+  .pt-end { fill: var(--accent); }
+  .pt-pred { fill: var(--bg); stroke: var(--fg); stroke-width: 1.5; stroke-dasharray: 2 2; }
+  .vlabel { fill: var(--muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+  .hbar { fill: var(--accent); fill-opacity: .75; }
+  .hbar.neg { fill: var(--faint); }
+  .hbar:hover, .hbar.on { fill-opacity: 1; }
+  .ref { stroke: var(--fg); stroke-width: 1.5; }
+  .ref.mean { stroke: var(--warn); stroke-width: 2; stroke-dasharray: 5 3; }
+  .ref-label { font-size: 11px; fill: var(--fg); }
+  .ref-label.mean { fill: var(--warn); font-weight: 650; }
+  .pline { stroke: var(--accent); stroke-width: 2.5; fill: none; }
+  .pmark { fill: var(--accent); stroke: var(--bg); stroke-width: 2; }
+
+  .slider { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; margin: 12px 0 0; font-size: 14px; }
+  .slider input[type=range] { width: min(320px, 100%); accent-color: var(--accent); }
+  .program { font-size: 17px; line-height: 1.5; max-width: 70ch; margin: 12px 0 0; }
+  .program b { color: var(--accent); font-variant-numeric: tabular-nums; }
+  .coi { font-size: 12px; color: var(--muted); margin: 10px 0 0; max-width: 85ch; }
+  section.about ul { margin: 0 0 8px; padding-left: 20px; }
+  section.about q { font-style: italic; }
+
+  @media (max-width: 600px) {
+    .stack { grid-template-columns: 1fr 92px; }
+    .stack .lbl { grid-column: 1 / -1; margin-bottom: -6px; }
+    .stack .lbl b, .stack .lbl span { display: inline; }
+    .stack .lbl span::before { content: " · "; }
+    .result, .punch { font-size: 14px; }
+    .program { font-size: 15px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .seg, .marker { transition: none; } }
+</style>
+</head>
+<body>
+<main>
+  <a class="back" href="/projects/">&larr; all projects</a>
+  <header>
+    <h1>One high reading</h1>
+    <p class="lede">If a patient has one high blood pressure reading and nothing is done, how much lower will the next visit be? A national survey measured <span data-s="n"></span> U.S. adults on two occasions about a month apart, with no treatment change recorded in between. Guess first, then see.</p>
+  </header>
+
+  <section class="chart" style="border-top:0;margin-top:20px;padding-top:0">
+    <h2>First, draw your guess</h2>
+    <p>Across the bottom: each person's first systolic reading at home. Up the side: the average of their three exam-centre readings about a month later. Anyone on the dashed line came back exactly where they started. Drag across the chart to draw where you think each group of people ended up, then press <i>Show me</i>.</p>
+    <div class="plotwrap" id="c1" tabindex="0" role="application"
+      aria-label="Draw your guess. Left and right arrows pick a group of first readings, up and down arrows move your guess, Enter shows the answer.">
+      <canvas aria-hidden="true"></canvas>
+      <svg role="img" aria-label="Scatter of first home reading against exam-centre average"></svg>
+      <div class="tooltip" id="tip1"></div>
+    </div>
+    <div class="legend1" id="legend1" hidden>
+      <span><i style="background:var(--guess)"></i>Your guess</span>
+      <span><i style="background:var(--fg)"></i>Actual average, weighted</span>
+      <span><i class="dot" style="background:var(--accent)"></i>One person</span>
+      <span><i style="background:none;border-top:2px dashed var(--faint);height:0"></i>No change</span>
+    </div>
+    <div class="row-ctl">
+      <button class="btn" id="show" type="button" disabled>Show me</button>
+      <button class="linkish" id="skip" type="button">or skip the guess</button>
+      <button class="btn ghost" id="again" type="button" hidden>Draw again</button>
+      <label class="off" id="adjlab"><input type="checkbox" id="adj" disabled> Remove the home-vs-clinic offset (<span data-s="offset1"></span> mmHg)</label>
+    </div>
+    <div class="row-ctl" style="margin-top:8px"><span>Show:</span><div class="controls small" id="groups" role="group" aria-label="Which people" style="margin:0"></div></div>
+    <p class="result empty" id="r1" aria-live="polite">Draw at least three points to unlock the answer.</p>
+    <p class="sr" id="live1" aria-live="polite"></p>
+    <p class="note">The home readings were taken by a trained interviewer and the exam-centre readings by a physician, so a change of observer and setting adds noise; a same-clinic recheck by the same nurse may show a smaller drop than the one here.</p>
+  </section>
+
+  <section class="chart">
+    <h2>Where the drop comes from</h2>
+    <p>The fall from one high home reading to the exam-centre average, split three ways. <b>Setting offset</b>: everyone read a little higher at home than at the exam centre, high or not, so that part is a measurement difference. <b>Same visit</b>: how much of the first reading's excess had already faded by readings 2 and 3 that same day. <b>Second day</b>: what was left to fade only by the next occasion. The last two are mostly regression to the mean.</p>
+    <div class="row-ctl"><span>Pick people on:</span><div class="controls small" id="pick" role="group" aria-label="Pick people on" style="margin:0"></div></div>
+    <div class="keys" id="keys2"></div>
+    <div class="stack" id="stack2"></div>
+    <p class="punch" id="p2" aria-live="polite"></p>
+    <p class="note" id="n2" style="color:var(--muted);max-width:85ch"></p>
+  </section>
+
+  <section class="chart">
+    <h2>Is it just the clinic?</h2>
+    <p id="p3"></p>
+    <div class="smallplot" id="c3"><svg role="img" aria-label="Forward and reverse selection compared"></svg></div>
+  </section>
+
+  <section class="chart">
+    <h2>What you'd see after starting a pill</h2>
+    <p id="p4a"></p>
+    <div class="keys" id="keys4"></div>
+    <div class="stack" id="stack4"></div>
+    <p class="punch" id="p4"></p>
+  </section>
+
+  <section class="chart">
+    <h2>Today's machines</h2>
+    <p id="p5a"></p>
+    <div class="smallplot" id="c5"><svg role="img" aria-label="Histogram of first reading minus the average of readings two and three, NHANES 2021 to 2023"></svg><div class="tooltip" id="tip5"></div></div>
+    <p class="punch" id="p5"></p>
+  </section>
+
+  <section class="chart">
+    <h2>What a remeasure-only program would report</h2>
+    <p>Any program, study or quality report that enrolls people because of one high reading and checks them again later will show a fall, even if it does nothing. Slide to set the enrollment cutoff.</p>
+    <div class="slider">
+      <label for="cut">Enroll everyone whose intake systolic is at least</label>
+      <input type="range" id="cut" min="130" max="170" step="1" value="140" aria-describedby="prog">
+      <output id="cutv" for="cut" style="font-weight:650;font-variant-numeric:tabular-nums"></output>
+    </div>
+    <p class="program" id="prog" aria-live="polite"></p>
+    <div class="smallplot" id="c6"><svg role="img" aria-label="Apparent improvement against enrollment cutoff"></svg></div>
+    <p class="coi">The author is Medical Director of Aviary Health, a virtual cardiac and pulmonary rehab program that reports BP outcomes. Nothing here uses Aviary data.</p>
+  </section>
+
+  <section class="about">
+    <h2>How this was built</h2>
+    <p><b>Data.</b> <a href="https://wwwn.cdc.gov/nchs/nhanes/nhanes3/datafiles.aspx">NHANES III</a> (<span data-s="years"></span>), household adult file (<code>adult.dat</code>) and examination file (<code>exam.dat</code>), public-use files from the CDC National Center for Health Statistics. At the household interview, a trained interviewer took three systolic readings a minute apart after five minutes' seated rest, with a mercury-gravity sphygmomanometer (<a href="https://wwwn.cdc.gov/nchs/data/nhanes3/manuals/pressure.pdf">household interviewer BP manual</a>). At the mobile exam centre, a physician took three more (<a href="https://www.cdc.gov/mmwr/preview/mmwrhtml/00038679.htm">MMWR 1995</a>). The modern panel uses <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/BPXO_L.htm">NHANES 2021–23 oscillometric readings</a> (BPXO_L) with demographics (DEMO_L).</p>
+    <p><b>Who is included.</b> <span id="m-incl"></span></p>
+    <p><b>Method.</b> All figures are weighted with the MEC examination weight. The <i>setting offset</i> is the population-wide average of home reading 1 minus the exam-centre mean, <span data-s="offset"></span> mmHg (95% CI <span data-s="offset_ci"></span>); for the mean of three home readings it is <span data-s="offset_mean3"></span>. "Beyond the offset" means a selected group's fall minus that offset. <i>Same visit</i> is the selected group's home reading 1 minus the mean of home readings 2–3, less the same difference in everyone (<span data-s="drift_home"></span> mmHg; everyone's readings drift down a little within a sitting). <i>Second day</i> is whatever remains. The weighted regression of the exam-centre mean on home reading 1 has slope <span data-s="slope"></span> (weighted correlation <span data-s="corr"></span>). 95% confidence intervals use Taylor linearisation with the NHANES III strata and PSUs (<span data-s="df"></span> degrees of freedom): <span id="m-ci"></span></p>
+    <p><b>Caveats.</b></p>
+    <ul id="caveats">
+      <li><b>Different observer and setting.</b> The first reading was taken at home by an interviewer and the second set at the exam centre by a physician, both with mercury devices, <span data-s="years"></span>. The change adds variance, so the regression shown may overstate what a same-clinic recheck by the same nurse would show.</li>
+      <li><b>The offset correction assumes the home-vs-centre gap is the same at every level.</b> By the average of the two measurements it ranges from <span data-s="ba_min"></span> to <span data-s="ba_max"></span> mmHg (<span id="m-ba"></span>). That is why raw and corrected falls are both shown, and why the reverse check matters: a level-dependent home/clinic difference would not also produce a fall when people are picked at the clinic.</li>
+      <li><b>"No BP diagnosis reported" is self-report</b> (doctor ever said high blood pressure: no), not "untreated". At the end of the home visit the interviewer read each person a short statement about their result so they could seek care if it was high, and treatment started between visits was not recorded. Medication timing on the day of each measurement is also unknown. The reverse check, which runs the other way, is hard to explain by new treatment.</li>
+      <li><b>Share now under 140.</b> Comparing one reading with a three-reading average exaggerates reclassification, so it is not used as a headline here. Adjusted for the offset, <span id="m-under"></span></li>
+      <li><b>Era and devices.</b> The pattern is statistical and applies to any noisy measurement, but the exact numbers belong to this protocol (mercury readings to the nearest even number, 1988–94). The 2021–23 panel uses automated oscillometric cuffs at a single visit.</li>
+      <li><b>Point estimates are weighted;</b> confidence intervals are shown only for the headline numbers. The longer-gap subgroup is small (<span id="m-gap"></span>).</li>
+      <li><b>No causal claims</b> beyond this: no treatment change was recorded between the two visits.</li>
+    </ul>
+    <p><b>Guideline.</b> The 2017 ACC/AHA blood pressure guideline (since updated in 2025, <a href="https://doi.org/10.1161/HYP.0000000000000249">Hypertension 2025</a>) recommends <q>proper methods for accurate measurement and documentation of BP … including averaging readings taken on ≥2 occasions</q> (Class I), and asks clinicians to base estimates <q>on an average of at least 2 readings obtained on at least 2 separate occasions</q>, as reproduced in Carey and Whelton's synopsis, <a href="https://doi.org/10.7326/M17-3203">Ann Intern Med 2018;168:351</a>. In this survey, the second occasion mattered more than the second reading.</p>
+    <p><b>Drug comparison.</b> Law MR, Wald NJ, Morris JK, Jordan RE. Value of low dose combination treatment with blood pressure lowering drugs: analysis of 354 randomised trials. <a href="https://doi.org/10.1136/bmj.326.7404.1427">BMJ 2003;326:1427</a>: the placebo-adjusted average fall at standard dose was <span data-s="drug"></span> mmHg systolic. The same paper found drugs lower BP more from higher starting levels (about 1 mmHg more per 10 mmHg), so the split above is a rough guide, not a fixed ratio.</p>
+    <p><b>Earlier work.</b> MacMahon S et al., <a href="https://doi.org/10.1016/0140-6736(90)90878-9">Lancet 1990;335:765</a> (regression dilution in BP cohorts); Pocock SJ et al., <a href="https://doi.org/10.1016/j.jacc.2016.07.775">J Am Coll Cardiol 2016;68:2016</a> (regression to the mean in SYMPLICITY HTN-3); Moore MN et al., <a href="https://doi.org/10.1097/HJH.0000000000001977">J Hypertens 2019;37:24</a> (repeated ambulatory BP in five studies); Wang N et al., <a href="https://doi.org/10.1111/jch.13933">J Clin Hypertens 2020;22:1184</a> (home BP in BP GUIDE). This page adds the NHANES III home-versus-exam-centre pairing, a same-visit versus second-occasion split, and the reverse check.</p>
+    <p>Data and build script: <a href="https://github.com/usnish/usnish.github.io/tree/master/one-high-reading">github.com/usnish/usnish.github.io</a>.</p>
+  </section>
+</main>
+
+<script src="../assets/viz/d3.min.js"></script>
+<script src="../assets/viz/vizkit.js"></script>
+<script>
+(async function () {
+  const [people, modern, S] = await Promise.all([
+    d3.csv("data/people.csv", d3.autoType),
+    d3.csv("data/within2023.csv", d3.autoType),
+    d3.json("data/summary.json")
+  ]);
+  const $ = s => document.querySelector(s);
+  const f1 = v => (Math.round(v * 10) / 10).toFixed(1);
+  const fmm = v => f1(v) + " mmHg";
+  const minus = v => (v < 0 ? "−" : "+") + f1(Math.abs(v));
+  const pct = v => Math.round(100 * v) + "%";
+  const int = VK.int;
+  const ci = c => `${f1(c.lo)} to ${f1(c.hi)}`;
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const T = Object.fromEntries(S.thresholds.map(r => [r.t, r]));
+  const r140 = T[140];
+
+  // ---------- fill static numbers
+  const fill = {
+    n: int(S.n), years: S.years, offset: f1(S.offset), offset1: f1(S.offset), offset_ci: ci(S.ci.offset),
+    offset_mean3: f1(S.offset_mean3), drift_home: f1(S.drift_home), slope: S.slope.toFixed(2), corr: S.corr.toFixed(2),
+    df: S.ci_df, ba_min: f1(S.ba_min), ba_max: f1(S.ba_max), drug: f1(S.drug.sbp),
+  };
+  document.querySelectorAll("[data-s]").forEach(el => { el.textContent = fill[el.dataset.s]; });
+  $("#m-incl").textContent = `Adults aged 18 and over with all three home and all three exam-centre systolic readings, each between 60 and 290 mmHg: ${int(S.n)} people. ` +
+    `The exam came a median of ${S.gap_months_median} month after the home interview (90th percentile ${S.gap_months_p90} months, from age in months at each).`;
+  $("#m-ci").textContent = `beyond the offset at 130+, 140+ and 160+: ${ci(S.ci.beyond_130)}, ${ci(S.ci.beyond_140)}, ${ci(S.ci.beyond_160)}; ` +
+    `same-visit part at 140+: ${ci(S.ci.same_visit_140)}; picked on the mean of three at 140+: ${ci(S.ci.beyond_mean3_140)}; ` +
+    `difference between one reading and the mean of three at 140+: ${ci(S.ci.one_minus_mean3_140)}; reverse check: ${ci({ lo: -S.reverse.ci.hi, hi: -S.reverse.ci.lo })}.`;
+  $("#m-ba").textContent = S.bland_altman.map(b => `${f1(b.diff)} at ${b.lo}–${b.hi}`).join(", ");
+  $("#m-gap").textContent = `${int(S.subgroups.gap_ge2.n)} people at 140+ with an exam two or more months later; their fall beyond the offset, ${f1(S.subgroups.gap_ge2.beyond)} mmHg (95% CI ${ci(S.subgroups.gap_ge2.ci)}), is close to the ${f1(S.subgroups.gap_le1.beyond)} for those seen within a month, so the interval does not seem to matter much`;
+
+  // ---------- people
+  let seed = 7;
+  const rand = () => { seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 4294967296; };
+  const EDGES = [90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 300];
+  const BINS = EDGES.slice(0, -1).map((lo, i) => ({ i, lo, hi: EDGES[i + 1], c: lo === 200 ? 205 : lo + 5, label: lo === 200 ? "200+" : `${lo}–${lo + 9}` }));
+  const binOf = v => v < 90 ? -1 : Math.min(BINS.length - 1, Math.floor((v - 90) / 10));
+  people.forEach(p => {
+    p.mm = (p.m1 + p.m2 + p.m3) / 3; p.bin = binOf(p.h1);
+    p.jx = (rand() - .5) * 1.8; p.jy = (rand() - .5) * 0.6;
+  });
+  const under = people.filter(p => p.h1 >= 140);
+  const wsum = (arr, f) => arr.reduce((s, p) => s + p.w * f(p), 0);
+  const Wu = wsum(under, () => 1);
+  $("#m-under").textContent = `${pct(wsum(under, p => p.mm + S.offset < 140) / Wu)} of people with a first home reading of 140+ averaged under 140 at the exam centre (${pct(wsum(under, p => p.mm < 140) / Wu)} unadjusted).`;
+
+  const GROUPS = [
+    { id: "all", label: "Everyone", test: () => true, key: null },
+    { id: "nodx", label: "No BP diagnosis reported", test: p => p.told === 0, key: "no_dx" },
+    { id: "meds", label: "Taking BP medicine", test: p => p.meds === 1, key: "meds" },
+    { id: "old", label: "Age 65+", test: p => p.age === "65+", key: "age65" },
+  ];
+  function binStats(g) {
+    const acc = BINS.map(() => ({ n: 0, sw: 0, sx: 0, sy: 0 }));
+    let sw = 0, sx = 0, sy = 0, sxx = 0, sxy = 0;
+    for (const p of people) {
+      if (!g.test(p)) continue;
+      if (p.bin >= 0) { const a = acc[p.bin]; a.n++; a.sw += p.w; a.sx += p.w * p.h1; a.sy += p.w * p.mm; }
+      sw += p.w; sx += p.w * p.h1; sy += p.w * p.mm; sxx += p.w * p.h1 * p.h1; sxy += p.w * p.h1 * p.mm;
+    }
+    const mx = sx / sw, my = sy / sw;
+    return { bins: acc.map((a, i) => ({ ...BINS[i], n: a.n, x: a.sx / a.sw, y: a.sy / a.sw, show: a.n >= 30 })),
+      slope: (sxy / sw - mx * my) / (sxx / sw - mx * mx) };
+  }
+  const statsBy = new Map(GROUPS.map(g => [g.id, binStats(g)]));
+  if (Math.abs(statsBy.get("all").slope - S.slope) > 0.005) console.warn("slope mismatch", statsBy.get("all").slope, S.slope);
+
+  // ---------- 1. predict first
+  const c1 = { wrap: $("#c1"), guess: BINS.map(() => null), revealed: false, p: 0, adj: 0, group: GROUPS[0], active: null, last: null, timer: null };
+  const canvas = c1.wrap.querySelector("canvas"), ctx = canvas.getContext("2d");
+  const svg1 = d3.select(c1.wrap).select("svg");
+  const tip1 = d3.select("#tip1");
+  let X1, Y1, D1, g1 = {};
+  const DOM = [85, 215];
+
+  function layout1() {
+    const W = c1.wrap.clientWidth, H = Math.round(Math.max(300, Math.min(W * 0.8, 540, window.innerHeight - 170)));
+    const M = { t: 12, r: 12, b: 46, l: W < 480 ? 46 : 58 };
+    D1 = { W, H, M };
+    c1.wrap.style.height = H + "px";
+    X1 = d3.scaleLinear(DOM, [M.l, W - M.r]);
+    Y1 = d3.scaleLinear(DOM, [H - M.b, M.t]);
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
+    canvas.style.width = W + "px"; canvas.style.height = H + "px";
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    svg1.attr("width", W).attr("height", H).attr("viewBox", `0 0 ${W} ${H}`);
+    svg1.selectAll("*").remove();
+    const ticks = [100, 120, 140, 160, 180, 200];
+    svg1.append("g").attr("class", "grid").selectAll("line").data(ticks).join("line")
+      .attr("x1", d => X1(d)).attr("x2", d => X1(d)).attr("y1", Y1(DOM[0])).attr("y2", Y1(DOM[1]));
+    svg1.append("g").attr("class", "grid").selectAll("line").data(ticks).join("line")
+      .attr("y1", d => Y1(d)).attr("y2", d => Y1(d)).attr("x1", X1(DOM[0])).attr("x2", X1(DOM[1]));
+    svg1.append("g").attr("class", "axis").attr("transform", `translate(0,${H - M.b})`).call(d3.axisBottom(X1).tickValues(ticks).tickSize(4)).call(g => g.select(".domain").remove());
+    svg1.append("g").attr("class", "axis").attr("transform", `translate(${M.l},0)`).call(d3.axisLeft(Y1).tickValues(ticks).tickSize(4)).call(g => g.select(".domain").remove());
+    svg1.append("text").attr("class", "axis-title").attr("x", (M.l + W - M.r) / 2).attr("y", H - 8).attr("text-anchor", "middle").text("First reading at home (mmHg)");
+    svg1.append("text").attr("class", "axis-title").attr("text-anchor", "middle").attr("transform", `translate(13,${(M.t + H - M.b) / 2}) rotate(-90)`)
+      .text(W < 480 ? "Exam-centre average (mmHg)" : "Average at the exam centre, about a month later (mmHg)");
+    svg1.append("line").attr("class", "ident").attr("x1", X1(DOM[0])).attr("y1", Y1(DOM[0])).attr("x2", X1(DOM[1])).attr("y2", Y1(DOM[1]));
+    svg1.append("text").attr("class", "ident-label").attr("x", X1(207)).attr("y", Y1(207) - 6).attr("text-anchor", "end").text("no change");
+    g1.bands = svg1.append("g").selectAll("rect").data(BINS).join("rect").attr("class", "band")
+      .attr("x", d => X1(d.lo)).attr("width", d => X1(Math.min(d.hi, DOM[1])) - X1(d.lo)).attr("y", M.t).attr("height", H - M.b - M.t);
+    g1.actual = svg1.append("g");
+    g1.actualPath = g1.actual.append("path").attr("class", "actual-line");
+    g1.actualPts = g1.actual.append("g");
+    g1.guess = svg1.append("g");
+    g1.guessPath = g1.guess.append("path").attr("class", "guess-line");
+    g1.guessPts = g1.guess.append("g");
+    g1.slope = svg1.append("text").attr("class", "slope-label").attr("x", M.l + 10).attr("y", M.t + 18);
+    g1.hint = svg1.append("text").attr("class", "hint").attr("x", X1(150)).attr("y", Y1(110)).attr("text-anchor", "middle");
+    g1.hint.append("tspan").attr("class", "em").text("Drag across the chart ");
+    g1.hint.append("tspan").text("to draw your guess");
+    g1.ring = svg1.append("circle").attr("class", "focus-ring").attr("r", 9).attr("display", "none");
+    g1.overlay = svg1.append("rect").attr("x", M.l).attr("y", M.t).attr("width", W - M.l - M.r).attr("height", H - M.t - M.b)
+      .attr("fill", "transparent").style("cursor", c1.revealed ? "default" : "crosshair").style("touch-action", c1.revealed ? "auto" : "none");
+    g1.overlay.call(d3.drag().container(() => svg1.node()).filter(e => !c1.revealed && !e.button)
+      .on("start", e => { c1.last = null; paint(e.x, e.y); }).on("drag", e => paint(e.x, e.y)));
+    g1.overlay.on("mousemove", e => { if (c1.revealed) { const [px] = d3.pointer(e); showBin(nearestBin(px)); } })
+      .on("mouseleave", () => { if (c1.revealed && c1.active == null) hideTip(); else if (c1.revealed) showBin(c1.active); });
+    updateGuess(); updateActual(); drawDots(); updateRing();
+    g1.hint.attr("display", c1.guess.some(v => v != null) || c1.revealed ? "none" : null);
+  }
+  const nearestBin = px => d3.minIndex(BINS, b => Math.abs(X1(b.c) - px));
+  const clampV = v => Math.max(DOM[0] + 2, Math.min(DOM[1] - 2, v));
+  function paint(px, py) {
+    const i = nearestBin(px), v = Math.round(clampV(Y1.invert(py)));
+    if (c1.last && Math.abs(i - c1.last.i) > 1) {
+      const step = i > c1.last.i ? 1 : -1;
+      for (let k = c1.last.i + step; k !== i; k += step) c1.guess[k] = Math.round(c1.last.v + (v - c1.last.v) * (k - c1.last.i) / (i - c1.last.i));
+    }
+    c1.guess[i] = v; c1.last = { i, v };
+    g1.hint.attr("display", "none");
+    updateGuess();
+  }
+  function updateGuess() {
+    const line = d3.line().defined(d => d.v != null).x(d => X1(d.b.c)).y(d => Y1(d.v));
+    const data = BINS.map(b => ({ b, v: c1.guess[b.i] }));
+    g1.guessPath.attr("d", line(data));
+    g1.guessPts.selectAll("circle").data(data.filter(d => d.v != null), d => d.b.i).join("circle").attr("class", "guess-pt")
+      .attr("r", 4.5).attr("cx", d => X1(d.b.c)).attr("cy", d => Y1(d.v));
+    const n = c1.guess.filter(v => v != null).length;
+    $("#show").disabled = n < 3 || c1.revealed;
+    if (!c1.revealed) {
+      const r = $("#r1");
+      r.className = "result empty";
+      r.textContent = n < 3 ? "Draw at least three points to unlock the answer." : "Ready when you are. Press Show me.";
+    }
+  }
+  function curStats() { return statsBy.get(c1.group.id); }
+  function updateActual() {
+    const st = curStats(), on = c1.revealed && c1.p >= 1;
+    const pts = st.bins.filter(b => b.show);
+    const line = d3.line().x(d => X1(d.x)).y(d => Y1(d.y + c1.adj));
+    g1.actualPath.attr("d", line(pts)).attr("display", on ? null : "none");
+    g1.actualPts.selectAll("circle").data(pts, d => d.i).join("circle").attr("class", "actual-pt").attr("r", 4)
+      .attr("cx", d => X1(d.x)).attr("cy", d => Y1(d.y + c1.adj)).attr("display", on ? null : "none");
+    g1.slope.attr("display", on ? null : "none").selectAll("tspan").remove();
+    if (on) {
+      g1.slope.append("tspan").attr("class", "k").text("Actual slope ");
+      g1.slope.append("tspan").attr("font-weight", 650).text(st.slope.toFixed(2));
+      g1.slope.append("tspan").attr("class", "k").text("  (no change = 1.00)");
+    }
+  }
+  function colors() {
+    const cs = getComputedStyle(document.documentElement);
+    const a = d3.color(cs.getPropertyValue("--accent").trim() || "#1f4e79"), f = d3.color(cs.getPropertyValue("--faint").trim() || "#9a9a9a");
+    a.opacity = 0.2; f.opacity = 0.07;
+    return { a: a + "", f: f + "" };
+  }
+  function drawDots() {
+    const { W, H, M } = D1;
+    ctx.clearRect(0, 0, W, H);
+    if (c1.p <= 0) return;
+    const e = d3.easeCubicInOut(c1.p), col = colors(), g = c1.group, r = W < 500 ? 1.8 : 2.2;
+    ctx.save(); ctx.beginPath(); ctx.rect(M.l, M.t, W - M.l - M.r, H - M.t - M.b); ctx.clip();
+    for (const pass of [0, 1]) {
+      ctx.fillStyle = pass ? col.a : col.f;
+      for (const p of people) {
+        if ((g.test(p) ? 1 : 0) !== pass) continue;
+        const x0 = p.h1 + p.jx, y = x0 + (p.mm + p.jy + c1.adj - x0) * e;
+        ctx.fillRect(X1(x0) - r / 2, Y1(y) - r / 2, r, r);
+      }
+    }
+    ctx.restore();
+  }
+  function animate(dur, step, done) {
+    if (c1.timer) c1.timer.stop();
+    if (reduce) { step(1); if (done) done(); return; }
+    c1.timer = d3.timer(el => { const t = Math.min(1, el / dur); step(t); if (t >= 1) { c1.timer.stop(); c1.timer = null; if (done) done(); } });
+  }
+  function reveal() {
+    if (c1.revealed) return;
+    c1.revealed = true;
+    $("#show").disabled = true; $("#show").hidden = true; $("#skip").hidden = true; $("#again").hidden = false;
+    $("#adj").disabled = false; $("#adjlab").classList.remove("off");
+    $("#legend1").hidden = false;
+    g1.hint.attr("display", "none");
+    g1.overlay.style("cursor", "default").style("touch-action", "auto");
+    renderGroups();
+    animate(1200, t => { c1.p = t; drawDots(); }, () => {
+      updateActual();
+      if (!reduce) {
+        const len = g1.actualPath.node().getTotalLength();
+        g1.actualPath.attr("stroke-dasharray", `${len} ${len}`).attr("stroke-dashoffset", len)
+          .transition().duration(700).ease(d3.easeCubicOut).attr("stroke-dashoffset", 0).on("end", () => g1.actualPath.attr("stroke-dasharray", null));
+      }
+      writeResult();
+    });
+  }
+  function reset() {
+    c1.revealed = false; c1.p = 0; c1.guess = BINS.map(() => null); c1.active = null; c1.last = null;
+    c1.adj = 0; $("#adj").checked = false; $("#adj").disabled = true; $("#adjlab").classList.add("off");
+    $("#show").hidden = false; $("#skip").hidden = false; $("#again").hidden = true; $("#legend1").hidden = true;
+    hideTip(); layout1(); renderGroups();
+    c1.wrap.focus({ preventScroll: true });
+  }
+  function writeResult() {
+    const g = c1.group, st = curStats();
+    const s = g.key ? { ...S.subgroups[g.key], first: null } : { n: r140.n, fall: r140.fall, beyond: r140.beyond, ci: S.ci.beyond_140, first: r140.first, mec: r140.mec };
+    const who = { all: "People whose", nodx: "Among people with no BP diagnosis reported, those whose",
+      meds: "Among people taking BP medicine, those whose", old: "Among people 65 and over, those whose" }[g.id];
+    let html = `${who} first home reading was 140 or more (${int(s.n)} people) ` +
+      (s.first ? `averaged ${f1(s.first)} at home and ${f1(s.mec)} at the exam centre, ` : "fell ") +
+      `${s.first ? "a fall of " : ""}<b>${fmm(s.fall)}</b>. The usual home-vs-centre gap accounts for ${f1(S.offset)} of it; ` +
+      `the other <b>${fmm(s.beyond)}</b> (95% CI ${ci(s.ci)}) is mostly regression to the mean; no treatment change was recorded in between, though a new prescription can't be ruled out.`;
+    const drawn = BINS.filter(b => c1.guess[b.i] != null && st.bins[b.i].show);
+    if (drawn.length) {
+      const pick = drawn.find(b => b.lo === 150) || drawn.filter(b => b.lo >= 140)[0] || drawn[drawn.length - 1];
+      const actual = st.bins[pick.i].y;
+      html += ` <span class="you">For first readings of ${pick.label}, you drew ${c1.guess[pick.i]}</span>; the actual exam-centre average was ${f1(actual)}.`;
+      if (drawn.length >= 3) {
+        const xs = drawn.map(b => b.c), ys = drawn.map(b => c1.guess[b.i]), mx = d3.mean(xs), my = d3.mean(ys);
+        const gs = d3.sum(xs, (x, k) => (x - mx) * (ys[k] - my)) / d3.sum(xs, x => (x - mx) ** 2);
+        html += ` Your line's slope was ${gs.toFixed(2)}, against an actual ${st.slope.toFixed(2)}.`;
+      }
+    }
+    const r = $("#r1"); r.className = "result"; r.innerHTML = html;
+  }
+  function hideTip() { tip1.style("opacity", 0); g1.bands && g1.bands.classed("on", false); }
+  function showBin(i) {
+    if (i == null || i < 0) return hideTip();
+    const st = curStats(), b = st.bins[i], g = c1.guess[i];
+    g1.bands.classed("on", d => d.i === i);
+    let html = `<b>First home reading ${b.label}</b>${int(b.n)} people${c1.group.key ? " · " + c1.group.label.toLowerCase() : ""}`;
+    if (b.show) {
+      const d = b.y - b.x;
+      html += `<table><tr><td>Average first reading</td><td>${f1(b.x)}</td></tr><tr class="cur"><td>Exam-centre average</td><td>${f1(b.y)}</td></tr>
+        <tr><td>Change</td><td>${minus(d)}</td></tr><tr><td>Change beyond the ${f1(S.offset)} offset</td><td>${minus(d + S.offset)}</td></tr>
+        ${g != null ? `<tr><td style="color:var(--guess)">Your guess</td><td style="color:var(--guess)">${g}</td></tr>` : ""}</table>`;
+    } else html += `<div class="note">Too few people in this group to show an average.</div>`;
+    tip1.html(html).style("opacity", 1);
+    const tw = 260, x = X1(BINS[i].c), W = D1.W;
+    tip1.style("left", (x + 16 + tw > W ? Math.max(0, x - tw - 16) : x + 16) + "px").style("top", (D1.M.t + 8) + "px");
+    $("#live1").textContent = tip1.node().textContent;
+  }
+  function updateRing() {
+    const i = c1.active;
+    if (i == null || document.activeElement !== c1.wrap) { g1.ring.attr("display", "none"); return; }
+    const st = curStats().bins[i];
+    const y = c1.revealed && st.show ? st.y + c1.adj : (c1.guess[i] ?? BINS[i].c);
+    g1.ring.attr("display", null).attr("cx", c1.revealed && st.show ? X1(st.x) : X1(BINS[i].c)).attr("cy", Y1(y));
+  }
+  c1.wrap.addEventListener("keydown", e => {
+    const k = e.key;
+    if (!["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Enter", "Escape"].includes(k)) return;
+    e.preventDefault();
+    if (k === "Enter") { if (!c1.revealed && c1.guess.filter(v => v != null).length >= 3) reveal(); return; }
+    if (k === "Escape") { c1.active = null; hideTip(); updateRing(); return; }
+    if (c1.active == null) c1.active = 5;
+    else if (k === "ArrowRight") c1.active = Math.min(BINS.length - 1, c1.active + 1);
+    else if (k === "ArrowLeft") c1.active = Math.max(0, c1.active - 1);
+    const i = c1.active;
+    if (!c1.revealed) {
+      if (c1.guess[i] == null) {
+        const prev = c1.guess.slice(0, i).reverse().find(v => v != null);
+        c1.guess[i] = prev != null ? prev + 10 : BINS[i].c;
+      }
+      if (k === "ArrowUp") c1.guess[i] = Math.round(clampV(c1.guess[i] + (e.shiftKey ? 5 : 1)));
+      if (k === "ArrowDown") c1.guess[i] = Math.round(clampV(c1.guess[i] - (e.shiftKey ? 5 : 1)));
+      g1.hint.attr("display", "none");
+      updateGuess();
+      $("#live1").textContent = `First reading ${BINS[i].label}: your guess ${c1.guess[i]}. ${c1.guess.filter(v => v != null).length} of ${BINS.length} drawn.`;
+    } else showBin(i);
+    updateRing();
+  });
+  c1.wrap.addEventListener("focus", updateRing);
+  c1.wrap.addEventListener("blur", () => { g1.ring.attr("display", "none"); });
+  $("#show").onclick = reveal;
+  $("#skip").onclick = () => { reveal(); };
+  $("#again").onclick = reset;
+  $("#adj").onchange = function () {
+    const from = c1.adj, to = this.checked ? S.offset : 0;
+    animate(600, t => { c1.adj = from + (to - from) * d3.easeCubicInOut(t); drawDots(); updateActual(); updateRing(); });
+  };
+  function renderGroups() {
+    VK.pressButtons("#groups", GROUPS, c1.group, g => {
+      c1.group = g; renderGroups();
+      drawDots(); updateActual(); updateRing();
+      if (c1.revealed) writeResult();
+      if (c1.active != null && c1.revealed) showBin(c1.active);
+    }, d => d.label, () => null);
+    d3.selectAll("#groups button").property("disabled", !c1.revealed);
+  }
+  renderGroups();
+  layout1();
+
+  // ---------- 2. where the drop comes from
+  const PICK = [{ id: "one", label: "One reading" }, { id: "mean3", label: "The average of three readings at one visit" }];
+  let pick = PICK[0];
+  const KEYT = [130, 140, 160];
+  const maxFall = d3.max(KEYT, t => Math.max(T[t].fall, T[t].fall_mean3));
+  $("#keys2").innerHTML = `<span><i style="background:var(--seg-offset)"></i>Setting offset (home vs exam centre)</span>
+    <span id="key-same"><i style="background:var(--seg-same)"></i>Same visit: faded by readings 2–3</span>
+    <span><i style="background:var(--seg-day)"></i>Second day: faded only by the next occasion</span>
+    <span id="key-marker" hidden><i class="dash"></i>One reading, same offset</span>`;
+  const stack2 = d3.select("#stack2");
+  KEYT.forEach(t => {
+    stack2.append("div").attr("class", "lbl").attr("data-t", t);
+    const tr = stack2.append("div").attr("class", "track");
+    const segs = tr.append("div").attr("class", "segs").attr("data-t", t);
+    ["offset", "same", "day"].forEach(c => segs.append("div").attr("class", "seg " + c).attr("tabindex", 0));
+    tr.append("div").attr("class", "marker").attr("data-t", t);
+    stack2.append("div").attr("class", "num").attr("data-t", t);
+  });
+  function draw2() {
+    VK.pressButtons("#pick", PICK, pick, d => { pick = d; draw2(); }, d => d.label, () => null);
+    const one = pick.id === "one";
+    $("#key-marker").hidden = one; $("#key-same").hidden = !one;
+    KEYT.forEach(t => {
+      const r = T[t];
+      const parts = one ? [S.offset, r.same_visit, r.second_day] : [S.offset_mean3, 0, r.beyond_mean3];
+      const n = one ? r.n : r.n_mean3, fall = one ? r.fall : r.fall_mean3;
+      stack2.select(`.lbl[data-t="${t}"]`).html(`<b>${one ? "First reading" : "Average of three"} ${t}+</b><span>${int(n)} people</span>`);
+      const names = ["Setting offset", "Same visit", one ? "Second day" : "Left after averaging (mostly second day)"];
+      stack2.select(`.segs[data-t="${t}"]`).selectAll(".seg").each(function (_, k) {
+        const v = parts[k], w = 100 * v / maxFall;
+        this.style.width = w + "%";
+        this.textContent = w > 7 ? f1(v) : "";
+        const label = `${names[k]}: ${fmm(v)}`;
+        this.title = label; this.setAttribute("aria-label", `${t}+: ${label}`);
+        this.tabIndex = v > 0 ? 0 : -1;
+      });
+      const mk = stack2.select(`.marker[data-t="${t}"]`).node();
+      mk.style.left = (100 * (S.offset_mean3 + r.beyond) / maxFall) + "%"; mk.classList.toggle("on", !one);
+      stack2.select(`.num[data-t="${t}"]`).html(`${fmm(fall)}<span>${f1(one ? r.beyond : r.beyond_mean3)} beyond offset</span>`);
+    });
+    const share = S.averaging_share_140;
+    $("#p2").innerHTML = one
+      ? `At a cutoff of 140, the same-visit part is <b>${fmm(r140.same_visit)}</b> and the second-day part <b>${fmm(r140.second_day)}</b>. ` +
+        `Most of a single high reading's excess is still there after two more readings in the same sitting; it fades by the next occasion.`
+      : `Picking people on the average of three readings at one visit shrinks the phantom drop at 140 from <b>${fmm(r140.beyond)}</b> to <b>${fmm(r140.beyond_mean3)}</b>, ` +
+        `about ${pct(share)}, or a tenth (95% CI for the difference ${ci(S.ci.one_minus_mean3_140)} mmHg). At 130 it shrinks ${fmm(T[130].beyond - T[130].beyond_mean3)}, and at 160 not at all ` +
+        `(${f1(T[160].beyond)} vs ${f1(T[160].beyond_mean3)}). Averaging in one sitting removes little; the rest is day-to-day variation, which only readings on more than one day can average out.`;
+    $("#n2").textContent = one
+      ? `The same-visit part grows only slowly with the cutoff (${f1(T[130].same_visit)}, ${f1(r140.same_visit)} and ${f1(T[160].same_visit)} mmHg at 130, 140 and 160), while the second-day part grows fast (${f1(T[130].second_day)}, ${f1(r140.second_day)}, ${f1(T[160].second_day)}). ` +
+        `Measured the same way at the exam centre, where a physician took the readings, the same-visit part is larger (${f1(S.mec_same_visit["140"])} mmHg at 140+), so its exact size depends on the setting.`
+      : `Why does averaging save less than the same-visit bar suggests? The groups are not the same people: an average of 140 or more picks out people who stayed high through all three readings, and a high day still regresses by the next one. The dashed line marks where the one-reading bar would end on the same offset.`;
+  }
+  draw2();
+
+  // ---------- 3. reverse
+  const rv = S.reverse;
+  $("#p3").innerHTML = `Maybe the drop is just a home-versus-clinic difference that is bigger in people with high readings. To check, run it backwards: pick people whose <i>first exam-centre</i> reading was 140 or more and look back at their home average. ` +
+    `Home readings usually ran higher, so the offset alone predicts their home average should be ${f1(rv.expected_home_mean)} (the ${f1(S.offset_mean3)} mmHg offset for a three-reading home average, less the ${f1(rv.mec1 + S.offset_mean3 - rv.expected_home_mean)} mmHg by which a first exam reading usually runs above the exam average). It was <b style="color:var(--accent)">${f1(rv.home_mean)}</b>, ${fmm(-rv.beyond)} lower (95% CI ${f1(-rv.ci.hi)} to ${f1(-rv.ci.lo)}). ` +
+    `If the drop were a home-vs-clinic difference, it would not run in reverse.`;
+  function draw3() {
+    const el = $("#c3"), W = el.clientWidth, small = W < 520;
+    const rows = [
+      { label: "Picked high at home", sub: `first home reading 140+, ${int(r140.n)} people`, start: r140.first, startL: "home reading 1", pred: r140.first - S.offset, end: r140.mec, endL: "exam-centre average", gap: r140.beyond },
+      { label: "Picked high at the exam centre", sub: `first exam reading 140+, ${int(rv.n)} people`, start: rv.mec1, startL: "exam reading 1", pred: rv.expected_home_mean, end: rv.home_mean, endL: "home average", gap: -rv.beyond },
+    ];
+    const rowH = small ? 104 : 98, H = rows.length * rowH + 30, M = { l: 10, r: 10 };
+    const x = d3.scaleLinear([small ? 136 : 128, 162], [M.l + 6, W - M.r - 6]);
+    const svg = d3.select(el).select("svg").attr("viewBox", `0 0 ${W} ${H}`).attr("height", H);
+    svg.selectAll("*").remove();
+    svg.append("g").attr("class", "axis").attr("transform", `translate(0,${H - 22})`).call(d3.axisBottom(x).ticks(small ? 5 : 9).tickSize(4)).call(g => g.select(".domain").remove());
+    svg.append("text").attr("class", "vlabel").attr("x", W - M.r).attr("y", H - 26).attr("text-anchor", "end").text("systolic, mmHg");
+    rows.forEach((r, k) => {
+      const g = svg.append("g").attr("transform", `translate(0,${k * rowH})`), y = 56;
+      g.append("text").attr("class", "row-label").attr("x", M.l).attr("y", 14).text(r.label);
+      g.append("text").attr("class", "row-sub").attr("x", M.l).attr("y", 29).text(r.sub);
+      g.append("line").attr("class", "dumb-line").attr("x1", x(r.start)).attr("x2", x(r.end)).attr("y1", y).attr("y2", y);
+      g.append("line").attr("class", "pred").attr("x1", x(r.pred)).attr("x2", x(r.pred)).attr("y1", y - 12).attr("y2", y + 12);
+      g.append("path").attr("class", "gapbrace").attr("d", `M${x(r.pred)},${y + 16}v5H${x(r.end)}v-5`);
+      g.append("text").attr("class", "gaptext").attr("x", (x(r.pred) + x(r.end)) / 2).attr("y", y + 36).attr("text-anchor", "middle")
+        .text(`${f1(r.gap)} lower than the offset predicts`);
+      g.append("circle").attr("class", "pt-start").attr("cx", x(r.start)).attr("cy", y).attr("r", 6);
+      g.append("circle").attr("class", "pt-end").attr("cx", x(r.end)).attr("cy", y).attr("r", 6.5);
+      const predLeft = r.pred < r.start; // forward: offset prediction sits between start and end
+      g.append("text").attr("class", "vlabel").attr("x", x(r.pred) + (predLeft ? -4 : 4)).attr("y", y - 16).attr("text-anchor", predLeft ? "end" : "start")
+        .text(small ? f1(r.pred) : `offset alone: ${f1(r.pred)}`);
+      if (predLeft) g.append("text").attr("class", "vlabel").attr("x", x(r.start) + 9).attr("y", y + 4).text(`${f1(r.start)} ${small ? "" : r.startL}`);
+      else g.append("text").attr("class", "vlabel").attr("x", x(r.start) - 4).attr("y", y - 16).attr("text-anchor", "end").text(`${f1(r.start)} ${small ? "" : r.startL}`);
+      g.append("text").attr("class", "vlabel").attr("x", x(r.end) - 9).attr("y", y + 4).attr("text-anchor", "end").text(`${small ? "" : r.endL} ${f1(r.end)}`);
+    });
+  }
+
+  // ---------- 4. pill
+  const drug = S.drug.sbp, rtm = r140.beyond, tot = drug + rtm;
+  $("#p4a").innerHTML = `Suppose everyone with one reading of 140 or more were started on a standard-dose first drug and rechecked in the same setting a month later. In placebo-controlled trials, one standard dose lowers systolic pressure by about ${fmm(drug)} on average (Law 2003). ` +
+    `Add the ${fmm(rtm)} that people picked this way fell anyway, beyond the setting offset, and the recheck would show about ${fmm(tot)}.`;
+  $("#keys4").innerHTML = `<span><i style="background:var(--drug)"></i>Drug effect, placebo-adjusted (Law 2003)</span><span><i style="background:var(--seg-day)"></i>Regression to the mean (this page)</span>`;
+  const s4 = d3.select("#stack4");
+  s4.append("div").attr("class", "lbl").html(`<b>Uncontrolled recheck</b><span>first reading 140+</span>`);
+  const seg4 = s4.append("div").attr("class", "track").append("div").attr("class", "segs");
+  [["drug", drug, "Drug effect"], ["day", rtm, "Regression to the mean"]].forEach(([c, v, l]) =>
+    seg4.append("div").attr("class", "seg " + c).attr("tabindex", 0).attr("title", `${l}: ${fmm(v)}`).attr("aria-label", `${l}: ${fmm(v)}`).text(f1(v)));
+  s4.append("div").attr("class", "num").html(`${fmm(tot)}<span>observed fall</span>`);
+  requestAnimationFrame(() => seg4.selectAll(".seg").each(function (_, k) { this.style.width = (100 * [drug, rtm][k] / Math.max(tot, maxFall)) + "%"; }));
+  $("#p4").innerHTML = `So roughly <b>${pct(S.not_drug_share_140)}</b> of the fall seen at that recheck would have happened without the pill. ` +
+    `With a same-clinic recheck by the same nurse the regression part may be smaller than in this survey, and the trial figure varies by drug and starting level, so treat this as a rough split.`;
+
+  // ---------- 5. modern
+  const M5 = S.modern;
+  const hi5 = modern.filter(d => d.sbp1 >= 140);
+  $("#p5a").innerHTML = `NHANES now uses an automated oscillometric cuff, with three readings a minute apart at one visit. In 2021–23, among the ${int(M5.n_140)} adults (of ${int(M5.n)}) whose first reading was 140 or more, readings 2 and 3 averaged <b style="color:var(--accent)">${fmm(M5.fall_140)}</b> lower. ` +
+    `That includes the ${f1(M5.drift_all)} mmHg everyone drifted down. Each bar below is the share of those adults whose first reading was that much above the average of the next two.`;
+  $("#p5").innerHTML = `${pct(M5.pct_under_140 / 100)} of them averaged under 140 on readings 2–3. Across all adults, ${f1(M5.prev_130_80_first)}% were at 130/80 or above on reading 1 and ${f1(M5.prev_130_80_mean23)}% on the average of readings 2–3. ` +
+    `Like the 1988–94 same-visit numbers, the modern within-visit effect is small. The 2021–23 survey has no second visit, so the second-day part, the larger one in 1988–94, can't be checked with today's machines.`;
+  const BW = 2, LO5 = -16, HI5 = 26;
+  const hb = d3.range(LO5, HI5, BW).map(lo => ({ lo, hi: lo + BW, w: 0, n: 0 }));
+  const W5 = d3.sum(hi5, d => d.w);
+  hi5.forEach(d => { const v = d.sbp1 - d.mean23, k = Math.max(0, Math.min(hb.length - 1, Math.floor((v - LO5) / BW))); hb[k].w += d.w; hb[k].n++; });
+  hb.forEach(b => { b.share = b.w / W5; });
+  const mean5 = d3.sum(hi5, d => d.w * (d.sbp1 - d.mean23)) / W5;
+  if (Math.abs(mean5 - M5.fall_140) > 0.05) console.warn("modern mean mismatch", mean5, M5.fall_140);
+  function draw5() {
+    const el = $("#c5"), W = el.clientWidth, H = W < 520 ? 220 : 250, M = { t: 24, r: 10, b: 40, l: 40 };
+    const x = d3.scaleLinear([LO5, HI5], [M.l, W - M.r]), y = d3.scaleLinear([0, d3.max(hb, b => b.share) * 1.1], [H - M.b, M.t]);
+    const svg = d3.select(el).select("svg").attr("viewBox", `0 0 ${W} ${H}`).attr("height", H);
+    svg.selectAll("*").remove();
+    svg.append("g").attr("class", "grid").selectAll("line").data(y.ticks(4)).join("line").attr("x1", M.l).attr("x2", W - M.r).attr("y1", d => y(d)).attr("y2", d => y(d));
+    svg.append("g").attr("class", "axis").attr("transform", `translate(0,${H - M.b})`).call(d3.axisBottom(x).ticks(W < 520 ? 6 : 10).tickFormat(d => (d > 0 ? "+" : d < 0 ? "−" : "") + Math.abs(d)).tickSize(4)).call(g => g.select(".domain").remove());
+    svg.append("g").attr("class", "axis").attr("transform", `translate(${M.l},0)`).call(d3.axisLeft(y).ticks(4).tickFormat(d3.format(".0%")).tickSize(0)).call(g => g.select(".domain").remove());
+    svg.append("text").attr("class", "axis-title").attr("x", (M.l + W - M.r) / 2).attr("y", H - 6).attr("text-anchor", "middle").text("Reading 1 minus the average of readings 2–3 (mmHg)");
+    const tip = d3.select("#tip5");
+    svg.append("g").selectAll("rect").data(hb).join("rect").attr("class", d => "hbar" + (d.hi <= 0 ? " neg" : ""))
+      .attr("x", d => x(d.lo) + 0.5).attr("width", d => Math.max(0, x(d.hi) - x(d.lo) - 1)).attr("y", d => y(d.share)).attr("height", d => y(0) - y(d.share))
+      .on("mousemove", function (e, d) {
+        d3.select(this).classed("on", true);
+        const [px, py] = d3.pointer(e, el);
+        const lab = d.lo === LO5 ? `${Math.abs(d.hi)} or more lower` : d.hi === HI5 ? `${d.lo} or more higher` :
+          d.hi <= 0 ? `${Math.abs(d.hi)} to ${Math.abs(d.lo)} lower` : d.lo >= 0 ? `${d.lo} to ${d.hi} higher` : `within 2`;
+        tip.html(`<b>Reading 1 was ${lab}</b>${pct(d.share)} of adults with a first reading of 140+ (${int(d.n)} people)`).style("opacity", 1)
+          .style("left", Math.min(px + 12, W - 270) + "px").style("top", Math.max(0, py - 60) + "px");
+      }).on("mouseleave", function () { d3.select(this).classed("on", false); tip.style("opacity", 0); });
+    svg.append("line").attr("class", "ref").attr("x1", x(0)).attr("x2", x(0)).attr("y1", M.t - 6).attr("y2", H - M.b);
+    svg.append("text").attr("class", "ref-label").attr("x", x(0) - 4).attr("y", M.t - 10).attr("text-anchor", "end").text("no change");
+    svg.append("line").attr("class", "ref mean").attr("x1", x(mean5)).attr("x2", x(mean5)).attr("y1", M.t - 6).attr("y2", H - M.b);
+    svg.append("text").attr("class", "ref-label mean").attr("x", x(mean5) + 4).attr("y", M.t - 10).text(`average ${f1(mean5)}`);
+  }
+
+  // ---------- 6. program
+  function draw6() {
+    const X = +$("#cut").value, r = T[X];
+    $("#cutv").textContent = X + " mmHg";
+    $("#prog").innerHTML = `A program that enrolls everyone whose intake systolic is ${X} or more and simply remeasures them about a month later would, in this survey's data, report about <b>${fmm(r.beyond)}</b> of improvement with zero effect` +
+      ` (${int(r.n)} people would qualify); a same-clinic recheck by the same staff may show somewhat less. If the recheck also moves from home to clinic, as here, the apparent fall is ${fmm(r.fall)}.`;
+    const el = $("#c6"), W = el.clientWidth, H = 190, M = { t: 14, r: 14, b: 38, l: 40 };
+    const pts = S.thresholds.filter(d => d.t >= 130 && d.t <= 170);
+    const x = d3.scaleLinear([130, 170], [M.l, W - M.r]), y = d3.scaleLinear([0, d3.max(pts, d => d.beyond) * 1.08], [H - M.b, M.t]);
+    const svg = d3.select(el).select("svg").attr("viewBox", `0 0 ${W} ${H}`).attr("height", H);
+    svg.selectAll("*").remove();
+    svg.append("g").attr("class", "grid").selectAll("line").data(y.ticks(4)).join("line").attr("x1", M.l).attr("x2", W - M.r).attr("y1", d => y(d)).attr("y2", d => y(d));
+    svg.append("g").attr("class", "axis").attr("transform", `translate(0,${H - M.b})`).call(d3.axisBottom(x).ticks(W < 500 ? 4 : 8).tickSize(4)).call(g => g.select(".domain").remove());
+    svg.append("g").attr("class", "axis").attr("transform", `translate(${M.l},0)`).call(d3.axisLeft(y).ticks(4).tickSize(0)).call(g => g.select(".domain").remove());
+    svg.append("text").attr("class", "axis-title").attr("x", (M.l + W - M.r) / 2).attr("y", H - 4).attr("text-anchor", "middle").text("Enrollment cutoff (mmHg)");
+    svg.append("text").attr("class", "vlabel").attr("x", M.l + 6).attr("y", M.t + 4).text("apparent improvement, mmHg");
+    svg.append("path").attr("class", "pline").attr("d", d3.line().x(d => x(d.t)).y(d => y(d.beyond))(pts));
+    svg.append("circle").attr("class", "pmark").attr("r", 6).attr("cx", x(X)).attr("cy", y(r.beyond));
+  }
+  $("#cut").addEventListener("input", draw6);
+
+  draw3(); draw5(); draw6();
+  let rt;
+  let lastW = window.innerWidth;
+  window.addEventListener("resize", () => {
+    clearTimeout(rt);
+    rt = setTimeout(() => { if (window.innerWidth === lastW) return; lastW = window.innerWidth; layout1(); draw3(); draw5(); draw6(); }, 150);
+  });
+})();
+</script>
+</body>
+</html>

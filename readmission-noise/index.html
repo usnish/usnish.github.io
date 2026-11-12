@@ -1,0 +1,693 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Noisy Ruler, Real Differences</title>
+<meta name="description" content="What Medicare's hospital readmission penalties can and can't see: a lineup test of real vs chance-only data, a per-hospital view with each measure's reliability, and a check of how stable the differences are between 2018-21 and 2021-24.">
+<link rel="stylesheet" href="../assets/viz/viz.css">
+<style>
+  :root { --sel: #6b3fa0; }
+  .big { font-size: 15px; color: var(--fg); margin: 14px 0 0; max-width: 80ch; }
+  .big b { color: var(--accent); }
+  .note27 { font-size: 13px; color: var(--muted); margin: 8px 0 0; max-width: 85ch; }
+  section.act { margin-top: 40px; border-top: 1px solid var(--line); padding-top: 18px; }
+  section.act > h2 { font-size: 20px; margin: 0 0 4px; letter-spacing: -0.01em; }
+  section.act > h2 .num { color: var(--muted); font-weight: 500; margin-right: 6px; }
+  section.act > p, .act .prose { margin: 0 0 10px; color: var(--muted); font-size: 14px; max-width: 85ch; }
+  .act .prose b, section.act > p b { color: var(--fg); font-weight: 600; }
+  .takeaway { font-size: 15px; color: var(--fg) !important; border-left: 3px solid var(--accent); padding: 2px 0 2px 12px; }
+  svg text { font-family: inherit; }
+  .axis text { fill: var(--muted); font-size: 10px; }
+  .axis path, .axis line { stroke: var(--line); }
+  .ref { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 3 3; opacity: .7; }
+  .selring { fill: none; stroke: var(--sel); stroke-width: 2; }
+  .sellabel { fill: var(--sel); font-size: 11px; font-weight: 650; paint-order: stroke; stroke: var(--bg); stroke-width: 3px; }
+
+  /* Lineup */
+  .lineup-wrap { position: relative; max-width: 860px; }
+  .lineup { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 12px; }
+  .pnl { position: relative; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); cursor: pointer;
+    transition: border-color .25s, opacity .4s, box-shadow .25s; outline: none; }
+  .pnl canvas, .pnl svg { display: block; width: 100%; height: auto; }
+  .pnl svg { position: absolute; inset: 0; }
+  .pnl:hover, .pnl:focus-visible { border-color: var(--accent); box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 25%, transparent); }
+  .pnl .tag { position: absolute; left: 8px; top: 5px; font-size: 12px; font-weight: 650; color: var(--muted); pointer-events: none; }
+  .lineup.done .pnl { cursor: default; }
+  .lineup.done .pnl:not(.real) { opacity: .55; }
+  .lineup.done .pnl.real { border: 2px solid var(--accent); opacity: 1; }
+  .lineup.done .pnl.real .tag { color: var(--accent); }
+  .lineup.done .pnl.picked:not(.real) { border: 2px dashed var(--muted); }
+  .lineup.done .pnl.real { cursor: crosshair; }
+  .band { fill: var(--muted); fill-opacity: .10; stroke: var(--muted); stroke-opacity: .6; stroke-width: 1; stroke-dasharray: 3 2; }
+  .result { margin: 12px 0 0; font-size: 15px; min-height: 1.5em; max-width: 85ch; }
+  .result .hit { color: var(--accent); font-weight: 650; }
+  .result .miss { color: var(--warn); font-weight: 650; }
+  .btnrow { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+  .btn { font: inherit; font-size: 13px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--fg); padding: 6px 11px; cursor: pointer; }
+  .btn:hover { border-color: var(--accent); color: var(--accent); }
+  .btn[hidden] { display: none; }
+  .tally { font-size: 13px; color: var(--muted); }
+  .controls button:focus-visible, .btn:focus-visible, .pnl:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  /* Search + card */
+  .search { position: relative; max-width: 560px; margin-top: 10px; }
+  .search input { width: 100%; font: inherit; font-size: 15px; padding: 9px 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--fg); }
+  .search ul { list-style: none; margin: 4px 0 0; padding: 4px; position: absolute; left: 0; right: 0; z-index: 8; background: var(--bg);
+    border: 1px solid var(--line); border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,.14); max-height: 320px; overflow-y: auto; }
+  .search ul[hidden] { display: none; }
+  .search li { padding: 6px 8px; border-radius: 5px; cursor: pointer; font-size: 14px; display: flex; justify-content: space-between; gap: 10px; }
+  .search li .st { color: var(--muted); font-size: 12px; white-space: nowrap; }
+  .search li[aria-selected="true"], .search li:hover { background: var(--panel); }
+  .search li.empty { color: var(--muted); cursor: default; }
+  .examples { font-size: 13px; color: var(--muted); margin: 8px 0 0; }
+  .examples button { font: inherit; font-size: 13px; color: var(--accent); background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+  .chip { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; background: var(--panel); border: 1px solid var(--line); border-radius: 999px; padding: 3px 4px 3px 10px; margin: 10px 0 0; }
+  .chip[hidden] { display: none; }
+  .chip b { color: var(--sel); }
+  .chip button { border: 0; background: none; color: var(--muted); font-size: 16px; cursor: pointer; line-height: 1; padding: 0 6px; }
+  .hcard { margin-top: 14px; border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; background: var(--bg); }
+  .hcard h3 { margin: 0; font-size: 18px; }
+  .hcard .meta { color: var(--muted); font-size: 13px; margin: 2px 0 10px; }
+  .crow { display: grid; grid-template-columns: 150px 130px 240px 96px minmax(120px, 1fr); gap: 12px; align-items: center; padding: 8px 0; border-top: 1px solid var(--line); font-size: 13px; }
+  .crow.head { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .05em; border-top: 0; padding-bottom: 4px; }
+  .crow .cn { font-weight: 600; }
+  .crow .cn small { display: block; font-weight: 400; color: var(--muted); font-size: 12px; }
+  .verdict { display: inline-block; font-size: 12px; border-radius: 4px; padding: 1px 7px; border: 1px solid var(--line); white-space: nowrap; }
+  .verdict.y { border-color: var(--warn); color: var(--warn); font-weight: 600; }
+  .verdict.na { color: var(--faint); }
+  .crow .other { display: block; color: var(--muted); font-size: 11px; margin-top: 3px; }
+  .meter { height: 8px; background: var(--panel); border: 1px solid var(--line); border-radius: 4px; overflow: hidden; margin-top: 3px; }
+  .meter > div { height: 100%; background: var(--accent); }
+  .pbig { font-size: 18px; font-weight: 650; font-variant-numeric: tabular-nums; }
+  .errsvg { width: 220px; max-width: 100%; height: auto; display: block; overflow: visible; }
+  .errsvg .med { stroke: var(--fg); stroke-width: 1.5; }
+  .errsvg .one { stroke: var(--line); }
+  .errsvg .ci { stroke: var(--accent); stroke-width: 2.5; stroke-linecap: round; opacity: .45; }
+  .errsvg .pt { fill: var(--accent); }
+  .errsvg .pt.y { fill: var(--warn); }
+  .errsvg text { fill: var(--muted); font-size: 10px; }
+  .muted { color: var(--muted); }
+  .legend-line { font-size: 12px; color: var(--muted); margin: 8px 0 0; }
+  table.mini { border-collapse: collapse; font-size: 13px; margin-top: 8px; }
+  table.mini th, table.mini td { padding: 4px 10px 4px 0; text-align: right; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+  table.mini th { color: var(--muted); font-weight: 500; font-size: 12px; }
+  table.mini th:first-child, table.mini td:first-child { text-align: left; }
+
+  /* Persistence */
+  .multi { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 22px 20px; margin-top: 14px; }
+  .mult h3 { font-size: 14px; margin: 0 0 2px; }
+  .mult .sub { font-size: 12px; color: var(--muted); margin: 0 0 4px; }
+  .mult .pnl { cursor: default; }
+  .mult .pnl:hover { border-color: var(--line); box-shadow: none; }
+  .rbar text { fill: var(--muted); font-size: 12px; }
+  .mult .axis text { font-size: 12px; }
+  .rbar .lab { fill: var(--fg); }
+  .rbar .obs { fill: var(--accent); }
+  .rbar .ceil { fill: none; stroke: var(--accent); stroke-width: 1.5; stroke-dasharray: 3 2; }
+  .rbar .whisk { stroke: var(--fg); stroke-width: 1.2; }
+  .mult .rep { font-size: 12px; color: var(--muted); margin: 4px 0 0; }
+  .mult .rep b { color: var(--fg); }
+  .flag { font-size: 12px; color: var(--muted); }
+  .dotplot { max-width: 760px; margin-top: 12px; }
+  .dotplot svg { display: block; width: 100%; height: auto; overflow: visible; }
+  .dotplot text { fill: var(--muted); font-size: 12px; }
+  .dotplot .lab { fill: var(--fg); font-weight: 600; font-size: 13px; }
+  .dotplot .rng { fill: var(--accent); fill-opacity: .14; }
+  .dotplot .cdot { fill: var(--bg); stroke: var(--accent); stroke-width: 2; }
+  .dotplot .odot { fill: var(--accent); }
+  .dotplot .whisk { stroke: var(--fg); stroke-width: 1.4; }
+  .dotplot .share { fill: var(--fg); font-variant-numeric: tabular-nums; }
+  .dotplot .grid line { stroke: var(--line); }
+
+  .bars .fill.selbar { background: var(--sel); }
+  section.about ul { padding-left: 18px; margin: 0 0 8px; }
+  table.ktab { border-collapse: collapse; font-size: 13px; margin: 4px 0 10px; color: var(--fg); }
+  table.ktab th, table.ktab td { padding: 3px 12px 3px 0; text-align: right; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+  table.ktab th { color: var(--muted); font-weight: 500; }
+  table.ktab th:first-child, table.ktab td:first-child { text-align: left; }
+  .coi { border: 1px solid var(--line); background: var(--panel); border-radius: 8px; padding: 10px 12px; color: var(--fg); }
+  .tooltip { width: 230px; }
+  .scrollx { overflow-x: auto; }
+
+  @media (max-width: 760px) {
+    .crow { grid-template-columns: 1fr 1fr; gap: 6px 12px; }
+    .crow.head { display: none; }
+    .crow .cn { grid-column: 1 / -1; }
+    .crow .errcell { grid-column: 1 / -1; }
+  }
+  @media (max-width: 600px) {
+    .lineup { gap: 6px; }
+    .lineup .axis text { font-size: 19px; }
+    .lineup .pnl .tag { font-size: 11px; left: 5px; top: 2px; }
+    .lineup .sellabel { display: none; }
+    .lineup .selring { stroke-width: 3.5; }
+  }
+  @media (prefers-reduced-motion: reduce) { .pnl { transition: none; } }
+</style>
+</head>
+<body>
+<main>
+  <a class="back" href="/projects/">&larr; all projects</a>
+  <header>
+    <h1>Noisy ruler, real differences</h1>
+    <p class="lede" id="lede">Medicare's Hospital Readmissions Reduction Program cuts payments to hospitals whose risk-adjusted 30-day readmissions, on any of six measures, are higher than the median hospital in their peer group. How much of any one hospital's penalty is measurement noise, and are the differences underneath real? Short answer: a single year's penalty is a noisy ruler, but for heart failure, heart attack and COPD the differences it measures look mostly stable.</p>
+  </header>
+  <p class="big" id="headline">Whether a hospital is penalized for a measure comes down to one comparison: is its excess readmission ratio above its peer group's median?</p>
+  <div class="stats" id="stats"></div>
+
+  <!-- Act 1 -->
+  <section class="act" id="act1">
+    <h2><span class="num">1</span>Can you spot the real data?</h2>
+    <p>Each panel plots hospitals' excess readmission ratio (ERR: CMS's predicted readmissions divided by expected, so 1.0 is average) against their number of eligible discharges. <b>One panel is CMS's real fiscal 2026 data. The other eight are chance-only</b>: every hospital is set at exactly its expected readmission rate, readmissions are drawn at random, and the result is shrunk the way this page's fit to CMS's model shrinks it. Pick the panel you think is real.</p>
+    <div class="controls" id="ltabs" role="group" aria-label="Condition"></div>
+    <div class="lineup-wrap" id="lwrap">
+      <div class="lineup" id="lineup"></div>
+      <div class="tooltip" id="ltip" role="status"></div>
+    </div>
+    <p class="result" id="lresult" aria-live="polite"></p>
+    <div class="btnrow"><button class="btn" id="reshuffle" type="button" hidden>Reshuffle and try again</button><span class="tally" id="tally"></span></div>
+    <p class="prose" id="lcaption" style="margin-top:12px"></p>
+  </section>
+
+  <!-- Act 2 -->
+  <section class="act" id="act2">
+    <h2><span class="num">2</span>Find your hospital</h2>
+    <p>CMS's verdict for each measure, next to how much one three-year window can tell. <b>Reliability</b> is the share of a hospital's raw result that CMS's model keeps after shrinking it toward average; the rest is treated as noise. The <b>probability</b> is the chance, under assumptions that emulate CMS's model, that the hospital's true ratio is above its peer-group median, the line CMS uses to decide a penalty.</p>
+    <p class="note27" id="note27"></p>
+    <div class="search">
+      <input id="q" type="search" autocomplete="off" placeholder="Hospital name, state or 6-digit CCN" aria-label="Search hospitals" role="combobox" aria-expanded="false" aria-controls="qlist" aria-autocomplete="list">
+      <ul id="qlist" role="listbox" hidden></ul>
+    </div>
+    <p class="examples" id="examples"></p>
+    <div class="chip" id="chip" hidden><span>Highlighted in the real lineup panel (after you pick), the persistence charts and the bar chart: <b id="chipname"></b></span><button type="button" id="clear" aria-label="Clear selected hospital">×</button></div>
+    <div id="card"></div>
+    <p class="prose" id="pbandtxt" style="margin-top:16px"></p>
+    <div class="scrollx"><table class="mini" id="pbands"></table></div>
+  </section>
+
+  <!-- Act 3 -->
+  <section class="act" id="act3">
+    <h2><span class="num">3</span>Flip-flopping penalties, stable hospitals</h2>
+    <p>The same hospitals, measured in two separate windows that share no discharges. Fiscal 2023: <span id="w23"></span>. Fiscal 2026: <span id="w26"></span>. If ERRs were perfectly reliable and hospitals never changed, the dots in each scatterplot below would fall on the dashed line. The chart compares the observed correlation with the <b>noise-only ceiling</b>: the correlation you would expect if every hospital's true ratio stayed exactly the same and only measurement noise moved it, given each hospital's real discharge counts in both windows.</p>
+    <p class="takeaway" id="takeaway"></p>
+    <div class="dotplot" id="dotplot"></div>
+    <p class="legend-line">Filled dot: observed correlation between the two windows, with its 95% interval. Open dot: noise-only ceiling, with the shaded 95% range across 300 simulated pairs of windows. Right: observed as a share of the ceiling.</p>
+    <div class="multi" id="multi"></div>
+    <p class="legend-line">Bars: solid = observed correlation (with 95% interval); dashed outline = noise-only ceiling (with the 95% range across 300 simulated pairs of windows). Pneumonia is left out because CMS suppressed it in fiscal 2023.</p>
+  </section>
+
+  <!-- Act 4 -->
+  <section class="act" id="act4">
+    <h2><span class="num">4</span>A design that penalizes most hospitals</h2>
+    <p id="act4txt"></p>
+    <div class="bars" id="bars-elig"></div>
+    <p class="prose" id="act4more" style="margin-top:10px"></p>
+  </section>
+
+  <section class="about">
+    <h2>How this was built</h2>
+    <p><b>Data.</b> CMS <a id="src26" href="#">FY2026 HRRP supplemental file</a> (final rule; discharges July 2021 to June 2024): each hospital's ERR, peer-group median, penalty flag, DRG payment ratio and payment reduction for six measures. CMS <a id="src23" href="#">FY2023 supplemental file</a> (July 2018 to November 2019 and July 2020 to June 2021; CMS excluded the first half of 2020), the most recent window that does not overlap. CMS Provider Data Catalog <a id="srcpdc" href="#">hospital-level FY2026 readmissions</a> (dataset 9n3s-kdb3, via its datastore API): names and predicted and expected readmission rates. FY2027 penalties shown in the hospital card come from the <a id="src27" href="#">FY2027 supplemental file</a>. All are public downloads. <span id="checks"></span></p>
+    <p><b>Emulating CMS's shrinkage.</b> CMS estimates each hospital's readmission rate with a hierarchical logistic model that pulls small hospitals toward the national average. This page emulates that with one number per measure, k: predicted − expected = n/(n+k) × (observed/n − expected), fitted to CMS's own published predicted and expected rates. A hospital's reliability is n/(n+k); a hospital with k discharges keeps half of its raw result. The fit and the 95% bootstrap range of k (400 resamples of hospitals):</p>
+    <div class="scrollx"><table class="ktab" id="ktab"></table></div>
+    <p>Readmission counts under 11 are suppressed, so k is fitted on larger hospitals. As a check on smaller ones, inverting the fitted shrinkage for the hospitals with suppressed counts recovers an implied count between 0 and 10 for <span id="supok"></span> of them.</p>
+    <p><b>Lineup.</b> In each chance-only panel, every hospital with 25 or more discharges and a published expected rate gets readmissions drawn from Binomial(n, expected rate), shrunk with the fitted k, and turned back into an ERR. The real panel's position is shuffled on every load. Because published ERRs are already shrunk, chance spread is narrow for small hospitals (heavily shrunk), widest near k discharges, and slowly narrower for large ones (less noise): a lens, not a funnel. The shaded band drawn after you pick is the middle 95% of chance-only ERRs at each size for a hospital with the typical expected rate.</p>
+    <p><b>Probability above the peer median.</b> Normal approximation to the posterior for the hospital's true ratio: mean = the published ERR, variance = τ² × (1 − reliability), where τ² = (1 − expected rate) / (expected rate × k) is the spread of true hospital ratios that the same shrinkage implies. The 90% range in the card is the published ERR ± 1.645 posterior SDs. To check calibration, the build simulates hospitals that follow these assumptions, recomputes ERRs, peer medians and probabilities, and compares stated probabilities with how often the true ratio really was above the median: <span id="calib"></span> Using either end of k's bootstrap range, the share of penalized heart failure hospitals with a 90% or higher probability stays <span id="ksens"></span>.</p>
+    <p><b>Noise-only ceiling.</b> For hospitals with 25 or more discharges in both windows, the build draws a true ratio for each hospital (variance τ²), keeps it fixed in both windows, simulates readmissions with each window's real discharge count, applies the same shrinkage, and records the correlation and the share penalized again (300 runs). FY2023 expected rates are not in the files, so each hospital's FY2026 expected rate is used for both windows, and FY2026's k is applied to FY2023. That assumption matches the spread of FY2023's published ERRs for heart failure, heart attack, COPD and bypass surgery (within 10%), but not for hip/knee replacement, where the same k predicts a wider spread than CMS published (<span id="thasd"></span>). As a sensitivity check, the build also fits a separate k for FY2023 that matches its published spread and reruns the ceiling with it: <span id="k23sens"></span> The observed correlation divided by the ceiling estimates how strongly the true ratios themselves agree across the two windows.</p>
+    <p><b>Caveats.</b></p>
+    <ul>
+      <li>This page emulates CMS's hierarchical logistic model with n/(n+k); the fit to CMS's published predicted and expected rates is close (R² above 0.99) but it is not CMS's model. The bootstrap range of k reflects only sampling uncertainty in that fit.</li>
+      <li>The chance-only panels apply today's shrinkage to pure noise. In a world where hospitals truly were identical, CMS's model would estimate less true variation and shrink further, so read them as the noise floor of published ERRs, not as what CMS would publish.</li>
+      <li>Readmission counts under 11 are suppressed, so k is fitted on larger hospitals, which are the least noisy.</li>
+      <li>Both windows are claims data that include COVID-era exclusions and shifts in case mix (FY2023: mid-2018 to mid-2021 with Dec 2019–Jun 2020 excluded; FY2026: mid-2021 to mid-2024). From FY2027, CMS adds Medicare Advantage patients to these measures and uses a two-year window.</li>
+      <li>ERR is a hospital-level ratio, not any patient's risk. Peer groups are quintiles of each hospital's share of patients dually eligible for Medicare and Medicaid, and the penalty threshold is that group's median, so the same ERR can be penalized in one group and not another.</li>
+      <li>Probabilities assume CMS's risk adjustment is right. Differences it misses (social risk beyond dual eligibility, local post-acute care) count here as "true" differences between hospitals, not as noise.</li>
+      <li><span id="unnamed"></span></li>
+    </ul>
+    <p><b>Prior work.</b> Others have shown the noise in these measures: Thompson MP et al., <a href="https://doi.org/10.1111/1475-6773.12587">Health Serv Res 2016</a> (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5134200/">PMC5134200</a>), on the reliability of HRRP measures; Shen C, Wadhera RK, Yeh RW, <a href="https://doi.org/10.1001/jamacardio.2020.4746">JAMA Cardiol 2021</a>, on penalty misclassification; Wilcock AD et al., <a href="https://doi.org/10.1371/journal.pone.0261363">PLOS ONE 2021</a>, "Luck of the draw"; and Joshi S et al., <a href="https://doi.org/10.1001/jamainternmed.2019.1004">JAMA Intern Med 2019</a>, on regression to the mean. Those studies are static and use older data. This page adds current (FY2026) data, a per-hospital view, a lineup test, and a check of year-to-year persistence against the ceiling that noise allows.</p>
+    <p class="coi"><b>Conflict of interest.</b> The author is Medical Director of Aviary Health, a virtual cardiac and pulmonary rehab provider whose value to health systems includes reducing readmissions.</p>
+    <p>Data and build script: <a href="https://github.com/usnish/usnish.github.io/tree/master/readmission-noise">github.com/usnish/usnish.github.io</a>.</p>
+  </section>
+</main>
+
+<script src="../assets/viz/d3.min.js"></script>
+<script src="../assets/viz/vizkit.js"></script>
+<script>
+(async function () {
+  const [HJ, L, S] = await Promise.all([d3.json("data/hospitals.json"), d3.json("data/lineup.json"), d3.json("data/summary.json")]);
+  const CONDS = HJ.conds;                                     // HF AMI COPD PN CABG THA
+  const CARD_ORDER = ["HF", "AMI", "CABG", "COPD", "PN", "THA"];
+  const SHORT = { HF: "Heart failure", AMI: "Heart attack", COPD: "COPD", PN: "Pneumonia", CABG: "Bypass surgery", THA: "Hip/knee" };
+  const LONG = { HF: "heart failure", AMI: "heart attack", COPD: "COPD", PN: "pneumonia", CABG: "bypass surgery", THA: "hip/knee replacement" };
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const T = reduceMotion ? 0 : 450;
+  const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+  const pct = (v, d = 0) => (100 * v).toFixed(d) + "%";
+  const pts = v => (100 * v).toFixed(0);
+  const f2 = v => v.toFixed(2);
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const list = a => a.length < 2 ? a.join("") : a.slice(0, -1).join(", ") + " and " + a[a.length - 1];
+  const range = (a, f) => { const lo = d3.min(a), hi = d3.max(a); return f(lo) === f(hi) ? f(lo) : `${f(lo)}–${f(hi)}`; };
+  const fmtP = p => p == null ? "–" : p < 0.01 ? "<1%" : p > 0.99 ? ">99%" : Math.round(100 * p) + "%";
+
+  // ---- Hospitals
+  const H = HJ.rows.map((r, i) => {
+    const h = { i, ccn: r[0], name: r[1], state: r[2], pg: r[3], red: r[4], dual: r[5], c: {} };
+    CONDS.forEach((c, j) => {
+      const t = r[6 + j];
+      if (t) h.c[c] = { n: t[0], E: t[1], err: t[2], pen: t[3], p: t[4], err23: t[5], pen23: t[6], n23: t[7], err27: t[8], pen27: t[9], n27: t[10] };
+    });
+    h.key = (h.name + " " + h.state + " " + h.ccn).toLowerCase();
+    h.vol = d3.sum(Object.values(h.c), d => d.n);
+    return h;
+  });
+  const K = c => S.k[c].k;
+  const rel = (c, d) => d.n / (d.n + K(c));
+  const postSd = (c, d) => Math.sqrt((1 - d.E / 100) / ((d.E / 100) * (d.n + K(c))));
+  let sel = null;
+  const onSelect = [];
+
+  // ---- Headline
+  const P = S.program;
+  VK.stats(document.getElementById("stats"), [
+    ["Real heart failure spread vs chance", S.real_null_sd_ratio.HF.toFixed(2) + "×", "fiscal 2026 lineup, Act 1"],
+    ["Penalized for heart failure with ≥90% probability", pct(S.probability_bands.HF.ge90), `of ${VK.int(S.probability_bands.HF.penalized)} penalized, Act 2`],
+    ["Heart failure year-to-year agreement", pts(S.persistence.HF.share_of_ceiling) + "%", "of the noise-only ceiling, FY2023 → FY2026, Act 3"],
+  ]);
+  const F27 = S.fy2027_context;
+  document.getElementById("note27").textContent =
+    `CMS posted fiscal 2027 penalties in ${F27.released}: ${VK.int(F27.penalized)} of ${VK.int(F27.hospitals)} hospitals (${pct(F27.penalized_share, 0)}), ` +
+    `using ${F27.window} and, for the first time, Medicare Advantage stays. This page analyzes fiscal 2026 because it is the newest year with the hospital-level predicted and expected rates the analysis needs; each hospital's fiscal 2027 verdict appears in its card.`;
+
+  // ---- Panel helper: canvas for many dots + SVG overlay, both on one logical coordinate system
+  const DPR = 2;
+  function panel(parent, W, Hh) {
+    const div = parent.append("div").attr("class", "pnl");
+    const canvas = div.append("canvas").attr("width", W * DPR).attr("height", Hh * DPR).node();
+    const ctx = canvas.getContext("2d");
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    const svg = div.append("svg").attr("viewBox", `0 0 ${W} ${Hh}`).attr("aria-hidden", "true");
+    return { div, ctx, svg, W, H: Hh };
+  }
+  function dots(ctx, W, Hh, xy, color, r, alpha, under) {
+    ctx.clearRect(0, 0, W, Hh);
+    if (under) under(ctx);
+    ctx.fillStyle = color; ctx.globalAlpha = alpha;
+    ctx.beginPath();
+    for (const [x, y] of xy) { ctx.moveTo(x + r, y); ctx.arc(x, y, r, 0, 2 * Math.PI); }
+    ctx.fill(); ctx.globalAlpha = 1;
+  }
+
+  // ================= Act 1: lineup =================
+  const LW = 240, LH = 190, LM = { l: 30, r: 6, t: 20, b: 20 };
+  const lstate = {};              // per condition: { order, picked, first }
+  const tally = { tried: 0, hit: 0 };
+  let lcond = "HF";
+  const lpos = {};                // hospital index -> position in lineup arrays
+  const ltip = d3.select("#ltip");
+  CONDS.forEach(c => { lpos[c] = new Map(L.conds[c].idx.map((h, j) => [h, j])); });
+
+  function shuffledOrder() {      // order[pos] = source (0 = real, 1..8 = chance panels)
+    const a = d3.range(9); d3.shuffle(a); return a;
+  }
+  function panelValues(c, src) {
+    const C = L.conds[c];
+    return src === 0 ? C.idx.map(h => H[h].c[c].err) : C.null[src - 1].map(v => 1 + v / 1000);
+  }
+  function drawLineup() {
+    const c = lcond, C = L.conds[c];
+    if (!lstate[c]) lstate[c] = { order: shuffledOrder(), picked: null };
+    const st = lstate[c];
+    ltip.style("opacity", 0);
+    const all = st.order.map(src => panelValues(c, src));
+    const [mn, mx] = d3.extent(all.flat());   // full extent, no clamping: every hospital drawn at its own ERR
+    const lo = Math.min(mn, 0.85) - 0.01, hi = Math.max(mx, 1.15) + 0.01;
+    const x = d3.scaleLog().domain([25, d3.max(C.n) * 1.05]).range([LM.l, LW - LM.r]);
+    const y = d3.scaleLinear().domain([lo, hi]).range([LH - LM.b, LM.t]);
+    const muted = css("--muted");
+    const B = C.band;
+    const bandUnder = st.picked == null ? null : ctx => {   // chance band on the canvas, under the dots
+      const area = d3.area().x(n => x(n)).y0((n, i) => y(B.lo[i])).y1((n, i) => y(B.hi[i])).curve(d3.curveMonotoneX).context(ctx);
+      ctx.beginPath(); area(B.n); ctx.globalAlpha = 0.12; ctx.fillStyle = muted; ctx.fill();
+      ctx.globalAlpha = 0.6; ctx.strokeStyle = muted; ctx.lineWidth = 1; ctx.setLineDash([3, 2]); ctx.stroke();
+      ctx.setLineDash([]); ctx.globalAlpha = 1;
+    };
+    const grid = d3.select("#lineup").classed("done", st.picked != null);
+    grid.selectAll("*").remove();
+    const accent = css("--accent");
+    st.order.forEach((src, pos) => {
+      const p = panel(grid, LW, LH);
+      const vals = all[pos];
+      const xy = C.n.map((n, j) => [x(n), y(vals[j])]);
+      dots(p.ctx, LW, LH, xy, accent, 1.25, 0.32, bandUnder);
+      p.div.attr("role", "button").attr("tabindex", st.picked == null ? 0 : -1)
+        .attr("aria-label", `Panel ${pos + 1}` + (st.picked != null ? (src === 0 ? ", real data" : ", chance only") : ""))
+        .classed("real", src === 0).classed("picked", st.picked === pos)
+        .on("click", () => pick(pos)).on("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); pick(pos); } });
+      p.div.append("div").attr("class", "tag").text(st.picked == null ? pos + 1 : (src === 0 ? `${pos + 1} · Real` : `${pos + 1} · Chance`));
+      const g = p.svg;
+      g.append("line").attr("class", "ref").attr("x1", LM.l).attr("x2", LW - LM.r).attr("y1", y(1)).attr("y2", y(1));
+      const leftCol = pos % 3 === 0, bottom = pos >= 6;
+      g.append("g").attr("class", "axis").attr("transform", `translate(${LM.l},0)`)
+        .call(d3.axisLeft(y).ticks(4).tickSize(2).tickFormat(leftCol ? d3.format(".1f") : ""))
+        .call(a => a.select(".domain").remove());
+      g.append("g").attr("class", "axis").attr("transform", `translate(0,${LH - LM.b})`)
+        .call(d3.axisBottom(x).tickValues([100, 1000].filter(v => v < x.domain()[1])).tickSize(2).tickFormat(bottom ? d3.format(",") : ""))
+        .call(a => a.select(".domain").remove());
+      if (sel != null && lpos[c].has(sel) && src === 0 && st.picked != null) {
+        const j = lpos[c].get(sel);
+        g.append("circle").attr("class", "selring").attr("cx", x(C.n[j])).attr("cy", y(vals[j])).attr("r", 4.5);
+      }
+      if (src === 0) { p.div.node()._real = { xy, x, y }; }
+    });
+    // Labels under the grid
+    const pickedTxt = document.getElementById("lresult");
+    const reshuffle = document.getElementById("reshuffle");
+    if (st.picked == null) {
+      pickedTxt.innerHTML = "";
+      reshuffle.hidden = true;
+    } else {
+      const realPos = st.order.indexOf(0);
+      const ob = L.conds[c].outside_band_real, onull = L.conds[c].outside_band_null;
+      pickedTxt.innerHTML = (st.picked === realPos
+        ? `<span class="hit">You found it.</span> `
+        : `<span class="miss">Not this time:</span> panel ${realPos + 1} was the real data. `) +
+        `For ${LONG[c]}, ${pct(ob, 0)} of hospitals in the real panel sit outside the shaded chance band, versus ${pct(onull, 0)} in the chance-only panels, and the real ERRs are spread ${S.real_null_sd_ratio[c].toFixed(2)} times as widely as chance alone produces. Hover over the real panel to see hospitals.`;
+      reshuffle.hidden = false;
+    }
+    document.getElementById("tally").textContent = tally.tried ? `Your first tries: found the real panel in ${tally.hit} of ${tally.tried} measure${tally.tried > 1 ? "s" : ""}.` : "";
+    document.getElementById("lcaption").innerHTML =
+      `If you can spot the real panel, hospitals really do differ on that measure beyond what chance produces. A ${LONG[c]} hospital's published ERR keeps n/(n+${Math.round(K(c))}) of its raw result, so chance spread is small for the smallest hospitals (their results are pulled almost all the way to 1.0), widest near ${Math.round(K(c))} discharges, and slowly narrower for larger ones: a lens, not the funnel you would see in raw rates. ${VK.int(C.n.length)} hospitals with 25 or more eligible discharges; horizontal axis is logarithmic.`;
+    setupHover();
+  }
+  function pick(pos) {
+    const st = lstate[lcond];
+    if (st.picked != null) return;
+    st.picked = pos;
+    if (!st.counted) { st.counted = true; tally.tried++; if (st.order[pos] === 0) tally.hit++; }
+    drawLineup();
+    const real = document.querySelector("#lineup .pnl.real");
+    if (real) real.focus({ preventScroll: true });
+  }
+  document.getElementById("reshuffle").onclick = () => { lstate[lcond] = { order: shuffledOrder(), picked: null, counted: true }; drawLineup(); document.querySelector("#lineup .pnl").focus({ preventScroll: true }); };
+
+  // Hover over the real panel once revealed
+  function setupHover() {
+    const node = document.querySelector("#lineup.done .pnl.real");
+    if (!node) return;
+    const { xy } = node._real;
+    const del = d3.Delaunay.from(xy);
+    const C = L.conds[lcond];
+    const svg = d3.select(node).select("svg");
+    const hov = svg.append("circle").attr("r", 4).attr("fill", "none").attr("stroke", css("--fg")).attr("stroke-width", 1.5).style("opacity", 0);
+    d3.select(node).on("mousemove", e => {
+      const [mx, my] = d3.pointer(e, svg.node());
+      const j = del.find(mx, my);
+      if (Math.hypot(xy[j][0] - mx, xy[j][1] - my) > 12) { hov.style("opacity", 0); ltip.style("opacity", 0); return; }
+      const h = H[C.idx[j]], d = h.c[lcond];
+      hov.attr("cx", xy[j][0]).attr("cy", xy[j][1]).style("opacity", 1);
+      const [px, py] = d3.pointer(e, document.getElementById("lwrap"));
+      const wrapW = document.getElementById("lwrap").clientWidth;
+      ltip.html(`<b>${esc(h.name)}</b>${h.state} · ${VK.int(d.n)} discharges<table><tr class="cur"><td>ERR</td><td>${d.err.toFixed(3)}</td></tr><tr><td>CMS verdict</td><td>${d.pen ? "penalized" : "not penalized"}</td></tr></table><div class="note">Click to open in “Find your hospital”</div>`)
+        .style("opacity", 1).style("left", Math.min(px + 14, wrapW - 240) + "px").style("top", (py + 14) + "px");
+      node._hover = h.i;
+    }).on("mouseleave", () => { hov.style("opacity", 0); ltip.style("opacity", 0); node._hover = null; })
+      .on("click.sel", () => { if (node._hover != null) select(node._hover, true); });
+  }
+
+  VK.pressButtons(document.getElementById("ltabs"), CONDS.map(c => ({ c, label: SHORT[c] })), null, d => { lcond = d.c; tabs(); drawLineup(); });
+  function tabs() { d3.selectAll("#ltabs button").attr("aria-pressed", d => d.c === lcond); }
+  tabs();
+  drawLineup();
+  onSelect.push(() => drawLineup());
+
+  // ================= Act 2: find your hospital =================
+  const q = document.getElementById("q"), qlist = document.getElementById("qlist");
+  let matches = [], active = -1;
+  function search(text) {
+    const toks = text.toLowerCase().trim().split(/\s+/).filter(Boolean);
+    if (!toks.length) return [];
+    return H.filter(h => toks.every(t => h.key.includes(t)))
+      .sort((a, b) => (b.name.toLowerCase().startsWith(toks[0]) - a.name.toLowerCase().startsWith(toks[0])) || b.vol - a.vol)
+      .slice(0, 10);
+  }
+  function renderList() {
+    qlist.innerHTML = "";
+    if (!q.value.trim()) { qlist.hidden = true; q.setAttribute("aria-expanded", "false"); return; }
+    if (!matches.length) {
+      qlist.innerHTML = `<li class="empty">No hospital matches “${esc(q.value)}”. Maryland hospitals are not in the program.</li>`;
+    } else {
+      matches.forEach((h, k) => {
+        const li = document.createElement("li");
+        li.id = "opt" + k; li.setAttribute("role", "option"); li.setAttribute("aria-selected", k === active);
+        li.innerHTML = `<span>${esc(h.name)}</span><span class="st">${h.state} · ${h.ccn}</span>`;
+        li.onmousedown = e => { e.preventDefault(); choose(h); };
+        qlist.appendChild(li);
+      });
+    }
+    qlist.hidden = false; q.setAttribute("aria-expanded", "true");
+    q.setAttribute("aria-activedescendant", active >= 0 ? "opt" + active : "");
+  }
+  function choose(h) { q.value = ""; matches = []; active = -1; renderList(); select(h.i, true); }
+  q.addEventListener("input", () => { matches = search(q.value); active = matches.length ? 0 : -1; renderList(); });
+  q.addEventListener("keydown", e => {
+    if (e.key === "ArrowDown") { e.preventDefault(); if (matches.length) { active = (active + 1) % matches.length; renderList(); } }
+    else if (e.key === "ArrowUp") { e.preventDefault(); if (matches.length) { active = (active - 1 + matches.length) % matches.length; renderList(); } }
+    else if (e.key === "Enter") { if (active >= 0 && matches[active]) { e.preventDefault(); choose(matches[active]); } }
+    else if (e.key === "Escape") { q.value = ""; matches = []; renderList(); }
+  });
+  q.addEventListener("blur", () => setTimeout(() => { qlist.hidden = true; q.setAttribute("aria-expanded", "false"); }, 120));
+
+  // Examples: the largest heart failure program, a median-sized one and a small one (chosen by volume only)
+  const hfH = H.filter(h => h.c.HF && h.c.HF.p != null).sort((a, b) => b.c.HF.n - a.c.HF.n);
+  const ex = [hfH[0], hfH[Math.floor(hfH.length / 2)], hfH[Math.floor(hfH.length * 0.95)]];
+  const exEl = document.getElementById("examples");
+  exEl.innerHTML = "Or try a hospital picked by heart failure volume: ";
+  ex.forEach((h, k) => {
+    const b = document.createElement("button"); b.type = "button";
+    b.textContent = `${h.name} (${h.state}, ${VK.int(h.c.HF.n)} HF discharges)`;
+    b.onclick = () => select(h.i, true);
+    exEl.appendChild(b);
+    if (k < ex.length - 1) exEl.appendChild(document.createTextNode(k === ex.length - 2 ? " or " : ", "));
+  });
+
+  function verdictHtml(d, yr) {
+    if (!d) return `<span class="verdict na">no discharges</span>`;
+    if (d.n < 25) return `<span class="verdict na">not counted</span>`;
+    return d.pen ? `<span class="verdict y">Penalized</span>` : `<span class="verdict">Not penalized</span>`;
+  }
+  const yn = v => v == null ? "–" : v ? "penalized" : "not penalized";
+  const otherYr = (err, pen, n) => err == null || n == null ? "–" : n < 25 ? "not counted" : yn(pen);
+  function renderCard() {
+    const el = document.getElementById("card");
+    if (sel == null) {
+      el.innerHTML = `<div class="hcard"><p class="muted" style="margin:0">No hospital selected yet. Search above to see CMS's verdict for each measure, how reliable it is, and the probability that the hospital's true ratio is above its peer-group median. The hospital will also be highlighted in the lineup, the persistence charts and the chart at the bottom.</p></div>`;
+      return;
+    }
+    const h = H[sel];
+    // Shared ERR scale for this hospital's rows
+    const spans = [];
+    CARD_ORDER.forEach(c => { const d = h.c[c]; if (d && d.p != null) { const s = 1.645 * postSd(c, d); spans.push(d.err - s, d.err + s); } else if (d) spans.push(d.err); });
+    const lo = Math.min(0.85, d3.min(spans) ?? 1) - 0.02, hi = Math.max(1.15, d3.max(spans) ?? 1) + 0.02;
+    const X = d3.scaleLinear().domain([lo, hi]).range([6, 194]);
+    const ticks = X.ticks(4);
+    let rows = `<div class="crow head"><div>Measure</div><div>CMS verdict, FY2026</div><div>ERR and 90% range for the true ratio</div><div>Reliability</div><div>Chance true ratio is above peer median</div></div>`;
+    CARD_ORDER.forEach(c => {
+      const d = h.c[c];
+      const other = d ? `<span class="other">FY2023: ${c === "PN" ? "not reported" : otherYr(d.err23, d.pen23, d.n23)} · FY2027: ${otherYr(d.err27, d.pen27, d.n27)}</span>` : "";
+      if (!d || d.n < 25 || d.p == null) {
+        const why = !d ? "No eligible discharges in fiscal 2026." : d.n < 25 ? `${d.n} eligible discharges: under the 25 needed to count toward the penalty.` : "No expected rate published.";
+        rows += `<div class="crow"><div class="cn">${SHORT[c]}<small>${d ? VK.int(d.n) + " discharges" : ""}</small></div><div>${verdictHtml(d)}${other}</div><div class="errcell muted">${why}</div><div></div><div></div></div>`;
+        return;
+      }
+      const sd = postSd(c, d), r = rel(c, d), med = S.peer_median[c][h.pg];
+      const a = d.err - 1.645 * sd, b = d.err + 1.645 * sd;
+      const svg = `<svg class="errsvg" viewBox="0 0 200 34" width="200" height="34" role="img" aria-label="ERR ${d.err.toFixed(3)}, 90% range ${a.toFixed(2)} to ${b.toFixed(2)}, peer median ${med.toFixed(3)}">
+        ${ticks.map(t => `<text x="${X(t)}" y="33" text-anchor="middle">${t.toFixed(1)}</text>`).join("")}
+        <line class="one" x1="${X(1)}" x2="${X(1)}" y1="2" y2="22"></line>
+        <line class="ci" x1="${X(Math.max(lo, a))}" x2="${X(Math.min(hi, b))}" y1="12" y2="12"></line>
+        <line class="med" x1="${X(med)}" x2="${X(med)}" y1="3" y2="21"></line>
+        <circle class="pt ${d.pen ? "y" : ""}" cx="${X(d.err)}" cy="12" r="4.5"></circle></svg>`;
+      rows += `<div class="crow"><div class="cn">${SHORT[c]}<small>${VK.int(d.n)} discharges · expected rate ${d.E.toFixed(1)}%</small></div>
+        <div>${verdictHtml(d)}${other}</div>
+        <div class="errcell">${svg}<span class="muted" style="font-size:12px">ERR ${d.err.toFixed(3)} (90% range ${a.toFixed(2)}–${b.toFixed(2)}) · peer median ${med.toFixed(3)}</span></div>
+        <div><span style="font-variant-numeric:tabular-nums">${r.toFixed(2)}</span><div class="meter" title="n/(n+k)"><div style="width:${(100 * r).toFixed(0)}%"></div></div></div>
+        <div><span class="pbig">${fmtP(d.p)}</span></div></div>`;
+    });
+    el.innerHTML = `<div class="hcard"><h3>${esc(h.name)}</h3>
+      <div class="meta">${h.state ? h.state + " · " : ""}CCN ${h.ccn} · peer group ${h.pg} of 5 (dual-eligible share ${pct(h.dual, 0)}) · FY2026 payment reduction <b style="color:var(--fg)">${h.red.toFixed(2)}%</b></div>
+      ${rows}
+      <p class="legend-line">Dot: published ERR (orange if CMS penalized that measure). Dark tick: the peer-group median CMS compares against. Light line: 90% range for the true ratio under this page's emulation of CMS's shrinkage. Reliability: n/(n+k), the share of the raw result CMS's model keeps.</p></div>`;
+  }
+  function select(i, scroll) {
+    sel = i;
+    const chip = document.getElementById("chip");
+    chip.hidden = i == null;
+    if (i != null) document.getElementById("chipname").textContent = H[i].name;
+    try { history.replaceState(null, "", i == null ? location.pathname : "#" + H[i].ccn); } catch (e) { /* ignore */ }
+    renderCard();
+    onSelect.forEach(f => f());
+    if (scroll && i != null) document.getElementById("act2").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+  }
+  document.getElementById("clear").onclick = () => select(null);
+
+  // Penalized hospitals by probability band
+  const PB = S.probability_bands;
+  document.getElementById("pbandtxt").innerHTML =
+    `Every penalized hospital has an ERR above its peer median, so every one has at least a 50% probability by this measure. How far above 50% depends on reliability. Of the ${VK.int(PB.HF.penalized)} hospitals penalized for heart failure, <b>${pct(PB.HF.ge90)}</b> have a 90% or higher probability that their true ratio is above the peer median; for <b>${pct(PB.HF.lt75)}</b> it is below 75%.`;
+  document.getElementById("pbands").innerHTML = `<tr><th>Measure</th><th>Penalized</th><th>Median reliability</th><th>90%+ probability</th><th>Under 75%</th></tr>` +
+    CARD_ORDER.map(c => `<tr><td>${SHORT[c]}</td><td>${VK.int(PB[c].penalized)} of ${VK.int(PB[c].eligible)}</td><td>${f2(PB[c].median_reliability)}</td><td>${pct(PB[c].ge90)}</td><td>${pct(PB[c].lt75)}</td></tr>`).join("");
+
+  // ================= Act 3: persistence =================
+  const PS = S.persistence;
+  document.getElementById("w23").textContent = S.windows.fy2023;
+  document.getElementById("w26").textContent = S.windows.fy2026;
+  const PCONDS = ["HF", "AMI", "COPD", "CABG", "THA"];
+  const stable = PCONDS.filter(c => PS[c].share_of_ceiling >= 0.7), moving = PCONDS.filter(c => PS[c].share_of_ceiling < 0.7);
+  let tk = "";
+  if (stable.length) {
+    const gap = d3.max(stable, c => PS[c].pen_given_pen_if_stable - PS[c].pen_given_pen);
+    tk += `For ${list(stable.map(c => LONG[c]))}, the year-to-year correlation reaches ${range(stable.map(c => PS[c].share_of_ceiling), pts)}% of the ceiling that noise alone allows, and the share of penalized hospitals penalized again (${range(stable.map(c => PS[c].pen_given_pen), pts)}%) is within ${Math.ceil(100 * gap)} points of what perfectly stable hospitals would show (${range(stable.map(c => PS[c].pen_given_pen_if_stable), pts)}%). Most of the flip-flopping is the ruler, not the hospitals. Some is real: the implied correlation of true ratios across the two windows is about ${(Math.round(10 * d3.mean(stable, c => PS[c].share_of_ceiling)) / 10).toFixed(1)} (${range(stable.map(c => PS[c].share_of_ceiling), v => (Math.round(100 * v) / 100).toFixed(2))}), not 1. `;
+  }
+  if (moving.length) {
+    tk += `For ${list(moving.map(c => LONG[c]))}, the correlation reaches only ${range(moving.map(c => PS[c].share_of_ceiling), pts)}% of its ceiling: there, true performance seems to move between windows.`;
+    if (moving.some(c => !PS[c].model_fits_fy23_spread)) tk += ` (The hip/knee ceiling is less certain; see the note under its chart.)`;
+  }
+  document.getElementById("takeaway").textContent = tk;
+
+  // Summary dot plot: observed r vs the noise-only ceiling, one row per measure, drawn 1:1 at the container's width
+  function drawDotplot() {
+    const el = document.getElementById("dotplot");
+    const W = Math.max(300, Math.min(760, el.clientWidth || 760)), narrow = W < 520;
+    const M = { l: narrow ? 92 : 170, r: narrow ? 74 : 130, t: 8, b: 40 }, RH = 34;
+    const Hh = M.t + PCONDS.length * RH + M.b;
+    const xmax = Math.max(0.6, d3.max(PCONDS, c => PS[c].ceiling_sim_95[1]) + 0.02);
+    const x = d3.scaleLinear().domain([0, xmax]).range([M.l, W - M.r]);
+    const svg = d3.select(el).html("").append("svg").attr("viewBox", `0 0 ${W} ${Hh}`).attr("width", W).attr("height", Hh)
+      .attr("role", "img").attr("aria-label", "Observed correlation versus noise-only ceiling by measure: " +
+        PCONDS.map(c => `${SHORT[c]} ${f2(PS[c].r)} vs ${f2(PS[c].ceiling)}`).join("; "));
+    svg.append("g").attr("class", "grid").selectAll("line").data(x.ticks(narrow ? 3 : 6)).join("line")
+      .attr("x1", d => x(d)).attr("x2", d => x(d)).attr("y1", M.t).attr("y2", Hh - M.b);
+    svg.append("g").attr("class", "axis").attr("transform", `translate(0,${Hh - M.b})`)
+      .call(d3.axisBottom(x).ticks(narrow ? 3 : 6).tickSize(3)).call(a => a.select(".domain").remove())
+      .call(a => a.selectAll("text").style("font-size", "12px"));
+    svg.append("text").attr("x", narrow ? 0 : x(0)).attr("y", Hh - 2).text(narrow ? "Correlation of ERRs across the two windows" : "Correlation of a hospital's ERR across the two windows");
+    PCONDS.forEach((c, k) => {
+      const p = PS[c], yy = M.t + k * RH + RH / 2;
+      svg.append("text").attr("class", "lab").attr("x", 0).attr("y", yy + 4).text(narrow ? SHORT[c].replace("Bypass surgery", "Bypass") : LABEL_LONG[c]);
+      svg.append("rect").attr("class", "rng").attr("x", x(p.ceiling_sim_95[0])).attr("width", x(p.ceiling_sim_95[1]) - x(p.ceiling_sim_95[0]))
+        .attr("y", yy - 9).attr("height", 18).attr("rx", 3);
+      svg.append("line").attr("class", "whisk").attr("x1", x(p.r_ci[0])).attr("x2", x(p.r_ci[1])).attr("y1", yy).attr("y2", yy);
+      svg.append("circle").attr("class", "cdot").attr("cx", x(p.ceiling)).attr("cy", yy).attr("r", 5.5);
+      svg.append("circle").attr("class", "odot").attr("cx", x(p.r)).attr("cy", yy).attr("r", 5.5);
+      svg.append("text").attr("class", "share").attr("x", W - M.r + 10).attr("y", yy + 4)
+        .text(narrow ? `${pts(p.share_of_ceiling)}%` : `${pts(p.share_of_ceiling)}% of ceiling`);
+    });
+  }
+  const LABEL_LONG = { HF: "Heart failure", AMI: "Heart attack", COPD: "COPD", CABG: "Bypass surgery (CABG)", THA: "Hip/knee replacement" };
+  drawDotplot();
+  let dpTimer;
+  window.addEventListener("resize", () => { clearTimeout(dpTimer); dpTimer = setTimeout(drawDotplot, 150); });
+
+  const SW = 260, SH = 250, SM = { l: 40, r: 8, t: 8, b: 32 };
+  const multi = d3.select("#multi");
+  const scat = {};
+  PCONDS.forEach(c => {
+    const box = multi.append("div").attr("class", "mult");
+    const p = PS[c];
+    box.append("h3").text(SHORT[c]);
+    box.append("p").attr("class", "sub").text(`${VK.int(p.n)} hospitals with 25+ discharges in both windows`);
+    const ptsC = H.filter(h => h.c[c] && h.c[c].n >= 25 && h.c[c].err23 != null && h.c[c].n23 >= 25).map(h => [h.i, h.c[c].err23, h.c[c].err]);
+    const vals = ptsC.flatMap(d => [d[1], d[2]]).sort(d3.ascending);
+    const lo = Math.min(d3.quantile(vals, 0.003), 0.85), hi = Math.max(d3.quantile(vals, 0.997), 1.15);
+    const x = d3.scaleLinear().domain([lo, hi]).range([SM.l, SW - SM.r]).clamp(true);
+    const y = d3.scaleLinear().domain([lo, hi]).range([SH - SM.b, SM.t]).clamp(true);
+    const pn = panel(box, SW, SH);
+    dots(pn.ctx, SW, SH, ptsC.map(d => [x(d[1]), y(d[2])]), css("--accent"), 1.5, 0.28);
+    const g = pn.svg;
+    g.append("line").attr("class", "ref").attr("x1", x(lo)).attr("y1", y(lo)).attr("x2", x(hi)).attr("y2", y(hi));
+    g.append("g").attr("class", "axis").attr("transform", `translate(0,${SH - SM.b})`).call(d3.axisBottom(x).ticks(4).tickSize(2)).call(a => a.select(".domain").remove());
+    g.append("g").attr("class", "axis").attr("transform", `translate(${SM.l},0)`).call(d3.axisLeft(y).ticks(4).tickSize(2)).call(a => a.select(".domain").remove());
+    g.append("text").attr("class", "axis").attr("x", (SM.l + SW - SM.r) / 2).attr("y", SH - 3).attr("text-anchor", "middle").attr("fill", css("--muted")).attr("font-size", 12).text("ERR, fiscal 2023 (2018–21)");
+    g.append("text").attr("fill", css("--muted")).attr("font-size", 12).attr("text-anchor", "middle").attr("transform", `translate(9,${(SM.t + SH - SM.b) / 2}) rotate(-90)`).text("ERR, fiscal 2026 (2021–24)");
+    const selG = g.append("g");
+    scat[c] = { pts: new Map(ptsC.map(d => [d[0], d])), x, y, selG };
+
+    // Observed vs ceiling bars
+    const RW = 260, RH = 62, bx = d3.scaleLinear().domain([0, 0.6]).range([112, RW - 26]);
+    const rb = box.append("svg").attr("class", "rbar").attr("viewBox", `0 0 ${RW} ${RH}`).attr("width", "100%").attr("role", "img")
+      .attr("aria-label", `Observed correlation ${f2(p.r)}; noise-only ceiling ${f2(p.ceiling)}`);
+    const rows = [["Observed r", p.r, p.r_ci, "obs"], ["Noise-only ceiling", p.ceiling, p.ceiling_sim_95, "ceil"]];
+    rows.forEach(([lab, v, ci, cls], k) => {  // label | bar | whisker | value
+      const yy = 6 + k * 22;
+      rb.append("text").attr("class", "lab").attr("x", 0).attr("y", yy + 11).text(lab);
+      rb.append("rect").attr("class", cls).attr("x", bx(0)).attr("y", yy + 2).attr("height", 12).attr("width", 0)
+        .transition().duration(T).attr("width", bx(v) - bx(0));
+      rb.append("line").attr("class", "whisk").attr("x1", bx(ci[0])).attr("x2", bx(ci[1])).attr("y1", yy + 8).attr("y2", yy + 8);
+      rb.append("text").attr("x", bx(Math.max(v, ci[1])) + 4).attr("y", yy + 12).text(f2(v));
+    });
+    rb.append("g").attr("class", "axis").attr("transform", `translate(0,${RH - 14})`).call(d3.axisBottom(bx).ticks(3).tickSize(2)).call(a => a.select(".domain").remove());
+    box.append("p").attr("class", "rep").html(`Correlation reaches <b>${pts(p.share_of_ceiling)}%</b> of the ceiling (95% interval ${pts(p.share_of_ceiling_ci[0])}–${pts(Math.min(p.share_of_ceiling_ci[1], 1))}%).<br>Of hospitals penalized in fiscal 2023, penalized again in 2026: <b>${pts(p.pen_given_pen)}%</b> (${pts(p.pen_given_pen_if_stable)}% if no hospital had changed; ${pts(p.pen_base_rate)}% of all hospitals).`);
+    if (!p.model_fits_fy23_spread)
+      box.append("p").attr("class", "flag").text(`Ceiling less certain: applying FY2026's shrinkage to FY2023 predicts an ERR spread (SD ${p.sd_err23_model.toFixed(2)}) wider than CMS published (${p.sd_err23_observed.toFixed(2)}). Its second half (July 2020 to June 2021) fell during pandemic disruption of elective surgery. Fitting FY2023's own shrinkage to its published spread gives a ceiling of ${f2(p.ceiling_fy23_k)}, so the gap remains.`);
+  });
+  function drawScatSel() {
+    PCONDS.forEach(c => {
+      const s = scat[c]; s.selG.selectAll("*").remove();
+      if (sel == null) return;
+      const d = s.pts.get(sel);
+      if (!d) return;
+      s.selG.append("circle").attr("class", "selring").attr("cx", s.x(d[1])).attr("cy", s.y(d[2])).attr("r", 5);
+      s.selG.append("text").attr("class", "sellabel").attr("x", s.x(d[1]) + 7).attr("y", s.y(d[2]) - 6).text(`${d[1].toFixed(2)} → ${d[2].toFixed(2)}`);
+    });
+  }
+  onSelect.push(drawScatSel);
+
+  // ================= Act 4: the design artifact =================
+  const BE = P.by_eligible_conditions;
+  document.getElementById("act4txt").innerHTML =
+    `Share of hospitals penalized in fiscal 2026, by how many of the six measures had enough discharges to count. By construction, half of the hospitals in each peer group sit above the median on any one measure, and each extra measure is another chance to land above one: <b>${pct(BE[1].penalized_share)}</b> of hospitals with one countable measure were penalized, versus <b>${pct(BE[6].penalized_share)}</b> of those with all six.`;
+  function drawBars() {
+    let selCount = null;
+    if (sel != null) selCount = Object.values(H[sel].c).filter(d => d.n >= 25).length;
+    VK.bars(document.getElementById("bars-elig"), d3.range(1, 7).filter(k => BE[k]).map(k => ({
+      label: `${k} measure${k > 1 ? "s" : ""} <span style="color:var(--muted);font-size:11px">${VK.int(BE[k].hospitals)} hospitals${selCount === k ? " · includes yours" : ""}</span>`,
+      value: BE[k].penalized_share, color: selCount === k ? "var(--sel)" : null })), { fmt: v => pct(v), max: 1 });
+  }
+  drawBars();
+  onSelect.push(drawBars);
+  document.getElementById("act4more").textContent =
+    `To see what the median rule does on its own: in simulated years where every hospital performed exactly at its expected rate, about ${pct(P.chance_world_penalized_share)} of hospitals would still be penalized. The real figure (${pct(P.penalized_share)}) is lower because a hospital's results on different measures tend to move together (average correlation ${f2(P.mean_cross_condition_r)}), so fewer hospitals land above at least one median.`;
+
+  // ================= Methods text =================
+  const SRC = S.sources;
+  document.getElementById("src26").href = SRC.fy2026_supplemental;
+  document.getElementById("src23").href = SRC.fy2023_supplemental;
+  document.getElementById("srcpdc").href = SRC.provider_dataset;
+  document.getElementById("src27").href = SRC.fy2027_supplemental;
+  document.getElementById("checks").textContent =
+    `Checks: recomputing each hospital's reduction from CMS's formula (sum over measures of DRG ratio × max(ERR − peer median, 0) × neutrality modifier, capped at 3%) matches CMS's published figure within ${P.recompute_max_abs_diff_pct_points.toFixed(3)} percentage points for all ${VK.int(P.hospitals)} hospitals.`;
+  document.getElementById("ktab").innerHTML = `<tr><th>Measure</th><th>k</th><th>Bootstrap 95%</th><th>R²</th><th>Hospitals in fit</th><th>Median n in fit</th></tr>` +
+    CARD_ORDER.map(c => { const k = S.k[c]; return `<tr><td>${SHORT[c]}</td><td>${Math.round(k.k)}</td><td>${Math.round(k.k_lo)}–${Math.round(k.k_hi)}</td><td>${k.r2.toFixed(3)}</td><td>${VK.int(k.fit_rows)}</td><td>${VK.int(k.fit_median_n)}</td></tr>`; }).join("");
+  document.getElementById("supok").textContent = range(CONDS.map(c => S.k[c].suppressed_implied_0_10), v => pct(v, 0)) + ` (by measure; ${VK.int(d3.sum(CONDS, c => S.k[c].suppressed_rows))} hospital-measures)`;
+  const CB = S.calibration;
+  document.getElementById("calib").textContent =
+    `across measures, stated and observed probabilities agree within ${(100 * d3.max(CONDS, c => CB[c].max_gap)).toFixed(1)} percentage points in every probability band.`;
+  const hfK = PB.HF.ge90_k_range;
+  document.getElementById("ksens").textContent = hfK[0] === hfK[1] ? `at ${pct(hfK[0], 1)}` : `between ${pct(hfK[0], 1)} and ${pct(hfK[1], 1)}`;
+  const others = PCONDS.filter(c => c !== "THA");
+  document.getElementById("k23sens").textContent =
+    `for ${list(others.map(c => LONG[c]))} the ceiling moves by at most ${d3.max(others, c => Math.abs(PS[c].ceiling_fy23_k - PS[c].ceiling)).toFixed(3)}; ` +
+    `for hip/knee replacement it falls from ${f2(PS.THA.ceiling)} to ${f2(PS.THA.ceiling_fy23_k)}, so the observed correlation reaches ${pts(PS.THA.share_of_ceiling_fy23_k)}% of it instead of ${pts(PS.THA.share_of_ceiling)}%.`;
+  document.getElementById("thasd").textContent =`SD ${PS.THA.sd_err23_model.toFixed(2)} predicted vs ${PS.THA.sd_err23_observed.toFixed(2)} published`;
+  const unnamed = H.filter(h => h.name.startsWith("CCN ")).length;
+  document.getElementById("unnamed").textContent = `${unnamed} hospitals in CMS's supplemental file have no row in the hospital-level dataset, so they appear by CCN only and are left out of the lineup and probabilities. Hospitals with 25 or more discharges but no published expected rate (${VK.int(d3.sum(CONDS, c => H.filter(h => h.c[c] && h.c[c].n >= 25 && h.c[c].p == null).length))} hospital-measures) are left out the same way.`;
+
+  // Restore a hospital from the URL (#CCN)
+  const hash = decodeURIComponent(location.hash.slice(1));
+  const fromHash = H.find(h => h.ccn === hash);
+  select(fromHash ? fromHash.i : null, false);
+})();
+</script>
+</body>
+</html>

@@ -9,10 +9,20 @@
 
 - title: Data Visualizations
   items:
-    - title: Cardiac Rehab Participation by Region and State
-      url: /cardiac-rehab-map/
-      repo: https://github.com/usnish/usnish.github.io/tree/master/cardiac-rehab-map
-      description: Map of cardiac rehab participation among eligible Medicare patients, by region (2016 CDC data) and by state (1997).
+    - title: "Same Curve, Two Worlds"
+      url: /cr-session-curve/
+      repo: https://github.com/usnish/usnish.github.io/tree/master/cr-session-curve
+      description: A simulation of whether the Medicare dose-response curve for cardiac rehab sessions (36 vs 24, 12 or 1) can tell a real benefit from healthier people sticking with rehab, set beside the randomized trials and the placebo-adherer evidence.
+
+    - title: One High Reading
+      url: /one-high-reading/
+      repo: https://github.com/usnish/usnish.github.io/tree/master/one-high-reading
+      description: How far one high blood pressure reading falls by the next visit with nothing done, from 15,689 NHANES III adults measured at home and again at an exam centre, and how much of a first pill's apparent effect that is.
+
+    - title: "Noisy Ruler, Real Differences"
+      url: /readmission-noise/
+      repo: https://github.com/usnish/usnish.github.io/tree/master/readmission-noise
+      description: How much of a hospital's Medicare readmission penalty is measurement noise. A lineup of real vs chance-only data, each hospital's reliability and probability, and how stable the differences are from 2018-21 to 2021-24.
 
     - title: Cardiac Rehab Eligibility by County
       url: /cr-eligibility-map/
@@ -29,20 +39,10 @@
       repo: https://github.com/usnish/usnish.github.io/tree/master/trial-deserts
       description: Who lives within an hour of a recruiting clinical trial for diabetes, coronary heart disease, cancer or COPD, split by race, social vulnerability and rurality.
 
-    - title: Nonprofit Hospital Charity Care
-      url: /hospital-charity-care/
-      repo: https://github.com/usnish/usnish.github.io/tree/master/hospital-charity-care
-      description: Charity care reported by 2,700 U.S. nonprofit hospitals in 2023, plotted against a rough estimate of each hospital's federal income tax exemption.
-
     - title: Medicare Advantage Network Rules
       url: /ma-network-standards/
       repo: https://github.com/usnish/usnish.github.io/tree/master/ma-network-standards
       description: How far CMS lets a Medicare Advantage plan's nearest in-network doctor or hospital be, compared with how far older residents actually live from the nearest one, by county and specialty.
-
-    - title: Medicare Advantage Plans Ending in 2027
-      url: /ma-plan-exits/
-      repo: https://github.com/usnish/usnish.github.io/tree/master/ma-plan-exits
-      description: Which Medicare Advantage members must pick a new plan for 2027, or are being moved into a different one, by county, insurer and plan type, from the CMS plan crosswalk.
 
     - title: Cardiac Rehab Costs in Medicare Advantage
       url: /ma-cardiac-rehab/
