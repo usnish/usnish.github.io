@@ -9,16 +9,6 @@
 
 - title: Data Visualizations
   items:
-    - title: One High Reading
-      url: /one-high-reading/
-      repo: https://github.com/usnish/usnish.github.io/tree/master/one-high-reading
-      description: How far one high blood pressure reading falls by the next visit with nothing done, from 15,689 NHANES III adults measured at home and again at an exam centre, and how much of a first pill's apparent effect that is.
-
-    - title: "Noisy Ruler, Real Differences"
-      url: /readmission-noise/
-      repo: https://github.com/usnish/usnish.github.io/tree/master/readmission-noise
-      description: How much of a hospital's Medicare readmission penalty is measurement noise. A lineup of real vs chance-only data, each hospital's reliability and probability, and how stable the differences are from 2018-21 to 2021-24.
-
     - title: Cardiac Rehab Eligibility by County
       url: /cr-eligibility-map/
       repo: https://github.com/usnish/usnish.github.io/tree/master/cr-eligibility-map
