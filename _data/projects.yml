@@ -14,11 +14,6 @@
       repo: https://github.com/usnish/usnish.github.io/tree/master/dialysis-time-tax
       description: How many hours a year people on in-center dialysis spend just driving to treatment, county by county, and where households have no car to make the trip.
 
-    - title: Clinical Trial Deserts
-      url: /trial-deserts/
-      repo: https://github.com/usnish/usnish.github.io/tree/master/trial-deserts
-      description: Who lives within an hour of a recruiting clinical trial for diabetes, coronary heart disease, cancer or COPD, split by race, social vulnerability and rurality.
-
     - title: Medicare Advantage Network Rules
       url: /ma-network-standards/
       repo: https://github.com/usnish/usnish.github.io/tree/master/ma-network-standards
